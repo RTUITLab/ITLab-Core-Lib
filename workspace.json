@@ -1,4 +1,6 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "angular-ui-core": "libs/angular/ui-core"
+  }
 }
