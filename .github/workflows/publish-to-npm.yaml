@@ -1,10 +1,10 @@
-name: Angular Publish to NPM
+name: Publish to NPM
 
 on:
   push:
-    tags: ['ng-v.**']
+    tags: ['v.**']
 
-    # what the action will do
+      # what the action will do
 jobs:
   release:
     # The operating system it will run on
@@ -33,5 +33,5 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           yarn install --frozen-lockfile
-          yarn build-ng
-          yarn deploy-ng
+          yarn build
+          yarn release
