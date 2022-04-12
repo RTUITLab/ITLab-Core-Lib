@@ -7,11 +7,6 @@ on:
                master-ng,
                develop,
                develop-ng]
-  pull_request:
-    branches: [master,
-               master-ng,
-               develop,
-               develop-ng]
 
 # What the action will do
 jobs:
