@@ -1,0 +1,75 @@
+{
+  "projectType": "library",
+  "root": "libs/angular/ui-core",
+  "sourceRoot": "libs/angular/ui-core/src",
+  "prefix": "ng-ui-core",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/angular/ui-core"],
+      "options": {
+        "project": "libs/angular/ui-core/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/angular/ui-core/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/angular/ui-core/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/angular/ui-core"],
+      "options": {
+        "jestConfig": "libs/angular/ui-core/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/angular/ui-core/src/**/*.ts",
+          "libs/angular/ui-core/src/**/*.html"
+        ]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/angular/ui-core/.storybook"
+        },
+        "projectBuildConfig": "angular-ui-core:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "outputPath": "dist/storybook/angular-ui-core",
+        "config": {
+          "configFolder": "libs/angular/ui-core/.storybook"
+        },
+        "projectBuildConfig": "angular-ui-core:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "tags": ["scope:angular", "type:ui", "target:all"]
+}
