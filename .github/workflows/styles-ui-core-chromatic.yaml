@@ -1,0 +1,14 @@
+# Name of our action
+name: 'Ui core chromatic deployment'
+# The event that will trigger the action
+on:
+  push:
+    branches: [
+      master,
+      styles ]
+
+jobs:
+  angular-chromatic-deployment:
+    uses: './.github/workflows/angular-ui-core-chromatic.yaml'
+  # TODO: react-chromatic-deployment
+  # TODO: vue-chromatic-deployment

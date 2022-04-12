@@ -2,6 +2,7 @@
 name: 'Angular ui core chromatic deployment'
 # The event that will trigger the action
 on:
+  workflow_call:
   push:
     paths: ['styles/**', 'libs/angular/**']
 
