@@ -7,6 +7,7 @@
     "build": "nx build",
     "test": "nx test",
     "postinstall": "ngcc --properties es2015 browser module main",
+    "test-ng-ui-core": "nx run angular-ui-core:test",
     "serve-ng-ui-core-storybook": "nx run angular-ui-core:storybook",
     "build-ng-ui-core-storybook": "nx run angular-ui-core:build-storybook"
   },
