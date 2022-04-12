@@ -1,12 +1,17 @@
 # Name of our action
 name: 'Angular ui core chromatic deployment'
 # The event that will trigger the action
-on: [push, pull_request]
-  branches:
-    - master
-    - master-ng
-    - develop
-    - develop-ng
+on:
+  push:
+    branches: – master
+      - master-ng
+      - develop
+      - develop-ng
+  pull_request:
+    branches: – master
+      - master-ng
+      - develop
+      - develop-ng
 
 # What the action will do
 jobs:
