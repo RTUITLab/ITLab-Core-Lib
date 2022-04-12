@@ -3,11 +3,7 @@ name: 'Angular ui core chromatic deployment'
 # The event that will trigger the action
 on:
   push:
-    branches: [master,
-               master-ng,
-               develop,
-               develop-ng,
-               feature/ng-**]
+    paths: ['styles/**', 'libs/angular/**']
 
 # What the action will do
 jobs:
