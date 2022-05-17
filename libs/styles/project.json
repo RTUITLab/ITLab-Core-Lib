@@ -1,0 +1,23 @@
+{
+  "root": "libs/styles",
+  "sourceRoot": "libs/styles/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/styles/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/styles"],
+      "options": {
+        "jestConfig": "libs/styles/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["styles"]
+}
