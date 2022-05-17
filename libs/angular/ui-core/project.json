@@ -8,7 +8,8 @@
       "executor": "@nrwl/angular:package",
       "outputs": ["dist/libs/angular/ui-core"],
       "options": {
-        "project": "libs/angular/ui-core/ng-package.json"
+        "project": "libs/angular/ui-core/ng-package.json",
+        "styles": "libs/theme/src/lib/styles.scss"
       },
       "configurations": {
         "production": {
@@ -71,5 +72,6 @@
       }
     }
   },
-  "tags": ["scope:angular", "type:ui", "target:all"]
+  "tags": ["scope:angular", "type:ui", "target:all"],
+  "implicitDependencies": ["styles"]
 }
