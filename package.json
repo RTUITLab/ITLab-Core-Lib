@@ -13,8 +13,9 @@
     "deploy-ng": "yarn run deploy-ng-ui-core",
     "deploy-ng-ui-core": "cd libs/angular/ui-core && auto shipit && cd ../../..",
     "test-ng-ui-core": "nx run angular-ui-core:test",
-    "serve-ng-ui-core-storybook": "nx run angular-ui-core:storybook",
-    "build-ng-ui-core-storybook": "nx run angular-ui-core:build-storybook"
+    "docs-ui-core:json": "compodoc -p libs/angular/ui-core/tsconfig.json -e json -d libs/angular/ui-core/",
+    "serve-ng-ui-core-storybook": "yarn docs-ui-core:json && nx run angular-ui-core:storybook",
+    "build-ng-ui-core-storybook": "yarn docs-ui-core:json && nx run angular-ui-core:build-storybook"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +40,7 @@
     "@angular/compiler-cli": "~13.3.0",
     "@angular/language-service": "~13.3.0",
     "@auto-it/npm": "^10.36.5",
+    "@compodoc/compodoc": "^1.1.19",
     "@nrwl/angular": "^13.10.1",
     "@nrwl/cli": "13.10.1",
     "@nrwl/cypress": "13.10.1",
@@ -47,6 +49,7 @@
     "@nrwl/linter": "13.10.1",
     "@nrwl/storybook": "^13.10.1",
     "@nrwl/workspace": "13.10.1",
+    "@storybook/addon-docs": "^6.5.0",
     "@storybook/addon-essentials": "~6.4.12",
     "@storybook/angular": "~6.4.12",
     "@storybook/builder-webpack5": "~6.4.12",

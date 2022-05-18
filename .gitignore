@@ -43,3 +43,5 @@ Thumbs.db
 .vscode/
 
 .env
+
+libs/angular/ui-core/documentation.json
