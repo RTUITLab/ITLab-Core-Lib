@@ -16,8 +16,14 @@ export default {
   },
 } as Meta<BadgeComponent>;
 
-const InitialTemplate: Story<BadgeComponent> = (args: BadgeComponent) => ({
-  props: args
+// TODO: Check fix in next version of compdoc.
+//  Problem: destructing like {value, ...args} needed because of incompatible
+//  compdoc to parse getter/setter in right way +bug
+const InitialTemplate: Story<BadgeComponent> = ({value, ...args}: BadgeComponent) => ({
+  props: {
+    value,
+    args
+  }
 });
 export const InitialBadgeStory = InitialTemplate.bind({});
 InitialBadgeStory.args = {
@@ -31,8 +37,14 @@ NumberValueMoreThenMaxBadgeStory.args = {
 };
 NumberValueMoreThenMaxBadgeStory.storyName = "NumberValueMoreThenMaxBadgeStory badge";
 
-const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => ({
-  props: args,
+// TODO: Check fix in next version of compdoc.
+//  Problem: destructing like {value, ...args} needed because of incompatible
+//  compdoc to parse getter/setter in right way +bug
+const AllStatesStoryTemplate: Story<BadgeComponent> = ({value, ...args}: BadgeComponent) => ({
+  props: {
+    value,
+    args
+  },
   template: `
   <div
     style="

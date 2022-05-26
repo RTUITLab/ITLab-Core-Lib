@@ -34,7 +34,7 @@ export class BadgeComponent {
 
   /** Value to display inside the badge */
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  _value: string = '';
+  private _value: string = '';
   get value(): string {
     return this._value;
   }
