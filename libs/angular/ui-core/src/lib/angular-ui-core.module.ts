@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ButtonModule} from "./components/button/button.module";
+import {BadgeModule, ButtonModule} from "./components";
 
 @NgModule({
   imports: [CommonModule],
   exports: [
-    ButtonModule
+    ButtonModule,
+    BadgeModule
   ]
 })
 export class AngularUiCoreModule {}
