@@ -1,0 +1,39 @@
+<button [attr.type]="type"
+        [attr.aria-label]="ariaLabel"
+        [class]="styleClass"
+        [ngStyle]="style"
+        [disabled]="disabled || loading"
+        [ngClass]="{
+          'button':true,
+          'button-icon-only': (icon && !label),
+          'button-vertical': (iconPos === 'top' || iconPos === 'bottom') && label,
+          'disabled': this.disabled || this.loading,
+          'button-loading': this.loading,
+          'button-loading-label-only': this.loading && !this.icon && this.label
+          }"
+        (click)="onClick.emit($event)"
+        (focus)="onFocus.emit($event)"
+        (blur)="onBlur.emit($event)"
+>
+  <ng-content></ng-content>
+  <span [ngClass]="{
+          'button-icon': true,
+          'button-icon-left': iconPos === 'left' && label,
+          'button-icon-right': iconPos === 'right' && label,
+          'button-icon-top': iconPos === 'top' && label,
+          'button-icon-bottom': iconPos === 'bottom' && label
+          }"
+        [class]="loading ? loadingIconStyle : icon"
+        *ngIf="icon||loading"
+        [attr.aria-hidden]="true"
+  ></span>
+  <span class="p-button-label"
+        [attr.aria-hidden]="icon && !label"
+  >{{label || '&nbsp;'}}</span>
+  <ng-ui-core-badge
+    [styleClass]="badgeClass"
+    [style]="badgeStyle"
+    *ngIf="badge"
+    [value]="badge"
+  ></ng-ui-core-badge>
+</button>

@@ -1,0 +1,44 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/icons' as *;
+@use '../../../styles/helpers/loading' as *;
+
+.button {
+  margin: 0;
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  vertical-align: bottom;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.button-label {
+  flex: 1 1 auto;
+}
+
+.button-icon-right {
+  order: 1;
+}
+
+.button:disabled {
+  cursor: default;
+}
+
+.button-icon-only {
+  justify-content: center;
+
+  & .button-label {
+    visibility: hidden;
+    width: 0;
+    flex: 0 0 auto;
+  }
+}
+
+.button-vertical {
+  flex-direction: column;
+}
+.button-icon-bottom {
+  order: 2;
+}
