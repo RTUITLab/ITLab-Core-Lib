@@ -13,7 +13,7 @@
     "deploy-ng": "yarn run deploy-ng-ui-core",
     "deploy-ng-ui-core": "cd libs/angular/ui-core && auto shipit && cd ../../..",
     "test-ng-ui-core": "nx run angular-ui-core:test",
-    "docs-ui-core:json": "compodoc -p libs/angular/ui-core/tsconfig.json -e json -d libs/angular/ui-core/",
+    "docs-ui-core:json": "compodoc -p libs/angular/ui-core/tsconfig.json -e json -d libs/angular/ui-core/ --disablePrivate --disableProtected",
     "serve-ng-ui-core-storybook": "yarn docs-ui-core:json && nx run angular-ui-core:storybook",
     "build-ng-ui-core-storybook": "yarn docs-ui-core:json && nx run angular-ui-core:build-storybook"
   },

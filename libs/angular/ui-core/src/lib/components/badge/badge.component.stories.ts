@@ -16,15 +16,11 @@ export default {
   },
 } as Meta<BadgeComponent>;
 
-// TODO: Check fix in next version of compdoc.
-//  Problem: destructing like {value, ...args} needed because of incompatible
-//  compdoc to parse getter/setter in right way +bug
-const InitialTemplate: Story<BadgeComponent> = ({value, ...args}: BadgeComponent) => ({
-  props: {
-    value,
-    args
-  }
+
+const InitialTemplate: Story<BadgeComponent> = (args: BadgeComponent) => ({
+  props: args
 });
+
 export const InitialBadgeStory = InitialTemplate.bind({});
 InitialBadgeStory.args = {
   value: '1'
@@ -37,13 +33,18 @@ NumberValueMoreThenMaxBadgeStory.args = {
 };
 NumberValueMoreThenMaxBadgeStory.storyName = "NumberValueMoreThenMaxBadgeStory badge";
 
-// TODO: Check fix in next version of compdoc.
-//  Problem: destructing like {value, ...args} needed because of incompatible
-//  compdoc to parse getter/setter in right way +bug
-const AllStatesStoryTemplate: Story<BadgeComponent> = ({value, ...args}: BadgeComponent) => ({
+const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => ({
   props: {
-    value,
-    args
+    ...args,
+    types: ['outline',
+      'solid',
+      'light'
+    ],
+    colors: ['primary',
+      'red',
+      'green',
+      'transparent'
+    ],
   },
   template: `
   <div
@@ -94,17 +95,6 @@ const AllStatesStoryTemplate: Story<BadgeComponent> = ({value, ...args}: BadgeCo
 export const LargeAllStatesStory = AllStatesStoryTemplate.bind({});
 LargeAllStatesStory.args = {
   value: '1',
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  types: ['outline',
-    'solid',
-    'light'
-  ],
-  colors: ['primary',
-    'red',
-    'green',
-    'transparent'
-  ],
   size: 'large'
 };
 LargeAllStatesStory.storyName = "LargeAllStatesStory badge";
