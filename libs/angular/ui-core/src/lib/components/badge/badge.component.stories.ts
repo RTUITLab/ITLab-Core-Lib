@@ -14,6 +14,9 @@ export default {
   parameters: {
     layout: 'fullscreen',
   },
+  argTypes: {
+    containerClass: { table: { disable: true } }
+  }
 } as Meta<BadgeComponent>;
 
 
@@ -67,19 +70,9 @@ const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => 
         (type === 'transparent' && color === 'primary') ||
         (type !== 'transparent'); else showEmpty"
         >
-        <div
-          *ngIf="idx === 0;else showSimple">
-            {{color}}
-            <ng-ui-core-badge
-            [value]="value"
-            [type]="type"
-            [color]="color"
-            [size]="size"
-            [style]="style"
-            [styleClass]="styleClass"
-          ></ng-ui-core-badge>
-        </div>
-        <ng-template #showSimple>
+        <div>
+          <ng-container *ngIf="idx === 0">{{color}}</ng-container>
+
           <ng-ui-core-badge
             [value]="value"
             [type]="type"
@@ -88,7 +81,7 @@ const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => 
             [style]="style"
             [styleClass]="styleClass"
           ></ng-ui-core-badge>
-        </ng-template>
+        </div>
       </ng-container>
       <ng-template #showEmpty><div></div></ng-template>
     </ng-container>
@@ -98,9 +91,8 @@ const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => 
 });
 AllStatesStoryTemplate.argTypes = {
   color: { control: false },
-  type: { control: false },
-  containerClass: { control: false }
-}
+  type: { control: false }
+};
 
 export const LargeAllStatesStory = AllStatesStoryTemplate.bind({});
 LargeAllStatesStory.args = {
@@ -119,7 +111,7 @@ MediumAllStatesStory.args = {
 };
 MediumAllStatesStory.argTypes = {
   ...AllStatesStoryTemplate.argTypes
-}
+};
 MediumAllStatesStory.storyName = "MediumAllStatesStory badge";
 
 export const SmallAllStatesStory = AllStatesStoryTemplate.bind({});
@@ -129,5 +121,5 @@ SmallAllStatesStory.args = {
 };
 SmallAllStatesStory.argTypes = {
   ...AllStatesStoryTemplate.argTypes
-}
+};
 SmallAllStatesStory.storyName = "SmallAllStatesStory badge";
