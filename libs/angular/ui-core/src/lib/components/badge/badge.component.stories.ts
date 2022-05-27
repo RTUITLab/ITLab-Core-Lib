@@ -35,22 +35,22 @@ NumberValueMoreThenMaxBadgeStory.storyName = "NumberValueMoreThenMaxBadgeStory b
 
 const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => ({
   props: {
-    ...args,
     types: ['outline',
       'solid',
-      'light'
+      'light',
+      'transparent'
     ],
     colors: ['primary',
       'red',
-      'green',
-      'transparent'
+      'green'
     ],
+    ...args,
   },
   template: `
   <div
     style="
      display:grid;
-     grid-template-columns: repeat(5, 1fr);
+     grid-template-columns: repeat(4, 1fr);
      grid-gap: 1rem;
      align-items: center;
      "
@@ -64,8 +64,8 @@ const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => 
       >
       <ng-container
         *ngIf="
-        (type === 'outline' && color === 'transparent') ||
-        (color !== 'transparent'); else showEmpty"
+        (type === 'transparent' && color === 'primary') ||
+        (type !== 'transparent'); else showEmpty"
         >
         <div
           *ngIf="idx === 0;else showSimple">
@@ -75,6 +75,8 @@ const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => 
             [type]="type"
             [color]="color"
             [size]="size"
+            [style]="style"
+            [styleClass]="styleClass"
           ></ng-ui-core-badge>
         </div>
         <ng-template #showSimple>
@@ -83,6 +85,8 @@ const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => 
             [type]="type"
             [color]="color"
             [size]="size"
+            [style]="style"
+            [styleClass]="styleClass"
           ></ng-ui-core-badge>
         </ng-template>
       </ng-container>
@@ -92,11 +96,20 @@ const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => 
   </div>
   `
 });
+AllStatesStoryTemplate.argTypes = {
+  color: { control: false },
+  type: { control: false },
+  containerClass: { control: false }
+}
+
 export const LargeAllStatesStory = AllStatesStoryTemplate.bind({});
 LargeAllStatesStory.args = {
   value: '1',
   size: 'large'
 };
+LargeAllStatesStory.argTypes = {
+  ...AllStatesStoryTemplate.argTypes
+}
 LargeAllStatesStory.storyName = "LargeAllStatesStory badge";
 
 export const MediumAllStatesStory = AllStatesStoryTemplate.bind({});
@@ -104,6 +117,9 @@ MediumAllStatesStory.args = {
   ...LargeAllStatesStory.args,
   size: 'medium'
 };
+MediumAllStatesStory.argTypes = {
+  ...AllStatesStoryTemplate.argTypes
+}
 MediumAllStatesStory.storyName = "MediumAllStatesStory badge";
 
 export const SmallAllStatesStory = AllStatesStoryTemplate.bind({});
@@ -111,4 +127,7 @@ SmallAllStatesStory.args = {
   ...LargeAllStatesStory.args,
   size: 'small'
 };
+SmallAllStatesStory.argTypes = {
+  ...AllStatesStoryTemplate.argTypes
+}
 SmallAllStatesStory.storyName = "SmallAllStatesStory badge";

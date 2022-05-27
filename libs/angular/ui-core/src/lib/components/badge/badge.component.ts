@@ -27,10 +27,10 @@ export class BadgeComponent {
   @Input() size: 'large' | 'medium' | 'small' = 'medium';
 
   /** Color of the badge */
-  @Input() color: 'primary' | 'red' | 'green' | 'transparent' = 'primary';
+  @Input() color: 'primary' | 'red' | 'green' = 'primary';
 
   /** Type of the badge */
-  @Input() type: 'outline' | 'solid' | 'light' = 'solid';
+  @Input() type: 'outline' | 'solid' | 'light' | 'transparent' = 'solid';
 
   /** Value to display inside the badge */
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
@@ -56,7 +56,7 @@ export class BadgeComponent {
       'badge-primary': this.color === 'primary',
       'badge-red': this.color === 'red',
       'badge-green': this.color === 'green',
-      'badge-transparent': this.color === 'transparent',
+      'badge-transparent': this.type === 'transparent',
       'badge-outline': this.type === 'outline',
       'badge-solid': this.type === 'solid',
       'badge-light': this.type === 'light'

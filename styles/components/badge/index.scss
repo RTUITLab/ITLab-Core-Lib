@@ -46,49 +46,53 @@
   font-size: 12px;
   line-height: 20px;
 }
-.badge-primary{
-  border: 1px solid dt.$primary-100;
-  background: dt.$primary-100;
+
+.badge-primary {
   color: dt.$primary-100;
+  border: 1px solid dt.$primary-100;
+  &.badge-solid{
+    background: dt.$primary-100;
+    color: #FFFFFF;
+  }
+  &.badge-outline{
+    background: #FFFFFF;
+  }
+  &.badge-light{
+    background: dt.$primary-30;
+    border: 1px solid dt.$primary-30;
+  }
 }
-.badge-red{
-  border: 1px solid dt.$red-100;
-  background: dt.$red-100;
-  color: dt.$red-100;
-}
-.badge-green{
-  border: 1px solid dt.$green-100;
-  background: dt.$green-100;
+.badge-green {
   color: dt.$green-100;
+  border: 1px solid dt.$green-100;
+  &.badge-solid{
+    background: dt.$green-100;
+    color: #FFFFFF;
+  }
+  &.badge-outline{
+    background: #FFFFFF;
+  }
+  &.badge-light{
+    background: dt.$green-30;
+    border: 1px solid dt.$green-30;
+  }
+}
+.badge-red {
+  border: 1px solid dt.$red-100;
+  color: dt.$red-100;
+  &.badge-solid{
+    background: dt.$red-100;
+    color: #FFFFFF;
+  }
+  &.badge-outline{
+    background: #FFFFFF;
+  }
+  &.badge-light{
+    background: dt.$red-30;
+    border: 1px solid dt.$red-30;
+  }
 }
 .badge-transparent{
   border: 1px solid dt.$general-50;
   color: dt.$general-70;
-}
-.badge-outline{
-  background: #FFFFFF;
-}
-.badge-solid{
-  &.badge-primary{
-    color: #FFFFFF;
-  }
-  &.badge-red{
-    color: #FFFFFF;
-  }
-  &.badge-green{
-    color: #FFFFFF;
-  }
-}
-.badge-light{
-  border: initial;
-
-  &.badge-primary{
-    background: dt.$primary-30;
-  }
-  &.badge-red{
-    background: dt.$red-30;
-  }
-  &.badge-green{
-    background: dt.$green-30;
-  }
 }
