@@ -185,4 +185,66 @@ DisabledMediumAllStatesStory.argTypes = {
 };
 DisabledMediumAllStatesStory.storyName = "DisabledMediumAllStatesStory button";
 
+export const TextIconButtonLargeAllStatesStory = AllStatesStoryTemplate.bind({});
+TextIconButtonLargeAllStatesStory.args = {
+  ...LargeAllStatesStory.args,
+  icon: 'ri-check-line'
+};
+TextIconButtonLargeAllStatesStory.argTypes = {
+  ...AllStatesStoryTemplate.argTypes
+};
+TextIconButtonLargeAllStatesStory.storyName = "TextIconButtonLargeAllStatesStory button";
+
+export const TextIconButtonMediumAllStatesStory = AllStatesStoryTemplate.bind({});
+TextIconButtonMediumAllStatesStory.args = {
+  ...LargeAllStatesStory.args,
+  buttonSize: 'medium',
+  icon: 'ri-check-line'
+};
+TextIconButtonMediumAllStatesStory.argTypes = {
+  ...AllStatesStoryTemplate.argTypes
+};
+TextIconButtonMediumAllStatesStory.storyName = "TextIconButtonMediumAllStatesStory button";
+
+export const TextIconButtonSmallAllStatesStory = AllStatesStoryTemplate.bind({});
+TextIconButtonSmallAllStatesStory.args = {
+  ...LargeAllStatesStory.args,
+  buttonSize: 'small',
+  icon: 'ri-check-line'
+};
+TextIconButtonSmallAllStatesStory.argTypes = {
+  ...AllStatesStoryTemplate.argTypes
+};
+TextIconButtonSmallAllStatesStory.storyName = "TextIconButtonSmallAllStatesStory button";
+
+export const IconButtonLargeAllStatesStory = AllStatesStoryTemplate.bind({});
+IconButtonLargeAllStatesStory.args = {
+  buttonSize: 'large',
+  icon: 'ri-check-line'
+};
+IconButtonLargeAllStatesStory.argTypes = {
+  ...AllStatesStoryTemplate.argTypes
+};
+IconButtonLargeAllStatesStory.storyName = "IconButtonLargeAllStatesStory button";
+
+export const IconButtonMediumAllStatesStory = AllStatesStoryTemplate.bind({});
+IconButtonMediumAllStatesStory.args = {
+  buttonSize: 'medium',
+  icon: 'ri-check-line'
+};
+IconButtonMediumAllStatesStory.argTypes = {
+  ...AllStatesStoryTemplate.argTypes
+};
+IconButtonMediumAllStatesStory.storyName = "IconButtonMediumAllStatesStory button";
+
+export const IconButtonSmallAllStatesStory = AllStatesStoryTemplate.bind({});
+IconButtonSmallAllStatesStory.args = {
+  buttonSize: 'small',
+  icon: 'ri-check-line'
+};
+IconButtonSmallAllStatesStory.argTypes = {
+  ...AllStatesStoryTemplate.argTypes
+};
+IconButtonSmallAllStatesStory.storyName = "IconButtonSmallAllStatesStory button";
+
 
