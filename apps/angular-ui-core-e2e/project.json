@@ -1,5 +1,4 @@
 {
-  "root": "apps/angular-ui-core-e2e",
   "sourceRoot": "apps/angular-ui-core-e2e/src",
   "projectType": "application",
   "targets": {
