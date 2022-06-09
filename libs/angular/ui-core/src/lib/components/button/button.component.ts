@@ -17,11 +17,9 @@ import {
 export class ButtonComponent{
 
   /** Type of the button */
-    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() type: string = 'button';
 
   /** Text of the button */
-    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() label: string = '';
 
   /** Style Color of the button */
@@ -34,46 +32,37 @@ export class ButtonComponent{
   @Input() buttonSize: 'large' | 'medium' | 'small' = 'medium';
 
   /** Name of the icon */
-    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() icon: string = '';
 
   /** Position of the icon, valid values are "left", "right". */
   @Input() iconPos: 'left' | 'right' = 'right';
 
   /** When present, it specifies that the component should be disabled */
-    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() disabled: boolean = false;
 
   /** Whether the button is in loading state */
-    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() loading: boolean = false;
 
   /** Classes to be determined as Icon to display in loading state */
-    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() loadingIconStyle: string = 'ri-refresh-line spin-anim';
 
   /** Inline style of the element. */
   @Input() style: { [p: string]: any } | null = null;
 
   /** Style class of the element */
-    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() styleClass: string = '';
 
   /** Used to define a string that autocomplete attribute the current element */
-    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() ariaLabel: string = '';
 
   /** Callback to execute when button is clicked */
-    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  @Output() onClick: EventEmitter<any> = new EventEmitter();
+  @Output() clickCb: EventEmitter<any> = new EventEmitter();
 
   /** Callback to execute when button is focused */
-    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  @Output() onFocus: EventEmitter<any> = new EventEmitter();
+  @Output() focusCb: EventEmitter<any> = new EventEmitter();
 
   /** Callback to execute when button loses focus */
-    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  @Output() onBlur: EventEmitter<any> = new EventEmitter();
+  @Output() blurCb: EventEmitter<any> = new EventEmitter();
 
   containerClass() {
     return {

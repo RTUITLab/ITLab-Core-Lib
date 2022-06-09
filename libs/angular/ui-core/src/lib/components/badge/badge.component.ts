@@ -14,11 +14,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BadgeComponent {
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  private MAX_NUMBER_IN_BADGE: number = 99;
+  private MAX_NUMBER_IN_BADGE = 99;
   /** Style class of the component */
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  @Input() styleClass: string = '';
+  @Input() styleClass = '';
 
   /** Inline style of the component */
   @Input() style: {[p: string]: any} | null = null;
@@ -33,8 +31,7 @@ export class BadgeComponent {
   @Input() type: 'outline' | 'solid' | 'light' | 'transparent' = 'solid';
 
   /** Value to display inside the badge */
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
-  private _value: string = '';
+  private _value = '';
   get value(): string {
     return this._value;
   }
