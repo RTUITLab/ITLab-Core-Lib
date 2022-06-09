@@ -4,9 +4,9 @@
         [ngStyle]="style"
         [disabled]="disabled || loading"
         [ngClass]="containerClass()"
-        (click)="onClick.emit($event)"
-        (focus)="onFocus.emit($event)"
-        (blur)="onBlur.emit($event)"
+        (click)="clickCb.emit($event)"
+        (focus)="focusCb.emit($event)"
+        (blur)="blurCb.emit($event)"
 >
   <span class="p-button-label"
         *ngIf="label"
