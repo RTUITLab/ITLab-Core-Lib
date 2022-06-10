@@ -1,0 +1,1995 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "BadgeComponent",
+            "id": "component-BadgeComponent-57b5ed5bfbd01afcaf888d5cb2fee23fc3a2d48e615dc4d5d17d5d2af05c886e5b930d9857b331fa419a7fef73055e4efef8e8a4765a6da01eb8d1493f0e6e16",
+            "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.Emulated"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ng-ui-core-badge",
+            "styleUrls": [
+                "./badge.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./badge.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "'primary'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nColor of the badge",
+                    "description": "<p>Color of the badge</p>\n",
+                    "line": 30,
+                    "type": "\"primary\" | \"red\" | \"green\"",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nSize of the badge",
+                    "description": "<p>Size of the badge</p>\n",
+                    "line": 27,
+                    "type": "\"large\" | \"medium\" | \"small\"",
+                    "decorators": []
+                },
+                {
+                    "name": "style",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInline style of the component",
+                    "description": "<p>Inline style of the component</p>\n",
+                    "line": 24,
+                    "type": "literal type | null",
+                    "decorators": []
+                },
+                {
+                    "name": "styleClass",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nStyle class of the component",
+                    "description": "<p>Style class of the component</p>\n",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'solid'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nType of the badge",
+                    "description": "<p>Type of the badge</p>\n",
+                    "line": 33,
+                    "type": "\"outline\" | \"solid\" | \"light\" | \"transparent\"",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 41,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "_value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "<p>Value to display inside the badge</p>\n",
+                    "line": 37,
+                    "rawdescription": "\nValue to display inside the badge",
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
+                    "name": "MAX_NUMBER_IN_BADGE",
+                    "defaultValue": "99",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "containerClass",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "{ badge: boolean; 'badge-no-gutter': boolean; 'badge-lg': boolean; 'badge-m': boolean; 'badge-sm': boolean; 'badge-primary': boolean; 'badge-red': boolean; 'badge-green': boolean; 'badge-transparent': boolean; 'badge-outline': boolean; 'badge-solid': boolean; 'badge-light': boolean; }",
+                    "typeParameters": [],
+                    "line": 49,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  ViewEncapsulation,\n  ChangeDetectionStrategy, Input,\n} from '@angular/core';\n\n@Component({\n  selector: 'ng-ui-core-badge',\n  templateUrl: './badge.component.html',\n  styleUrls: [\n    './badge.component.scss'\n  ],\n  encapsulation: ViewEncapsulation.Emulated,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BadgeComponent {\n  // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  private MAX_NUMBER_IN_BADGE: number = 99;\n  /** Style class of the component */\n  // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  @Input() styleClass: string = '';\n\n  /** Inline style of the component */\n  @Input() style: {[p: string]: any} | null = null;\n\n  /** Size of the badge */\n  @Input() size: 'large' | 'medium' | 'small' = 'medium';\n\n  /** Color of the badge */\n  @Input() color: 'primary' | 'red' | 'green' = 'primary';\n\n  /** Type of the badge */\n  @Input() type: 'outline' | 'solid' | 'light' | 'transparent' = 'solid';\n\n  /** Value to display inside the badge */\n  // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  private _value: string = '';\n  get value(): string {\n    return this._value;\n  }\n  @Input() set value(value: string) {\n    if (!Number.isNaN(value) && Number(value) > this.MAX_NUMBER_IN_BADGE){\n      this._value = `${this.MAX_NUMBER_IN_BADGE}+`;\n    }else{\n      this._value = value;\n    }\n  }\n\n  containerClass() {\n    return {\n      'badge': true,\n      'badge-no-gutter': this.value != undefined && String(this.value).length === 1,\n      'badge-lg': this.size === 'large',\n      'badge-m': this.size === 'medium',\n      'badge-sm': this.size === 'small',\n      'badge-primary': this.color === 'primary',\n      'badge-red': this.color === 'red',\n      'badge-green': this.color === 'green',\n      'badge-transparent': this.type === 'transparent',\n      'badge-outline': this.type === 'outline',\n      'badge-solid': this.type === 'solid',\n      'badge-light': this.type === 'light'\n    };\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use '../../../../../../../styles/components/badge' as *;\n",
+                    "styleUrl": "./badge.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "value": {
+                    "name": "value",
+                    "setSignature": {
+                        "name": "value",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "value",
+                                "type": "string",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 41,
+                        "jsdoctags": [
+                            {
+                                "name": "value",
+                                "type": "string",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "value",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 38
+                    }
+                }
+            },
+            "templateData": "<span\n  [ngClass]=\"containerClass()\"\n  [class]=\"styleClass\"\n  [ngStyle]=\"style\">{{value}}\n</span>\n"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-c610feb50e0ed659b1e916d857df6f56b180c14dee378a65ed60c0c48ae9585f2c9c564a78061f5b982914b7150af375548c0dfaaf7f1c2c7c517a3645c2178a",
+            "file": "libs/angular/ui-core/src/lib/components/button/button.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.Emulated"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ng-ui-core-button",
+            "styleUrls": [
+                "./button.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./button.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "ariaLabel",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nUsed to define a string that autocomplete attribute the current element",
+                    "description": "<p>Used to define a string that autocomplete attribute the current element</p>\n",
+                    "line": 64,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "buttonSize",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nStyle Size of the button",
+                    "description": "<p>Style Size of the button</p>\n",
+                    "line": 34,
+                    "type": "\"large\" | \"medium\" | \"small\"",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nWhen present, it specifies that the component should be disabled",
+                    "description": "<p>When present, it specifies that the component should be disabled</p>\n",
+                    "line": 45,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "icon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nName of the icon",
+                    "description": "<p>Name of the icon</p>\n",
+                    "line": 38,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "iconPos",
+                    "defaultValue": "'right'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nPosition of the icon, valid values are \"left\", \"right\".",
+                    "description": "<p>Position of the icon, valid values are &quot;left&quot;, &quot;right&quot;.</p>\n",
+                    "line": 41,
+                    "type": "\"left\" | \"right\"",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nText of the button",
+                    "description": "<p>Text of the button</p>\n",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "loading",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nWhether the button is in loading state",
+                    "description": "<p>Whether the button is in loading state</p>\n",
+                    "line": 49,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "loadingIconStyle",
+                    "defaultValue": "'ri-refresh-line spin-anim'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nClasses to be determined as Icon to display in loading state",
+                    "description": "<p>Classes to be determined as Icon to display in loading state</p>\n",
+                    "line": 53,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "style",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInline style of the element.",
+                    "description": "<p>Inline style of the element.</p>\n",
+                    "line": 56,
+                    "type": "literal type | null",
+                    "decorators": []
+                },
+                {
+                    "name": "styleClass",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nStyle class of the element",
+                    "description": "<p>Style class of the element</p>\n",
+                    "line": 60,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "styleColor",
+                    "defaultValue": "'primary'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nStyle Color of the button",
+                    "description": "<p>Style Color of the button</p>\n",
+                    "line": 28,
+                    "type": "\"primary\" | \"red\" | \"green\"",
+                    "decorators": []
+                },
+                {
+                    "name": "styleType",
+                    "defaultValue": "'solid'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nStyle Type of the button",
+                    "description": "<p>Style Type of the button</p>\n",
+                    "line": 31,
+                    "type": "\"solid\" | \"outline\" | \"light\" | \"transparent\"",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nType of the button",
+                    "description": "<p>Type of the button</p>\n",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onBlur",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nCallback to execute when button loses focus",
+                    "description": "<p>Callback to execute when button loses focus</p>\n",
+                    "line": 76,
+                    "type": "EventEmitter<any>"
+                },
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nCallback to execute when button is clicked",
+                    "description": "<p>Callback to execute when button is clicked</p>\n",
+                    "line": 68,
+                    "type": "EventEmitter<any>"
+                },
+                {
+                    "name": "onFocus",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nCallback to execute when button is focused",
+                    "description": "<p>Callback to execute when button is focused</p>\n",
+                    "line": 72,
+                    "type": "EventEmitter<any>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "containerClass",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "{ button: boolean; 'button-icon-only': boolean; disabled: boolean; 'button-loading': boolean; 'button-primary': boolean; 'button-green': boolean; 'button-red': boolean; 'button-transparent': boolean; ... 5 more ...; 'button-small': boolean; }",
+                    "typeParameters": [],
+                    "line": 78,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  ViewEncapsulation,\n  ChangeDetectionStrategy, Input, Output, EventEmitter,\n} from '@angular/core';\n\n\n@Component({\n  selector: 'ng-ui-core-button',\n  templateUrl: './button.component.html',\n  styleUrls: [\n    './button.component.scss'\n  ],\n  encapsulation: ViewEncapsulation.Emulated,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ButtonComponent{\n\n  /** Type of the button */\n    // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  @Input() type: string = 'button';\n\n  /** Text of the button */\n    // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  @Input() label: string = '';\n\n  /** Style Color of the button */\n  @Input() styleColor: 'primary' | 'red' | 'green' = 'primary';\n\n  /** Style Type of the button */\n  @Input() styleType: 'solid' | 'outline' | 'light' | 'transparent' = 'solid';\n\n  /** Style Size of the button */\n  @Input() buttonSize: 'large' | 'medium' | 'small' = 'medium';\n\n  /** Name of the icon */\n    // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  @Input() icon: string = '';\n\n  /** Position of the icon, valid values are \"left\", \"right\". */\n  @Input() iconPos: 'left' | 'right' = 'right';\n\n  /** When present, it specifies that the component should be disabled */\n    // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  @Input() disabled: boolean = false;\n\n  /** Whether the button is in loading state */\n    // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  @Input() loading: boolean = false;\n\n  /** Classes to be determined as Icon to display in loading state */\n    // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  @Input() loadingIconStyle: string = 'ri-refresh-line spin-anim';\n\n  /** Inline style of the element. */\n  @Input() style: { [p: string]: any } | null = null;\n\n  /** Style class of the element */\n    // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  @Input() styleClass: string = '';\n\n  /** Used to define a string that autocomplete attribute the current element */\n    // eslint-disable-next-line @typescript-eslint/no-inferrable-types\n  @Input() ariaLabel: string = '';\n\n  /** Callback to execute when button is clicked */\n    // eslint-disable-next-line @angular-eslint/no-output-on-prefix\n  @Output() onClick: EventEmitter<any> = new EventEmitter();\n\n  /** Callback to execute when button is focused */\n    // eslint-disable-next-line @angular-eslint/no-output-on-prefix\n  @Output() onFocus: EventEmitter<any> = new EventEmitter();\n\n  /** Callback to execute when button loses focus */\n    // eslint-disable-next-line @angular-eslint/no-output-on-prefix\n  @Output() onBlur: EventEmitter<any> = new EventEmitter();\n\n  containerClass() {\n    return {\n      'button':true,\n      'button-icon-only': (this.icon && !this.label),\n      'disabled': this.disabled || this.loading,\n      'button-loading': this.loading,\n      'button-primary': this.styleColor === 'primary',\n      'button-green': this.styleColor === 'green',\n      'button-red': this.styleColor === 'red',\n      'button-transparent': this.styleType === 'transparent',\n      'button-outline': this.styleType ==='outline',\n      'button-solid': this.styleType === 'solid',\n      'button-light': this.styleType === 'light',\n      'button-large': this.buttonSize === 'large',\n      'button-medium': this.buttonSize === 'medium',\n      'button-small': this.buttonSize === 'small'\n    };\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use '../../../../../../../styles/components/button' as *;\n",
+                    "styleUrl": "./button.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<button [attr.type]=\"type\"\n        [attr.aria-label]=\"ariaLabel\"\n        [class]=\"styleClass\"\n        [ngStyle]=\"style\"\n        [disabled]=\"disabled || loading\"\n        [ngClass]=\"containerClass()\"\n        (click)=\"onClick.emit($event)\"\n        (focus)=\"onFocus.emit($event)\"\n        (blur)=\"onBlur.emit($event)\"\n>\n  <span class=\"p-button-label\"\n        *ngIf=\"label\"\n  >{{label}}</span>\n  <ng-content></ng-content>\n  <span [ngClass]=\"{\n          'button-icon': true,\n          'button-icon-left': iconPos === 'left' && label,\n          'button-icon-right': iconPos === 'right' && label\n          }\"\n        [class]=\"loading ? loadingIconStyle : icon\"\n        *ngIf=\"icon||loading\"\n        [attr.aria-hidden]=\"true\"\n  ></span>\n</button>\n"
+        },
+        {
+            "name": "CheckboxComponent",
+            "id": "component-CheckboxComponent-227a8a164e440b352f6ca9be6ed21c95c0ef6267aa68cbefa346fa47ad905012f2966c23c3cc53b60f9d00efe5be275f0939acd5b9d7fc9ce13f65edeb696c21",
+            "file": "libs/angular/ui-core/src/lib/components/checkbox/checkbox.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.Emulated"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CheckboxComponent), multi: true,\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "ng-ui-core-checkbox",
+            "styleUrls": [
+                "./checkbox.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./checkbox.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "ariaLabel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nUsed to define a string that labels the input element",
+                    "description": "<p>Used to define a string that labels the input element</p>\n",
+                    "line": 51,
+                    "type": "string | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaLabelledBy",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEstablishes relationships between the component and label(s) where its value should be one or more element IDs",
+                    "description": "<p>Establishes relationships between the component and label(s) where its value should be one or more element IDs</p>\n",
+                    "line": 48,
+                    "type": "string | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "checkboxIcon",
+                    "defaultValue": "'ri-check-line'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIcon class of the checkbox icon",
+                    "description": "<p>Icon class of the checkbox icon</p>\n",
+                    "line": 72,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "falseValue",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nValue in unchecked state",
+                    "description": "<p>Value in unchecked state</p>\n",
+                    "line": 84,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "formControl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nValue of the checkbox",
+                    "description": "<p>Value of the checkbox</p>\n",
+                    "line": 69,
+                    "type": "FormControl | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "inputId",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIdentifier of the focus input to match a label defined for the component",
+                    "description": "<p>Identifier of the focus input to match a label defined for the component</p>\n",
+                    "line": 57,
+                    "type": "string | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "isBinary",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nAllows to select a boolean value instead of multiple values",
+                    "description": "<p>Allows to select a boolean value instead of multiple values</p>\n",
+                    "line": 45,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "isDisabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nWhen present, it specifies that the element should be disabled",
+                    "description": "<p>When present, it specifies that the element should be disabled</p>\n",
+                    "line": 42,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "isReadonly",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nWhen present, it specifies that the component cannot be edited",
+                    "description": "<p>When present, it specifies that the component cannot be edited</p>\n",
+                    "line": 75,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "isRequired",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nWhen present, it specifies that checkbox must be checked before submitting the form",
+                    "description": "<p>When present, it specifies that checkbox must be checked before submitting the form</p>\n",
+                    "line": 78,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nLabel of the checkbox",
+                    "description": "<p>Label of the checkbox</p>\n",
+                    "line": 39,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "labelStyleClass",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nStyle class of the label",
+                    "description": "<p>Style class of the label</p>\n",
+                    "line": 66,
+                    "type": "string | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nName of the checkbox group",
+                    "description": "<p>Name of the checkbox group</p>\n",
+                    "line": 33,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "style",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nInline style of the component",
+                    "description": "<p>Inline style of the component</p>\n",
+                    "line": 60,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "styleClass",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nStyle class of the component",
+                    "description": "<p>Style class of the component</p>\n",
+                    "line": 63,
+                    "type": "string | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "tabindex",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nIndex of the element in tabbing order",
+                    "description": "<p>Index of the element in tabbing order</p>\n",
+                    "line": 54,
+                    "type": "number | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "trueValue",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nValue in checked state",
+                    "description": "<p>Value in checked state</p>\n",
+                    "line": 81,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nValue of the checkbox",
+                    "description": "<p>Value of the checkbox</p>\n",
+                    "line": 36,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onChange",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nCallback to invoke on checkbox click",
+                    "description": "<p>Callback to invoke on checkbox click</p>\n",
+                    "line": 91,
+                    "type": "EventEmitter<any>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "inputViewChild",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef | undefined",
+                    "optional": false,
+                    "description": "<p>Ref to native el of checkbox</p>\n",
+                    "line": 87,
+                    "rawdescription": "\nRef to native el of checkbox",
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'cb'"
+                        }
+                    ]
+                },
+                {
+                    "name": "isFocused",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "<p>Is field in focus</p>\n",
+                    "line": 97,
+                    "rawdescription": "\nIs field in focus"
+                },
+                {
+                    "name": "model",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "<p>Model for NgModel</p>\n",
+                    "line": 94,
+                    "rawdescription": "\nModel for NgModel"
+                },
+                {
+                    "name": "onModelChange",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Function",
+                    "optional": false,
+                    "description": "",
+                    "line": 169
+                },
+                {
+                    "name": "onModelTouched",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Function",
+                    "optional": false,
+                    "description": "",
+                    "line": 176
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "containerClass",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "{ checkbox: boolean; }",
+                    "typeParameters": [],
+                    "line": 194,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "focus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 157,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 142,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 152,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClick",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "checkbox",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "focus",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 101,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "checkbox",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "focus",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 148,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "Function",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 171,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "Function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "Function",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 178,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "Function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 182,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "updateModel",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 116,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "model",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 163,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "model",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectorRef,\n  ViewChild,\n  ElementRef,\n  forwardRef,\n} from '@angular/core';\nimport {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from \"@angular/forms\";\n\n@Component({\n  selector: 'ng-ui-core-checkbox',\n  templateUrl: './checkbox.component.html',\n  styleUrls: [\n    './checkbox.component.scss'\n  ],\n  encapsulation: ViewEncapsulation.Emulated,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => CheckboxComponent),\n      multi: true,\n    }]\n})\nexport class CheckboxComponent implements ControlValueAccessor{\n  /** Name of the checkbox group */\n  @Input() name: string = '';\n\n  /** Value of the checkbox */\n  @Input() value: boolean = false;\n\n  /** Label of the checkbox */\n  @Input() label: string = '';\n\n  /** When present, it specifies that the element should be disabled */\n  @Input() isDisabled: boolean = false;\n\n  /** Allows to select a boolean value instead of multiple values */\n  @Input() isBinary: boolean = false;\n\n  /** Establishes relationships between the component and label(s) where its value should be one or more element IDs */\n  @Input() ariaLabelledBy: string | undefined;\n\n  /** Used to define a string that labels the input element */\n  @Input() ariaLabel: string| undefined;\n\n  /** Index of the element in tabbing order */\n  @Input() tabindex: number | undefined;\n\n  /** Identifier of the focus input to match a label defined for the component */\n  @Input() inputId: string | undefined;\n\n  /** Inline style of the component */\n  @Input() style: any;\n\n  /** Style class of the component */\n  @Input() styleClass: string | undefined;\n\n  /** Style class of the label */\n  @Input() labelStyleClass: string | undefined;\n\n  /** Value of the checkbox */\n  @Input() formControl: FormControl | undefined;\n\n  /** Icon class of the checkbox icon */\n  @Input() checkboxIcon: string = 'ri-check-line';\n\n  /** When present, it specifies that the component cannot be edited */\n  @Input() isReadonly: boolean = false;\n\n  /** When present, it specifies that checkbox must be checked before submitting the form */\n  @Input() isRequired: boolean = false;\n\n  /** Value in checked state */\n  @Input() trueValue: any = true;\n\n  /** Value in unchecked state */\n  @Input() falseValue: any = false;\n\n  /** Ref to native el of checkbox */\n  @ViewChild('cb') inputViewChild: ElementRef | undefined;\n\n  /** Callback to invoke on checkbox click */\n    // eslint-disable-next-line @angular-eslint/no-output-on-prefix\n  @Output() onChange: EventEmitter<any> = new EventEmitter();\n\n  /** Model for NgModel*/\n  model: any;\n\n  /** Is field in focus */\n  isFocused: boolean = false;\n\n  constructor(private cd: ChangeDetectorRef) {}\n\n  onClick(event: any, checkbox:any, focus:boolean) {\n    console.log(event, checkbox, focus);\n    event.preventDefault();\n\n    if (this.isDisabled || this.isReadonly) {\n      return;\n    }\n\n    this.updateModel(event);\n\n    if (focus) {\n      checkbox.focus();\n    }\n  }\n\n  updateModel(event: any) {\n    let newModelValue;\n\n    if (!this.isBinary) {\n      // if (this.isChecked())\n      //\n      //   // newModelValue = this.model.filter(val => !.equals(val, this.value));\n      // else\n      //   newModelValue = this.model ? [...this.model, this.value] : [this.value];\n\n      this.onModelChange(newModelValue);\n      this.model = newModelValue;\n\n      if (this.formControl) {\n        this.formControl.setValue(newModelValue);\n      }\n    }\n    else {\n      // newModelValue = this.isChecked() ? this.falseValue : this.trueValue;\n      this.model = newModelValue;\n      this.onModelChange(newModelValue);\n    }\n\n    this.onChange.emit({checked:newModelValue, originalEvent: event});\n  }\n\n  handleChange(event: any) {\n    if (!this.isReadonly) {\n      this.updateModel(event);\n    }\n  }\n\n  onFocus() {\n    this.isFocused = true;\n  }\n\n  onBlur() {\n    this.isFocused = false;\n    this.onModelTouched();\n  }\n\n  focus() {\n    this.inputViewChild?.nativeElement.focus();\n  }\n\n  // Functions for ControlValueAccessor\n\n  writeValue(model: any) : void {\n    this.model = model;\n    this.cd.markForCheck();\n  }\n\n  // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/no-empty-function\n  onModelChange: Function = () => {};\n  // eslint-disable-next-line @typescript-eslint/ban-types\n  registerOnChange(fn: Function): void {\n    this.onModelChange = fn;\n  }\n\n  // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/no-empty-function\n  onModelTouched: Function = () => {};\n  // eslint-disable-next-line @typescript-eslint/ban-types\n  registerOnTouched(fn: Function): void {\n    this.onModelTouched = fn;\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.isDisabled = isDisabled;\n    this.cd.markForCheck();\n  }\n\n  ////\n\n  get isChecked() {\n    // return this.isBinary ? this.model === this.trueValue : ObjectUtils.contains(this.value, this.model);\n    return this.isBinary;\n  }\n\n  containerClass() {\n    return {\n      'checkbox': true,\n\n    };\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use '../../../../../../../styles/components/checkbox' as *;\n",
+                    "styleUrl": "./checkbox.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "cd",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 97,
+                "jsdoctags": [
+                    {
+                        "name": "cd",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "ControlValueAccessor"
+            ],
+            "accessors": {
+                "isChecked": {
+                    "name": "isChecked",
+                    "getSignature": {
+                        "name": "isChecked",
+                        "type": "",
+                        "returnType": "",
+                        "line": 189
+                    }
+                }
+            },
+            "templateData": "<div [ngStyle]=\"style\"\n     [ngClass]=\"{\n     'checkbox': true,\n     'checkbox-checked': isChecked,\n     'checkbox-disabled': isDisabled,\n     'checkbox-focused': isFocused\n     }\"\n     [class]=\"styleClass\"\n>\n  <div class=\"hidden-accessible\">\n    <input #cb\n           type=\"checkbox\"\n           [attr.id]=\"inputId\"\n           [attr.name]=\"name\"\n           [readonly]=\"isReadonly\"\n           [value]=\"value\"\n           [checked]=\"isChecked\"\n           (focus)=\"onFocus()\"\n           (blur)=\"onBlur()\"\n           (change)=\"handleChange($event)\"\n           [disabled]=\"isDisabled\"\n           [attr.tabindex]=\"tabindex\"\n           [attr.aria-labelledby]=\"ariaLabelledBy\"\n           [attr.aria-label]=\"ariaLabel\"\n           [attr.aria-checked]=\"isChecked\"\n           [attr.required]=\"isRequired\">\n  </div>\n  <div class=\"checkbox-box\"\n       (click)=\"onClick($event,cb,true)\"\n       [ngClass]=\"{\n       'highlight': isChecked(),\n       'disabled': isDisabled,\n       'focus': isFocused\n       }\">\n    <span\n      class=\"checkbox-icon\"\n      [ngClass]=\"isChecked() ? checkboxIcon : null\"\n    ></span>\n  </div>\n</div>\n<label (click)=\"onClick($event,cb,true)\"\n       [class]=\"labelStyleClass\"\n       [ngClass]=\"{\n       'checkbox-label': true,\n       'checkbox-label-active':isChecked,\n       'disabled':isDisabled,\n       'checkbox-label-focus':isFocused\n       }\"\n       *ngIf=\"label\"\n       [attr.for]=\"inputId\"\n>{{label}}</label>\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AngularUiCoreModule",
+            "id": "module-AngularUiCoreModule-326cb84c0d19c128d0df4b0d59295638b1e8f171ff8a4292f99deff1107bc5a7152665b0b01e40bfa57a815433d07762167ad7dc89beddd5eabb43cdf141d25e",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "libs/angular/ui-core/src/lib/angular-ui-core.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport {BadgeModule, ButtonModule, CheckboxModule} from \"./components\";\n\n@NgModule({\n  imports: [CommonModule],\n  exports: [\n    ButtonModule,\n    BadgeModule,\n    CheckboxModule\n  ]\n})\nexport class AngularUiCoreModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "BadgeModule"
+                        },
+                        {
+                            "name": "ButtonModule"
+                        },
+                        {
+                            "name": "CheckboxModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "BadgeModule",
+            "id": "module-BadgeModule-288187222496af1a3c000d08b4eff35d6b07178f971dd6d5ce10d5f953980657b86ce39d7c4feba7262a79497447ff054032cee618fba877436801fd650fa9d9",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "libs/angular/ui-core/src/lib/components/badge/badge.module.ts",
+            "methods": [],
+            "sourceCode": "import {NgModule} from \"@angular/core\";\nimport {BadgeComponent} from \"./badge.component\";\nimport {CommonModule} from \"@angular/common\";\n\n@NgModule({\n  imports: [\n    CommonModule\n  ],\n  declarations: [BadgeComponent],\n  exports: [BadgeComponent],\n})\nexport class BadgeModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "BadgeComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "BadgeComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "ButtonModule",
+            "id": "module-ButtonModule-a4fb5f57606ee8eba7b2d61088f7fe5e97113019c86b0e4b63aeb57f07045ccad5c9a6ecc9f617515a1699207d6026c8aa9ae54afec60c9f6a67cdf83526bc85",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "libs/angular/ui-core/src/lib/components/button/button.module.ts",
+            "methods": [],
+            "sourceCode": "import {NgModule} from \"@angular/core\";\nimport {ButtonComponent} from \"./button.component\";\nimport {CommonModule} from \"@angular/common\";\nimport { BadgeModule } from \"../badge\";\n\n@NgModule({\n  imports: [\n    CommonModule,\n    BadgeModule\n  ],\n  declarations: [ButtonComponent],\n  exports: [ButtonComponent],\n})\nexport class ButtonModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "BadgeModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "CheckboxModule",
+            "id": "module-CheckboxModule-e0844db73e5d0c1670bb1a4423e7c1e4e4f33bb3d13484787614dde5e9c17ededa7520e73551786ab3a40567837ff36ec9f5ac7165df1f856f14f4c95cff46ea",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "libs/angular/ui-core/src/lib/components/checkbox/checkbox.module.ts",
+            "methods": [],
+            "sourceCode": "import {NgModule} from \"@angular/core\";\nimport {CheckboxComponent} from \"./checkbox.component\";\nimport {CommonModule} from \"@angular/common\";\n\n@NgModule({\n  imports: [\n    CommonModule\n  ],\n  declarations: [CheckboxComponent],\n  exports: [CheckboxComponent],\n})\nexport class CheckboxModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "CheckboxComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "CheckboxComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "AllStatesStoryTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<BadgeComponent>",
+                "defaultValue": "(args: BadgeComponent) => ({\n  props: {\n    types: ['outline',\n      'solid',\n      'light',\n      'transparent'\n    ],\n    colors: ['primary',\n      'red',\n      'green'\n    ],\n    ...args,\n  },\n  template: `\n  <div\n    style=\"\n     display:grid;\n     grid-template-columns: repeat(4, 1fr);\n     grid-gap: 1rem;\n     align-items: center;\n     \"\n    >\n  <ng-container\n    *ngFor=\"let type of types; let idx = index\"\n    >\n      {{type}}\n    <ng-container\n      *ngFor=\"let color of colors\"\n      >\n      <ng-container\n        *ngIf=\"\n        (type === 'transparent' && color === 'primary') ||\n        (type !== 'transparent'); else showEmpty\"\n        >\n        <div>\n          <ng-container *ngIf=\"idx === 0\">{{color}}</ng-container>\n\n          <ng-ui-core-badge\n            [value]=\"value\"\n            [type]=\"type\"\n            [color]=\"color\"\n            [size]=\"size\"\n            [style]=\"style\"\n            [styleClass]=\"styleClass\"\n          ></ng-ui-core-badge>\n        </div>\n      </ng-container>\n      <ng-template #showEmpty><div></div></ng-template>\n    </ng-container>\n  </ng-container>\n  </div>\n  `\n})"
+            },
+            {
+                "name": "AllStatesStoryTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: {\n    types: [\n      'solid',\n      'outline',\n      'light',\n      'transparent'\n    ],\n    colors: ['primary',\n      'red',\n      'green'\n    ],\n    ...args,\n  },\n  template: `\n  <div\n    style=\"\n     display:grid;\n     grid-template-columns: repeat(4, 1fr);\n     grid-gap: 1rem;\n     align-items: center;\n     \"\n    >\n  <ng-container\n    *ngFor=\"let type of types; let idx = index\"\n    >\n      {{type}}\n    <ng-container\n      *ngFor=\"let color of colors\"\n      >\n      <ng-container\n        *ngIf=\"\n        (type === 'transparent' && color === 'primary') ||\n        (type !== 'transparent'); else showEmpty\"\n        >\n        <div>\n          <ng-container *ngIf=\"idx === 0\">{{color}}</ng-container>\n\n          <ng-ui-core-button\n            [type]=\"type\"\n            [label]=\"label\"\n            [styleColor]=\"color\"\n            [styleType]=\"type\"\n            [buttonSize]=\"buttonSize\"\n            [icon]=\"icon\"\n            [iconPos]=\"iconPos\"\n            [disabled]=\"disabled\"\n            [loading]=\"loading\"\n            [loadingIconStyle]=\"loadingIconStyle\"\n            [style]=\"style\"\n            [styleClass]=\"styleClass\"\n            [ariaLabel]=\"ariaLabel\"\n          ></ng-ui-core-button>\n        </div>\n      </ng-container>\n      <ng-template #showEmpty><div></div></ng-template>\n    </ng-container>\n  </ng-container>\n  </div>\n  `\n})"
+            },
+            {
+                "name": "ButtonWithBadgeStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "ButtonWithBadgeTemplate.bind({})"
+            },
+            {
+                "name": "ButtonWithBadgeTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: {\n    ...args,\n    children: {\n      ...InitialBadgeStory.args,\n      type: 'outline',\n      size: 'large',\n      color: 'primary'\n    },\n  },\n  template: `\n  <ng-ui-core-button\n    [type]=\"type\"\n    [label]=\"label\"\n    [styleColor]=\"styleColor\"\n    [styleType]=\"styleType\"\n    [buttonSize]=\"buttonSize\"\n    [icon]=\"icon\"\n    [iconPos]=\"iconPos\"\n    [disabled]=\"disabled\"\n    [loading]=\"loading\"\n    [loadingIconStyle]=\"loadingIconStyle\"\n    [style]=\"style\"\n    [styleClass]=\"styleClass\"\n    [ariaLabel]=\"ariaLabel\"\n  >\n    <ng-ui-core-badge\n    [styleClass]=\"children.styleClass\"\n    [style]=\"children.style\"\n    [value]=\"children.value\"\n    [size]=\"children.size\"\n    [color]=\"children.color\"\n    [type]=\"children.type\"\n    ></ng-ui-core-badge>\n  </ng-ui-core-button>\n  `\n})"
+            },
+            {
+                "name": "DisabledMediumAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "IconButtonLargeAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "IconButtonMediumAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "IconButtonSmallAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "InitialBadgeStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "InitialTemplate.bind({})"
+            },
+            {
+                "name": "InitialButtonStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "InitialButtonTemplate.bind({})"
+            },
+            {
+                "name": "InitialButtonTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: args\n})"
+            },
+            {
+                "name": "InitialCheckboxStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/checkbox/checkbox.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "InitialTemplate.bind({})"
+            },
+            {
+                "name": "InitialTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<BadgeComponent>",
+                "defaultValue": "(args: BadgeComponent) => ({\n  props: args\n})"
+            },
+            {
+                "name": "InitialTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/checkbox/checkbox.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CheckboxComponent>",
+                "defaultValue": "(args: CheckboxComponent) => ({\n  props: args\n})"
+            },
+            {
+                "name": "LargeAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "LargeAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "MediumAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "MediumAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "NumberValueMoreThenMaxBadgeStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "InitialTemplate.bind({})"
+            },
+            {
+                "name": "SmallAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "SmallAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "TextIconButtonLargeAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "TextIconButtonMediumAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            },
+            {
+                "name": "TextIconButtonSmallAllStatesStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "AllStatesStoryTemplate.bind({})"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts": [
+                {
+                    "name": "AllStatesStoryTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<BadgeComponent>",
+                    "defaultValue": "(args: BadgeComponent) => ({\n  props: {\n    types: ['outline',\n      'solid',\n      'light',\n      'transparent'\n    ],\n    colors: ['primary',\n      'red',\n      'green'\n    ],\n    ...args,\n  },\n  template: `\n  <div\n    style=\"\n     display:grid;\n     grid-template-columns: repeat(4, 1fr);\n     grid-gap: 1rem;\n     align-items: center;\n     \"\n    >\n  <ng-container\n    *ngFor=\"let type of types; let idx = index\"\n    >\n      {{type}}\n    <ng-container\n      *ngFor=\"let color of colors\"\n      >\n      <ng-container\n        *ngIf=\"\n        (type === 'transparent' && color === 'primary') ||\n        (type !== 'transparent'); else showEmpty\"\n        >\n        <div>\n          <ng-container *ngIf=\"idx === 0\">{{color}}</ng-container>\n\n          <ng-ui-core-badge\n            [value]=\"value\"\n            [type]=\"type\"\n            [color]=\"color\"\n            [size]=\"size\"\n            [style]=\"style\"\n            [styleClass]=\"styleClass\"\n          ></ng-ui-core-badge>\n        </div>\n      </ng-container>\n      <ng-template #showEmpty><div></div></ng-template>\n    </ng-container>\n  </ng-container>\n  </div>\n  `\n})"
+                },
+                {
+                    "name": "InitialBadgeStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "InitialTemplate.bind({})"
+                },
+                {
+                    "name": "InitialTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<BadgeComponent>",
+                    "defaultValue": "(args: BadgeComponent) => ({\n  props: args\n})"
+                },
+                {
+                    "name": "LargeAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "MediumAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "NumberValueMoreThenMaxBadgeStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "InitialTemplate.bind({})"
+                },
+                {
+                    "name": "SmallAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                }
+            ],
+            "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts": [
+                {
+                    "name": "AllStatesStoryTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ButtonComponent>",
+                    "defaultValue": "(args: ButtonComponent) => ({\n  props: {\n    types: [\n      'solid',\n      'outline',\n      'light',\n      'transparent'\n    ],\n    colors: ['primary',\n      'red',\n      'green'\n    ],\n    ...args,\n  },\n  template: `\n  <div\n    style=\"\n     display:grid;\n     grid-template-columns: repeat(4, 1fr);\n     grid-gap: 1rem;\n     align-items: center;\n     \"\n    >\n  <ng-container\n    *ngFor=\"let type of types; let idx = index\"\n    >\n      {{type}}\n    <ng-container\n      *ngFor=\"let color of colors\"\n      >\n      <ng-container\n        *ngIf=\"\n        (type === 'transparent' && color === 'primary') ||\n        (type !== 'transparent'); else showEmpty\"\n        >\n        <div>\n          <ng-container *ngIf=\"idx === 0\">{{color}}</ng-container>\n\n          <ng-ui-core-button\n            [type]=\"type\"\n            [label]=\"label\"\n            [styleColor]=\"color\"\n            [styleType]=\"type\"\n            [buttonSize]=\"buttonSize\"\n            [icon]=\"icon\"\n            [iconPos]=\"iconPos\"\n            [disabled]=\"disabled\"\n            [loading]=\"loading\"\n            [loadingIconStyle]=\"loadingIconStyle\"\n            [style]=\"style\"\n            [styleClass]=\"styleClass\"\n            [ariaLabel]=\"ariaLabel\"\n          ></ng-ui-core-button>\n        </div>\n      </ng-container>\n      <ng-template #showEmpty><div></div></ng-template>\n    </ng-container>\n  </ng-container>\n  </div>\n  `\n})"
+                },
+                {
+                    "name": "ButtonWithBadgeStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "ButtonWithBadgeTemplate.bind({})"
+                },
+                {
+                    "name": "ButtonWithBadgeTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ButtonComponent>",
+                    "defaultValue": "(args: ButtonComponent) => ({\n  props: {\n    ...args,\n    children: {\n      ...InitialBadgeStory.args,\n      type: 'outline',\n      size: 'large',\n      color: 'primary'\n    },\n  },\n  template: `\n  <ng-ui-core-button\n    [type]=\"type\"\n    [label]=\"label\"\n    [styleColor]=\"styleColor\"\n    [styleType]=\"styleType\"\n    [buttonSize]=\"buttonSize\"\n    [icon]=\"icon\"\n    [iconPos]=\"iconPos\"\n    [disabled]=\"disabled\"\n    [loading]=\"loading\"\n    [loadingIconStyle]=\"loadingIconStyle\"\n    [style]=\"style\"\n    [styleClass]=\"styleClass\"\n    [ariaLabel]=\"ariaLabel\"\n  >\n    <ng-ui-core-badge\n    [styleClass]=\"children.styleClass\"\n    [style]=\"children.style\"\n    [value]=\"children.value\"\n    [size]=\"children.size\"\n    [color]=\"children.color\"\n    [type]=\"children.type\"\n    ></ng-ui-core-badge>\n  </ng-ui-core-button>\n  `\n})"
+                },
+                {
+                    "name": "DisabledMediumAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "IconButtonLargeAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "IconButtonMediumAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "IconButtonSmallAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "InitialButtonStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "InitialButtonTemplate.bind({})"
+                },
+                {
+                    "name": "InitialButtonTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ButtonComponent>",
+                    "defaultValue": "(args: ButtonComponent) => ({\n  props: args\n})"
+                },
+                {
+                    "name": "LargeAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "MediumAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "SmallAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "TextIconButtonLargeAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "TextIconButtonMediumAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                },
+                {
+                    "name": "TextIconButtonSmallAllStatesStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "AllStatesStoryTemplate.bind({})"
+                }
+            ],
+            "libs/angular/ui-core/src/lib/components/checkbox/checkbox.component.stories.ts": [
+                {
+                    "name": "InitialCheckboxStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/checkbox/checkbox.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "InitialTemplate.bind({})"
+                },
+                {
+                    "name": "InitialTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/angular/ui-core/src/lib/components/checkbox/checkbox.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<CheckboxComponent>",
+                    "defaultValue": "(args: CheckboxComponent) => ({\n  props: args\n})"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": [],
+    "coverage": {
+        "count": 7,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "AllStatesStoryTemplate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "InitialBadgeStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "InitialTemplate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LargeAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MediumAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NumberValueMoreThenMaxBadgeStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/badge/badge.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SmallAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/badge/badge.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BadgeComponent",
+                "coveragePercent": 60,
+                "coverageCount": "6/10",
+                "status": "good"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "AllStatesStoryTemplate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ButtonWithBadgeStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ButtonWithBadgeTemplate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DisabledMediumAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "IconButtonLargeAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "IconButtonMediumAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "IconButtonSmallAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "InitialButtonStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "InitialButtonTemplate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LargeAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MediumAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SmallAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TextIconButtonLargeAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TextIconButtonMediumAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TextIconButtonSmallAllStatesStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/button/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 88,
+                "coverageCount": "16/18",
+                "status": "very-good"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/checkbox/checkbox.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "InitialCheckboxStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/checkbox/checkbox.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "InitialTemplate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/angular/ui-core/src/lib/components/checkbox/checkbox.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CheckboxComponent",
+                "coveragePercent": 59,
+                "coverageCount": "22/37",
+                "status": "good"
+            }
+        ]
+    }
+}
