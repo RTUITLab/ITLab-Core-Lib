@@ -32,9 +32,13 @@ export class BadgeComponent {
 
   /** Value to display inside the badge */
   private _value = '';
+
+  /** Value to display inside the badge */
   get value(): string {
     return this._value;
   }
+
+  /** Value to display inside the badge */
   @Input() set value(value: string) {
     if (!Number.isNaN(value) && Number(value) > this.MAX_NUMBER_IN_BADGE){
       this._value = `${this.MAX_NUMBER_IN_BADGE}+`;
