@@ -15,9 +15,9 @@ export default {
     })
   ],
   argTypes: {
-    clickCb: { table: { disable: true } },
-    focusCb: { table: { disable: true } },
-    blurCb: { table: { disable: true } },
+    clickCb: { control: false },
+    focusCb: { control: false },
+    blurCb: { control: false },
     containerClass: { table: { disable: true } },
   }
 } as Meta<ButtonComponent>;
