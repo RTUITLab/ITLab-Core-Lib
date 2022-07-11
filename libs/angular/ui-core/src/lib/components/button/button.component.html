@@ -1,0 +1,24 @@
+<button [attr.type]="type"
+        [attr.aria-label]="ariaLabel"
+        [class]="styleClass"
+        [ngStyle]="style"
+        [disabled]="disabled || loading"
+        [ngClass]="containerClass()"
+        (click)="clickCb.emit($event)"
+        (focus)="focusCb.emit($event)"
+        (blur)="blurCb.emit($event)"
+>
+  <span class="p-button-label"
+        *ngIf="label"
+  >{{label}}</span>
+  <ng-content></ng-content>
+  <span [ngClass]="{
+          'button-icon': true,
+          'button-icon-left': iconPos === 'left' && label,
+          'button-icon-right': iconPos === 'right' && label
+          }"
+        [class]="loading ? loadingIconStyle : icon"
+        *ngIf="icon||loading"
+        [attr.aria-hidden]="true"
+  ></span>
+</button>

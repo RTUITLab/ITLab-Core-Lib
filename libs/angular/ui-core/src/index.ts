@@ -1,1 +1,1 @@
-export * from './lib/angular-ui-core.module';
+export * from './lib';

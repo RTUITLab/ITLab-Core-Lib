@@ -1,0 +1,98 @@
+@use '../../../styles/design-tokens' as dt;
+
+.badge {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+
+  //  Font
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+}
+
+.p-badge-no-gutter {
+  padding: 0;
+  border-radius: 50%;
+}
+.badge-lg {
+  padding: 0 9px;
+  height: 28px;
+  border-radius: 28px;
+
+  //  Font
+  font-size: 16px;
+  line-height: 28px;
+}
+.badge-m {
+  padding: 0 7.5px;
+  height: 24px;
+  border-radius: 24px;
+
+  //  Font
+  font-size: 14px;
+  line-height: 24px;
+}
+.badge-sm {
+  padding: 0 6px;
+  height: 20px;
+  border-radius: 24px;
+
+  //  Font
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.badge-primary {
+  color: dt.$primary-100;
+  border: 1px solid dt.$primary-100;
+  &.badge-solid{
+    background: dt.$primary-100;
+    color: #FFFFFF;
+  }
+  &.badge-outline{
+    background: #FFFFFF;
+  }
+  &.badge-light{
+    background: dt.$primary-30;
+    border: 1px solid dt.$primary-30;
+  }
+}
+.badge-green {
+  color: dt.$green-100;
+  border: 1px solid dt.$green-100;
+  &.badge-solid{
+    background: dt.$green-100;
+    color: #FFFFFF;
+  }
+  &.badge-outline{
+    background: #FFFFFF;
+  }
+  &.badge-light{
+    background: dt.$green-30;
+    border: 1px solid dt.$green-30;
+  }
+}
+.badge-red {
+  border: 1px solid dt.$red-100;
+  color: dt.$red-100;
+  &.badge-solid{
+    background: dt.$red-100;
+    color: #FFFFFF;
+  }
+  &.badge-outline{
+    background: #FFFFFF;
+  }
+  &.badge-light{
+    background: dt.$red-30;
+    border: 1px solid dt.$red-30;
+  }
+}
+.badge-transparent{
+  border: 1px solid dt.$general-50;
+  color: dt.$general-70;
+}

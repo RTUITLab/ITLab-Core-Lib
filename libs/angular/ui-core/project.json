@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/angular/ui-core",
   "sourceRoot": "libs/angular/ui-core/src",
   "prefix": "ng-ui-core",
   "targets": {
@@ -24,7 +23,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/angular/ui-core"],
       "options": {
-        "jestConfig": "libs/angular/ui-core/jest.config.js",
+        "jestConfig": "libs/angular/ui-core/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -38,14 +37,12 @@
       }
     },
     "storybook": {
-      "executor": "@nrwl/storybook:storybook",
+      "executor": "@storybook/angular:start-storybook",
       "options": {
-        "uiFramework": "@storybook/angular",
         "port": 4400,
-        "config": {
-          "configFolder": "libs/angular/ui-core/.storybook"
-        },
-        "projectBuildConfig": "angular-ui-core:build-storybook"
+        "configDir": "libs/angular/ui-core/.storybook",
+        "browserTarget": "angular-ui-core:build-storybook",
+        "compodoc": false
       },
       "configurations": {
         "ci": {
@@ -54,15 +51,13 @@
       }
     },
     "build-storybook": {
-      "executor": "@nrwl/storybook:build",
+      "executor": "@storybook/angular:build-storybook",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "uiFramework": "@storybook/angular",
-        "outputPath": "dist/storybook/angular-ui-core",
-        "config": {
-          "configFolder": "libs/angular/ui-core/.storybook"
-        },
-        "projectBuildConfig": "angular-ui-core:build-storybook"
+        "outputDir": "dist/storybook/angular-ui-core",
+        "configDir": "libs/angular/ui-core/.storybook",
+        "browserTarget": "angular-ui-core:build-storybook",
+        "compodoc": false
       },
       "configurations": {
         "ci": {

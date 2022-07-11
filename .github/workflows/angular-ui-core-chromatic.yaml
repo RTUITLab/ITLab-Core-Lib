@@ -4,7 +4,7 @@ name: 'Angular ui core chromatic deployment'
 on:
   workflow_call:
   push:
-    paths: ['styles/**', 'libs/angular/**']
+    paths: ['styles/**', 'libs/angular/**', 'package.json']
 
 # What the action will do
 jobs:
