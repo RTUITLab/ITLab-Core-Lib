@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@itlab-core-lib/react/ui-core": ["libs/react/ui-core/src/index.ts"],
       "@rtuitlab/ng-ui-core": ["libs/angular/ui-core/src/index.ts"],
       "@rtuitlab/styles": ["libs/styles/src/index.ts"]
     }

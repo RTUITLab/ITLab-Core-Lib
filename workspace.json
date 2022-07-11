@@ -2,6 +2,9 @@
   "version": 2,
   "projects": {
     "angular-ui-core": "libs/angular/ui-core",
-    "angular-ui-core-e2e": "apps/angular-ui-core-e2e"
+    "angular-ui-core-e2e": "apps/angular-ui-core-e2e",
+    "react-ui-core": "libs/react/ui-core",
+    "react-ui-core-app": "apps/react/ui-core-app",
+    "react-ui-core-app-e2e": "apps/react/ui-core-app-e2e"
   }
 }
