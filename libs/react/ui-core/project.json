@@ -4,6 +4,22 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "inputs": ["prod", "^prod"],
+      "outputs": ["dist/libs/react/ui-core"],
+      "dependsOn": ["^build"],
+      "options": {
+        "outputPath": "dist/libs/react/ui-core",
+        "tsConfig": "libs/react/ui-core/tsconfig.lib.json",
+        "main": "libs/react/ui-core/src/index.ts"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/react-ui-core/tsconfig.lib.json"
+        }
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
