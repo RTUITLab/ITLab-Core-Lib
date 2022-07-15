@@ -46,6 +46,7 @@
     "@angular/compiler-cli": "14.0.1",
     "@angular/language-service": "14.0.1",
     "@auto-it/npm": "10.37.1",
+    "@babel/core": "7.12.13",
     "@babel/plugin-proposal-decorators": "7.18.2",
     "@babel/plugin-proposal-export-default-from": "7.17.12",
     "@babel/preset-typescript": "7.17.12",
@@ -66,6 +67,8 @@
     "@storybook/builder-webpack5": "6.5.8",
     "@storybook/core-server": "6.5.8",
     "@storybook/manager-webpack5": "6.5.8",
+    "@storybook/react": "~6.5.9",
+    "@svgr/webpack": "^5.4.0",
     "@testing-library/react": "13.3.0",
     "@types/jest": "28.1.1",
     "@types/node": "17.0.41",
@@ -76,6 +79,7 @@
     "@typescript-eslint/parser": "5.24.0",
     "auto": "10.37.1",
     "babel-jest": "27.5.1",
+    "babel-loader": "8.1.0",
     "chromatic": "6.5.6",
     "cypress": "10.0.3",
     "eslint": "8.15.0",
@@ -98,6 +102,7 @@
     "ts-jest": "27.1.4",
     "ts-node": "~10.8.0",
     "typescript": "4.7.3",
+    "url-loader": "^3.0.0",
     "webpack": "5.73.0"
   }
 }

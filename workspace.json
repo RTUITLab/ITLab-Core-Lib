@@ -5,6 +5,7 @@
     "angular-ui-core-e2e": "apps/angular-ui-core-e2e",
     "react-ui-core": "libs/react/ui-core",
     "react-ui-core-app": "apps/react/ui-core-app",
-    "react-ui-core-app-e2e": "apps/react/ui-core-app-e2e"
+    "react-ui-core-app-e2e": "apps/react/ui-core-app-e2e",
+    "react-ui-core-e2e": "apps/react-ui-core-e2e"
   }
 }
