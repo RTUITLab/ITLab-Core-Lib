@@ -1,8 +1,9 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import {Button} from "@itlab-core-lib/react/ui-core";
 import App from './app/app';
+import {Button} from "@itlab-core-lib/react/ui-core";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,7 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <Button>Hello</Button>
+      <Button>Button</Button>
       <App />
     </BrowserRouter>
   </StrictMode>

@@ -1,5 +1,7 @@
 import {useMemo} from "react";
 import {ButtonProps} from "./ButtonProps";
+import styles from './button.module.scss'
+
 
 /**
  * Hook for button
@@ -27,14 +29,14 @@ export function useButton(props:ButtonProps) {
 
     Object.keys(conditions).forEach((key:string) => {
       if (conditions[key]) {
-        classList.push(key);
+        classList.push(styles[key]);
       }
     });
 
-    if(!props.iconPosition) classList.push('button-icon-left');
-    if(!props.type) classList.push('button-solid');
-    if(!props.size) classList.push('button-medium');
-    if(!props.color) classList.push('button-primary');
+    if(!props.iconPosition) classList.push(styles['button-icon-left']);
+    if(!props.type) classList.push(styles['button-solid']);
+    if(!props.size) classList.push(styles['button-medium']);
+    if(!props.color) classList.push(styles['button-primary']);
 
     if(typeof props.className === 'string') classList.push(props.className);
     if(typeof props.className === 'object') classList.push(...props.className);
