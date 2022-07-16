@@ -6,4 +6,4 @@ export {Button} from './button';
 export {useButton} from './useButton';
 
 /** Button props */
-export {ButtonProps} from './ButtonProps';
+export {ButtonProps} from './ButtonProps.d';
