@@ -8,7 +8,7 @@ import {ButtonProps} from "./ButtonProps";
  * TODO: добавить компонент Icon, который будем пихать в проп icon, разобраться с пропом iconPosition
  * добавить loading
  * добавить loadingIconStyle
- *
+ * добавить forwardRef
  */
 
 export function Button(props: ButtonProps) {
