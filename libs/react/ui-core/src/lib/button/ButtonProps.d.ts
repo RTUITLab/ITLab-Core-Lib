@@ -1,9 +1,9 @@
 import React from "react";
 import Icon from "../icon/icon";
-import {ClickableObject} from "../../default-types/ClickableObject";
 import {DefaultParams} from "../../default-types/defaultParams";
+import {ClickableObjectMini} from "../../default-types/ClickableObjectMini";
 
-export interface ButtonProps extends ClickableObject, DefaultParams{
+export interface ButtonProps extends DefaultParams, ClickableObjectMini{
 
   /** Text of the button */
   children?: React.ReactNode | string;

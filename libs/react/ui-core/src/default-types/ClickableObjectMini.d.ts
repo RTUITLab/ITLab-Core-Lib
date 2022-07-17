@@ -2,7 +2,7 @@ import React from "react";
 
 export interface ClickableObjectMini {
   /** On click event */
-  onClick?: (event: any) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 
   /** On hover event */
   onHover?: (event: React.MouseEvent<HTMLElement>) => void;

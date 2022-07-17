@@ -1,7 +1,7 @@
 import {ClickableObjectMini} from "../../default-types/ClickableObjectMini";
 import {DefaultParams} from "../../default-types/defaultParams";
 
-export interface IconProps extends ClickableObjectMini, DefaultParams {
+export interface IconProps extends DefaultParams, ClickableObjectMini {
   /** Size of the icon (px) */
   size?: number,
 
