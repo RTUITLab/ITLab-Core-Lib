@@ -44,5 +44,15 @@ export function useButton(props:ButtonProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes}
+  const iconClasses = useMemo(() => {
+    const classList = ['button-icon'];
+
+    if(props.iconPosition === 'left') classList.push(styles['button-icon-left']);
+    if(props.iconPosition === 'right') classList.push(styles['button-icon-right']);
+    if(props.loading) classList.push(styles['spin-anim']);
+
+    return classList.join(' ');
+  }, [props]);
+
+  return {classes, iconClasses}
 }

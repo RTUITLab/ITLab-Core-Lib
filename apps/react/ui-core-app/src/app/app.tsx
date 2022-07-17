@@ -3,10 +3,19 @@ import styles from './app.module.scss';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
+import {Button, Icon} from "@itlab-core-lib/react/ui-core";
+import React, {useEffect} from "react";
 
 export function App() {
+
+
   return (
     <>
+      <Button onClick={(e)=> console.log(e)} iconPosition={"left"}>dsa</Button>
+
+      <Icon className={"test"} onClick={(e)=>{
+        console.log(e);}} name={"loader-2"} color={"general"}/>
+
       <NxWelcome title="react-ui-core-app" />
       <div />
 

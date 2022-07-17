@@ -1,6 +1,9 @@
 import React from "react";
+import Icon from "../icon/icon";
+import {ClickableObject} from "../../default-types/ClickableObject";
+import {DefaultParams} from "../../default-types/defaultParams";
 
-export interface ButtonProps {
+export interface ButtonProps extends ClickableObject, DefaultParams{
 
   /** Text of the button */
   children?: React.ReactNode | string;
@@ -8,8 +11,8 @@ export interface ButtonProps {
   /** Position of the icon, valid values are "left", "right". */
   iconPosition?: 'left' | 'right';
 
-  /** Icon object such as <Icon/> */
-  icon?: React.ReactNode;
+  /** Icon object */
+  icon?: React.ReactNode<Icon>;
 
   /** Type of the button */
   type?: "solid" | "outline" | "light";
@@ -26,9 +29,7 @@ export interface ButtonProps {
   /** If true, the button will be loading */
   loading?: boolean;
 
-  /** Inline style of the element. */
-  style?:object;
+  /** Loading status icon */
+  loadingIcon?: React.ReactNode<Icon>;
 
-  /** Style class of the element */
-  className?: string | string[];
 }
