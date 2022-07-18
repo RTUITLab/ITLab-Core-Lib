@@ -1,0 +1,84 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/icons' as *;
+
+.navigation {
+  box-sizing: border-box;
+
+  width: fit-content;
+  background: #FFFFFF;
+  color: dt.$general-80;
+  display: grid;
+  position: relative;
+
+  border: 1px solid dt.$general-40;
+  border-radius: 6px;
+  padding: 10px 16px;
+
+  .navigation-item {
+    user-select: none;
+    cursor: pointer;
+    width: 100%;
+
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 24px 1fr 24px;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    height: 40px;
+
+    background: #FFFFFF;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+
+    .navigation-item-label {
+      min-width: 150px;
+      max-width: 350px;
+      overflow: hidden;
+      display: inline-block;
+      text-overflow: ellipsis;
+    }
+
+    .navigation-item-icon {
+      font-family: dt.$typo-font-p-medium-family;
+      font-style: dt.$typo-font-p-medium-style;
+      font-weight: dt.$typo-font-p-medium-weight;
+      font-size: 24px;
+
+      height: fit-content;
+
+      display: grid;
+      place-items: center;
+    }
+
+    &:hover, &:focus {
+      color: dt.$primary-90;
+    }
+  }
+
+  .navigation-item-disabled {
+    color: dt.$general-50;
+    cursor: not-allowed;
+
+    &:hover {
+      color: dt.$general-50;
+    }
+  }
+
+  .navigation-item-open {
+    & .navigation-item-icon:last-child {
+      rotate: 180deg;
+    }
+  }
+}
+
