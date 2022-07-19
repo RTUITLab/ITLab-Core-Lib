@@ -1,0 +1,178 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/icons' as *;
+@use '../../../styles/helpers/loading' as *;
+
+.button {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 10px;
+
+  height: 44px;
+  width: fit-content;
+
+  border: none;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+
+  text-align: center;
+
+  &:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.button-icon-left {
+  order: -1;
+}
+.button-icon-right {
+  order: 1;
+}
+
+.button-icon-only {
+  justify-content: center;
+}
+
+.button-transparent {
+  border: 1px solid #D7DBEC;
+  background: rgba(245, 246, 250, 0.25);
+  color: dt.$general-90;
+  &:hover{
+    background: dt.$general-30;
+  }
+  &:active, &:disabled{
+    background: rgba(245, 246, 250, 0.25);
+  }
+
+}
+.button-primary {
+  &.button-solid{
+    background: dt.$primary-100;
+    color: #FFFFFF;
+
+    &:hover{
+      background: dt.$primary-80;
+    }
+    &:active, &:disabled{
+      background: dt.$primary-90;
+    }
+  }
+  &.button-outline{
+    background: #FFFFFF;
+    color: dt.$primary-100;
+    border: 1px solid dt.$primary-100;
+
+    &:hover{
+      background: dt.$primary-30;
+    }
+    &:active, &:disabled{
+      background: dt.$primary-40;
+    }
+  }
+  &.button-light{
+    background: dt.$primary-30;
+    color: dt.$primary-100;
+
+    &:hover{
+      background: dt.$primary-40;
+    }
+    &:active, &:disabled{
+      background: dt.$primary-50;
+    }
+  }
+}
+.button-green {
+  &.button-solid{
+    background: dt.$green-100;
+    color: #FFFFFF;
+
+    &:hover{
+      background: dt.$green-80;
+    }
+    &:active, &:disabled{
+      background: dt.$green-90;
+    }
+  }
+  &.button-outline{
+    background: #FFFFFF;
+    color: dt.$green-100;
+    border: 1px solid dt.$green-100;
+
+    &:hover{
+      background: dt.$green-30;
+    }
+    &:active, &:disabled{
+      background: dt.$green-40;
+    }
+  }
+  &.button-light{
+    background: dt.$green-30;
+    color: dt.$green-100;
+
+    &:hover{
+      background: dt.$green-40;
+    }
+    &:active, &:disabled{
+      background: dt.$green-50;
+    }
+  }
+}
+.button-red {
+  &.button-solid{
+    background: dt.$red-100;
+    color: #FFFFFF;
+
+    &:hover{
+      background: dt.$red-80;
+    }
+    &:active, &:disabled{
+      background: dt.$red-90;
+    }
+  }
+  &.button-outline{
+    background: #FFFFFF;
+    color: dt.$red-100;
+    border: 1px solid dt.$red-100;
+
+    &:hover{
+      background: dt.$red-30;
+    }
+    &:active, &:disabled{
+      background: dt.$red-40;
+    }
+  }
+  &.button-light{
+    background: dt.$red-30;
+    color: dt.$red-100;
+
+    &:hover{
+      background: dt.$red-40;
+    }
+    &:active, &:disabled{
+      background: dt.$red-50;
+    }
+  }
+}
+.button-large{
+  padding: 10px 16px;
+  height: 44px;
+}
+.button-medium{
+  padding: 8px 14px;
+  height: 40px;
+}
+.button-small{
+  padding: 6px 12px;
+  height: 36px;
+}
+
