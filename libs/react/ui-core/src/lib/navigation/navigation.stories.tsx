@@ -11,4 +11,29 @@ const Template: ComponentStory<typeof Navigation> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  items: [
+    {
+      label: 'Home',
+      icon: 'ri-home-fill',
+      disabled: false,
+      list:[
+        {
+          label: 'Home',
+          key: 'home',
+        }
+      ]
+    },
+    {
+      label: 'Homfde',
+      icon: 'ri-home-fill',
+      disabled: false,
+      list:[
+        {
+          label: 'Home',
+          key: 'home',
+        }
+      ]
+    }
+  ]
+};

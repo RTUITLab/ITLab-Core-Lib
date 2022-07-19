@@ -1,84 +1,228 @@
 @use '../../../styles/design-tokens' as dt;
 @use '../../../styles/icons' as *;
 
+/**
+  Вертикальный Navigation (!!! для горизонтального дока ниже !!!):
+
+ .navigation -- класс родителя
+
+ .navigation-item -- класс для каждого раскрывающегося списка в меню
+
+ .navigation-item-disabled -- ну тут понятно
+
+ .navigation-item-content -- контент меню
+
+ .navigation-item-content-open -- тоже понятно (по умолчанию скрыт)
+
+ .navigation-item-content-label -- тайтл на этом меню
+
+ .navigation-item-content-icon -- иконка (слева и справа)
+
+ .navigation-item-submenu -- класс для каждого раскрывающегося списка в меню
+ !!! как работать при открытии и скрытии -- описано около него !!!
+
+  --------
+
+  Структура:
+
+  .navigation
+    .navigation-item
+      .navigation-item-content
+        .navigation-item-content-icon
+        .navigation-item-content-label
+        .navigation-item-content-icon
+      .navigation-item-submenu
+        .navigation-tem-submenu-button
+        .navigation-tem-submenu-button
+        ...
+    .navigation-item
+      .navigation-item-content
+        .navigation-item-content-icon
+        .navigation-item-content-label
+        .navigation-item-content-icon
+      .navigation-item-submenu
+        .navigation-tem-submenu-button
+        .navigation-tem-submenu-button
+        ...
+    ...
+
+  --------
+
+    Уже реализовано в библиотеке react-ui-core
+
+ */
+
+
 .navigation {
-  box-sizing: border-box;
 
   width: fit-content;
   background: #FFFFFF;
   color: dt.$general-80;
   display: grid;
   position: relative;
+  overflow: hidden;
+  gap: 4px;
 
   border: 1px solid dt.$general-40;
   border-radius: 6px;
-  padding: 10px 16px;
+
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
 
   .navigation-item {
-    user-select: none;
-    cursor: pointer;
     width: 100%;
-
+    position: relative;
     box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 24px 1fr 24px;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-
-    width: 100%;
-    height: 40px;
-
     background: #FFFFFF;
-
     flex: none;
     order: 0;
-    flex-grow: 0;
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
+    user-select: none;
     font-size: 16px;
     line-height: 24px;
 
-    .navigation-item-label {
-      min-width: 150px;
-      max-width: 350px;
-      overflow: hidden;
-      display: inline-block;
-      text-overflow: ellipsis;
-    }
-
-    .navigation-item-icon {
-      font-family: dt.$typo-font-p-medium-family;
-      font-style: dt.$typo-font-p-medium-style;
-      font-weight: dt.$typo-font-p-medium-weight;
-      font-size: 24px;
-
-      height: fit-content;
-
+    .navigation-item-content{
       display: grid;
-      place-items: center;
+      grid-template-columns: 24px 1fr 24px;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      cursor: pointer;
+      &:hover, &:focus {
+        color: dt.$primary-90;
+      }
+
+      .navigation-item-content-label {
+        min-width: 150px;
+        max-width: 350px;
+        overflow: hidden;
+        display: inline-block;
+        text-overflow: ellipsis;
+      }
+
+      .navigation-item-content-icon {
+        transition: rotate 0.2s ease-in-out;
+        font-size: 24px;
+        height: fit-content;
+        display: grid;
+        place-items: center;
+      }
     }
 
-    &:hover, &:focus {
-      color: dt.$primary-90;
+
+
+
+    // Это контент для подменю (открытая вкладка).
+    // Открыть / скрыть можно лишь указав ему height и display в inline стилях
+    // Это сделано для анимации.
+
+    // height: 0px; display: none; -- скрыт
+    // height: <ваше значение>; display: block; -- открыт
+
+    // не забудьте дождаться анимации, и потом устанавливать display: none;
+    // а то анимации не будет
+
+    // минус такого подхода в том, что придется получать высоту этого подменю
+    // и работать с inline стилями
+
+    // кто придумает способ лучше -- вперед ;)
+    .navigation-item-submenu {
+      transition: height 0.2s ease-in-out;
+      overflow: hidden;
+      box-sizing: border-box;
+      position: relative;
+      display: block;
+
+      max-width: 100%;
+
+      height: 0px;
+
+      .navigation-item-submenu-button {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 12px 8px 40px;
+        gap: 10px;
+        cursor: pointer;
+
+        height: 40px;
+
+        background: dt.$general-30;
+        color: dt.$general-80;
+
+        flex: none;
+        order: 2;
+        flex-grow: 0;
+
+        &:hover, &:focus {
+          background: dt.$primary-40;
+          color: dt.$primary-90;
+        }
+      }
+      .navigation-item-submenu-button-active{
+        background: dt.$general-40;
+        color: dt.$general-90;
+      }
     }
   }
 
+
   .navigation-item-disabled {
+    @extend .navigation-item;
+
     color: dt.$general-50;
     cursor: not-allowed;
+    pointer-events: none;
 
     &:hover {
       color: dt.$general-50;
     }
   }
 
-  .navigation-item-open {
-    & .navigation-item-icon:last-child {
+  .navigation-item-content-open {
+    & .navigation-item-content-icon:last-child {
       rotate: 180deg;
     }
   }
 }
 
+@keyframes hide-item-submenu {
+  0%, 99% {
+    display: block;
+  }
+  100% {
+    display: none;
+  }
+}
+
+/**
+    TODO: здесь будут стили для горизонтального меню
+ */
+
+.navigation-horizontal{
+  @extend .navigation;
+  display: flex;
+  overflow: visible;
+  gap: 30px;
+
+  .navigation-item{
+    width: fit-content;
+
+    .navigation-item-content{
+      display: flex;
+      padding: 8px 0px;
+      .navigation-item-content-label{
+        min-width: 20px;
+      }
+      & .navigation-item-content-icon:last-child{
+        display: none;
+      }
+    }
+    .navigation-item-submenu{
+      width: 100%;
+      position: absolute;
+    }
+  }
+}
