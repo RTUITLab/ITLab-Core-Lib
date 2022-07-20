@@ -2,15 +2,19 @@
 @use '../../../styles/icons' as *;
 
 /**
-  Вертикальный Navigation (!!! для горизонтального дока ниже !!!):
+
 
  .navigation -- класс родителя
+
+ .navigation-horizontal -- горизонтальный тип
 
  .navigation-item -- класс для каждого раскрывающегося списка в меню
 
  .navigation-item-disabled -- ну тут понятно
 
- .navigation-item-content -- контент меню
+ .navigation-item-content -- по сути заголовок (иконка, название, стрелка вниз)
+
+ .navigation-item-content-active -- understanding
 
  .navigation-item-content-open -- тоже понятно (по умолчанию скрыт)
 
@@ -21,6 +25,12 @@
  .navigation-item-submenu -- класс для каждого раскрывающегося списка в меню
  !!! как работать при открытии и скрытии -- описано около него !!!
 
+ .navigation-item-submenu-title -- тайтл на этом меню
+
+ .navigation-item-submenu-button -- элемент подменю
+
+ .navigation-item-submenu-button-active -- активное состояние
+
   --------
 
   Структура:
@@ -28,10 +38,11 @@
   .navigation
     .navigation-item
       .navigation-item-content
-        .navigation-item-content-icon
-        .navigation-item-content-label
-        .navigation-item-content-icon
+        .navigation-item-content-icon   (иконка)
+        .navigation-item-content-label    (тайтл)
+        .navigation-item-content-icon   (галка вниз)
       .navigation-item-submenu
+        .navigation-tem-submenu-title
         .navigation-tem-submenu-button
         .navigation-tem-submenu-button
         ...
@@ -41,6 +52,7 @@
         .navigation-item-content-label
         .navigation-item-content-icon
       .navigation-item-submenu
+        .navigation-tem-submenu-title
         .navigation-tem-submenu-button
         .navigation-tem-submenu-button
         ...
@@ -55,13 +67,13 @@
 
 .navigation {
 
-  width: fit-content;
   background: #FFFFFF;
   color: dt.$general-80;
   display: grid;
   position: relative;
   overflow: hidden;
   gap: 4px;
+  width: 300px;
 
   border: 1px solid dt.$general-40;
   border-radius: 6px;
@@ -71,8 +83,10 @@
   font-weight: dt.$typo-font-p-medium-weight;
 
   .navigation-item {
-    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     position: relative;
+    display: block;
     box-sizing: border-box;
     background: #FFFFFF;
     flex: none;
@@ -81,7 +95,7 @@
     font-size: 16px;
     line-height: 24px;
 
-    .navigation-item-content{
+    .navigation-item-content {
       display: grid;
       grid-template-columns: 24px 1fr 24px;
       flex-direction: row;
@@ -89,13 +103,16 @@
       gap: 10px;
       padding: 8px 16px;
       cursor: pointer;
+
       &:hover, &:focus {
         color: dt.$primary-90;
+
+        .navigation-item-content-icon {
+          color: dt.$primary-90 !important;
+        }
       }
 
       .navigation-item-content-label {
-        min-width: 150px;
-        max-width: 350px;
         overflow: hidden;
         display: inline-block;
         text-overflow: ellipsis;
@@ -110,7 +127,13 @@
       }
     }
 
+    .navigation-item-content-active {
+      color: dt.$primary-90;
 
+      & .navigation-item-content-icon:last-child {
+        color: dt.$general-80;
+      }
+    }
 
 
     // Это контент для подменю (открытая вкладка).
@@ -128,21 +151,30 @@
 
     // кто придумает способ лучше -- вперед ;)
     .navigation-item-submenu {
-      transition: height 0.2s ease-in-out;
+      transition: height 150ms ease;
       overflow: hidden;
       box-sizing: border-box;
       position: relative;
       display: block;
-
-      max-width: 100%;
-
+      width: 100%;
       height: 0px;
+
+      .navigation-item-submenu-title {
+        padding: 8px 12px 8px 16px;
+        background: dt.$general-30;
+        font-size: 16px;
+        line-height: 24px;
+
+        color: dt.$general-60;
+
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+      }
 
       .navigation-item-submenu-button {
         box-sizing: border-box;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
         padding: 8px 12px 8px 40px;
         gap: 10px;
         cursor: pointer;
@@ -152,16 +184,18 @@
         background: dt.$general-30;
         color: dt.$general-80;
 
-        flex: none;
-        order: 2;
-        flex-grow: 0;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
 
         &:hover, &:focus {
           background: dt.$primary-40;
           color: dt.$primary-90;
         }
       }
-      .navigation-item-submenu-button-active{
+
+      .navigation-item-submenu-button-active {
         background: dt.$general-40;
         color: dt.$general-90;
       }
@@ -197,32 +231,68 @@
   }
 }
 
-/**
-    TODO: здесь будут стили для горизонтального меню
- */
-
-.navigation-horizontal{
+.navigation-horizontal {
   @extend .navigation;
   display: flex;
+  width: fit-content;
   overflow: visible;
-  gap: 30px;
+  gap: 15px;
+  border: 0px;
 
-  .navigation-item{
+  .navigation-item {
     width: fit-content;
 
-    .navigation-item-content{
+    overflow: visible;
+    //position: static;
+
+    .navigation-item-content {
       display: flex;
-      padding: 8px 0px;
-      .navigation-item-content-label{
+      padding: 8px 16px;
+
+      .navigation-item-content-label {
         min-width: 20px;
+        max-width: 250px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
-      & .navigation-item-content-icon:last-child{
+
+      & .navigation-item-content-icon:last-child {
         display: none;
       }
+
+      &:hover, &:focus {
+        @extend .navigation-item-content-open;
+      }
     }
-    .navigation-item-submenu{
-      width: 100%;
+
+    .navigation-item-content-open {
+      margin-bottom: -2px;
+      border-bottom: 2px solid dt.$primary-90;
+      color: dt.$primary-90;
+    }
+
+    .navigation-item-content-active {
+      @extend .navigation-item-content-open;
+    }
+
+    .navigation-item-submenu {
       position: absolute;
+      margin-top: 5px;
+      left: 0px;
+
+      .navigation-item-submenu-title {
+        background-color: #FFF;
+        color: dt.$general-60;
+      }
+
+      .navigation-item-submenu-button {
+        background-color: white;
+        color: dt.$general-80;
+      }
+      .navigation-item-submenu-button-active {
+        background: dt.$general-30;
+        color: dt.$general-90;
+      }
     }
   }
 }

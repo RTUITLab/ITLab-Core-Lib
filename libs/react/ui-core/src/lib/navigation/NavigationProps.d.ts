@@ -21,5 +21,6 @@ export interface NavigationItem {
 
 export interface NavigationProps {
   items: NavigationItem[];
-  onChange?: (item: { label: string; key: string | number }) => void;
+  type?: "horizontal" | "vertical";
+  onChange?: (item: { key: string | number, clickEvent:React.MouseEvent<HTMLElement> }) => void;
 }
