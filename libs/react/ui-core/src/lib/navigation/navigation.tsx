@@ -9,8 +9,16 @@ export const Navigation = forwardRef<HTMLDivElement, NavigationProps>((props, re
 
   const state = useNavigation(props);
 
+  const parentStyles=useMemo(() => {
+    const classes = [styles['navigation']];
+    if(props.type==="horizontal"){
+      classes.push(styles['navigation-horizontal'])
+    }
+    return classes;
+  },[props])
+
   return (<div>
-    <div className={styles['navigation-horizontal']} ref={ref}>
+    <div className={parentStyles.join(" ")} ref={ref}>
       {props.items.map((item, index) => {
         return <React.Fragment key={index}><MenuItem item={item} props={props} state={state}/></React.Fragment>
       })}
@@ -28,18 +36,21 @@ function MenuItem(localProps: { item: NavigationItem, props: NavigationProps, st
     submenuHeight,
     submenuDisplay,
     icon,
-    onMenuClick
+    onMenuClick,
+    closeItem,
+    submenuClick
   } = useMenuItem(localProps);
 
-  const submenuClick = (key: string | number, e: React.MouseEvent<HTMLElement>) => {
-    state.setActiveItem(key);
-    if (props.onChange) {
-      props.onChange({key: key, clickEvent: e});
+  const classes = useMemo(() => {
+    const classList = [styles['navigation-item']];
+    if(item.disabled){
+      classList.push(styles['navigation-item-disabled'])
     }
-  }
+    return classList;
+  },[props.items])
 
   return (
-    <div className={styles['navigation-item']}>
+    <div className={classes.join(" ")} key={item.key}>
       <MenuItemContent strings={contentItemClasses} onClick={onMenuClick} icon={icon} item={item}/>
       <div style={{height: submenuHeight, display: submenuDisplay}} ref={submenu}
            className={styles['navigation-item-submenu']}>
@@ -68,12 +79,12 @@ function MenuItem(localProps: { item: NavigationItem, props: NavigationProps, st
 function SubmenuButton(props: { onClick: (e: React.MouseEvent<HTMLElement>) => void, item: NavigationLabel, state: useNavigationProps }) {
 
   const classes = useMemo((): Array<string> => {
-    if(props.state.activeItem===props.item.key) {
+    if(props.state.activeMenuItem===props.item.key) {
       return [styles["navigation-item-submenu-button"], styles["navigation-item-submenu-button-active"]]
     }else{
       return [styles["navigation-item-submenu-button"]]
     }
-  },[props.state.activeItem])
+  },[props.state.activeMenuItem])
 
   return (
     <div

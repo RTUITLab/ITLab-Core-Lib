@@ -1,5 +1,5 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Navigation } from './navigation';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
+import {Navigation} from './navigation';
 
 export default {
   component: Navigation,
@@ -12,89 +12,60 @@ const Template: ComponentStory<typeof Navigation> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
+  type: "vertical",
+  defaultOpenedItems: ["item1"],
+  defaultSelectedKey:"label2",
   items: [
     {
-      label: 'Homeffffffffffffffffffffffffffffffffffffffffffff',
-      icon: 'ri-home-fill',
+      label: 'Item 1',
+      icon: "ri-home-line",
       disabled: false,
-      sections:[
+      key: 'item1',
+      sections: [
         {
-          title: 'Homeffffffffffffаааааааааааааааааааааffffffffffffff',
-          items:[
+          title: 'Section 1',
+          items: [
             {
-              label: 'Homeffffffffffffаааааааааааааааааааааffffffffffffff',
-              key: 'home',
+              label: 'Label 1',
+              key: 'label1',
+            },
+            {
+              label: 'Label 2',
+              key: 'label2',
+            },
+            {
+              label: 'Label 3',
+              key: 'label3',
             }
           ]
-
         }
       ]
     },
     {
-      label: 'Homeffffffffffffffffffffffffffffffffffffffffffff',
-      icon: 'ri-home-fill',
+      label: 'Disabled Item',
+      icon: "ri-home-line",
+      disabled: true,
+      key: 'item2',
+    },
+    {
+      label: 'Item 3',
+      icon: "ri-home-line",
       disabled: false,
+      key: 'item3',
       list:[
         {
-          label: 'Homeffffffffffffаааааааааааааааааааffffffffffffff',
-          key: 'home',
+          label: 'Label 1',
+          key: '3label1',
+        },
+        {
+          label: 'Label 2',
+          key: '3label2',
+        },
+        {
+          label: 'Label 3',
+          key: '3label3',
         }
       ]
     },
-    {
-      label: 'Homeffffffffffffffffffffffffffffffffffffffffffff',
-      icon: 'ri-home-fill',
-      disabled: false,
-      list:[
-        {
-          label: 'Homeffffffffffffаааааааааааааааааааffffffffffffff',
-          key: 'home',
-        }
-      ]
-    },
-    {
-      label: 'Homeffffffffffffffffffffffffffffffffffffffffffff',
-      icon: 'ri-home-fill',
-      disabled: false,
-      list:[
-        {
-          label: 'Homeffffffffffffаааааааааааааааааааffffffffffffff',
-          key: 'home',
-        }
-      ]
-    },
-    {
-      label: 'Homeffffffffffffffffffffffffffffffffffffffffffff',
-      icon: 'ri-home-fill',
-      disabled: false,
-      list:[
-        {
-          label: 'Homeffffffffffffаааааааааааааааааааffffffffffffff',
-          key: 'home',
-        }
-      ]
-    },
-    {
-      label: 'Homeffffffffffffffffffffffffffffffffffffffffffff',
-      icon: 'ri-home-fill',
-      disabled: false,
-      list:[
-        {
-          label: 'Homeffffffffffffаааааааааааааааааааffffffffffffff',
-          key: 'home',
-        }
-      ]
-    },
-    {
-      label: 'Homfde',
-      icon: 'ri-home-fill',
-      disabled: false,
-      list:[
-        {
-          label: 'Home',
-          key: 'home',
-        }
-      ]
-    }
   ]
 };

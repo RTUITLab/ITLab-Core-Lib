@@ -1,6 +1,6 @@
 import {NavigationItem, NavigationProps} from "./NavigationProps";
 import {useNavigationProps} from "./useNavigation";
-import React, {createRef, useEffect, useState} from "react";
+import React, {createRef, useEffect, useMemo, useState} from "react";
 import styles from "./navigation.module.scss";
 
 export function useMenuItem(localProps: { item: NavigationItem; props: NavigationProps; state: useNavigationProps }) {
@@ -10,17 +10,28 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
   const [submenuHeight, setSubmenuHeight] = useState(0)
   const [submenuDisplay, setSubmenuDisplay] = useState("block")
   const [defaultSubmenuHeight, setDefaultSubmenuHeight] = useState(0)
-  const icon = (
-    state.showIcons ? <span className={styles['navigation-item-content-icon']}>
+  const icon = (state.showIcons ? <span className={styles['navigation-item-content-icon']}>
       {typeof item.icon === "string" ? <i className={item.icon}/> : item.icon}
-          </span> : null
-  )
-  const menuItemManager = {
-    push: (className: string) => {
-      setContentItemClasses([...contentItemClasses, className]);
-    }, remove: (className: string) => {
-      setContentItemClasses(contentItemClasses.filter((c: string) => c !== className));
+          </span> : null)
+
+  const menuItemManager = useMemo(() => {
+    return {
+      push: (className: string) => {
+        setContentItemClasses(prevState => {
+          return [...prevState, className]
+        });
+      }, remove: (className: string) => {
+        setContentItemClasses((prevState) => {
+          return prevState.filter((c: string) => c !== className)
+        });
+      }, get: () => {
+        return contentItemClasses;
+      }
     }
+  }, [])
+
+  function calculateDefaultSubmenuHeight(children: Element[]) {
+    setDefaultSubmenuHeight(children.reduce((acc, child) => acc + child.clientHeight, 0))
   }
 
   useEffect(() => {
@@ -29,24 +40,104 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
       return;
     }
     const children = Array.from(submenu.current.children);
-    setDefaultSubmenuHeight(children.reduce((acc, child) => acc + child.clientHeight, 0))
+    calculateDefaultSubmenuHeight(children);
     setSubmenuDisplay("none")
+
+    if (!state.showIcons) {
+      menuItemManager.push(styles['navigation-item-content-without-first-icon'])
+    }
   }, [props]);
+
+  useEffect(() => {
+    if (props.type === "horizontal" && state.lastOpenedItem !== item.key && submenu.current) {
+      closeItem();
+    }
+  }, [state.lastOpenedItem])
+
+  useEffect(() => {
+    if (submenu.current) {
+      if (props.defaultOpenedItems?.includes(item.key) && props.type !== "horizontal") {
+        const children = Array.from(submenu.current.children)
+        const height = children.reduce((acc, child) => acc + child.clientHeight, 0)
+        openItem(height)
+      }
+      if (props.defaultSelectedKey) {
+        if (item.list) {
+          if (item.list.map((e) => e.key).includes(props.defaultSelectedKey)) {
+            submenuClick(props.defaultSelectedKey)
+          }
+        }
+        if (item.sections) {
+          if (item.sections.map((e) => e.items.map((k) => k.key)).some((e) => {
+            if (props.defaultSelectedKey) return e.includes(props.defaultSelectedKey)
+            return false
+          })) {
+            submenuClick(props.defaultSelectedKey)
+          }
+        }
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (state.activeItem === item.key) {
+      menuItemManager.push(styles['navigation-item-content-active'])
+    } else {
+      menuItemManager.remove(styles['navigation-item-content-active'])
+    }
+  }, [state.activeItem])
+
+  function closeItem() {
+    menuItemManager.remove(styles['navigation-item-content-open']);
+    setSubmenuHeight(0)
+    setTimeout(() => {
+      setSubmenuDisplay("none")
+    }, 150)
+  }
+
+  function openItem(height?: number) {
+    state.setLastOpenedItem(item.key);
+    setSubmenuDisplay("block")
+
+    /* эти действия запустятся после изменения предыдущего состояния */
+    setTimeout(() => {
+      setSubmenuHeight(height || defaultSubmenuHeight);
+      menuItemManager.push(styles['navigation-item-content-open']);
+    }, 2)
+  }
 
   const onMenuClick = async () => {
     if (contentItemClasses.includes(styles['navigation-item-content-open'])) {
-      menuItemManager.remove(styles['navigation-item-content-open']);
-      setSubmenuHeight(0)
-      setTimeout(() => {
-        setSubmenuDisplay("none")
-      }, 150)
+      closeItem();
     } else {
-      menuItemManager.push(styles['navigation-item-content-open']);
-      setSubmenuDisplay("block")
-      setTimeout(() => {
-        setSubmenuHeight(defaultSubmenuHeight);
-      }, 2)
+      openItem();
     }
   }
-  return {contentItemClasses, item, props, state, submenu, submenuHeight, submenuDisplay, icon, onMenuClick};
+
+  const submenuClick = (key: string | number, e?: React.MouseEvent<HTMLElement>) => {
+    state.setActiveMenuItem(key);
+    state.setActiveItem(item.key);
+    if (props.type === "horizontal") {
+      closeItem();
+    }
+    if (props.onChange && e) {
+      props.onChange({key: key, clickEvent: e});
+    }
+  }
+
+
+  return {
+    contentItemClasses,
+    item,
+    props,
+    state,
+    submenu,
+    submenuHeight,
+    submenuDisplay,
+    icon,
+    onMenuClick,
+    closeItem,
+    openItem,
+    submenuClick,
+  };
 }

@@ -16,6 +16,8 @@
 
  .navigation-item-content-active -- understanding
 
+ .navigation-item-content-without-first-icon -- без первой иконки
+
  .navigation-item-content-open -- тоже понятно (по умолчанию скрыт)
 
  .navigation-item-content-label -- тайтл на этом меню
@@ -108,7 +110,11 @@
         color: dt.$primary-90;
 
         .navigation-item-content-icon {
-          color: dt.$primary-90 !important;
+          color: dt.$primary-90;
+
+          & *:nth-child(n) {
+            color: dt.$primary-90;
+          }
         }
       }
 
@@ -124,14 +130,40 @@
         height: fit-content;
         display: grid;
         place-items: center;
+        color: dt.$general-80;
+
+        & *:nth-child(n) {
+          color: dt.$general-80;
+        }
+      }
+    }
+
+    .navigation-item-content-without-first-icon {
+      @extend .navigation-item-content;
+      grid-template-columns: 1fr 24px;
+
+      & .navigation-item-content-icon:first-child{
+        display: none;
       }
     }
 
     .navigation-item-content-active {
       color: dt.$primary-90;
 
+      .navigation-item-content-icon {
+        color: dt.$primary-90;
+
+        & *:nth-child(n) {
+          color: dt.$primary-90;
+        }
+      }
+
       & .navigation-item-content-icon:last-child {
         color: dt.$general-80;
+
+        & *:nth-child(n) {
+          color: dt.$general-80;
+        }
       }
     }
 
@@ -210,6 +242,14 @@
     cursor: not-allowed;
     pointer-events: none;
 
+    .navigation-item-content-icon {
+      color: dt.$general-50 !important;
+
+      & *:nth-child(n) {
+        color: dt.$general-50 !important;
+      }
+    }
+
     &:hover {
       color: dt.$general-50;
     }
@@ -269,6 +309,13 @@
       margin-bottom: -2px;
       border-bottom: 2px solid dt.$primary-90;
       color: dt.$primary-90;
+
+      .navigation-item-content-icon{
+        color: dt.$primary-90;
+        & *:nth-child(n) {
+          color: dt.$primary-90;
+        }
+      }
     }
 
     .navigation-item-content-active {
@@ -289,6 +336,7 @@
         background-color: white;
         color: dt.$general-80;
       }
+
       .navigation-item-submenu-button-active {
         background: dt.$general-30;
         color: dt.$general-90;
