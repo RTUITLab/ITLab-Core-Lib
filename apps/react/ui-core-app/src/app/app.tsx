@@ -3,19 +3,24 @@ import styles from './app.module.scss';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-import {Button, Icon} from "@itlab-core-lib/react/ui-core";
-import React, {useEffect} from "react";
+import {Checkbox} from "@itlab-core-lib/react/ui-core";
+import React, {useRef} from 'react'
 
 export function App() {
 
+  const ref = useRef()
+  const handleClick = (ref: any) => {
+    console.log(ref.current.checked)
+  }
 
   return (
     <>
-      <Button onClick={(e)=> console.log(e)} iconPosition={"left"}>dsa</Button>
-
-      <Icon className={"test"} onClick={(e)=>{
-        console.log(e);}} name={"loader-2"} color={"general"}/>
-
+      <Checkbox label={'Hellow'} />
+      <Checkbox label={'Hellow'} disabled={true} />
+      <Checkbox label={'Hellow'} ref={ref} readonly={true} />
+      <Checkbox label={'Hellow'} className={'prikol'} labelStyleClass={'classno'} />
+      <Checkbox label={'Kuku'} className={'prikol'} labelStyleClass={'classno'} checked={true} />
+      <button onClick={() => handleClick(ref)}>show me your ref</button>
       <NxWelcome title="react-ui-core-app" />
       <div />
 
