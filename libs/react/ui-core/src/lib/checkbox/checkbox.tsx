@@ -37,7 +37,6 @@ export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
       <div onClick={() => handleCheck(checked)}
            className={`${checked && 'checkbox-checked'} ${focused && 'checkbox-focus'} ${classes}`}>
         {checked && icon}
-        {/*<span className={`checkbox-icon ${checked && checkboxIcon}`}></span>*/}
       </div>
       <label onClick={() => handleCheck(checked)} htmlFor={props.inputId}
              className={labelStyleClass}>

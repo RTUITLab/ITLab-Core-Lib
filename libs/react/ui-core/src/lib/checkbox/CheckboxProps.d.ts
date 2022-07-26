@@ -16,7 +16,7 @@ export interface CheckboxProps extends DefaultParams {
   /** When present, it specifies that the component cannot be edited */
   readonly?: boolean;
 
-  /** Checkbox is checked or not */
+  /** When present, it specifies that the component is already checked */
   checked?: boolean;
 
   /** When present, it specifies that the element should be disabled */
@@ -25,7 +25,7 @@ export interface CheckboxProps extends DefaultParams {
   /** Identifier of the focus input to match a label defined for the component */
   inputId?: string;
 
-  /** Icon object */
+  /** When present, it specifies that the component cannot be edited */
   checkboxIcon?: React.ReactNode<Icon>;
 
   /** [It doesn't change checked state of checkbox] Variable which stores value, which used in when checkbox is checked */

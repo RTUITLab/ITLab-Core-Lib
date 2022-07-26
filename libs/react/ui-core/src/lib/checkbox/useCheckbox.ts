@@ -5,7 +5,7 @@ import {CheckboxProps} from './CheckboxProps'
 /**
  * Hook for checkbox
  */
-export function useCheckbox({...props}:CheckboxProps) {
+export function useCheckbox(props: CheckboxProps) {
   const [checked, setChecked] = useState<boolean>(false)
   const [focused, setFocused] = useState<boolean>(false)
 
