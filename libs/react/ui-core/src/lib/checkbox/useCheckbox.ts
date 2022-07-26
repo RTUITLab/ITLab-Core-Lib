@@ -1,11 +1,11 @@
-import {useEffect, useMemo, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import './checkbox.scss'
 import {CheckboxProps} from './CheckboxProps'
 
 /**
  * Hook for checkbox
  */
-export function useCheckbox(props:CheckboxProps) {
+export function useCheckbox({...props}:CheckboxProps) {
   const [checked, setChecked] = useState<boolean>(false)
   const [focused, setFocused] = useState<boolean>(false)
 
@@ -20,11 +20,17 @@ export function useCheckbox(props:CheckboxProps) {
   }
 
   const handleBlur = (focused: boolean) => {
-    setFocused(!focused)
+    setFocused(focused)
   }
 
   const handleFocus = (focused: boolean) => {
     setFocused(focused)
+  }
+
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if((e.code === 'Space' || e.code === 'Enter') && !props.readonly && !props.disabled) {
+      setChecked(!checked)
+    }
   }
 
   const classes = useMemo(() => {
@@ -55,5 +61,5 @@ export function useCheckbox(props:CheckboxProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, labelStyleClass, checked, handleCheck, focused, handleBlur, handleFocus}
+  return {classes, labelStyleClass, checked, handleCheck, handleKeyUp, focused, handleBlur, handleFocus}
 }

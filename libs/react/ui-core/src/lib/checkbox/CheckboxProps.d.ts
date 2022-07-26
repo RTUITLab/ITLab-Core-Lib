@@ -1,4 +1,6 @@
 import {DefaultParams} from "../../default-types/defaultParams";
+import React from 'react'
+import Icon from '../icon/icon'
 
 export interface CheckboxProps extends DefaultParams {
 
@@ -8,10 +10,13 @@ export interface CheckboxProps extends DefaultParams {
   /** Name of the checkbox group */
   name?: string;
 
+  /** When present, it specifies that checkbox must be checked before submitting the form */
   isRequired?: boolean;
 
+  /** When present, it specifies that the component cannot be edited */
   readonly?: boolean;
 
+  /** Checkbox is checked or not */
   checked?: boolean;
 
   /** When present, it specifies that the element should be disabled */
@@ -20,12 +25,16 @@ export interface CheckboxProps extends DefaultParams {
   /** Identifier of the focus input to match a label defined for the component */
   inputId?: string;
 
+  /** Icon object */
+  checkboxIcon?: React.ReactNode<Icon>;
+
+  /** [It doesn't change checked state of checkbox] Variable which stores value, which used in when checkbox is checked */
   value?: any;
 
   /** Index of the element in tabbing order */
   tabIndex?: number;
 
-  /** Used to define a string that labels the input element *
+  /** Used to define a string that labels the input element */
   ariaLabel?: string;
 
   /** Establishes relationships between the component and label(s) where its value should be one or more element IDs */
