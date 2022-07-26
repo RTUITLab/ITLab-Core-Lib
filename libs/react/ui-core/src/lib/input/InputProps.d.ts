@@ -41,6 +41,9 @@ export interface InputProps extends DefaultParams, ClickableObjectMini{
   /** When present, it specifies that the component cannot be edited */
   readonly?: boolean;
 
+  /** When present, it specifies that the component should automatically get focus */
+  autoFocus?: boolean;
+
   /** Specifies the type of component. */
   type?: string;
 

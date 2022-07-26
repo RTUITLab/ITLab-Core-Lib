@@ -4,6 +4,7 @@ import {getAllEvents} from '../../utils/getAllEvents'
 
 export function useInput(props: InputProps) {
   const [focused, setFocused] = useState<boolean>(false)
+  const [hovered, setHovered] = useState<boolean>(false)
   const events=useMemo(() => {
     return getAllEvents(props)
   },[props]);
@@ -15,6 +16,10 @@ export function useInput(props: InputProps) {
 
   const handleFocus = (focused: boolean) => {
     setFocused(focused)
+  }
+
+  const handleHover = (hovered: boolean) => {
+    if(!props.disabled) setHovered(hovered)
   }
 
   const classes = useMemo(() => {
@@ -54,6 +59,6 @@ export function useInput(props: InputProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, iconClasses, focused, handleBlur, handleFocus, events}
+  return {classes, iconClasses, focused, handleBlur, handleFocus, events, hovered, handleHover}
 }
 

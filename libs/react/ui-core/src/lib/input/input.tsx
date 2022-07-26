@@ -1,11 +1,10 @@
-import React, {forwardRef, useMemo} from 'react'
+import React, {forwardRef} from 'react'
 import './input.scss';
 import {InputProps} from './InputProps'
 import {useInput} from './useInput'
-import {getAllEvents} from '../../utils/getAllEvents'
 
 export const Input = forwardRef((props: InputProps, ref: any) => {
-  const {classes, iconClasses, focused, handleFocus, handleBlur, events} = useInput(props)
+  const {classes, iconClasses, focused, handleFocus, handleBlur, events, hovered, handleHover} = useInput(props)
 
   const icon = <>{props.icon &&
     <span className={iconClasses}>
@@ -15,11 +14,15 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
 
 
   return (
-    <div className={`${classes} ${focused && 'input-wrapper-focused'}`} style={props.style}>
+    <label className={`${classes} ${hovered && 'input-wrapper-hover'} ${focused && 'input-wrapper-focused'}`} style={props.style}
+           onMouseEnter={() => handleHover(true)}
+           onMouseLeave={() => handleHover(false)}
+    >
       <input className={'input'}
              ref={ref}
              {...events}
-             disabled={props.disabled}
+             autoFocus={props.autoFocus}
+             disabled={(props.disabled !== undefined && props.disabled)}
              value={props.value}
              placeholder={props.placeholder}
              name={props.name}
@@ -37,7 +40,7 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
              onBlur={(event) => handleBlur(event, false)}
       />
       {icon}
-    </div>
+    </label>
   );
 });
 

@@ -6,20 +6,19 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding: 12px 18px;
+  cursor: text;
   gap: 8px;
   border: 1px solid dt.$primary-30;
   border-radius: 6px;
   width: 350px;
-
-  &:hover {
-    border-color: dt.$general-60;
-  }
 }
 
 .input {
   width: 100%;
   outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: inherit;
 
   font-family: dt.$typo-font-p-medium-family;
   font-style: dt.$typo-font-p-medium-style;
@@ -47,6 +46,9 @@
 }
 .input-wrapper-small{
   padding: 6px 12px;
+}
+.input-wrapper-hover{
+  border-color: dt.$general-60;
 }
 .input-wrapper-focused{
   color: dt.$general-90;
