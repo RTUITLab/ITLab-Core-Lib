@@ -20,7 +20,7 @@ export function App() {
       <Checkbox label={'disabled'} disabled={true} />
       <Checkbox label={'readonly'} readonly={true} />
       <Checkbox label={'ClassNames'} className={'prikol'} labelStyleClass={'classno'} />
-      <Checkbox label={'Checked'} checked={true} />
+      <Checkbox label={'Checked'} defaultChecked={true} />
       <Checkbox label={'icon'} checkboxIcon={<Icon size={20} name={"loader-2"} color={"green-light"}/>} />
       <button onClick={() => handleClick(ref)}>show me your ref</button>
 
