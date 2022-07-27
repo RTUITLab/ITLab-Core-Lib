@@ -1,6 +1,6 @@
 import {useMemo} from "react";
 import styles from "./counter.module.scss";
-import {CounterProps} from "@itlab-core-lib/react/ui-core";
+import {CounterProps} from "./CounterProps";
 
 export function useCounter(props: CounterProps) {
   const style = useMemo(() => {
