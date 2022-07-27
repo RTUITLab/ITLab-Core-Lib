@@ -1,10 +1,10 @@
 import React, {forwardRef} from 'react'
-import './input.scss';
+import styles from './input.module.scss';
 import {InputProps} from './InputProps'
 import {useInput} from './useInput'
 
 export const Input = forwardRef((props: InputProps, ref: any) => {
-  const {classes, iconClasses, focused, handleFocus, handleBlur, events, hovered, handleHover} = useInput(props)
+  const {classes, iconClasses, focused, handleFocus, handleBlur, hovered, handleHover} = useInput(props)
 
   const icon = <>{props.icon &&
     <span className={iconClasses}>
@@ -14,13 +14,13 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
 
 
   return (
-    <label className={`${classes} ${hovered && 'input-wrapper-hover'} ${focused && 'input-wrapper-focused'}`} style={props.style}
+    <label className={`${classes} ${hovered && styles['input-wrapper-hover']} ${focused && styles['input-wrapper-focused']}`}
+           style={props.style}
            onMouseEnter={() => handleHover(true)}
            onMouseLeave={() => handleHover(false)}
     >
-      <input className={'input'}
+      <input className={styles['input']}
              ref={ref}
-             {...events}
              autoFocus={props.autoFocus}
              disabled={(props.disabled !== undefined && props.disabled)}
              value={props.value}
@@ -29,14 +29,16 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
              id={props.id}
              required={props.isRequired}
              readOnly={props.readonly}
+             defaultValue={props.defaultValue}
              type={props.type || 'text'}
              maxLength={props.maxLength}
              min={props.min}
              max={props.max}
              tabIndex={props.tabIndex}
+             onClick={props.onClick}
              onKeyUp={props.onKeyUp}
              onChange={props.onChange}
-             onFocus={() => handleFocus(true)}
+             onFocus={(event) => handleFocus(event, true)}
              onBlur={(event) => handleBlur(event, false)}
       />
       {icon}

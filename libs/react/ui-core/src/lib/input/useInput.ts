@@ -1,6 +1,7 @@
 import React, {useMemo, useState} from 'react'
 import {InputProps} from './InputProps'
 import {getAllEvents} from '../../utils/getAllEvents'
+import styles from './input.module.scss'
 
 export function useInput(props: InputProps) {
   const [focused, setFocused] = useState<boolean>(false)
@@ -14,18 +15,20 @@ export function useInput(props: InputProps) {
     setFocused(focused)
   }
 
-  const handleFocus = (focused: boolean) => {
+  const handleFocus = (event: React.FocusEvent<HTMLInputElement>, focused: boolean) => {
+    if(events['onFocus']) events['onFocus'](event)
     setFocused(focused)
   }
 
   const handleHover = (hovered: boolean) => {
-    if(!props.disabled) setHovered(hovered)
+    if(!props.disabled && !props.readonly) setHovered(hovered)
   }
 
   const classes = useMemo(() => {
-    const classList = ['input-wrapper'];
+    const classList = [];
 
     const conditions:{[index: string]:boolean} = {
+      "input-wrapper": true,
       "input-icon-left": props.iconPosition === 'left',
       "input-icon-right": props.iconPosition === 'right',
       "input-wrapper-large": props.size === 'large',
@@ -36,12 +39,11 @@ export function useInput(props: InputProps) {
 
     Object.keys(conditions).forEach((key:string) => {
       if (conditions[key]) {
-        classList.push(key);
+        classList.push(styles[key]);
       }
     });
 
-    if(!props.iconPosition) classList.push('input-icon-left');
-    if(!props.size) classList.push('input-wrapper-medium');
+    if(!props.size) classList.push(styles['input-wrapper-medium']);
 
     if(typeof props.className === 'string') classList.push(props.className);
     if(typeof props.className === 'object') classList.push(...props.className);
@@ -51,10 +53,10 @@ export function useInput(props: InputProps) {
   }, [props]);
 
   const iconClasses = useMemo(() => {
-    const classList = ['input-icon'];
+    const classList = [];
 
-    if(props.iconPosition === 'left') classList.push('input-icon-left');
-    if(props.iconPosition === 'right') classList.push('input-icon-right');
+    if(props.iconPosition === 'left') classList.push(styles['input-icon-left']);
+    if(props.iconPosition === 'right') classList.push(styles['input-icon-right']);
 
     return classList.join(' ');
   }, [props]);

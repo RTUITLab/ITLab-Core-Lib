@@ -15,6 +15,9 @@ export function App() {
   const handleBlur = (e: any) => {
     console.log('blured')
   }
+  const handleChange = (e: any) => {
+    console.log(e.target.value)
+  }
 
   return (
     <>
@@ -26,13 +29,18 @@ export function App() {
       <Checkbox label={'icon'} checkboxIcon={<Icon size={20} name={"loader-2"} color={"green-light"}/>} />
       <button  onClick={() => handleClick(ref)}>show me your ref</button>
 
-      <Input icon={<Icon size={20} name={"loader-2"} color={"general"}/>} />
+      <Input placeholder={'Without ico + onchange in console'} onChange={(e) => handleChange(e)} />
+      <Input placeholder={'smol'} size={'small'}/>
+      <Input icon={<Icon size={20} name={"loader-2"} color={"general"}/>} placeholder={'Hello'} />
       <Input iconPosition={'left'} icon={<Icon size={20} name={"loader-2"} color={"general"}/>} />
-      <Input onBlur={(e) => handleBlur(e)} iconPosition={'left'} icon={<Icon size={20} name={"loader-2"} color={"general"}/>} size={'large'} />
+      <Input placeholder={'large blur'} onBlur={(e) => handleBlur(e)} icon={<Icon size={20} name={"loader-2"} color={"primary"}/>} size={'large'} />
+      <Input icon={<Icon size={20} name={"loader-2"} color={"general"}/>} placeholder={'Disabled'} disabled={true} />
+      <Input icon={<Icon size={20} name={"loader-2"} color={"general"}/>} placeholder={'readOnly'} readonly={true} />
 
       <Icon className={"test"} onClick={(e)=>{
         console.log(e);}} name={"loader-2"} color={"general"}/>
-      <Button disabled={true} onClick={(e)=> console.log(e)} icon={<Icon name={"loader-2"} color={"general"}/>} iconPosition={"left"}>Dada</Button>
+      <Button disabled={true} onClick={(e)=> console.log(e)} icon={<Icon name={"loader-2"} color={"general"}/>} >Dada</Button>
+      <Button onClick={(e)=> console.log(e)} loadingIcon={<Icon name={"loader-2"} color={"general"}/>} loading={true} iconPosition={"left"}>loading</Button>
 
 
       <NxWelcome title="react-ui-core-app" />

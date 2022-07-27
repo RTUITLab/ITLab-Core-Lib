@@ -3,7 +3,7 @@ import Icon from "../icon/icon";
 import {DefaultParams} from "../../default-types/defaultParams";
 import {ClickableObjectMini} from "../../default-types/ClickableObjectMini";
 
-export interface InputProps extends DefaultParams, ClickableObjectMini{
+export interface InputProps extends DefaultParams{
 
   /** Position of the icon, valid values are "left", "right". */
   iconPosition?: 'left' | 'right';
@@ -23,8 +23,11 @@ export interface InputProps extends DefaultParams, ClickableObjectMini{
   /** Name of input filed */
   name?: string;
 
-  /** Specifies a short hint that describes the expected value of an input field */
+  /** Value of input field */
   value?: string | number;
+
+  /** Specifies the default value of input field */
+  defaultValue?: string | number
 
   /** Specifies a short hint that describes the expected value of an input field */
   placeholder?: string;
@@ -33,7 +36,16 @@ export interface InputProps extends DefaultParams, ClickableObjectMini{
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 
   /** On key up action */
-  onKeyUp?: (event: React.KeyboardEvent<HTMLElement>) => void;
+  onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+
+  /** On click event */
+  onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
+
+  /** On focus event */
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+
+  /** On blur event */
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 
   /** Specifies that an input field must be filled out before submitting the form. */
   isRequired?: boolean;
