@@ -66,7 +66,7 @@
   }
 
   &.counter-light {
-    background: dt.$error-30;
+    background: dt.$red-30;
   }
 }
 
@@ -104,10 +104,20 @@
   font-size: 14px;
   line-height: 24px;
   border-radius: 24px;
+
+  width: 24px;
+  height: 24px;
+
+  padding: 0px 7.5px;
 }
 
-.conter-small{
+.counter-small{
   font-size: 12px;
   line-height: 20px;
   border-radius: 24px;
+
+  width: 20px;
+  height: 20px;
+
+  padding: 0px 6px;
 }
