@@ -8,13 +8,13 @@ export interface CounterProps extends DefaultParams, ClickableObjectMini{
   children:ReactNode | number;
 
   /** Background */
-  type:"solid" | "outline" | "light";
+  type?:"solid" | "outline" | "light";
 
   /** Customize Counter dot color */
-  color:"primary"|"red"|"green"|"transparent";
+  color?:"primary"|"red"|"green"|"transparent";
 
   /** Customize Counter size */
-  size:"small"|"medium"|"large";
+  size?:"small"|"medium"|"large";
 
   /** Max count to show */
   overflowCount?:number;
