@@ -1,4 +1,4 @@
-import './icon.scss';
+import styles from './icon.module.scss';
 import {forwardRef, useCallback, useMemo} from "react";
 import {IconProps} from "./IconProps";
 import {getAllEvents} from "../../utils/getAllEvents";
@@ -19,7 +19,7 @@ export const Icon = forwardRef(({size = 24, color = "primary", type = "fill", na
   },[props]);
 
   const classes = useMemo(() => {
-    return `button-icon ${camelToKebab(color)} ri-${camelToKebab(name.replace(new RegExp('(ri\\-|\\-fill|\\-line)', "gmi"), ""))}-${type}`;
+    return `${styles[camelToKebab(color)]} ri-${camelToKebab(name.replace(new RegExp('(ri\\-|\\-fill|\\-line)', "gmi"), ""))}-${type}`;
   }, [color, type, name]);
 
   return (<i {...events} ref={ref} className={classes+" "+(props?.className??"")} style={{fontSize: `${size}px`,...props.style}}/>);

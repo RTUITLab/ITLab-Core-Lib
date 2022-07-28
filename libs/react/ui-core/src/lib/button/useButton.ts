@@ -8,7 +8,7 @@ import styles from './button.module.scss'
  */
 export function useButton(props:ButtonProps) {
   const classes = useMemo(() => {
-    const classList = ['button'];
+    const classList = [styles['button']];
 
     const conditions:{[index: string]:boolean} = {
       "button": true,
@@ -45,7 +45,7 @@ export function useButton(props:ButtonProps) {
   }, [props]);
 
   const iconClasses = useMemo(() => {
-    const classList = ['button-icon'];
+    const classList = [styles['button-icon']];
 
     if(props.iconPosition === 'left') classList.push(styles['button-icon-left']);
     if(props.iconPosition === 'right') classList.push(styles['button-icon-right']);
