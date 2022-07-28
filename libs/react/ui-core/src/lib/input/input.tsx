@@ -4,7 +4,7 @@ import {InputProps} from './InputProps'
 import {useInput} from './useInput'
 
 export const Input = forwardRef((props: InputProps, ref: any) => {
-  const {classes, iconClasses, focused, handleFocus, handleBlur, hovered, handleHover} = useInput(props)
+  const {classes, iconClasses} = useInput(props)
 
   const icon = <>{props.icon &&
     <span className={iconClasses}>
@@ -14,11 +14,7 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
 
 
   return (
-    <label className={`${classes} ${hovered && styles['input-wrapper-hover']} ${focused && styles['input-wrapper-focused']}`}
-           style={props.style}
-           onMouseEnter={() => handleHover(true)}
-           onMouseLeave={() => handleHover(false)}
-    >
+    <label className={`${classes}`} style={props.style}>
       <input className={styles['input']}
              ref={ref}
              autoFocus={props.autoFocus}
@@ -38,8 +34,8 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
              onClick={props.onClick}
              onKeyUp={props.onKeyUp}
              onChange={props.onChange}
-             onFocus={(event) => handleFocus(event, true)}
-             onBlur={(event) => handleBlur(event, false)}
+             onFocus={props.onFocus}
+             onBlur={props.onBlur}
       />
       {icon}
     </label>

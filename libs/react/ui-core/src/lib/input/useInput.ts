@@ -1,28 +1,12 @@
-import React, {useMemo, useState} from 'react'
+import {useMemo} from 'react'
 import {InputProps} from './InputProps'
 import {getAllEvents} from '../../utils/getAllEvents'
 import styles from './input.module.scss'
 
 export function useInput(props: InputProps) {
-  const [focused, setFocused] = useState<boolean>(false)
-  const [hovered, setHovered] = useState<boolean>(false)
   const events=useMemo(() => {
     return getAllEvents(props)
   },[props]);
-
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>, focused: boolean) => {
-    if(events['onBlur']) events['onBlur'](event)
-    setFocused(focused)
-  }
-
-  const handleFocus = (event: React.FocusEvent<HTMLInputElement>, focused: boolean) => {
-    if(events['onFocus']) events['onFocus'](event)
-    setFocused(focused)
-  }
-
-  const handleHover = (hovered: boolean) => {
-    if(!props.disabled && !props.readonly) setHovered(hovered)
-  }
 
   const classes = useMemo(() => {
     const classList = [];
@@ -61,6 +45,6 @@ export function useInput(props: InputProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, iconClasses, focused, handleBlur, handleFocus, events, hovered, handleHover}
+  return {classes, iconClasses, events}
 }
 
