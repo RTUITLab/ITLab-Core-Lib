@@ -11,7 +11,6 @@ export function useButton(props:ButtonProps) {
     const classList = [styles['button']];
 
     const conditions:{[index: string]:boolean} = {
-      "button": true,
       "button-icon-left": props.iconPosition === 'left',
       "button-icon-right": props.iconPosition === 'right',
       "button-icon-only": !props.children,
