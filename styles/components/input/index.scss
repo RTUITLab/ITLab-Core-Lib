@@ -1,0 +1,75 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/icons' as *;
+
+.input-wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: text;
+  gap: 8px;
+
+  border: 1px solid dt.$primary-30;
+  border-radius: 6px;
+  width: 350px;
+
+  &:focus-within {
+    color: dt.$general-90;
+    border-color: dt.$general-70;
+  }
+  &:not(.input-wrapper-disabled):not(&:focus-within):hover {
+    border-color: dt.$general-60;
+  }
+
+  .input {
+    width: 100%;
+    padding: 0;
+
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: inherit;
+
+    color: dt.$general-90;
+    font-family: dt.$typo-font-p-medium-family;
+    font-style: dt.$typo-font-p-medium-style;
+    font-weight: dt.$typo-font-p-medium-weight;
+    line-height: 24px;
+
+    &::placeholder {
+      color: dt.$general-60;
+    }
+  }
+}
+
+
+.input-icon-left {
+  order: -1;
+}
+.input-icon-right {
+  order: 1;
+  justify-content: space-between;
+}
+
+.input-wrapper-large{
+  height: 48px;
+  padding: 12px 18px;
+}
+.input-wrapper-medium{
+  height: 40px;
+  padding: 8px 16px;
+}
+.input-wrapper-small{
+  height: 38px;
+  padding: 8px 14px;
+
+  .input {
+    line-height: 20px;
+  }
+}
+.input-wrapper-disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: dt.$primary-30;
+}
