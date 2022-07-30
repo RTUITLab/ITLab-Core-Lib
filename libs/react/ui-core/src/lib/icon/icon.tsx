@@ -9,20 +9,26 @@ import {getAllEvents} from "../../utils/getAllEvents";
 
 // TODO: удалить белый цвет. Он должен сам заменяться при смене темы, а не быть захардкоженным.
 
-export const Icon = forwardRef(({size = 24, color = "primary", type = "fill", name,...props}: IconProps, ref: any) => {
+export const Icon = forwardRef(({size = 24, color = "primary", type = "fill", name, ...props}: IconProps, ref: any) => {
   const camelToKebab = useCallback((str: string) => {
     return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
   }, []);
 
-  const events=useMemo(() => {
+  const events = useMemo(() => {
     return getAllEvents(props)
-  },[props]);
+  }, [props]);
 
   const classes = useMemo(() => {
     return `${styles[camelToKebab(color)]} ri-${camelToKebab(name.replace(new RegExp('(ri\\-|\\-fill|\\-line)', "gmi"), ""))}-${type}`;
   }, [color, type, name]);
 
-  return (<i {...events} ref={ref} className={classes+" "+(props?.className??"")} style={{fontSize: `${size}px`,...props.style}}/>);
+  return (
+    <span style={{fontSize: `${size}px`, height: "fit-content", display: "inline-flex", justifyContent: "center"}}>
+    <i {...events} ref={ref}
+       className={classes + " " + (props?.className ?? "")}
+       style={props.style}/>
+  </span>
+  );
 })
 
 export default Icon;
