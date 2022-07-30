@@ -10,8 +10,10 @@ export function App() {
 
   return (
     <>
-      <Button size={"large"} onClick={(e) => console.log(e)} icon={<Icon type={"fill"} size={2656} name={"home"} color={"general-light"}/>}
+      <Button color={"red"} size={"large"} onClick={(e) => console.log(e)} icon={<Icon color={"general-dark"} type={"fill"} size={2656} name={"home"}/>}
               iconPosition={"left"}>fds</Button>
+
+      <Icon color={"general-dark"} type={"fill"} size={20} name={"home"}/>
 
       <Icon className={"test"} onClick={(e) => {
         console.log(e);
