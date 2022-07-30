@@ -32,6 +32,15 @@
   }
 }
 
+.button-icon{
+  display: flex;
+  align-items: center;
+
+  i{
+    font-size: 18px;
+  }
+}
+
 .button-icon-left {
   order: -1;
 }
