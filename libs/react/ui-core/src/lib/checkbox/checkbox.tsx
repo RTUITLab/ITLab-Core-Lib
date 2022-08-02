@@ -8,7 +8,7 @@ import {CheckboxProps} from './CheckboxProps'
  */
 
 export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
-  const {classes, checked, handleCheck, focused, handleBlur, handleFocus, handleKeyUp, labelStyleClass} = useCheckbox(props);
+  const {classes, checked, handleCheck, focused, handleFocus, handleKeyUp, labelStyleClass} = useCheckbox(props);
 
   const icon = <>{props.checkboxIcon ? <span className={'checkbox-icon'}>{props.checkboxIcon}</span> : <span className={'checkbox-icon ri-check-line'} />}</>
 
@@ -29,7 +29,7 @@ export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
                aria-label={props.ariaLabel}
                aria-checked={checked}
                onFocus={() => handleFocus(true)}
-               onBlur={() => handleBlur(false)}
+               onBlur={() => handleFocus(false)}
                disabled={(props.disabled !== undefined && props.disabled)}
                onChange={(e) => handleCheck(e.target.checked)}
                onKeyDown={(e) => handleKeyUp(e)}

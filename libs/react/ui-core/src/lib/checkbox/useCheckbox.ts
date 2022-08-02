@@ -15,10 +15,6 @@ export function useCheckbox(props: CheckboxProps) {
     }
   }
 
-  const handleBlur = (focused: boolean) => {
-    setFocused(focused)
-  }
-
   const handleFocus = (focused: boolean) => {
     setFocused(focused)
   }
@@ -58,5 +54,5 @@ export function useCheckbox(props: CheckboxProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, labelStyleClass, checked, handleCheck, handleKeyUp, focused, handleBlur, handleFocus}
+  return {classes, labelStyleClass, checked, handleCheck, handleKeyUp, focused, handleFocus}
 }
