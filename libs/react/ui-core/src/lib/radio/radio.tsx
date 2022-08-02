@@ -21,7 +21,7 @@ export const Radio=forwardRef((props: RadioProps, ref: any) => {
                value={props.value}
                checked={props.checked}
                disabled={(props.disabled !== undefined && props.disabled)}
-               readOnly={(props.disabled !== undefined && props.readonly)}
+               readOnly={(props.readonly !== undefined && props.readonly)}
                name={props.name}
                required={props.isRequired}
                tabIndex={props.tabIndex}
@@ -30,7 +30,7 @@ export const Radio=forwardRef((props: RadioProps, ref: any) => {
                aria-checked={props.checked}
                onFocus={() => handleFocus(true)}
                onBlur={() => handleFocus(false)}
-               onChange={props.onChange}
+               onChange={!props.readonly ? props.onChange : () => {}}
                onKeyUp={props.onKeyUp}
         />
       </div>
