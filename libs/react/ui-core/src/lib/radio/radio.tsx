@@ -4,7 +4,7 @@ import {useRadio} from './useRadio'
 import {RadioProps} from './RadioProps'
 
 /**
- * Checkbox component
+ * Radio component
  */
 
 export const Radio=forwardRef((props: RadioProps, ref: any) => {
