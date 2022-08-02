@@ -1,4 +1,5 @@
 import {DefaultParams} from "../../default-types/defaultParams";
+import React from 'react'
 
 export interface TabItemProps {
   label: string;
@@ -8,8 +9,21 @@ export interface TabItemProps {
 
 export interface TabsProps extends DefaultParams{
 
+  /** The items to display in the tabs
+   * TabItemProps{<br/>
+   *   &nbsp;&nbsp;label: string;<br/>
+   *   &nbsp;&nbsp;badge?: number;<br/>
+   *   &nbsp;&nbsp;key: string | number;<br/>
+   * }
+   * */
   items: TabItemProps[];
 
   /** Size of the tabs */
   size?: "small" | "medium" | "large";
+
+  /** Initial active item */
+  activeItem?: string | number
+
+  /** On change event */
+  onChange?: (item: {key: string | number, clickEvent: React.MouseEvent<HTMLElement>}) => void
 }

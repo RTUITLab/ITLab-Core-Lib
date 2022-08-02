@@ -12,7 +12,7 @@ export interface useTabsProps{
 }
 
 export function useTabs(props:TabsProps):useTabsProps {
-  const [activeItem, setActiveItem] = useState<string | number>(0);
+  const [activeItem, setActiveItem] = useState<string | number>(props.activeItem || '');
 
   const itemClasses = useMemo(() => {
     const classList = [];
@@ -24,6 +24,8 @@ export function useTabs(props:TabsProps):useTabsProps {
       "tab-item-medium": props.size === 'medium',
       "tab-item-large": props.size === 'large',
     };
+
+    if(!props.size) classList.push(styles['tab-item-medium']);
 
     Object.keys(conditions).forEach((key:string) => {
       if (conditions[key]) {

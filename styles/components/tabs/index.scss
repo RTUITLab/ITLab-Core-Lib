@@ -1,3 +1,113 @@
 @use '../../../styles/design-tokens' as dt;
 @use '../../../styles/icons' as *;
 
+.tabs {
+  width: fit-content;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+
+  border: 1px solid dt.$general-50;
+  border-radius: 6px;
+
+  overflow: visible;
+}
+.tab-item {
+  box-sizing: border-box;
+  width: fit-content;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  transition: all 0.2s ease;
+  cursor: pointer;
+  color: dt.$general-80;
+  border: 2px solid transparent;
+  border-radius: 6px;
+
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-size: 14px;
+  line-height: 24px;
+
+  &:not(.tab-item-active):hover {
+    color: dt.$general-60;
+  }
+
+  & .tab-item-badge {
+    color: #fff;
+    background-color: dt.$red-100;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.tab-item-active {
+  color: dt.$primary-100;
+  border: 2px solid dt.$primary-100;
+}
+
+.tab-item-active-large {
+  padding: 12px 18px
+}
+.tab-item-active-medium {
+  padding: 8px 16px
+}
+.tab-item-active-small {
+  padding: 6px 16px;
+}
+
+.tab-item-large {
+  height: 48px;
+  &:not(.tab-item-active):only-child {
+    padding: 10px 18px
+  }
+  &:not(.tab-item-active):last-child {
+    padding-right: 18px;
+  }
+  &:not(.tab-item-active):first-child {
+    padding-left: 18px;
+  }
+}
+
+.tab-item-medium {
+  height: 40px;
+  &:not(.tab-item-active):only-child {
+    padding: 8px 16px
+  }
+  &:not(.tab-item-active):last-child {
+    padding-right: 16px;
+  }
+  &:not(.tab-item-active):first-child {
+    padding-left: 16px;
+  }
+}
+
+.tab-item-small {
+  height: 36px;
+  line-height: 20px;
+  &:not(.tab-item-active):only-child {
+    padding: 8px 16px
+  }
+  &:not(.tab-item-active):last-child {
+    padding-right: 16px;
+  }
+  &:not(.tab-item-active):first-child {
+    padding-left: 16px;
+  }
+}

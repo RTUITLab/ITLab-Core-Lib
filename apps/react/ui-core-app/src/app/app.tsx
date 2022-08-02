@@ -16,7 +16,7 @@ export function App() {
       <Icon className={"test"} onClick={(e)=>{
         console.log(e);}} name={"loader-2"} color={"general"}/>
 
-      <Tabs items={[{label: 'label1', key: 'key1'},{label: 'label2', key: 'key2', badge: 2},]} />
+      <Tabs items={[{label: 'События', key: 'key3'},{label: 'Проекты', key: 'key4'},{label: 'Покупки', key: 'key5'},{label: 'Сводка', key: 'key1'},{label: 'Отчеты', key: 'key2', badge: 2},]} activeItem={'key'} />
 
       <NxWelcome title="react-ui-core-app" />
       <div />
