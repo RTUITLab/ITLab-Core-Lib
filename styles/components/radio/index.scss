@@ -1,0 +1,92 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/icons' as *;
+
+.radio {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  gap: 12px;
+
+  height: 24px;
+
+  width: fit-content;
+}
+
+.radio-hidden-input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  & input {
+    transform: scale(0);
+  }
+}
+
+.radio-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20px;
+  height: 20px;
+
+  border: 1px solid dt.$general-50;
+  border-radius: 50%;
+  transition: background .5ms ease-in,
+  border .5ms ease-in,
+  box-shadow .5ms ease-in;
+
+  &:not(.radio-disabled):hover {
+    background: dt.$general-30;
+    border: 1px solid dt.$primary-100;
+  }
+
+  &.radio-focus {
+    background: dt.$general-30;
+    border: 1px solid dt.$primary-100;
+
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 .1rem rgba(30, 94, 255, 0.7);
+  }
+
+  &.radio-checked {
+    color: #FFFFFF;
+    border: 1px solid dt.$primary-100;
+    background: dt.$primary-100;
+
+    &:not(.radio-disabled):hover {
+      background: dt.$primary-80;
+      border: 1px solid dt.$primary-80;
+    }
+  }
+
+  &.radio-disabled {
+    cursor: not-allowed;
+    user-select: none;
+    opacity: 0.5;
+
+    &.radio-checked {
+      background: dt.$primary-90;
+      border: 1px solid dt.$primary-90;
+    }
+  }
+}
+
+.radio-label {
+  font-family: dt.$typo-font-p-regular-family;
+  font-style: dt.$typo-font-p-regular-style;
+  font-weight: dt.$typo-font-p-regular-weight;
+  font-size: dt.$typo-font-p-regular-size;
+  line-height: 24px;
+
+  cursor: pointer;
+  user-select: none;
+}

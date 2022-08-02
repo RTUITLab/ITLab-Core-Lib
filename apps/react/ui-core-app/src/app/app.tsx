@@ -3,11 +3,16 @@ import styles from './app.module.scss';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-import {Button, Icon} from "@itlab-core-lib/react/ui-core";
-import React, {useEffect} from "react";
+import {Button, Icon, Radio} from '@itlab-core-lib/react/ui-core'
+import React, {useEffect, useRef, useState} from 'react'
 
 export function App() {
 
+  const ref=useRef()
+  const[checkedId, setCheckedId] = useState()
+  const handleChange = (e:any) => {
+    setCheckedId(e.target.id)
+  }
 
   return (
     <>
@@ -15,6 +20,13 @@ export function App() {
 
       <Icon className={"test"} onClick={(e)=>{
         console.log(e);}} name={"loader-2"} color={"general"}/>
+
+      <Radio ref={ref} label={'hello'} name={'privet'} value={'111'} onChange={(e) => handleChange(e)} defaultChecked checked={checkedId === '111'}
+        disabled
+      />
+      <Radio label={'hellow'} name={'privet'} value={'222'} onChange={(e) => handleChange(e)} checked={checkedId === '222'}/>
+
+      <button onClick={() => console.log(ref)}>show me ref</button>
 
       <NxWelcome title="react-ui-core-app" />
       <div />
