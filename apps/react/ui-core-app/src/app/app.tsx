@@ -3,7 +3,7 @@ import styles from './app.module.scss';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-import {Button, Icon} from "@itlab-core-lib/react/ui-core";
+import {Button, Icon, Tabs} from '@itlab-core-lib/react/ui-core'
 import React, {useEffect} from "react";
 
 export function App() {
@@ -15,6 +15,8 @@ export function App() {
 
       <Icon className={"test"} onClick={(e)=>{
         console.log(e);}} name={"loader-2"} color={"general"}/>
+
+      <Tabs items={[{label: 'label1', key: 'key1'},{label: 'label2', key: 'key2', badge: 2},]} />
 
       <NxWelcome title="react-ui-core-app" />
       <div />
