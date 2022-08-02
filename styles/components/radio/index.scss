@@ -37,6 +37,7 @@
   width: 20px;
   height: 20px;
 
+  box-sizing: border-box;
   border: 1px solid dt.$general-50;
   border-radius: 50%;
   transition: background .5ms ease-in,

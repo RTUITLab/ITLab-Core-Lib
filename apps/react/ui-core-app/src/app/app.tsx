@@ -21,7 +21,7 @@ export function App() {
       <Icon className={"test"} onClick={(e)=>{
         console.log(e);}} name={"loader-2"} color={"general"}/>
 
-      <Radio ref={ref} label={'hello'} name={'privet'} value={'111'} onChange={(e) => handleChange(e)} defaultChecked checked={checkedId === '111'}
+      <Radio ref={ref} label={'hello'} name={'privet'} value={'111'} onChange={(e) => handleChange(e)} checked={checkedId === '111'}
         disabled
       />
       <Radio label={'hellow'} name={'privet'} value={'222'} onChange={(e) => handleChange(e)} checked={checkedId === '222'}/>

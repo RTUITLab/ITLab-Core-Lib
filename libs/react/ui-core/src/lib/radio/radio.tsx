@@ -10,16 +10,15 @@ import {RadioProps} from './RadioProps'
 export const Radio=forwardRef((props: RadioProps, ref: any) => {
   const {classes, focused,  handleFocus, labelStyleClass} = useRadio(props);
 
-  const icon = <>{props.checkboxIcon ? <span className={'radio-icon'}>{props.checkboxIcon}</span> : <span className={'ri-checkbox-blank-circle-fill'} style={{fontSize: "8px"}} />}</>
+  const icon = <>{props.radioIcon ? <span className={'radio-icon'}>{props.radioIcon}</span> : <span className={'ri-checkbox-blank-circle-fill'} style={{fontSize: "8px"}} />}</>
 
   return (
     <div className={styles['radio']} style={props.style}>
       <div className={styles['radio-hidden-input']}>
         <input ref={ref}
                type='radio'
-               id={props.value}
+               id={props.inputId || props.value}
                value={props.value}
-               defaultChecked={props.defaultChecked}
                checked={props.checked}
                disabled={(props.disabled !== undefined && props.disabled)}
                readOnly={(props.disabled !== undefined && props.readonly)}
@@ -35,10 +34,10 @@ export const Radio=forwardRef((props: RadioProps, ref: any) => {
                onKeyUp={props.onKeyUp}
         />
       </div>
-      <label htmlFor={props.value} className={`${props.checked && styles['radio-checked']} ${focused && styles['radio-focus']} ${classes}`}>
+      <label htmlFor={props.inputId || props.value} className={`${props.checked && styles['radio-checked']} ${focused && styles['radio-focus']} ${classes}`}>
         {props.checked && icon}
       </label>
-      <label htmlFor={props.value} className={labelStyleClass}>
+      <label htmlFor={props.inputId || props.value} className={labelStyleClass}>
         {props.label}
       </label>
     </div>

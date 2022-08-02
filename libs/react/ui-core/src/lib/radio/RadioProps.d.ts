@@ -4,31 +4,32 @@ import Icon from '../icon/icon'
 
 export interface RadioProps extends DefaultParams {
 
-  /** Label of the checkbox */
+  /** Label of the radio */
   label?: string;
 
-  /** Name of the checkbox group */
+  /** Name of the radio group */
   name?: string;
 
-  /** When present, it specifies that checkbox must be checked before submitting the form */
+  /** When present, it specifies that radio must be checked before submitting the form */
   isRequired?: boolean;
 
   /** When present, it specifies that the component cannot be edited */
   readonly?: boolean;
 
-  /** When present, it specifies that the component is already checked */
-  defaultChecked?: boolean;
-
-  checked?: boolean;
+  /** When present, it specifies that the radio is checked */
+  checked: boolean;
 
   /** When present, it specifies that the element should be disabled */
   disabled?: boolean;
 
   /** When present, it specifies that the component cannot be edited */
-  checkboxIcon?: React.ReactNode<Icon>;
+  radioIcon?: React.ReactNode<Icon>;
 
-  /** Variable which stores value, which used in when checkbox is checked */
+  /** [It doesn't change checked state of radio] Variable which stores value, which used in when radio is checked */
   value: string;
+
+  /** Identifier of the focus input to match a label defined for the component */
+  inputId?: string
 
   /** Index of the element in tabbing order */
   tabIndex?: number;
