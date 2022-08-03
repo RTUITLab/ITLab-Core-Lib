@@ -24,6 +24,9 @@ export interface TabsProps extends DefaultParams{
   /** Initial active item */
   activeItem?: string | number
 
+  /** Style class of the tab item */
+  itemStyleClass?: string | string[]
+
   /** On change event */
   onChange?: (item: {key: string | number, clickEvent: React.MouseEvent<HTMLElement>}) => void
 }
