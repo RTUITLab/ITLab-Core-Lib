@@ -3,7 +3,7 @@
 
 .tabs {
   width: fit-content;
-
+  box-sizing: border-box;
   overflow: visible;
 
   display: flex;
@@ -43,6 +43,7 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+  box-sizing: border-box;
 
   transition: all 0.1s ease;
   cursor: pointer;

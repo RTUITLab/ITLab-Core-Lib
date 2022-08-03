@@ -18,7 +18,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   },[props, state.activeItem])
 
   return (
-    <div className={`${state.classes} ${borderClasses}`} ref={ref}>
+    <div className={`${state.classes} ${borderClasses}`} ref={ref} style={props.style}>
       {props.items.map((item, index) => {
         return <React.Fragment key={index}><TabItem item={item} props={props} state={state} /></React.Fragment>
       })}
@@ -30,13 +30,26 @@ const TabItem = (localProps: { item: TabItemProps, props: TabsProps, state: useT
   const {item, props, state} = localProps
 
   const classes = useMemo(() => {
-    const classList = [styles['tab-item-active']];
+    const classList = [];
+    const conditions:{[index: string]:boolean} = {
+      "tab-item-active": true,
+
+      "tab-item-active-small": props.size === 'small',
+      "tab-item-active-medium": props.size === 'medium',
+      "tab-item-active-large": props.size === 'large',
+    };
+
     if(!props.size) classList.push(styles['tab-item-active-medium']);
+    Object.keys(conditions).forEach((key:string) => {
+      if (conditions[key]) {
+        classList.push(styles[key]);
+      }
+    });
     return classList.join(' ');;
-  },[props.items])
+  },[props])
 
   return (
-    <div className={`${state.itemClasses} ${state.activeItem === item.key && classes}`} onClick={() => state.setActiveItem(item.key)} key={item.key}>
+    <div className={`${state.itemClasses} ${state.activeItem === item.key ? classes : ''}`} onClick={(e) => state.handleClick(item.key, e)} key={item.key}>
       {item.label}
       {item.badge &&
         <span className={styles['tab-item-badge']}>{item.badge < 100 ? item.badge : '99+'}</span>

@@ -21,8 +21,8 @@ export interface TabsProps extends DefaultParams{
   /** Size of the tabs */
   size?: "small" | "medium" | "large";
 
-  /** Initial active item */
-  activeItem?: string | number
+  /** Initial active item key */
+  defaultActiveItem?: string | number
 
   /** Style class of the tab item */
   itemStyleClass?: string | string[]

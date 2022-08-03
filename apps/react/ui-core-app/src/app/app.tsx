@@ -8,6 +8,9 @@ import React, {useEffect} from "react";
 
 export function App() {
 
+  const handleChange = (item: any) => {
+    console.log(item)
+  }
 
   return (
     <>
@@ -16,8 +19,8 @@ export function App() {
       <Icon className={"test"} onClick={(e)=>{
         console.log(e);}} name={"loader-2"} color={"general"}/>
 
-      <Tabs items={[{label: 'События', key: 'key3'},{label: 'Проекты', key: 'key4'},{label: 'Покупки', key: 'key5', badge: 66},{label: 'Сводка', key: 'key1', badge: 1},{label: 'Отчеты', key: 'key2', badge: 100},{label: 'События', key: 'key3'},{label: 'Проекты', key: 'key4'},{label: 'Покупки', key: 'key5', badge: 66},{label: 'Сводка', key: 'key1', badge: 1},{label: 'Отчеты', key: 'key2', badge: 100},{label: 'События', key: 'key3'},{label: 'Проекты', key: 'key4'},{label: 'Покупки', key: 'key5', badge: 66},{label: 'Сводка', key: 'key1', badge: 1},{label: 'Отчеты', key: 'key2', badge: 100},{label: 'События', key: 'key3'},{label: 'Проекты', key: 'key4'},{label: 'Покупки', key: 'key5', badge: 66},{label: 'Сводка', key: 'key1', badge: 1},{label: 'Отчеты', key: 'key2', badge: 100},{label: 'События', key: 'key3'},{label: 'Проекты', key: 'key4'},{label: 'Покупки', key: 'key5', badge: 66},{label: 'Сводка', key: 'key1', badge: 1},{label: 'Отчеты', key: 'key2', badge: 100},{label: 'События', key: 'key3'},{label: 'Проекты', key: 'key4'},{label: 'Покупки', key: 'key5', badge: 66},{label: 'Сводка', key: 'key1', badge: 1},{label: 'Отчеты', key: 'key2', badge: 100},]} activeItem={'key'} />
-      <Tabs items={[{label: 'События', key: 'key6', badge: 1}]} activeItem={'key'} />
+      <Tabs onChange={handleChange} items={[{label: 'События', key: 'key3'},{label: 'Проекты', key: 'key4'},{label: 'Покупки', key: 'key5', badge: 66},{label: 'Сводка', key: 'key1', badge: 1},{label: 'Отчеты', key: 'key2', badge: 100},]} />
+      <Tabs items={[{label: 'События', key: 'key6', badge: 1}]} defaultActiveItem={'key'} size={'large'} itemStyleClass={'Hello'} className={'privet'} />
 
       <NxWelcome title="react-ui-core-app" />
       <div />
