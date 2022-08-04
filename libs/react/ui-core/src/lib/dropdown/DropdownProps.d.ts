@@ -4,13 +4,20 @@ import {DefaultParams} from "../../default-types/defaultParams";
 
 export interface DropdownItemProps {
   label: string;
-  disabled?: boolean;
   key: string | number;
-  icon?: React.ReactNode;
+  disabled?: boolean;
 }
 
 export interface DropdownProps extends DefaultParams{
-
+  /** The items to display in the dropdown
+   *
+   * DropdownItemProps {<br/>
+   *   &nbsp;&nbsp;label: string;<br/>
+   *   &nbsp;&nbsp;key: string | number;<br/>
+   *   &nbsp;&nbsp;disabled?: boolean;<br/>
+   * }
+   *
+   * */
   items: DropdownItemProps[];
 
   /** Icon object */
@@ -31,6 +38,15 @@ export interface DropdownProps extends DefaultParams{
   /** If true, the dropdown will be open */
   defaultOpen?: boolean;
 
-  /** On change event */
-  onChange?: (item: {label: string, key: string | number, event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement> }) => void;
+  /** On select event */
+  onSelect?: (item: {label: string, key: string | number, event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement> }) => void;
+
+  /** On close event */
+  onClose?: () => void;
+
+  /** On open event */
+  onOpen?: () => void;
+
+  /** Style class of the dropdown item */
+  itemClass?: string | string[];
 }

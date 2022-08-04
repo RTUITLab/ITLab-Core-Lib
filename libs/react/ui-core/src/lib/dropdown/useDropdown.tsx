@@ -1,28 +1,28 @@
-import React, {useMemo, useState} from 'react'
+import React, {createRef, RefObject, useEffect, useMemo, useState} from 'react'
 import {DropdownProps} from "./DropdownProps";
 import styles from './dropdown.module.scss'
 
 export interface useDropdownProps{
   classes: string;
   itemClasses: string;
+  containerClasses: string;
   activeLabel: string | null;
   activeItemKey: string | number;
   icon: React.ReactNode | null;
   isOpen: boolean;
-  error: boolean;
   handleOpen: (isOpen: boolean) => void;
   handleSelect: (label: string, key: string | number, event: React.MouseEvent<HTMLElement>) => void;
   handleKeyUp: (label: string, key: string | number, event: React.KeyboardEvent<HTMLElement>) => void;
+  list: any;
 }
 /**
  * Hook for dropdown
  */
 export function useDropdown(props:DropdownProps):useDropdownProps {
   const [activeItemKey, setActiveItemKey] = useState<string | number>(props.defaultSelectedKey || '')
-  const [error, setError] = useState<boolean>(props.error || false)
   const [isOpen, setIsOpen] = useState<boolean>(props.defaultOpen || false)
+  const list = createRef<HTMLDivElement>();
   const [activeLabel, setActiveLabel] = useState<string | null>(
-
     props.defaultSelectedKey && props.items.find((item) => item.key === props.defaultSelectedKey)?.label
     || null)
   const icon = (props.icon ? (
@@ -31,8 +31,20 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
     </span>
   ) : null)
 
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  })
+
   const handleOpen = (isOpen: boolean) => {
-    setIsOpen(isOpen)
+    if(!props.disabled && !props.error) {
+      setIsOpen(isOpen)
+      if(isOpen && props.onOpen) props.onOpen()
+      else if(!isOpen && props.onClose) props.onClose()
+    }
   }
   const handleKeyUp = (label: string, key: string | number, event: React.KeyboardEvent<HTMLElement>) => {
     if(event.key === 'Space' || event.key === 'Enter') {
@@ -40,12 +52,39 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
     }
   }
   const handleSelect = (label: string, key: string | number, event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => {
-    setActiveItemKey(key)
-    setActiveLabel(label)
-    if(props.onChange) {
-      props.onChange({label, key, event})
+    if(!props.disabled && !props.error && !props.items.find((item) => item.key === key)?.disabled) {
+      setActiveItemKey(key)
+      setActiveLabel(label)
+      if(props.onSelect) {
+        props.onSelect({label, key, event})
+      }
     }
   }
+  const handleClickOutside = (event: any) => {
+    if(isOpen && list.current && !list.current.contains(event.target)) {
+      handleOpen(false)
+    }
+  }
+  const containerClasses = useMemo(() => {
+    const classList = [];
+
+    const conditions:{[index: string]:boolean} = {
+      "dropdown-container": true,
+      "dropdown-disabled": props.disabled !== undefined && props.disabled,
+      "dropdown-error": props.error !== undefined && props.error,
+    };
+
+    Object.keys(conditions).forEach((key:string) => {
+      if (conditions[key]) {
+        classList.push(styles[key]);
+      }
+    });
+
+    if(typeof props.className === 'string') classList.push(props.className);
+    if(typeof props.className === 'object') classList.push(...props.className);
+
+    return classList.join(' ');
+  }, [props]);
 
   const classes = useMemo(() => {
     const classList = [];
@@ -64,9 +103,6 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
     });
 
     if(!props.size) classList.push(styles['dropdown-medium']);
-
-    if(typeof props.className === 'string') classList.push(props.className);
-    if(typeof props.className === 'object') classList.push(...props.className);
 
     return classList.join(' ');
   }, [props]);
@@ -89,11 +125,11 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
 
     if(!props.size) classList.push(styles['dropdown-medium']);
 
-    if(typeof props.className === 'string') classList.push(props.className);
-    if(typeof props.className === 'object') classList.push(...props.className);
+    if(typeof props.itemClass === 'string') classList.push(props.itemClass);
+    if(typeof props.itemClass === 'object') classList.push(...props.itemClass);
 
     return classList.join(' ');
   }, [props]);
 
-  return {classes, itemClasses, activeItemKey, icon, activeLabel, isOpen, handleOpen, handleSelect, handleKeyUp, error}
+  return {classes, itemClasses, containerClasses, activeItemKey, icon, activeLabel, isOpen, handleOpen, handleSelect, handleKeyUp, list}
 }

@@ -16,7 +16,23 @@ export function App() {
       label: 'Label2',
       key: 'key2'
     },
+    {
+      label: 'Label3',
+      key: 'key3',
+      disabled: true,
+    },
   ]
+
+  const handleOpen = () => {
+    console.log('open')
+  }
+  const handleClose = () => {
+    console.log('close')
+  }
+  const handleSelect = (item: {label: string, key: string | number, event: React.MouseEvent<HTMLElement> | React.KeyboardEvent}) => {
+    const {label, key, event} = item
+    console.log(label, key, event)
+  }
 
   return (
     <>
@@ -25,7 +41,7 @@ export function App() {
       <Icon className={"test"} onClick={(e)=>{
         console.log(e);}} name={"loader-2"} color={"general"}/>
 
-      <Dropdown items={items} defaultSelectedKey={'key12'} />
+      <Dropdown onOpen={handleOpen} onClose={handleClose} onSelect={(item) => handleSelect(item)} icon={<Icon size={20} name={"ri-calendar-event-line"} />} items={items} defaultSelectedKey={'key2'} />
 
       <NxWelcome title="react-ui-core-app" />
       <div />
