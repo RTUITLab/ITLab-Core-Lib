@@ -3,11 +3,20 @@ import styles from './app.module.scss';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-import {Button, Icon} from "@itlab-core-lib/react/ui-core";
+import {Button, Dropdown, Icon} from '@itlab-core-lib/react/ui-core'
 import React, {useEffect} from "react";
 
 export function App() {
-
+  const items = [
+    {
+      label: 'Label1',
+      key: 'key1'
+    },
+    {
+      label: 'Label2',
+      key: 'key2'
+    },
+  ]
 
   return (
     <>
@@ -15,6 +24,8 @@ export function App() {
 
       <Icon className={"test"} onClick={(e)=>{
         console.log(e);}} name={"loader-2"} color={"general"}/>
+
+      <Dropdown items={items} defaultSelectedKey={'key12'} />
 
       <NxWelcome title="react-ui-core-app" />
       <div />

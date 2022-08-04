@@ -2,7 +2,7 @@ import React from "react";
 import Icon from "../icon/icon";
 import {DefaultParams} from "../../default-types/defaultParams";
 
-export interface DropdownItem {
+export interface DropdownItemProps {
   label: string;
   disabled?: boolean;
   key: string | number;
@@ -11,20 +11,26 @@ export interface DropdownItem {
 
 export interface DropdownProps extends DefaultParams{
 
-  items: DropdownItem[];
+  items: DropdownItemProps[];
 
   /** Icon object */
   icon?: React.ReactNode<Icon>;
 
-  /** Size of the button */
+  /** Size of the dropdown */
   size?: "small" | "medium" | "large";
 
-  /** If true, the button will be disabled */
+  /** If true, the dropdown will be disabled */
   disabled?: boolean;
+
+  /** If true, the dropdown will be error */
+  error?: boolean;
 
   /** The default selected key */
   defaultSelectedKey?: string | number;
 
+  /** If true, the dropdown will be open */
+  defaultOpen?: boolean;
+
   /** On change event */
-  onChange?: (item: { key: string | number, clickEvent:React.MouseEvent<HTMLElement> }) => void;
+  onChange?: (item: {label: string, key: string | number, event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement> }) => void;
 }
