@@ -1,5 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Dropdown } from './dropdown';
+import React from 'react'
+import Icon from '../icon/icon'
 
 export default {
   component: Dropdown,
@@ -23,5 +25,6 @@ Primary.args = {
     {label: 'Вариант 02', key: 'key 2'},
     {label: 'Вариант 03', key: 'key 3', disabled: true},
     {label: 'Вариант 04', key: 'key 4'},
-  ]
+  ],
+  icon: <Icon size={24} name={"ri-calendar-event-line"} />
 };

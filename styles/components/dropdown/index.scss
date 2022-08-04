@@ -6,6 +6,7 @@
   cursor: pointer;
   position: relative;
 
+  background: #fff;
   border: 1px solid dt.$primary-40;
   border-radius: 6px;
   color: dt.$general-90;
@@ -54,8 +55,10 @@
   cursor: not-allowed;
   background-color: dt.$red-30;
   border-color: dt.$red-60;
-  color: dt.$red-60;
 
+  & .dropdown-label {
+    color: dt.$red-60;
+  }
   & .dropdown-icon > i {
     color: dt.$red-70;
   }
@@ -65,9 +68,8 @@
   position: absolute;
   right: 0;
   left: 0;
-  top: 100%;
-  padding-top: 5px;
-
+  top: calc(100% + 5px);
+  background: #fff;
   box-shadow: 0 4px 25px rgba(161, 167, 196, 0.15);
   border-radius: 6px;
 }
@@ -76,7 +78,6 @@
   animation: display 0.2s linear;
 }
 .dropdown-item {
-
   box-sizing: border-box;
   user-select: none;
   cursor: pointer;
