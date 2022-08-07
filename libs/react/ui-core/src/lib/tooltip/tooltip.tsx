@@ -1,32 +1,29 @@
 import React, {forwardRef} from 'react';
 import styles from './tooltip.module.scss';
 import {useTooltip} from "./useTooltip";
-
-/* eslint-disable-next-line */
-export interface TooltipProps {
-
-  /** The position of Tooltip */
-  position?: "left" | "right" | "top" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | "left-top" | "left-bottom" | "right-top" | "right-bottom";
-
-  /** Element that needs to be wrapped in a tooltip */
-  children: React.ReactNode;
-  // show?: boolean;
-
-  /** Style properties */
-  style?: React.CSSProperties;
-
-  /** Text or other content on Tooltip */
-  tooltipContent: React.ReactNode;
-}
+import TextArea from "../text-area/text-area";
+import {Button} from "../button";
+import {TooltipProps} from "./TooltipProps";
 
 export const Tooltip = forwardRef((props: TooltipProps, ref: any) => {
   const {tooltipContent, elem, classes, tooltipStyles, recalculatePosition} = useTooltip(props);
 
-  /**
-   * TODO:
-   * - Ref (forwardRed)
-   * - other tooltips
-   * */
+  const interactiveContent = (
+    <div className={styles['interactive-content']}>
+      <TextArea style={{width:"220px", height:"115px"}} size={"small"}/>
+      <div className={styles['buttons-block']}>
+        <Button size={"small"} onClick={props.onConfirm} type={"outline"} color={"red"}>{props.confirmButtonText || "Отмена"}</Button>
+        <Button size={"small"} onClick={props.onCancel} type={"outline"} color={"green"}>{props.cancelButtonText || "Сохранить"}</Button>
+      </div>
+    </div>
+  )
+
+  const metaContent = (
+    <div className={styles['meta-content']}>
+      <p>{props.metaTitle}</p>
+      <p>{props.metaDescription}</p>
+    </div>
+  )
 
   return (
     <div
@@ -36,12 +33,16 @@ export const Tooltip = forwardRef((props: TooltipProps, ref: any) => {
       ref={elem}
     >
       {props.children}
-      <div
-        ref={tooltipContent}
-        className={classes}
-        style={{...props.style, ...tooltipStyles}}>
-        {props.tooltipContent}
-      </div>
+      {props.hidden? null : (
+        <div
+          ref={tooltipContent}
+          className={classes}
+          style={{...props.style, ...tooltipStyles}}>
+          {props.type === "interactive" && interactiveContent}
+          {props.type === "meta" && metaContent}
+          {(!props.type || props.type === "default") && props.tooltipContent}
+        </div>
+      )}
     </div>
   )
 })

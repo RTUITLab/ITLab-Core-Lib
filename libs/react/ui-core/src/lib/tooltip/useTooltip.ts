@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import styles from "./tooltip.module.scss";
-import {TooltipProps} from "@itlab-core-lib/react/ui-core";
+import {TooltipProps} from "./TooltipProps";
 
 export function useTooltip(props: TooltipProps) {
   const tooltipContent = useRef<any>()
