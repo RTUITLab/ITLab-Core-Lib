@@ -35,7 +35,9 @@ export const Tooltip = forwardRef((props: TooltipProps, ref: any) => {
       {props.children}
       {props.hidden? null : (
         <div
-          ref={tooltipContent}
+          ref={(e)=>{
+            tooltipContent.current = e;
+          }}
           className={classes}
           style={{...props.style, ...tooltipStyles}}>
           {props.type === "interactive" && interactiveContent}

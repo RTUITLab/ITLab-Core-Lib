@@ -1,5 +1,5 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { TextArea } from './text-area';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
+import {TextArea} from './text-area';
 
 export default {
   component: TextArea,
@@ -8,6 +8,8 @@ export default {
     onChange: { action: 'onChange executed!' },
     onBlur: { action: 'onBlur executed!' },
     onFocus: { action: 'onFocus executed!' },
+    className: { control: false },
+    style: { control: false },
   },
 } as ComponentMeta<typeof TextArea>;
 
