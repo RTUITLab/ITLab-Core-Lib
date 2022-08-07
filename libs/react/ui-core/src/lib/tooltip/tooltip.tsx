@@ -26,26 +26,28 @@ export const Tooltip = forwardRef((props: TooltipProps, ref: any) => {
   )
 
   return (
-    <div
-      className={styles['tooltip']}
-      onMouseEnter={recalculatePosition}
-      onTouchStart={recalculatePosition}
-      ref={elem}
-    >
-      {props.children}
-      {props.hidden? null : (
-        <div
-          ref={(e)=>{
-            tooltipContent.current = e;
-          }}
-          className={classes}
-          style={{...props.style, ...tooltipStyles}}>
-          {props.type === "interactive" && interactiveContent}
-          {props.type === "meta" && metaContent}
-          {(!props.type || props.type === "default") && props.tooltipContent}
-        </div>
-      )}
-    </div>
+   <div ref={ref}>
+     <div
+       className={styles['tooltip']}
+       onMouseEnter={recalculatePosition}
+       onTouchStart={recalculatePosition}
+       ref={elem}
+     >
+       {props.children}
+       {props.hidden? null : (
+         <div
+           ref={(e)=>{
+             tooltipContent.current = e;
+           }}
+           className={classes}
+           style={{...props.style, ...tooltipStyles}}>
+           {props.type === "interactive" && interactiveContent}
+           {props.type === "meta" && metaContent}
+           {(!props.type || props.type === "default") && props.tooltipContent}
+         </div>
+       )}
+     </div>
+   </div>
   )
 })
 
