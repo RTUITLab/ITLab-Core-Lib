@@ -1,0 +1,97 @@
+@use '../../../styles/design-tokens' as dt;
+
+.avatar {
+  border-radius: 100%;
+  width: 96px;
+  height: 96px;
+  background-color: dt.$primary-100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 100%;
+  color: white;
+
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+
+  span {
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+  }
+
+  i{
+    color: dt.$general-30;
+  }
+}
+
+.avatar-120 {
+  width: 120px;
+  height: 120px;
+
+  i{
+    font-size: 64px;
+  }
+}
+
+.avatar-96 {
+  width: 96px;
+  height: 96px;
+
+  i{
+    font-size: 48px;
+  }
+}
+
+.avatar-72 {
+  width: 72px;
+  height: 72px;
+
+  i{
+    font-size: 32px;
+  }
+}
+
+.avatar-48 {
+  width: 48px;
+  height: 48px;
+
+  i{
+    font-size: 24px;
+  }
+}
+
+.avatar-36 {
+  width: 36px;
+  height: 36px;
+
+  i{
+    font-size: 18px;
+  }
+}
+
+.avatar-24 {
+  width: 24px;
+  height: 24px;
+
+  i{
+    font-size: 14px;
+  }
+}
+
+.avatar-primary {
+  background-color: dt.$primary-100;
+}
+
+.avatar-red {
+  background-color: dt.$red-100;
+}
+
+.avatar-green {
+  background-color: dt.$green-100;
+}
+
+.avatar-general {
+  background-color: dt.$general-60;
+}

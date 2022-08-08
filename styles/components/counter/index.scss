@@ -1,0 +1,123 @@
+@use '../../../styles/design-tokens' as dt;
+
+.counter {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 9px;
+  gap: 10px;
+
+  width: 28px;
+  height: 28px;
+
+  background: #FFFFFF;
+
+  /* Primary 100 */
+  border: 1px solid #1E5EFF;
+  border-radius: 28px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+
+  //  Font
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-size: 16px;
+  color: dt.$primary-100;
+
+}
+
+.counter-primary {
+  color: dt.$primary-100;
+  border-color: dt.$primary-100;
+
+  &.counter-solid {
+    background: dt.$primary-100;
+    color: #FFFFFF;
+  }
+
+  &.counter-outline {
+    background: #FFFFFF;
+  }
+
+  &.counter-light {
+    background: dt.$primary-30;
+  }
+}
+
+.counter-red{
+  color: dt.$red-100;
+  border-color: dt.$red-100;
+
+  &.counter-solid {
+    background: dt.$red-100;
+    color: #FFFFFF;
+  }
+
+  &.counter-outline {
+    background: #FFFFFF;
+  }
+
+  &.counter-light {
+    background: dt.$red-30;
+  }
+}
+
+.counter-green{
+  color: dt.$green-100;
+  border-color: dt.$green-100;
+
+  &.counter-solid {
+    background: dt.$green-100;
+    color: #FFFFFF;
+  }
+
+  &.counter-outline {
+    background: #FFFFFF;
+  }
+
+  &.counter-light {
+    background: dt.$green-30;
+  }
+}
+
+.counter-transparent{
+  color: dt.$general-70;
+  background-color: transparent;
+  border-color: dt.$general-70;
+}
+
+.counter-large{
+  font-size: 16px;
+  line-height: 28px;
+  border-radius: 28px;
+}
+
+.counter-medium{
+  font-size: 14px;
+  line-height: 24px;
+  border-radius: 24px;
+
+  width: 24px;
+  height: 24px;
+
+  padding: 0px 7.5px;
+}
+
+.counter-small{
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 24px;
+
+  width: 20px;
+  height: 20px;
+
+  padding: 0px 6px;
+}
