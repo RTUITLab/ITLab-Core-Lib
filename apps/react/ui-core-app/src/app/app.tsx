@@ -2,15 +2,13 @@
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-import {Button, Icon, Radio} from '@itlab-core-lib/react/ui-core'
-import React, {useEffect, useRef, useState} from 'react'
+import {Button, Icon, Tabs} from '@itlab-core-lib/react/ui-core'
+import React, {useEffect} from "react";
 
 export function App() {
 
-  const ref=useRef()
-  const[checkedId, setCheckedId] = useState()
-  const handleChange = (e:any) => {
-    setCheckedId(e.target.id)
+  const handleChange = (item: any) => {
+    console.log(item)
   }
 
   return (
@@ -45,6 +43,9 @@ export function App() {
       <Radio readonly label={'hellow'} name={'privet'} value={'222'} onChange={(e) => handleChange(e)} checked={checkedId === '222'}/>
 
       <button onClick={() => console.log(ref)}>show me ref</button>
+
+      <Tabs onChange={handleChange} items={[{label: 'События', key: 'key3'},{label: 'Проекты', key: 'key4'},{label: 'Покупки', key: 'key5', badge: 66},{label: 'Сводка', key: 'key1', badge: 1},{label: 'Отчеты', key: 'key2', badge: 100},]} />
+      <Tabs items={[{label: 'События', key: 'key6', badge: 1}]} defaultActiveItem={'key'} size={'large'} itemStyleClass={'Hello'} className={'privet'} />
 
       <NxWelcome title="react-ui-core-app" />
       <div />
