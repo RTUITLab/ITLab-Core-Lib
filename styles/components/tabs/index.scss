@@ -1,0 +1,124 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/icons' as *;
+
+.tabs {
+  width: fit-content;
+  box-sizing: border-box;
+  overflow: visible;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+
+  border: 1px solid dt.$general-50;
+  border-radius: 6px;
+}
+
+.tabs-large {
+  height: 48px;
+}
+.tabs-medium {
+  height: 40px;
+}
+.tabs-small {
+  height: 36px;
+}
+
+.tabs-border-right {
+  border-right: none;
+}
+.tabs-border-left {
+  border-left: none;
+}
+
+.tab-item {
+  width: fit-content;
+  position: relative;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  box-sizing: border-box;
+
+  transition: all 0.1s ease;
+  cursor: pointer;
+  color: dt.$general-80;
+  border-radius: 6px;
+
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-size: 14px;
+  line-height: 24px;
+
+  &:not(.tab-item-active):hover {
+    color: dt.$general-60;
+  }
+
+  & .tab-item-badge {
+    color: #fff;
+    background-color: dt.$red-100;
+
+    padding: 0 5px;
+
+    min-width: 20px;
+    height: 20px;
+
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.tab-item-active {
+  color: dt.$primary-100;
+  border: 2px solid dt.$primary-100;
+}
+
+.tab-item-active-large {
+  padding: 12px 18px
+}
+.tab-item-active-medium {
+  padding: 8px 16px
+}
+.tab-item-active-small {
+  padding: 8px 16px;
+}
+
+.tab-item-large {
+  height: 48px;
+  &:not(.tab-item-active):last-child {
+    padding-right: 18px;
+  }
+  &:not(.tab-item-active):first-child {
+    padding-left: 18px;
+  }
+}
+
+.tab-item-medium {
+  height: 40px;
+  &:not(.tab-item-active):last-child {
+    padding-right: 16px;
+  }
+  &:not(.tab-item-active):first-child {
+    padding-left: 16px;
+  }
+}
+
+.tab-item-small {
+  height: 36px;
+  line-height: 20px;
+  &:not(.tab-item-active):last-child {
+    padding-right: 16px;
+  }
+  &:not(.tab-item-active):first-child {
+    padding-left: 16px;
+  }
+}
