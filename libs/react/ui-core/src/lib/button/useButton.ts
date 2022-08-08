@@ -8,12 +8,9 @@ import styles from './button.module.scss'
  */
 export function useButton(props:ButtonProps) {
   const classes = useMemo(() => {
-    const classList = ['button'];
+    const classList = [styles['button']];
 
     const conditions:{[index: string]:boolean} = {
-      "button": true,
-      "button-icon-left": props.iconPosition === 'left',
-      "button-icon-right": props.iconPosition === 'right',
       "button-icon-only": !props.children,
       "button-solid": props.type === 'solid',
       "button-outline": props.type === 'outline',
@@ -33,7 +30,6 @@ export function useButton(props:ButtonProps) {
       }
     });
 
-    if(!props.iconPosition) classList.push(styles['button-icon-left']);
     if(!props.type) classList.push(styles['button-solid']);
     if(!props.size) classList.push(styles['button-medium']);
     if(!props.color) classList.push(styles['button-primary']);
@@ -45,9 +41,9 @@ export function useButton(props:ButtonProps) {
   }, [props]);
 
   const iconClasses = useMemo(() => {
-    const classList = ['button-icon'];
+    const classList = [styles['button-icon']];
 
-    if(props.iconPosition === 'left') classList.push(styles['button-icon-left']);
+    if(!props.iconPosition || props.iconPosition === 'left') classList.push(styles['button-icon-left']);
     if(props.iconPosition === 'right') classList.push(styles['button-icon-right']);
     if(props.loading) classList.push(styles['spin-anim']);
 

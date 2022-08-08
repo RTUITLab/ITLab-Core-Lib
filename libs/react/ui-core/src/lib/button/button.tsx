@@ -19,7 +19,7 @@ export const Button=forwardRef((props: ButtonProps, ref: any) => {
       {props.icon}
     </span>}</>
 
-  const loadingIcon = <>{props.loadingIcon ? <span className={iconClasses}>{props.loadingIcon}</span> : <span className={iconClasses + " " + "ri-loader-2-line"} style={{fontSize: "24px"}}/>}</>
+  const loadingIcon = <>{props.loadingIcon ? <span className={iconClasses}>{props.loadingIcon}</span> : <span className={iconClasses + " " + "ri-loader-2-line"} style={{fontSize: "18px"}}/>}</>
 
   return (<button {...events} ref={ref} style={props.style} className={classes}
                   disabled={(props.disabled !== undefined && props.disabled) || props.loading}>
