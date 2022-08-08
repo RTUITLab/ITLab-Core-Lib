@@ -9,7 +9,7 @@ describe('Checkbox', () => {
   });
 
   it('should render with props', () => {
-    const { baseElement } = render(<Checkbox checked={true} name={'myName'} label={'Click me'} />);
+    const { baseElement } = render(<Checkbox defaultChecked={true} name={'myName'} label={'Click me'} />);
     expect(getByRole(baseElement, 'checkbox')).toHaveProperty('checked', true)
     expect(getByRole(baseElement, 'checkbox')).toHaveProperty('name', 'myName')
   });
