@@ -1,3 +1,5 @@
+export * from './lib/text-area/text-area';
+export * from './lib/tooltip/tooltip';
 export * from './lib/dropdown/dropdown';
 export * from './lib/tabs/tabs';
 export * from './lib/radio/radio';
