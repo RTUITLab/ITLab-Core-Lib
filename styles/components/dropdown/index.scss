@@ -34,7 +34,7 @@
   font-weight: dt.$typo-font-p-medium-weight;
   line-height: 24px;
 
-  & .dropdown-icon > i {
+  & .dropdown-icon i {
     color: dt.$general-70;
   }
 }
@@ -59,7 +59,7 @@
   & .dropdown-label {
     color: dt.$red-60;
   }
-  & .dropdown-icon > i {
+  & .dropdown-icon i {
     color: dt.$red-70;
   }
 }

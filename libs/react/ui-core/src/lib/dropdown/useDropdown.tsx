@@ -43,6 +43,7 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
     if(!props.disabled && !props.error && !props.items.find((item) => item.key === key)?.disabled) {
       setActiveItemKey(key)
       setActiveLabel(label)
+      setIsOpen(false)
       if(props.onSelect) {
         props.onSelect({label, key, event})
       }
