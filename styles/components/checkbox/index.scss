@@ -37,6 +37,7 @@
   width: 20px;
   height: 20px;
 
+  box-sizing: border-box;
   border: 1px solid dt.$general-50;
   border-radius: 4px;
   transition: background .5ms ease-in,
@@ -83,7 +84,7 @@
 .checkbox-label {
   font-family: dt.$typo-font-p-regular-family;
   font-style: dt.$typo-font-p-regular-style;
-  font-weight: dt.$typo-font-p-regular-weight;
+  font-weight: dt.$typo-font-p-medium-weight;
   font-size: dt.$typo-font-p-regular-size;
   line-height: 24px;
 

@@ -1,30 +1,59 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-import {Button, Icon} from "@itlab-core-lib/react/ui-core";
-import React, {useEffect} from "react";
+import {Button, Icon, Input, Checkbox} from "@itlab-core-lib/react/ui-core";
+import React, {useRef} from 'react'
 
 export function App() {
 
+  const ref = useRef()
+  const handleClick = (ref: any) => {
+    console.log(ref.current.checked)
+  }
+  const handleBlur = (e: any) => {
+    console.log('blured')
+  }
+  const handleChange = (e: any) => {
+    console.log(e.target.value)
+  }
 
   return (
     <>
-      <Button onClick={(e)=> console.log(e)} iconPosition={"left"}>dsa</Button>
+      <Checkbox label={'Ref is here'} ref={ref} />
+      <Checkbox label={'disabled'} disabled={true} />
+      <Checkbox label={'readonly'} readonly={true} />
+      <Checkbox label={'ClassNames'} className={'prikol'} labelStyleClass={'classno'} />
+      <Checkbox label={'Checked'} defaultChecked={true} />
+      <Checkbox label={'icon'} checkboxIcon={<Icon size={20} name={"loader-2"} color={"green-light"}/>} />
+      <button  onClick={() => handleClick(ref)}>show me your ref</button>
+
+      <Input placeholder={'Without ico + onchange in console'} onChange={(e) => handleChange(e)} />
+      <Input placeholder={'smol'} size={'small'}/>
+      <Input icon={<Icon size={20} name={"loader-2"} color={"general"}/>} placeholder={'Hello'} />
+      <Input iconPosition={'left'} icon={<Icon size={20} name={"loader-2"} color={"general"}/>} />
+      <Input placeholder={'large blur'} onBlur={(e) => handleBlur(e)} icon={<Icon size={20} name={"loader-2"} color={"primary"}/>} size={'large'} />
+      <Input icon={<Icon size={20} name={"loader-2"} color={"general"}/>} placeholder={'Disabled'} disabled={true} />
+      <Input icon={<Icon size={20} name={"loader-2"} color={"general"}/>} placeholder={'readOnly'} readonly={true} />
 
       <Icon className={"test"} onClick={(e)=>{
         console.log(e);}} name={"loader-2"} color={"general"}/>
+      <Button disabled={true} onClick={(e)=> console.log(e)} icon={<Icon name={"loader-2"} color={"general"}/>} >Dada</Button>
+      <Button onClick={(e)=> console.log(e)} loadingIcon={<Icon name={"loader-2"} color={"general"}/>} loading={true} iconPosition={"left"}>loading</Button>
 
-      <NxWelcome title="react-ui-core-app" />
-      <div />
+      <Icon className={"test"} onClick={(e) => {
+        console.log(e);
+      }} name={"loader-2"} color={"general"}/>
+
+      <NxWelcome title="react-ui-core-app"/>
+      <div/>
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
       {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
+      <br/>
+      <hr/>
+      <br/>
       <div role="navigation">
         <ul>
           <li>
