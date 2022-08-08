@@ -1,3 +1,4 @@
+export * from './lib/dropdown/dropdown';
 export * from './lib/tabs/tabs';
 export * from './lib/radio/radio';
 export * from './lib/avatar/avatar';

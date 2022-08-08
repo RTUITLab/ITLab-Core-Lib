@@ -2,13 +2,35 @@
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-import {Button, Icon, Tabs} from '@itlab-core-lib/react/ui-core'
+import {Button, Dropdown, Icon} from '@itlab-core-lib/react/ui-core'
 import React, {useEffect} from "react";
 
 export function App() {
+  const items = [
+    {
+      label: 'Label1',
+      key: 'key1'
+    },
+    {
+      label: 'Label2',
+      key: 'key2'
+    },
+    {
+      label: 'Label3',
+      key: 'key3',
+      disabled: true,
+    },
+  ]
 
-  const handleChange = (item: any) => {
-    console.log(item)
+  const handleOpen = () => {
+    console.log('open')
+  }
+  const handleClose = () => {
+    console.log('close')
+  }
+  const handleSelect = (item: {label: string, key: string | number, event: React.MouseEvent<HTMLElement> | React.KeyboardEvent}) => {
+    const {label, key, event} = item
+    console.log(label, key, event)
   }
 
   return (
@@ -46,6 +68,8 @@ export function App() {
 
       <Tabs onChange={handleChange} items={[{label: 'События', key: 'key3'},{label: 'Проекты', key: 'key4'},{label: 'Покупки', key: 'key5', badge: 66},{label: 'Сводка', key: 'key1', badge: 1},{label: 'Отчеты', key: 'key2', badge: 100},]} />
       <Tabs items={[{label: 'События', key: 'key6', badge: 1}]} defaultActiveItem={'key'} size={'large'} itemStyleClass={'Hello'} className={'privet'} />
+
+      <Dropdown onOpen={handleOpen} onClose={handleClose} onSelect={(item) => handleSelect(item)} icon={<Icon size={20} name={"ri-calendar-event-line"} />} items={items} defaultSelectedKey={'key2'} />
 
       <NxWelcome title="react-ui-core-app" />
       <div />
