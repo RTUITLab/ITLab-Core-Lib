@@ -2,20 +2,15 @@
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-import {Button, Icon, Input, Checkbox} from "@itlab-core-lib/react/ui-core";
-import React, {useRef} from 'react'
+import {Button, Icon, Radio} from '@itlab-core-lib/react/ui-core'
+import React, {useEffect, useRef, useState} from 'react'
 
 export function App() {
 
-  const ref = useRef()
-  const handleClick = (ref: any) => {
-    console.log(ref.current.checked)
-  }
-  const handleBlur = (e: any) => {
-    console.log('blured')
-  }
-  const handleChange = (e: any) => {
-    console.log(e.target.value)
+  const ref=useRef()
+  const[checkedId, setCheckedId] = useState()
+  const handleChange = (e:any) => {
+    setCheckedId(e.target.id)
   }
 
   return (
@@ -45,8 +40,14 @@ export function App() {
         console.log(e);
       }} name={"loader-2"} color={"general"}/>
 
-      <NxWelcome title="react-ui-core-app"/>
-      <div/>
+      <Radio ref={ref} label={'hello'} name={'privet'} value={'111'} onChange={(e) => handleChange(e)} checked={checkedId === '111'}
+      />
+      <Radio readonly label={'hellow'} name={'privet'} value={'222'} onChange={(e) => handleChange(e)} checked={checkedId === '222'}/>
+
+      <button onClick={() => console.log(ref)}>show me ref</button>
+
+      <NxWelcome title="react-ui-core-app" />
+      <div />
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
