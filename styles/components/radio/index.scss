@@ -91,3 +91,6 @@
   cursor: pointer;
   user-select: none;
 }
+.radio-label-disabled {
+  cursor: not-allowed;
+}

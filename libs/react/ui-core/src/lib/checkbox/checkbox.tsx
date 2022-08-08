@@ -40,7 +40,7 @@ export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
         {checked && icon}
       </div>
       <label onClick={() => handleCheck(checked)} htmlFor={props.inputId}
-             className={labelStyleClass}>
+             className={`${labelStyleClass} ${props.disabled ? styles['checkbox-label-disabled'] : ''}`}>
         {props.label}
       </label>
     </div>

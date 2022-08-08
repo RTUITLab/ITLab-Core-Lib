@@ -37,7 +37,7 @@ export const Radio=forwardRef((props: RadioProps, ref: any) => {
       <label htmlFor={props.inputId || props.value} className={`${props.checked && styles['radio-checked']} ${focused && styles['radio-focus']} ${classes}`}>
         {props.checked && icon}
       </label>
-      <label htmlFor={props.inputId || props.value} className={labelStyleClass}>
+      <label htmlFor={props.inputId || props.value} className={`${labelStyleClass} ${props.disabled ? styles['radio-label-disabled'] : ''}`}>
         {props.label}
       </label>
     </div>
