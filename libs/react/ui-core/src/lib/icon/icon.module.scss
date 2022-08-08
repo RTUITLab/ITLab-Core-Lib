@@ -1,6 +1,10 @@
 @use "../../../../../../styles/icons" as *;
 @use "../../../../../../styles/design-tokens/color" as *;
 
+.button-icon{
+  display: block;
+}
+
 .primary{
   color: $primary-100;
 }

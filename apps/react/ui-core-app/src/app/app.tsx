@@ -1,5 +1,4 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
@@ -28,16 +27,19 @@ export function App() {
         console.log(e);}} name={"loader-2"} color={"general"}/>
       <Button onClick={(e)=> console.log(e)} icon={<Icon name={"loader-2"} color={"general"}/>} iconPosition={"left"}>Dada</Button>
 
+      <Icon className={"test"} onClick={(e) => {
+        console.log(e);
+      }} name={"loader-2"} color={"general"}/>
 
-      <NxWelcome title="react-ui-core-app" />
-      <div />
+      <NxWelcome title="react-ui-core-app"/>
+      <div/>
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
       {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
+      <br/>
+      <hr/>
+      <br/>
       <div role="navigation">
         <ul>
           <li>
