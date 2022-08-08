@@ -57,4 +57,7 @@ export interface NavigationProps {
 
   /** On change action */
   onChange?: (item: { key: string | number, clickEvent:React.MouseEvent<HTMLElement> }) => void;
+
+  /** React ref */
+  ref?: React.Ref<any>;
 }
