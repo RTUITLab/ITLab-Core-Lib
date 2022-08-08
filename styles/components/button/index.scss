@@ -32,6 +32,15 @@
   }
 }
 
+.button-icon{
+  display: flex;
+  align-items: center;
+
+  i{
+    font-size: 18px;
+  }
+}
+
 .button-icon-left {
   order: -1;
 }
@@ -47,6 +56,11 @@
   border: 1px solid #D7DBEC;
   background: rgba(245, 246, 250, 0.25);
   color: dt.$general-90;
+
+  i{
+    color: dt.$general-90;
+  }
+
   &:hover{
     background: dt.$general-30;
   }
@@ -60,6 +74,10 @@
     background: dt.$primary-100;
     color: #FFFFFF;
 
+    i{
+      color: #FFF;
+    }
+
     &:hover{
       background: dt.$primary-80;
     }
@@ -72,6 +90,10 @@
     color: dt.$primary-100;
     border: 1px solid dt.$primary-100;
 
+    i{
+      color: dt.$primary-100;
+    }
+
     &:hover{
       background: dt.$primary-30;
     }
@@ -82,6 +104,10 @@
   &.button-light{
     background: dt.$primary-30;
     color: dt.$primary-100;
+
+    i{
+      color: dt.$primary-100;
+    }
 
     &:hover{
       background: dt.$primary-40;
@@ -96,6 +122,10 @@
     background: dt.$green-100;
     color: #FFFFFF;
 
+    i{
+      color: #FFF;
+    }
+
     &:hover{
       background: dt.$green-80;
     }
@@ -108,6 +138,10 @@
     color: dt.$green-100;
     border: 1px solid dt.$green-100;
 
+    i{
+      color: dt.$green-100;
+    }
+
     &:hover{
       background: dt.$green-30;
     }
@@ -118,6 +152,10 @@
   &.button-light{
     background: dt.$green-30;
     color: dt.$green-100;
+
+    i{
+      color: dt.$green-100;
+    }
 
     &:hover{
       background: dt.$green-40;
@@ -132,6 +170,10 @@
     background: dt.$red-100;
     color: #FFFFFF;
 
+    i{
+      color: #FFF;
+    }
+
     &:hover{
       background: dt.$red-80;
     }
@@ -144,6 +186,10 @@
     color: dt.$red-100;
     border: 1px solid dt.$red-100;
 
+    i{
+      color: dt.$red-100;
+    }
+
     &:hover{
       background: dt.$red-30;
     }
@@ -154,6 +200,10 @@
   &.button-light{
     background: dt.$red-30;
     color: dt.$red-100;
+
+    i{
+      color: dt.$red-100;
+    }
 
     &:hover{
       background: dt.$red-40;
