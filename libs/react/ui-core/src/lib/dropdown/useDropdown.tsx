@@ -1,20 +1,8 @@
-import React, {createRef, RefObject, useEffect, useMemo, useState} from 'react'
+import React, {createRef, useEffect, useMemo, useState} from 'react'
 import {DropdownProps} from "./DropdownProps";
 import styles from './dropdown.module.scss'
+import {useDropdownProps} from './useDropdownProps'
 
-export interface useDropdownProps{
-  classes: string;
-  itemClasses: string;
-  containerClasses: string;
-  activeLabel: string | null;
-  activeItemKey: string | number;
-  icon: React.ReactNode | null;
-  isOpen: boolean;
-  handleOpen: (isOpen: boolean) => void;
-  handleSelect: (label: string, key: string | number, event: React.MouseEvent<HTMLElement>) => void;
-  handleKeyUp: (label: string, key: string | number, event: React.KeyboardEvent<HTMLElement>) => void;
-  list: any;
-}
 /**
  * Hook for dropdown
  */

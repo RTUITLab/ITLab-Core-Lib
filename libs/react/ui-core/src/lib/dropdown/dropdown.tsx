@@ -1,7 +1,8 @@
 import styles from './dropdown.module.scss'
 import React, {forwardRef} from 'react'
-import {useDropdown, useDropdownProps} from './useDropdown'
+import {useDropdown} from './useDropdown'
 import {DropdownItemProps, DropdownProps} from './DropdownProps'
+import {useDropdownProps} from './useDropdownProps'
 
 /**
  * Dropdown component
