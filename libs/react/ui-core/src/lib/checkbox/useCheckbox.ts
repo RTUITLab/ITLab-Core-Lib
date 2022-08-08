@@ -1,26 +1,18 @@
-import React, {useEffect, useMemo, useState} from 'react'
-import './checkbox.scss'
+import React, {useMemo, useState} from 'react'
+import styles from './checkbox.module.scss'
 import {CheckboxProps} from './CheckboxProps'
 
 /**
  * Hook for checkbox
  */
 export function useCheckbox(props: CheckboxProps) {
-  const [checked, setChecked] = useState<boolean>(false)
+  const [checked, setChecked] = useState<boolean>(props.defaultChecked || false)
   const [focused, setFocused] = useState<boolean>(false)
-
-  useEffect(() => {
-    setChecked(props.checked || false)
-  }, [])
 
   const handleCheck = (checked: boolean) => {
     if(!props.readonly && !props.disabled) {
       setChecked(!checked)
     }
-  }
-
-  const handleBlur = (focused: boolean) => {
-    setFocused(focused)
   }
 
   const handleFocus = (focused: boolean) => {
@@ -37,12 +29,13 @@ export function useCheckbox(props: CheckboxProps) {
     const classList = ['checkbox-box'];
 
     const conditions:{[index: string]:boolean} = {
+      "checkbox-box": true,
       "checkbox-disabled": props.disabled === true,
     };
 
     Object.keys(conditions).forEach((key:string) => {
       if (conditions[key]) {
-        classList.push(key);
+        classList.push(styles[key]);
       }
     });
 
@@ -53,7 +46,7 @@ export function useCheckbox(props: CheckboxProps) {
   }, [props]);
 
   const labelStyleClass = useMemo(() => {
-    const classList = ['checkbox-label'];
+    const classList = [styles['checkbox-label']];
 
     if(typeof props.labelStyleClass === 'string') classList.push(props.labelStyleClass);
     if(typeof props.labelStyleClass === 'object') classList.push(...props.labelStyleClass);
@@ -61,5 +54,5 @@ export function useCheckbox(props: CheckboxProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, labelStyleClass, checked, handleCheck, handleKeyUp, focused, handleBlur, handleFocus}
+  return {classes, labelStyleClass, checked, handleCheck, handleKeyUp, focused, handleFocus}
 }

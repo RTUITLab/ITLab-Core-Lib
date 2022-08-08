@@ -17,7 +17,7 @@ export interface CheckboxProps extends DefaultParams {
   readonly?: boolean;
 
   /** When present, it specifies that the component is already checked */
-  checked?: boolean;
+  defaultChecked?: boolean;
 
   /** When present, it specifies that the element should be disabled */
   disabled?: boolean;

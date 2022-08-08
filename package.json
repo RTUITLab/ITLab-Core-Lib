@@ -9,13 +9,19 @@
     "postinstall": "ngcc --properties es2015 browser module main",
     "build-ng": "yarn run build-ng-ui-core",
     "build-ng-ui-core": "nx run angular-ui-core:build:production",
+    "build-react": "yarn run build-react-ui-core",
+    "build-react-ui-core": "nx run react-ui-core:build:production",
     "release": "yarn deploy-ng",
     "deploy-ng": "yarn run deploy-ng-ui-core",
     "deploy-ng-ui-core": "cd libs/angular/ui-core && auto shipit && cd ../../..",
+    "deploy-react": "yarn run deploy-react-ui-core",
+    "deploy-react-ui-core": "cd libs/react/ui-core && auto shipit && cd ../../..",
     "test-ng-ui-core": "nx run angular-ui-core:test",
+    "test-react-ui-core": "nx run react-ui-core:test",
     "docs-ui-core:json": "compodoc -p libs/angular/ui-core/tsconfig.json -e json -d libs/angular/ui-core/ --disablePrivate --disableProtected",
     "serve-ng-ui-core-storybook": "yarn docs-ui-core:json && nx run angular-ui-core:storybook",
-    "build-ng-ui-core-storybook": "yarn docs-ui-core:json && nx run angular-ui-core:build-storybook"
+    "build-ng-ui-core-storybook": "yarn docs-ui-core:json && nx run angular-ui-core:build-storybook",
+    "build-react-ui-core-storybook": "yarn docs-ui-core:json && nx run react-ui-core:build-storybook"
   },
   "private": true,
   "dependencies": {
