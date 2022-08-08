@@ -1,19 +1,31 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import NxWelcome from './nx-welcome';
 
-import {Link, Route, Routes} from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
+import {Checkbox} from "@itlab-core-lib/react/ui-core";
 import {Button, Icon} from "@itlab-core-lib/react/ui-core";
-import React from "react";
+import React, {useRef} from 'react'
 
 export function App() {
 
+  const ref = useRef()
+  const handleClick = (ref: any) => {
+    console.log(ref.current.checked)
+  }
 
   return (
     <>
-      <Button color={"red"} size={"large"} onClick={(e) => console.log(e)} icon={<Icon color={"general-dark"} type={"fill"} size={2656} name={"home"}/>}
-              iconPosition={"left"}>fds</Button>
+      <Checkbox label={'Ref is here'} ref={ref} />
+      <Checkbox label={'disabled'} disabled={true} />
+      <Checkbox label={'readonly'} readonly={true} />
+      <Checkbox label={'ClassNames'} className={'prikol'} labelStyleClass={'classno'} />
+      <Checkbox label={'Checked'} defaultChecked={true} />
+      <Checkbox label={'icon'} checkboxIcon={<Icon size={20} name={"loader-2"} color={"green-light"}/>} />
+      <button onClick={() => handleClick(ref)}>show me your ref</button>
 
-      <Icon color={"general-dark"} type={"fill"} size={20} name={"home"}/>
+      <Icon className={"test"} onClick={(e)=>{
+        console.log(e);}} name={"loader-2"} color={"general"}/>
+      <Button onClick={(e)=> console.log(e)} icon={<Icon name={"loader-2"} color={"general"}/>} iconPosition={"left"}>Dada</Button>
 
       <Icon className={"test"} onClick={(e) => {
         console.log(e);
