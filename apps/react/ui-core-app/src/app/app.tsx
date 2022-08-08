@@ -1,30 +1,33 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
 import NxWelcome from './nx-welcome';
 
-import { Route, Routes, Link } from 'react-router-dom';
+import {Link, Route, Routes} from 'react-router-dom';
 import {Button, Icon} from "@itlab-core-lib/react/ui-core";
-import React, {useEffect} from "react";
+import React from "react";
 
 export function App() {
 
 
   return (
     <>
-      <Button onClick={(e)=> console.log(e)} iconPosition={"left"}>dsa</Button>
+      <Button color={"red"} size={"large"} onClick={(e) => console.log(e)} icon={<Icon color={"general-dark"} type={"fill"} size={2656} name={"home"}/>}
+              iconPosition={"left"}>fds</Button>
 
-      <Icon className={"test"} onClick={(e)=>{
-        console.log(e);}} name={"loader-2"} color={"general"}/>
+      <Icon color={"general-dark"} type={"fill"} size={20} name={"home"}/>
 
-      <NxWelcome title="react-ui-core-app" />
-      <div />
+      <Icon className={"test"} onClick={(e) => {
+        console.log(e);
+      }} name={"loader-2"} color={"general"}/>
+
+      <NxWelcome title="react-ui-core-app"/>
+      <div/>
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
       {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
+      <br/>
+      <hr/>
+      <br/>
       <div role="navigation">
         <ul>
           <li>
