@@ -1,5 +1,5 @@
 # Name of our action
-name: 'Angular ui core chromatic deployment'
+name: 'React ui core chromatic deployment'
 # The event that will trigger the action
 on:
   workflow_call:
