@@ -28,7 +28,7 @@ export const Dropdown=forwardRef((props: DropdownProps, ref: any) => {
         <div className={`${styles['dropdown-menu']} ${state.isOpen ? styles['dropdown-menu-active'] : ''}`}>
           {
             props.items?.map((item) => {
-              return <DropdownItem key={item.key} state={state} item={item} />
+              return <DropdownItem key={item.key} state={state} item={item} props={props}/>
             })
           }
         </div>
@@ -37,11 +37,11 @@ export const Dropdown=forwardRef((props: DropdownProps, ref: any) => {
   );
 });
 
-const DropdownItem = React.memo((localProps: {state: useDropdownProps, item: DropdownItemProps}) => {
-  const {state, item} = localProps;
+const DropdownItem = React.memo((localProps: {state: useDropdownProps, item: DropdownItemProps, props: DropdownProps}) => {
+  const {state, item, props} = localProps;
   return (
     <div className={`${state.itemClasses} ${item.disabled ? styles['dropdown-disabled'] : ''}`} tabIndex={!item.disabled ? 0 : 1}
-         onKeyUp={(e) => state.handleKeyUp(item.label, item.key, e)}
+         onKeyUp={(e) => state.handleKeyUp(item.label, item.key, e)} style={props.itemStyle}
          onClick={(e) => state.handleSelect(item.label, item.key, e)}
     >
       {item.label}

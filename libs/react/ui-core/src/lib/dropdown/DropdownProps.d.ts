@@ -49,4 +49,7 @@ export interface DropdownProps extends DefaultParams{
 
   /** Style class of the dropdown item */
   itemClass?: string | string[];
+
+  /** Inline style of the dropdown item */
+  itemStyle?: object;
 }
