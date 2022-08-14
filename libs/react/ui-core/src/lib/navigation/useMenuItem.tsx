@@ -40,6 +40,8 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
         const children = Array.from(submenu.current.children)
         const height = children.reduce((acc, child) => acc + child.clientHeight, 0)
         openItem(height)
+      }else{
+        closeItem()
       }
       if (props.defaultSelectedKey) {
         if (item.list) {
@@ -65,15 +67,17 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
       return;
     }
 
+    setSubmenuDisplay("block")
     const children = Array.from(submenu.current.children);
-    calculateDefaultSubmenuHeight(children);
-    setSubmenuDisplay("none")
+    Promise.resolve().then(() => {
+      calculateDefaultSubmenuHeight(children);
 
-    if (!state.showIcons) {
-      menuItemManager.push(styles['navigation-item-content-without-first-icon'])
-    }
+      if (!state.showIcons) {
+        menuItemManager.push(styles['navigation-item-content-without-first-icon'])
+      }
 
-    initItems();
+      initItems();
+    })
   }, [props]);
 
   useEffect(() => {
