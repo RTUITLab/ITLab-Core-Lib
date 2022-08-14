@@ -34,27 +34,7 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
     setDefaultSubmenuHeight(children.reduce((acc, child) => acc + child.clientHeight, 0))
   }
 
-  useEffect(() => {
-    if (!submenu.current) {
-      setDefaultSubmenuHeight(0)
-      return;
-    }
-    const children = Array.from(submenu.current.children);
-    calculateDefaultSubmenuHeight(children);
-    setSubmenuDisplay("none")
-
-    if (!state.showIcons) {
-      menuItemManager.push(styles['navigation-item-content-without-first-icon'])
-    }
-  }, [props]);
-
-  useEffect(() => {
-    if (props.type === "horizontal" && state.lastOpenedItem !== item.key && submenu.current) {
-      closeItem();
-    }
-  }, [state.lastOpenedItem])
-
-  useEffect(() => {
+  function initItems() {
     if (submenu.current) {
       if (props.defaultOpenedItems?.includes(item.key) && props.type !== "horizontal") {
         const children = Array.from(submenu.current.children)
@@ -77,6 +57,33 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
         }
       }
     }
+  }
+
+  useEffect(() => {
+    if (!submenu.current) {
+      setDefaultSubmenuHeight(0)
+      return;
+    }
+
+    const children = Array.from(submenu.current.children);
+    calculateDefaultSubmenuHeight(children);
+    setSubmenuDisplay("none")
+
+    if (!state.showIcons) {
+      menuItemManager.push(styles['navigation-item-content-without-first-icon'])
+    }
+
+    initItems();
+  }, [props]);
+
+  useEffect(() => {
+    if (props.type === "horizontal" && state.lastOpenedItem !== item.key && submenu.current) {
+      closeItem();
+    }
+  }, [state.lastOpenedItem])
+
+  useEffect(() => {
+    initItems();
   }, [])
 
   useEffect(() => {

@@ -1,12 +1,15 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
 import Counter from "./counter";
 
 export default {
   component: Counter,
   title: 'Counter',
-  argTypes:{
-    style:{control:false},
-    className:{control:false},
+  argTypes: {
+    style: {control: false},
+    className: {control: false},
+    type: {control: "select", options: ["solid", "outline", "light"]},
+    color: {control: "select", options: ["primary", "red", "green", "transparent"]},
+    size: {control: "select", options: ["small", "medium", "large"]},
   }
 } as ComponentMeta<typeof Counter>;
 
