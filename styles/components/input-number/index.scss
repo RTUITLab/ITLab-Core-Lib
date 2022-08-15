@@ -1,0 +1,53 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/icons' as *;
+
+
+.inputNumber-wrapper {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  border: 1px solid dt.$general-40;
+  border-radius: 6px;
+
+  & .inputNumber-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 4px 8px;
+
+    & > i {
+      font-size: 17px;
+      color: dt.$primary-100;
+    }
+  }
+
+  & .inputNumber {
+    border: none;
+    outline: none;
+    color: dt.$general-80;
+    padding: 4px 8px;
+    text-align: center;
+  }
+
+  &.inputNumber-wrapper-readonly {
+    cursor: default;
+  }
+  &.inputNumber-wrapper-disable {
+    opacity: 0.4;
+    cursor: not-allowed;
+    user-select: none;
+  }
+
+  //hide default input arrows
+  & input[type="number"]::-webkit-outer-spin-button,
+  & input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  & input[type='number'],
+  & input[type="number"]:hover,
+  & input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+  }
+}
