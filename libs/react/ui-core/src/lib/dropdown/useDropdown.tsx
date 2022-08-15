@@ -28,7 +28,7 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
   })
 
   const handleOpen = (isOpen: boolean) => {
-    if(!props.disabled && !props.error) {
+    if(!props.disabled) {
       setIsOpen(isOpen)
       if(isOpen && props.onOpen) props.onOpen()
       else if(!isOpen && props.onClose) props.onClose()
@@ -40,7 +40,7 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
     }
   }
   const handleSelect = (label: string, key: string | number, event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => {
-    if(!props.disabled && !props.error && !props.items.find((item) => item.key === key)?.disabled) {
+    if(!props.disabled && !props.items.find((item) => item.key === key)?.disabled) {
       setActiveItemKey(key)
       setActiveLabel(label)
       setIsOpen(false)

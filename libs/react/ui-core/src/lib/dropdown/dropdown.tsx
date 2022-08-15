@@ -33,6 +33,10 @@ export const Dropdown=forwardRef((props: DropdownProps, ref: any) => {
           }
         </div>
       </div>
+      {
+        props.error &&
+        <div className={styles['dropdown-text-error']}>{props.errorText || 'Some error occurred'}</div>
+      }
     </div>
   );
 });

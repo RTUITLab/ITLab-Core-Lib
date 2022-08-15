@@ -52,7 +52,6 @@
 }
 
 .dropdown-error {
-  cursor: not-allowed;
   background-color: dt.$red-30;
   border-color: dt.$red-60;
 
@@ -135,6 +134,15 @@
 .dropdown-small {
   height: 40px;
   padding: 8px 16px;
+}
+
+.dropdown-text-error {
+  margin-top: 5px;
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+  line-height: 24px;
+  color: dt.$red-80;
 }
 
 @keyframes display {

@@ -26,5 +26,6 @@ Primary.args = {
     {label: 'Вариант 03', key: 'key 3', disabled: true},
     {label: 'Вариант 04', key: 'key 4'},
   ],
-  icon: <Icon size={24} name={"ri-calendar-event-line"} />
+  icon: <Icon size={24} name={"ri-calendar-event-line"} />,
+  errorText: 'Ошибка!!!'
 };
