@@ -30,14 +30,14 @@ export const Radio=forwardRef((props: RadioProps, ref: any) => {
                aria-checked={props.checked}
                onFocus={() => handleFocus(true)}
                onBlur={() => handleFocus(false)}
-               onChange={!props.readonly ? props.onChange : () => {}}
+               onChange={!props.readonly ? props.onChange : undefined}
                onKeyUp={props.onKeyUp}
         />
       </div>
       <div className={`${props.checked && styles['radio-checked']} ${focused && styles['radio-focus']} ${classes}`}>
         {props.checked && icon}
       </div>
-      <label className={labelStyleClass}>
+      <label htmlFor={props.inputId || props.value} className={labelStyleClass}>
         {props.label}
       </label>
     </label>
