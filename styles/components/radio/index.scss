@@ -8,10 +8,26 @@
   align-items: center;
   padding: 0;
   gap: 12px;
+  cursor: pointer;
 
   height: 24px;
 
   width: fit-content;
+
+  &.radio-readonly {
+    cursor: default;
+
+    & .radio-label {
+      cursor: default;
+    }
+  }
+  &.radio-disabled {
+    cursor: not-allowed;
+
+    & .radio-label {
+      cursor: not-allowed;
+    }
+  }
 }
 
 .radio-hidden-input {
@@ -44,7 +60,7 @@
   border .5ms ease-in,
   box-shadow .5ms ease-in;
 
-  &:not(.radio-disabled):hover {
+  &:not(.radio-disabled):not(.radio-readonly):hover {
     background: dt.$general-30;
     border: 1px solid dt.$primary-100;
   }
@@ -70,7 +86,6 @@
   }
 
   &.radio-disabled {
-    cursor: not-allowed;
     user-select: none;
     opacity: 0.5;
 

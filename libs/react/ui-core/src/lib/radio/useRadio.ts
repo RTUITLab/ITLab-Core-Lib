@@ -9,15 +9,35 @@ export function useRadio(props: RadioProps) {
   const [focused, setFocused] = useState<boolean>(false)
 
   const handleFocus = (focused: boolean) => {
-    setFocused(focused)
+    if(!props.disabled && !props.readonly) {
+      setFocused(focused)
+    }
   }
 
+  const containerClasses = useMemo(() => {
+    const classList = [] as string[];
+
+    const conditions:{[index: string]:boolean} = {
+      "radio": true,
+      "radio-disabled": props.disabled === true,
+      "radio-readonly": props.readonly === true,
+    };
+
+    Object.keys(conditions).forEach((key:string) => {
+      if (conditions[key]) {
+        classList.push(styles[key]);
+      }
+    });
+    return classList.join(' ');
+  }, [props]);
+
   const classes = useMemo(() => {
-    const classList = ['checkbox-box'];
+    const classList = [];
 
     const conditions:{[index: string]:boolean} = {
       "radio-box": true,
       "radio-disabled": props.disabled === true,
+      "radio-readonly": props.readonly === true,
     };
 
     Object.keys(conditions).forEach((key:string) => {
@@ -41,5 +61,5 @@ export function useRadio(props: RadioProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, labelStyleClass, focused, handleFocus}
+  return {classes, labelStyleClass, focused, handleFocus, containerClasses}
 }
