@@ -17,6 +17,7 @@ export function useCounter(props: CounterProps) {
       "counter-primary": props.color === "primary",
       "counter-red": props.color === "red",
       "counter-green": props.color === "green",
+      "counter-orange": props.color === "orange",
       "counter-solid": props.type === "solid",
       "counter-outline": props.type === "outline",
       "counter-light": props.type === "light",

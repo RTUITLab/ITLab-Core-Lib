@@ -8,7 +8,7 @@ export default {
     style: {control: false},
     className: {control: false},
     type: {control: "select", options: ["solid", "outline", "light"]},
-    color: {control: "select", options: ["primary", "red", "green", "transparent"]},
+    color: {control: "select", options: ["primary", "red", "green", "orange", "transparent"]},
     size: {control: "select", options: ["small", "medium", "large"]},
   }
 } as ComponentMeta<typeof Counter>;
