@@ -8,12 +8,12 @@ import {CheckboxProps} from './CheckboxProps'
  */
 
 export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
-  const {classes, checked, handleCheck, focused, handleFocus, handleKeyUp, labelStyleClass} = useCheckbox(props);
+  const {classes, containerClasses, checked, handleCheck, focused, handleFocus, handleKeyUp, labelStyleClass, isError} = useCheckbox(props);
 
   const icon = <>{props.checkboxIcon ? <span className={'checkbox-icon'}>{props.checkboxIcon}</span> : <span className={'checkbox-icon ri-check-line'} />}</>
 
   return (
-    <div className={styles['checkbox']} style={props.style}>
+    <div onClick={() => handleCheck(checked)} className={containerClasses} style={props.style}>
       <div className={styles['checkbox-hidden-input']}>
         <input ref={ref}
                type='checkbox'
@@ -35,11 +35,10 @@ export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
                onKeyDown={(e) => handleKeyUp(e)}
         />
       </div>
-      <div onClick={() => handleCheck(checked)}
-           className={`${checked && styles['checkbox-checked']} ${focused && styles['checkbox-focus']} ${classes}`}>
+      <div className={`${classes} ${checked ? styles['checkbox-checked'] : ''} ${focused ? styles['checkbox-focus'] : ''} ${isError ? styles['checkbox-invalid'] : ''}`}>
         {checked && icon}
       </div>
-      <label onClick={() => handleCheck(checked)} htmlFor={props.inputId}
+      <label htmlFor={props.inputId}
              className={labelStyleClass}>
         {props.label}
       </label>
