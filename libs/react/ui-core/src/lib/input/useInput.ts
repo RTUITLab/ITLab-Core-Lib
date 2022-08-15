@@ -13,12 +13,13 @@ export function useInput(props: InputProps) {
 
     const conditions:{[index: string]:boolean} = {
       "input-wrapper": true,
-      // "input-icon-left": props.iconPosition === 'left' || !props.iconPosition,
-      // "input-icon-right": props.iconPosition === 'right',
       "input-wrapper-large": props.size === 'large',
       "input-wrapper-small": props.size === 'small',
       "input-wrapper-medium": props.size === 'medium',
-      "input-wrapper-disabled": props.disabled === true,
+      "input-wrapper-disabled": props.disabled !== undefined && props.disabled,
+      "input-wrapper-readonly":  props.readonly !== undefined && props.readonly,
+      "input-wrapper-valid":  props.valid !== undefined && props.valid,
+      "input-wrapper-invalid":  props.error !== undefined && props.error,
     };
 
     Object.keys(conditions).forEach((key:string) => {

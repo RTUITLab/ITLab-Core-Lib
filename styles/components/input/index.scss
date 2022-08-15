@@ -14,11 +14,11 @@
   border-radius: 6px;
   width: 350px;
 
-  &:focus-within {
+  &:focus-within:not(&.input-wrapper-readonly) {
     color: dt.$general-90;
     border-color: dt.$general-70;
   }
-  &:not(.input-wrapper-disabled):not(&:focus-within):hover {
+  &:not(.input-wrapper-disabled):not(&:focus-within):not(&.input-wrapper-readonly):hover {
     border-color: dt.$general-60;
   }
 
@@ -52,6 +52,61 @@
   }
 }
 
+.input-wrapper-readonly {
+  cursor: default;
+  user-select: none;
+}
+
+.input-wrapper-valid {
+  background-color: dt.$green-30;
+  color: dt.$green-80;
+  border-color: dt.$green-80;
+
+  & i {
+    color: dt.$green-100;
+  }
+  & .input::placeholder {
+    color: dt.$green-60;
+  }
+  &:focus-within:not(&.input-wrapper-readonly) {
+    color: dt.$green-90;
+    border-color: dt.$green-70;
+  }
+  &:not(.input-wrapper-disabled):not(&:focus-within):not(&.input-wrapper-readonly):hover {
+    border-color: dt.$green-60;
+  }
+}
+
+.input-wrapper-invalid {
+  background-color: dt.$red-30;
+  color: dt.$red-80;
+  border-color: dt.$red-80;
+
+  & i {
+    color: dt.$red-100;
+  }
+  & .input::placeholder {
+    color: dt.$red-60;
+  }
+  &:focus-within:not(&.input-wrapper-readonly) {
+    color: dt.$red-90;
+    border-color: dt.$red-70;
+  }
+  &:not(.input-wrapper-disabled):not(&:focus-within):not(&.input-wrapper-readonly):hover {
+    border-color: dt.$red-60;
+  }
+}
+
+.input-text-error {
+  margin-top: 5px;
+  color: dt.$red-80;
+
+  font-family: dt.$typo-font-p-regular-family;
+  font-style: dt.$typo-font-p-regular-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-size: 14px;
+  line-height: 24px;
+}
 
 .input-icon-left {
   order: -1;
@@ -92,5 +147,5 @@
 .input-wrapper-disabled{
   opacity: 0.5;
   cursor: not-allowed;
-  border-color: dt.$primary-30;
+  user-select: none;
 }

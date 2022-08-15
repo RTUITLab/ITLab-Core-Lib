@@ -25,6 +25,8 @@ Primary.args = {
   size: 'medium',
   type: 'text',
   iconPosition: 'right',
+  readonly: true,
+  errorText: 'Ошибка!!!',
   icon: <Icon name={'ri-flag-line'} size={24} />
 };
 

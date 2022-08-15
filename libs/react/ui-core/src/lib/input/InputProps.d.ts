@@ -18,6 +18,15 @@ export interface InputProps extends DefaultParams{
   /** If true, the input will be disabled */
   disabled?: boolean;
 
+  /** If true, the input will be valid */
+  valid?: boolean;
+
+  /** If true, the input will be invalid */
+  error?: boolean;
+
+  /** Text of the error */
+  errorText?: string;
+
   /** Identifier of the component */
   id?: string;
 
