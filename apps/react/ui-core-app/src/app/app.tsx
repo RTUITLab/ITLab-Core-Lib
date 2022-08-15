@@ -1,26 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import NxWelcome from './nx-welcome';
 
-import {Link, Route, Routes} from 'react-router-dom';
-import {Button, Icon} from "@itlab-core-lib/react/ui-core";
-import React from "react";
+import { Route, Routes, Link } from 'react-router-dom';
+import React, {useEffect} from "react";
 
 export function App() {
 
-
   return (
     <>
-      <Button color={"red"} size={"large"} onClick={(e) => console.log(e)} icon={<Icon color={"general-dark"} type={"fill"} size={2656} name={"home"}/>}
-              iconPosition={"left"}>fds</Button>
 
-      <Icon color={"general-dark"} type={"fill"} size={20} name={"home"}/>
-
-      <Icon className={"test"} onClick={(e) => {
-        console.log(e);
-      }} name={"loader-2"} color={"general"}/>
-
-      <NxWelcome title="react-ui-core-app"/>
-      <div/>
+      <NxWelcome title="react-ui-core-app" />
+      <div />
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
