@@ -6,10 +6,16 @@ import {useInput} from './useInput'
 export const Input = forwardRef((props: InputProps, ref: any) => {
   const {classes, iconClasses} = useInput(props)
 
-  const icon = <>{props.icon &&
+  const searchIco = <>{props.type === 'search' &&
+    <span className={iconClasses}>
+      <i className={"ri-search-line"}/>
+    </span>
+  }</>
+
+  const icon = <>{props.icon ?
     <span className={iconClasses}>
       {props.icon}
-    </span>}
+    </span> : searchIco}
   </>
 
 

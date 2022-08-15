@@ -22,7 +22,11 @@
     border-color: dt.$general-60;
   }
 
-  .input {
+  & i {
+    color: dt.$general-70;
+  }
+
+  & .input {
     width: 100%;
     padding: 0;
 
@@ -41,6 +45,11 @@
       color: dt.$general-60;
     }
   }
+
+  & .input-icon {
+    display: flex;
+    align-items: center;
+  }
 }
 
 
@@ -55,17 +64,29 @@
 .input-wrapper-large{
   height: 48px;
   padding: 12px 18px;
+
+  & .input-icon > i {
+    font-size: 24px;
+  }
 }
 .input-wrapper-medium{
   height: 40px;
   padding: 8px 16px;
+
+  & .input-icon > i {
+      font-size: 22px;
+  }
 }
 .input-wrapper-small{
   height: 38px;
   padding: 8px 14px;
 
-  .input {
+  & .input {
     line-height: 20px;
+  }
+
+  & .input-icon > i {
+    font-size: 20px;
   }
 }
 .input-wrapper-disabled{

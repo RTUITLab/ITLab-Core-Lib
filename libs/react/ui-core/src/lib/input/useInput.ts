@@ -13,8 +13,8 @@ export function useInput(props: InputProps) {
 
     const conditions:{[index: string]:boolean} = {
       "input-wrapper": true,
-      "input-icon-left": props.iconPosition === 'left',
-      "input-icon-right": props.iconPosition === 'right',
+      // "input-icon-left": props.iconPosition === 'left' || !props.iconPosition,
+      // "input-icon-right": props.iconPosition === 'right',
       "input-wrapper-large": props.size === 'large',
       "input-wrapper-small": props.size === 'small',
       "input-wrapper-medium": props.size === 'medium',
@@ -37,9 +37,9 @@ export function useInput(props: InputProps) {
   }, [props]);
 
   const iconClasses = useMemo(() => {
-    const classList = [];
+    const classList = [styles['input-icon']];
 
-    if(props.iconPosition === 'left') classList.push(styles['input-icon-left']);
+    if(props.iconPosition === 'left' || !props.iconPosition) classList.push(styles['input-icon-left']);
     if(props.iconPosition === 'right') classList.push(styles['input-icon-right']);
 
     return classList.join(' ');
