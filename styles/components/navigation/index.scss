@@ -302,11 +302,21 @@
         text-overflow: ellipsis;
       }
 
-      & .navigation-item-content-icon:last-child {
-        display: none;
+      // У стрелки на @extend тригерится transition, что заставляло её крутиться при наведении.
+      // Из-за этого пришлось отделить hover и отдельно прописать ему все стили из navigation-item-content-open.
+      &:hover {
+        margin-bottom: -2px;
+        border-bottom: 2px solid dt.$primary-90;
+        color: dt.$primary-90;
+
+        .navigation-item-content-icon {
+          color: dt.$primary-90;
+          & *:nth-child(n) {
+            color: dt.$primary-90;
+          }
+        }
       }
 
-      &:hover,
       &:focus {
         @extend .navigation-item-content-open;
       }
