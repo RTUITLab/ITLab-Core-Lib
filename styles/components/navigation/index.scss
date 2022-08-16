@@ -66,10 +66,8 @@
 
  */
 
-
 .navigation {
-
-  background: #FFFFFF;
+  background: #ffffff;
   color: dt.$general-80;
   display: grid;
   position: relative;
@@ -90,7 +88,7 @@
     position: relative;
     display: block;
     box-sizing: border-box;
-    background: #FFFFFF;
+    background: #ffffff;
     flex: none;
     order: 0;
     user-select: none;
@@ -106,7 +104,8 @@
       padding: 8px 16px;
       cursor: pointer;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: dt.$primary-90;
 
         .navigation-item-content-icon {
@@ -142,7 +141,7 @@
       @extend .navigation-item-content;
       grid-template-columns: 1fr 24px;
 
-      & .navigation-item-content-icon:first-child{
+      & .navigation-item-content-icon:first-child {
         display: none;
       }
     }
@@ -166,7 +165,6 @@
         }
       }
     }
-
 
     // Это контент для подменю (открытая вкладка).
     // Открыть / скрыть можно лишь указав ему height и display в inline стилях
@@ -221,7 +219,8 @@
         text-overflow: ellipsis;
         display: block;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           background: dt.$primary-40;
           color: dt.$primary-90;
         }
@@ -234,13 +233,19 @@
     }
   }
 
-
   .navigation-item-disabled {
     @extend .navigation-item;
 
     color: dt.$general-50;
     cursor: not-allowed;
-    pointer-events: none;
+
+    .navigation-item-content {
+      pointer-events: none;
+    }
+
+    .navigation-item-submenu {
+      pointer-events: none;
+    }
 
     .navigation-item-content-icon {
       color: dt.$general-50 !important;
@@ -263,7 +268,8 @@
 }
 
 @keyframes hide-item-submenu {
-  0%, 99% {
+  0%,
+  99% {
     display: block;
   }
   100% {
@@ -300,7 +306,8 @@
         display: none;
       }
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         @extend .navigation-item-content-open;
       }
     }
@@ -310,7 +317,7 @@
       border-bottom: 2px solid dt.$primary-90;
       color: dt.$primary-90;
 
-      .navigation-item-content-icon{
+      .navigation-item-content-icon {
         color: dt.$primary-90;
         & *:nth-child(n) {
           color: dt.$primary-90;
@@ -328,7 +335,7 @@
       left: 0px;
 
       .navigation-item-submenu-title {
-        background-color: #FFF;
+        background-color: #fff;
         color: dt.$general-60;
       }
 
