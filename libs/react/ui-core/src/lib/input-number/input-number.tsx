@@ -8,20 +8,21 @@ import {useInputNumber} from './useInputNumber'
  */
 
 export const InputNumber = forwardRef((props: InputNumberProps, ref: any) => {
-  const {classes, width, handleChange} = useInputNumber(props)
+  const {classes, width, handleChange, handleClick, step, value} = useInputNumber(props)
 
   return (
     <div className={classes} style={props.style}>
-      <LocalIco name={'ri-subtract-fill'} id={props.id} />
+      <LocalIco name={'ri-subtract-fill'} id={props.id} handleClick={handleClick} step={-step} />
       <input className={styles['inputNumber']}
              type='number'
              ref={ref}
              autoFocus={props.autoFocus}
              disabled={(props.disabled !== undefined && props.disabled)}
-             value={props.value}
-             placeholder={props.placeholder}
+             value={value}
+             placeholder={props.placeholder || '0'}
              name={props.name}
              id={props.id}
+             step={props.step || 1}
              required={props.isRequired}
              readOnly={props.readonly}
              defaultValue={props.defaultValue}
@@ -36,14 +37,14 @@ export const InputNumber = forwardRef((props: InputNumberProps, ref: any) => {
              onBlur={props.onBlur}
              style={{width: width + 'ch'}}
       />
-      <LocalIco name={'ri-add-fill'} id={props.id} />
+      <LocalIco name={'ri-add-fill'} id={props.id} handleClick={handleClick} step={step} />
     </div>
   );
 })
 
-const LocalIco:FC<LocalIcoProps> = ({name, id  }) => {
+const LocalIco:FC<LocalIcoProps> = ({name, id, handleClick, step  }) => {
   return (
-    <label className={styles['inputNumber-icon']} htmlFor={id}>
+    <label tabIndex={0} onClick={() => handleClick(step)} className={styles['inputNumber-icon']} htmlFor={id}>
         <i className={name} />
     </label>
   )
@@ -52,5 +53,6 @@ const LocalIco:FC<LocalIcoProps> = ({name, id  }) => {
 type LocalIcoProps = {
   name: string
   id: string
-  // onClick: (e: React.MouseEvent<HTMLElement>) => void
+  handleClick: (count: number) => void
+  step: number
 }

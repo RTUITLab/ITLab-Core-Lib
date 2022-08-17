@@ -8,10 +8,23 @@ import {InputNumberProps} from './InputNumberProps'
 
 export function useInputNumber(props: InputNumberProps) {
   const [width, setWidth] = useState<number>(1)
+  const [value, setValue] = useState<number | string>(props.value || props.defaultValue || '')
+  const step = props.step || 1
+
+  const handleClick = (count: number) => {
+    handleChangeValue(String(count + Number(value)))
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(props.onChange) props.onChange(e)
-    setWidth(e.target.value.length)
+    const value = e.target.value.replace(/[^0-9]/g, "")
+    handleChangeValue(value)
+  }
+
+  const handleChangeValue = (value: string) => {
+    if(value.length === 0) setWidth(1)
+    else setWidth(value.length)
+    setValue(value)
   }
 
   const classes = useMemo(() => {
@@ -35,6 +48,6 @@ export function useInputNumber(props: InputNumberProps) {
 
   }, [props]);
 
-  return {classes, width, handleChange}
+  return {classes, width, handleChange, step, handleClick, value}
 }
 

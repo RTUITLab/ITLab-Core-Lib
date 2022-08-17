@@ -15,8 +15,11 @@ export interface InputNumberProps extends DefaultParams{
   /** Value of input field */
   value?: number;
 
+  /** Step of input field */
+  step?: number;
+
   /** Specifies the default value of input field */
-  defaultValue?: string | number
+  defaultValue?: number
 
   /** Specifies a short hint that describes the expected value of an input field */
   placeholder?: string;

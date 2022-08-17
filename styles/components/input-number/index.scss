@@ -5,29 +5,39 @@
 .inputNumber-wrapper {
   width: fit-content;
   display: flex;
+  gap: 5px;
   align-items: center;
   height: 25px;
+  box-sizing: border-box;
   border: 1px solid dt.$general-40;
   border-radius: 6px;
+  padding: 4px 8px;
+  transition: padding .25s ease;
 
   & .inputNumber-icon {
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 4px 8px;
 
     & > i {
+      transition: color .25s ease;
       font-size: 17px;
       color: dt.$primary-100;
+    }
+    &:hover {
+      & > i {
+        color: dt.$primary-60;
+      }
     }
   }
 
   & .inputNumber {
+    background-color: #fff;
     border: none;
     outline: none;
     color: dt.$general-80;
-    padding: 4px 8px;
     text-align: center;
+    padding: 0;
   }
 
   &.inputNumber-wrapper-readonly {
@@ -37,6 +47,24 @@
     opacity: 0.4;
     cursor: not-allowed;
     user-select: none;
+  }
+
+  &:focus-within {
+    padding: 0;
+    background-color: dt.$general-30;
+    & .inputNumber-icon:first-child {
+      border-radius: 6px 0 0 6px;
+      padding: 4px 0 4px 8px;
+    }
+    & .inputNumber-icon:last-child {
+      border-radius: 0 6px 6px 0;
+      padding: 4px 8px 4px 0;
+    }
+    & .inputNumber {
+      padding: 4px 8px;
+      border-right: 1px solid dt.$general-40;
+      border-left: 1px solid dt.$general-40;
+    }
   }
 
   //hide default input arrows
