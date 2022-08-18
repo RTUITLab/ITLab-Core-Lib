@@ -92,6 +92,21 @@
     border: 1px solid dt.$red-30;
   }
 }
+.badge-orange {
+  border: 1px solid dt.$orange-100;
+  color: dt.$orange-100;
+  &.badge-solid{
+    background: dt.$orange-100;
+    color: #FFFFFF;
+  }
+  &.badge-outline{
+    background: #FFFFFF;
+  }
+  &.badge-light{
+    background: dt.$orange-30;
+    border: 1px solid dt.$orange-30;
+  }
+}
 .badge-transparent{
   border: 1px solid dt.$general-50;
   color: dt.$general-70;
