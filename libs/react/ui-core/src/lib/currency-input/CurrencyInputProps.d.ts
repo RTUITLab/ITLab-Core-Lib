@@ -3,8 +3,8 @@ import {DefaultParams} from "../../default-types/defaultParams";
 import Icon from '../icon/icon'
 
 interface CurrencyInformation {
-  title: text,
-  info: text
+  title: text
+  description: text
 }
 
 export interface CurrencyInputProps extends DefaultParams{
@@ -51,20 +51,26 @@ export interface CurrencyInputProps extends DefaultParams{
   /** When present, it specifies that the component should automatically get focus */
   autoFocus?: boolean;
 
+  /** If true, the input will be invalid */
+  invalid?: boolean;
+
   /** If true, the input will be success */
-  success?: boolean;
+  isSuccess?: boolean;
 
   /** Displayed currency */
   currency?: '₽' | '$' | '€' | '£' | '¥';
 
   /** If true, the input will be awaited */
-  awaiting?: boolean;
+  isAwaiting?: boolean;
 
   /** When present, it specifies that the component have information button */
   displayInformation?: boolean;
 
   /** Information displayed at Tooltip */
   information?: CurrencyInformation;
+
+  /** Position of displayed information */
+  informationPosition: "left" | "right" | "top" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | "left-top" | "left-bottom" | "right-top" | "right-bottom" ;
 
   /** Specifies the minimum value of component */
   min?: string | number;

@@ -2,15 +2,124 @@
 @use '../../../styles/icons' as *;
 
 .currencyInput-wrapper {
+  width: fit-content;
   display: flex;
   align-items: center;
   gap: 5px;
+  border-radius: 6px;
 
+  font-size: 14px;
+  line-height: 16px;
+  font-family: dt.$typo-font-p-medium-family;
+  font-weight: dt.$typo-font-p-medium-weight;
+  transition: all 0.15s ease;
 
-  .currencyInput-number {
+  & .currencyInput-number {
+    transition: all 0.15s ease;
+
+    font-size: 14px;
+    line-height: 16px;
+    font-family: dt.$typo-font-p-medium-family;
+    font-weight: dt.$typo-font-p-medium-weight;
     outline: none;
     border: none;
+    border-radius: 6px;
+    background-color: transparent;
   }
 
+  &.currencyInput-wrapper-success {
+    background-color: dt.$green-30;
+    color: dt.$green-100;
+    padding: 4px 8px;
 
+    & .currencyInput-number {
+      color: dt.$green-100;
+    }
+  }
+  &.currencyInput-wrapper-awaiting {
+    background-color: dt.$red-30;
+    color: dt.$red-100;
+    padding: 4px 8px;
+
+    & .currencyInput-number {
+      color: dt.$red-100;
+    }
+  }
+
+  &.currencyInput-wrapper-default {
+    color: dt.$general-80;
+
+    & .currencyInput-number {
+      padding: 4px 8px;
+      color: dt.$general-80;
+      border: 1px solid dt.$general-80;
+
+      &::placeholder {
+        color: dt.$general-60;
+      }
+    }
+
+    &:not(.currencyInput-wrapper-disabled):not(.currencyInput-wrapper-invalid):hover {
+      color: dt.$general-60;
+
+      & .currencyInput-number {
+        color: dt.$general-60;
+        border: 1px solid dt.$general-60;
+      }
+    }
+    &:not(.currencyInput-wrapper-invalid):not(.currencyInput-wrapper-disabled):focus-within {
+      color: dt.$primary-100;
+
+      & .currencyInput-number {
+        color: dt.$primary-100;
+        border: 1px solid dt.$primary-100;
+
+        &::placeholder {
+          color: dt.$primary-80;
+        }
+      }
+    }
+    &.currencyInput-wrapper-invalid {
+      color: dt.$red-100;
+
+      & .currencyInput-number {
+        color: dt.$red-100;
+        border: 1px solid dt.$red-100;
+
+        &::placeholder {
+          color: dt.$red-80;
+        }
+      }
+    }
+  }
+  & .currencyInput-currency {
+    cursor: default;
+  }
+  & .currencyInput-hidden {
+    pointer-events: none;
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    top: 0;
+  }
+  & .currencyInput-icon {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  &.currencyInput-wrapper-readonly {
+    pointer-events: none;
+    user-select: none;
+  }
+  &.currencyInput-wrapper-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    user-select: none;
+
+    & .currencyInput-number {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
 }
