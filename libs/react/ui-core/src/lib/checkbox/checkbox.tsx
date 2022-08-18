@@ -19,7 +19,6 @@ export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
                type='checkbox'
                id={props.inputId}
                value={props.value}
-               defaultChecked={props.defaultChecked}
                checked={checked}
                readOnly={props.readonly}
                name={props.name}
