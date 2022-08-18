@@ -25,14 +25,23 @@ Primary.args = {
   size: 'medium',
   type: 'text',
   iconPosition: 'right',
-  readonly: true,
   errorText: 'Ошибка!!!',
-  icon: <Icon name={'ri-flag-line'} size={24} />
 };
+
 
 export const Search = Template.bind({});
 Search.args = {
   placeholder: 'Поиск...',
   size: 'medium',
   type: 'search',
+};
+
+export const CustomIcon = Template.bind({});
+CustomIcon.args = {
+  placeholder: 'Write some text',
+  size: 'medium',
+  type: 'text',
+  iconPosition: 'right',
+  errorText: 'Ошибка!!!',
+  icon: <Icon name={'ri-flag-line'} size={24} />
 };

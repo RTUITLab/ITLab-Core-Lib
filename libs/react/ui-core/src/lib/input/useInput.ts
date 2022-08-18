@@ -4,10 +4,6 @@ import {getAllEvents} from '../../utils/getAllEvents'
 import styles from './input.module.scss'
 
 export function useInput(props: InputProps) {
-  const events=useMemo(() => {
-    return getAllEvents(props)
-  },[props]);
-
   const classes = useMemo(() => {
     const classList = [];
 
@@ -46,6 +42,6 @@ export function useInput(props: InputProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, iconClasses, events}
+  return {classes, iconClasses}
 }
 
