@@ -14,7 +14,7 @@ export const InputNumber = forwardRef((props: InputNumberProps, ref: any) => {
     <div className={classes} style={props.style}>
       <LocalIco name={'ri-subtract-fill'} id={props.id} handleClick={handleClick} step={-step} />
       <input className={styles['inputNumber']}
-             type='number'
+             type='text'
              ref={ref}
              autoFocus={props.autoFocus}
              disabled={(props.disabled !== undefined && props.disabled)}
@@ -23,6 +23,7 @@ export const InputNumber = forwardRef((props: InputNumberProps, ref: any) => {
              name={props.name}
              id={props.id}
              step={props.step || 1}
+             inputMode={'decimal'}
              required={props.isRequired}
              readOnly={props.readonly}
              defaultValue={props.defaultValue}

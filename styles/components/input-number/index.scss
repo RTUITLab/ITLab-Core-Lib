@@ -11,13 +11,18 @@
   box-sizing: border-box;
   border: 1px solid dt.$general-40;
   border-radius: 6px;
-  padding: 4px 8px;
-  transition: padding .25s ease;
 
   & .inputNumber-icon {
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    &:first-child {
+      padding: 4px 0 4px 8px;
+    }
+    &:last-child {
+      padding: 4px 8px 4px 0;
+    }
 
     & > i {
       transition: color .25s ease;
@@ -52,13 +57,15 @@
   &:focus-within {
     padding: 0;
     background-color: dt.$general-30;
+    gap: 0;
+
     & .inputNumber-icon:first-child {
       border-radius: 6px 0 0 6px;
-      padding: 4px 0 4px 8px;
+      padding: 4px 5px 4px 8px;
     }
     & .inputNumber-icon:last-child {
       border-radius: 0 6px 6px 0;
-      padding: 4px 8px 4px 0;
+      padding: 4px 8px 4px 5px;
     }
     & .inputNumber {
       padding: 4px 8px;

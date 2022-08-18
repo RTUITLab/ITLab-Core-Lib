@@ -4,6 +4,9 @@ import { InputNumber } from './input-number';
 export default {
   component: InputNumber,
   title: 'InputNumber',
+  argTypes: {
+
+  }
 } as ComponentMeta<typeof InputNumber>;
 
 const Template: ComponentStory<typeof InputNumber> = (args) => (
@@ -11,4 +14,8 @@ const Template: ComponentStory<typeof InputNumber> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  step: 0.5,
+  min: -4,
+
+};
