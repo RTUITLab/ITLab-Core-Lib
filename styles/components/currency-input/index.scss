@@ -109,8 +109,12 @@
   }
 
   &.currencyInput-wrapper-readonly {
-    pointer-events: none;
     user-select: none;
+    cursor: default;
+    & .currencyInput-number {
+      cursor: default;
+      pointer-events: none;
+    }
   }
   &.currencyInput-wrapper-disabled {
     opacity: 0.4;

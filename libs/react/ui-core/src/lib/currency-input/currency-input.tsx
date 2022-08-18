@@ -12,7 +12,7 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
       props.icon
       ? <span className={styles['currencyInput-icon']}>{props.icon}</span>
       :
-        <Tooltip tooltipContent={<></>} type={'meta'} position={props.informationPosition || 'top'} metaTitle={props.information?.title} metaDescription={props.information?.description}>
+        <Tooltip hidden={props.disabled} tooltipContent={<></>} type={'meta'} position={props.informationPosition || 'top'} metaTitle={props.information?.title} metaDescription={props.information?.description}>
           <span className={styles['currencyInput-icon']}>
             <i className={'ri-information-line'}></i>
           </span>

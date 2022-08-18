@@ -70,7 +70,7 @@ export interface CurrencyInputProps extends DefaultParams{
   information?: CurrencyInformation;
 
   /** Position of displayed information */
-  informationPosition: "left" | "right" | "top" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | "left-top" | "left-bottom" | "right-top" | "right-bottom" ;
+  informationPosition?: "left" | "right" | "top" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | "left-top" | "left-bottom" | "right-top" | "right-bottom" ;
 
   /** Specifies the minimum value of component */
   min?: string | number;
