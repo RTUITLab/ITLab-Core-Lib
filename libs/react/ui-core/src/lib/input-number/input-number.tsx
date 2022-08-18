@@ -26,7 +26,6 @@ export const InputNumber = forwardRef((props: InputNumberProps, ref: any) => {
              inputMode={'decimal'}
              required={props.isRequired}
              readOnly={props.readonly}
-             maxLength={props.maxLength}
              min={props.min}
              max={props.max}
              tabIndex={props.tabIndex}

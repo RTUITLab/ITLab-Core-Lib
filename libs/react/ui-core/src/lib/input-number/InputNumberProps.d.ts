@@ -45,9 +45,6 @@ export interface InputNumberProps extends DefaultParams{
   /** When present, it specifies that the component should automatically get focus */
   autoFocus?: boolean;
 
-  /** Specifies the maximum number of characters allowed in an input field */
-  maxLength?: number;
-
   /** Specifies the minimum value of component */
   min?: string | number;
 

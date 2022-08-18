@@ -12,17 +12,19 @@ export function useInputNumber(props: InputNumberProps) {
   const step = props.step || 1
 
   const handleClick = (count: number) => {
-    let result
-    if(value === '-') {
-      result = (Number(count)).toFixed(getPrecision())
-    }
-    else {
-      result = (Number(count) + Number(value)).toFixed(getPrecision())
-    }
+    if(!props.disabled && !props.readonly) {
+      let result
+      if(value === '-') {
+        result = (Number(count)).toFixed(getPrecision())
+      }
+      else {
+        result = (Number(count) + Number(value)).toFixed(getPrecision())
+      }
 
-    const limitedValue = getLimitedValue(result)
-    setValueWidth(limitedValue)
-    setValue(Number(limitedValue))
+      const limitedValue = getLimitedValue(result)
+      setValueWidth(limitedValue)
+      setValue(Number(limitedValue))
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +39,6 @@ export function useInputNumber(props: InputNumberProps) {
     }
     else if (limitedValue === '-') setValue('-')
   }
-
 
   const setValueWidth = (number: string) => {
     if(number.length === 0) setWidth(1)

@@ -46,12 +46,19 @@
   }
 
   &.inputNumber-wrapper-readonly {
-    cursor: default;
-  }
-  &.inputNumber-wrapper-disable {
-    opacity: 0.4;
-    cursor: not-allowed;
     user-select: none;
+    & .inputNumber-icon, & .inputNumber {
+      pointer-events: none;
+    }
+  }
+  &.inputNumber-wrapper-disabled {
+    opacity: 0.4;
+    user-select: none;
+    cursor: not-allowed;
+
+    & .inputNumber-icon, & .inputNumber {
+      pointer-events: none;
+    }
   }
 
   &:focus-within {
