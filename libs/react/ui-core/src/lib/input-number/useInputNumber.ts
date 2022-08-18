@@ -7,25 +7,29 @@ import {InputNumberProps} from './InputNumberProps'
  */
 
 export function useInputNumber(props: InputNumberProps) {
-  const [value, setValue] = useState<number | string>(props.value || props.defaultValue || '')
+  const [value, setValue] = useState<number | string>( props.defaultValue || '')
   const [width, setWidth] = useState<number>(String(value).length === 0 ? 1 : String(value).length)
   const step = props.step || 1
 
   const handleClick = (count: number) => {
     const result = (Number(count) + Number(value)).toFixed(getPrecision())
-    setValueWidth(result)
+
+    const limitedValue = getLimitedValue(result)
+    setValueWidth(limitedValue)
+
     if(String(count) === '') setValue('')
-    else setValue(result)
+    else setValue(Number(limitedValue))
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(props.onChange) props.onChange(e)
     const value = e.target.value
+    const limitedValue = getLimitedValue(value)
 
-    if(value === '' || !isNaN(Number(value))) {
-      setValueWidth(value)
-      if(value === '') setValue('')
-      else setValue(Number(value))
+    if(limitedValue === '' || !isNaN(Number(limitedValue))) {
+      setValueWidth(limitedValue)
+      if(limitedValue === '') setValue('')
+      else setValue(Number(limitedValue))
     }
   }
 
@@ -41,7 +45,14 @@ export function useInputNumber(props: InputNumberProps) {
   const getPrecision = () => {
     const stepLength = getNumberAfterComma(String(step))
     const valueLength = getNumberAfterComma(String(value))
+
     return (valueLength > stepLength) ? valueLength : stepLength
+  }
+  const getLimitedValue = (number: string) => {
+    let result = number
+    if(props.min && number <= props.min) result = String(props.min)
+    if(props.max && number >= props.max) result = String(props.max)
+    return result
   }
 
   const classes = useMemo(() => {

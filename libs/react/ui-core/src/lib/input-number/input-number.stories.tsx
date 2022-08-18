@@ -16,6 +16,7 @@ const Template: ComponentStory<typeof InputNumber> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   step: 0.5,
+  defaultValue: 0,
   min: -4,
-
+  max: 11,
 };

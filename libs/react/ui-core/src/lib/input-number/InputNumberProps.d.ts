@@ -12,9 +12,6 @@ export interface InputNumberProps extends DefaultParams{
   /** Name of input filed */
   name?: string;
 
-  /** Value of input field */
-  value?: number;
-
   /** Step of input field */
   step?: number;
 
