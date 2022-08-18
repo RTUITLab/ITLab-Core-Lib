@@ -10,7 +10,10 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
   const icon = <>
     {props.displayInformation && (props.isSuccess || props.isAwaiting) && (
       props.icon
-      ? <span className={styles['currencyInput-icon']}>{props.icon}</span>
+      ?
+        <Tooltip hidden={props.disabled} tooltipContent={<></>} type={'meta'} position={props.informationPosition || 'top'} metaTitle={props.information?.title} metaDescription={props.information?.description}>
+          <span className={styles['currencyInput-icon']}>{props.icon}</span>
+        </Tooltip>
       :
         <Tooltip hidden={props.disabled} tooltipContent={<></>} type={'meta'} position={props.informationPosition || 'top'} metaTitle={props.information?.title} metaDescription={props.information?.description}>
           <span className={styles['currencyInput-icon']}>
@@ -27,8 +30,8 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
              autoFocus={props.autoFocus}
              disabled={(props.disabled !== undefined && props.disabled)}
              value={value}
-             placeholder={props.placeholder || '0'}
              name={props.name}
+             placeholder={'0'}
              id={props.id}
              required={props.isRequired}
              readOnly={props.readonly}

@@ -11,7 +11,7 @@ export function useInputNumber(props: CurrencyInputProps) {
     return number.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
   }
 
-  const [value, setValue] = useState<number | string>( getSpacedValue(String(props.defaultValue)) || '')
+  const [value, setValue] = useState<number | string>(0)
   const [width, setWidth] = useState<string>('1ch')
   const localRef = React.useRef<any>()
 
@@ -25,7 +25,15 @@ export function useInputNumber(props: CurrencyInputProps) {
       if(spacedValue === '') setValue('')
       else setValue(spacedValue)
     }
+    else if (value === '-') setValue('-')
   }
+
+  useEffect(() => {
+    if(props.defaultValue) {
+      setValue(getSpacedValue(String(props.defaultValue)))
+    }
+    else setValue('')
+  }, [])
 
   useEffect(() => {
     const valueWidth = localRef.current.scrollWidth
@@ -34,9 +42,10 @@ export function useInputNumber(props: CurrencyInputProps) {
   }, [value])
 
   const getLimitedValue = (number: string) => {
+    if(number === '') return ''
     let result = number.split(' ').join('')
-    if(props.min && number <= props.min) result = String(props.min)
-    if(props.max && number >= props.max) result = String(props.max)
+    if(props.min && Number(number) <= props.min) result = String(props.min)
+    if(props.max && Number(number) >= props.max) result = String(props.max)
     return Number(result)
   }
 

@@ -34,6 +34,15 @@
 
     & .currencyInput-number {
       color: dt.$green-100;
+
+      &::placeholder {
+        color: dt.$green-90;
+      }
+    }
+
+    & .currencyInput-icon span > i {
+      color: dt.$green-100;
+      font-size: 15px;
     }
   }
   &.currencyInput-wrapper-awaiting {
@@ -43,6 +52,14 @@
 
     & .currencyInput-number {
       color: dt.$red-100;
+      &::placeholder {
+        color: dt.$red-90;
+      }
+    }
+
+    & .currencyInput-icon span > i {
+      color: dt.$red-100;
+      font-size: 15px;
     }
   }
 
@@ -73,7 +90,6 @@
       & .currencyInput-number {
         color: dt.$primary-100;
         border: 1px solid dt.$primary-100;
-
         &::placeholder {
           color: dt.$primary-80;
         }
@@ -85,9 +101,8 @@
       & .currencyInput-number {
         color: dt.$red-100;
         border: 1px solid dt.$red-100;
-
         &::placeholder {
-          color: dt.$red-80;
+          color: dt.$red-90;
         }
       }
     }
@@ -111,10 +126,7 @@
   &.currencyInput-wrapper-readonly {
     user-select: none;
     cursor: default;
-    & .currencyInput-number {
-      cursor: default;
-      pointer-events: none;
-    }
+    pointer-events: none;
   }
   &.currencyInput-wrapper-disabled {
     opacity: 0.4;
@@ -124,6 +136,9 @@
     & .currencyInput-number {
       cursor: not-allowed;
       pointer-events: none;
+    }
+    & .currencyInput-currency {
+      cursor: not-allowed;
     }
   }
 }

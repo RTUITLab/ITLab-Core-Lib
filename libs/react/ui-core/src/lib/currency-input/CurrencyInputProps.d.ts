@@ -13,7 +13,7 @@ export interface CurrencyInputProps extends DefaultParams{
   disabled?: boolean;
 
   /** Identifier of the component */
-  id: string;
+  id?: string;
 
   /** Name of input filed */
   name?: string;
@@ -23,9 +23,6 @@ export interface CurrencyInputProps extends DefaultParams{
 
   /** Specifies the default value of input field */
   defaultValue?: number
-
-  /** Specifies a short hint that describes the expected value of an input field */
-  placeholder?: string;
 
   /** On change action */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -73,10 +70,10 @@ export interface CurrencyInputProps extends DefaultParams{
   informationPosition?: "left" | "right" | "top" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right" | "left-top" | "left-bottom" | "right-top" | "right-bottom" ;
 
   /** Specifies the minimum value of component */
-  min?: string | number;
+  min?: number;
 
   /** Specifies the maximum value of component */
-  max?: string | number;
+  max?: number;
 
   /** Index of the element in tabbing order */
   tabIndex?: number

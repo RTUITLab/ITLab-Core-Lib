@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { CurrencyInput } from './currency-input';
+import Icon from '../icon/icon'
 
 export default {
   component: CurrencyInput,
@@ -19,9 +20,32 @@ const Template: ComponentStory<typeof CurrencyInput> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  defaultValue: 1000,
   displayInformation: true,
-  informationPosition: 'bottom',
+  informationPosition: 'right',
+  information: {
+    title: 'Title',
+    description: 'description'
+  },
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  icon: <Icon name={'ri-price-tag-3-line'} />,
+  displayInformation: true,
+  isSuccess: true,
+  informationPosition: 'right',
+  information: {
+    title: 'Title',
+    description: 'description'
+  },
+};
+
+export const MinMax = Template.bind({});
+MinMax.args = {
+  displayInformation: true,
+  min: -10,
+  max: 1000,
+  informationPosition: 'right',
   information: {
     title: 'Title',
     description: 'description'
