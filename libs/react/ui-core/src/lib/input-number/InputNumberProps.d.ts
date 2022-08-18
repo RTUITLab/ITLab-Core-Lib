@@ -18,9 +18,6 @@ export interface InputNumberProps extends DefaultParams{
   /** Specifies the default value of input field */
   defaultValue?: number
 
-  /** Specifies a short hint that describes the expected value of an input field */
-  placeholder?: string;
-
   /** On change action */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 

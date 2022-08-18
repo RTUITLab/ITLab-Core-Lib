@@ -19,7 +19,7 @@ export const InputNumber = forwardRef((props: InputNumberProps, ref: any) => {
              autoFocus={props.autoFocus}
              disabled={(props.disabled !== undefined && props.disabled)}
              value={value}
-             placeholder={props.placeholder || '0'}
+             placeholder={'0'}
              name={props.name}
              id={props.id}
              step={props.step || 1}

@@ -5,7 +5,9 @@ export default {
   component: InputNumber,
   title: 'InputNumber',
   argTypes: {
-
+    min: { control: {type: 'number'}},
+    max: { control: {type: 'number'}},
+    className: { control: {type: 'text'}},
   }
 } as ComponentMeta<typeof InputNumber>;
 
