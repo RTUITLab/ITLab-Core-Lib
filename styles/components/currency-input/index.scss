@@ -1,0 +1,16 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/icons' as *;
+
+.currencyInput-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+
+  .currencyInput-number {
+    outline: none;
+    border: none;
+  }
+
+
+}

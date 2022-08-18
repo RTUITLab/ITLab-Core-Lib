@@ -1,3 +1,4 @@
+export * from './lib/currency-input/currency-input';
 export * from './lib/text-area/text-area';
 export * from './lib/tooltip/tooltip';
 export * from './lib/dropdown/dropdown';
