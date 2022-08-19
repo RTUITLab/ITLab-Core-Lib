@@ -1,0 +1,131 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/icons' as *;
+
+/* GRID */
+.row {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.row-middle {
+  align-items: center;
+}
+
+.col {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+}
+
+/* Calendar */
+.calendar {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 362px;
+  background: #fff;
+  box-shadow: 0 6px 24px rgba(38, 44, 71, 0.16);
+  border-radius: 6px;
+  padding: 22px 28px;
+}
+
+.calendar .header {
+  font-size: 16px;
+  font-weight: 500;
+
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calendar .header .icon {
+  display: flex;
+  align-items: center;
+}
+
+.calendar .header .icon i {
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.15s ease;
+  color: dt.$general-70;
+}
+
+.calendar .header .icon i:hover {
+  color: dt.$primary-100;
+}
+
+.calendar .title {
+  color: dt.$general-100;
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-size: dt.$typo-font-p-medium-size;
+  line-height: 24px;
+}
+
+.calendar .days {
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #A1A7C4;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.calendar .body .cell {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.25s ease-out;
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
+}
+
+.calendar .body .cell:hover {
+  color: #4F81FF;
+  transition: 0.2s linear;
+}
+
+.calendar .body .selected {
+  background-color: #4F81FF;
+}
+.calendar .body .selected .number {
+  color: white;
+}
+
+.calendar .body .row {
+  gap: 2px;
+}
+
+.calendar .body .row:last-child {
+  border-bottom: none;
+}
+
+.calendar .body .cell:nth-child(7) {
+  border-right: none;
+}
+
+.calendar .body .cell .number {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.calendar .body .disabled {
+  pointer-events: none;
+}
+
+.calendar .body .col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

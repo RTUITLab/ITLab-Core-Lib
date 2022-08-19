@@ -3,11 +3,14 @@ import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
 import React, {useEffect} from "react";
+import {Calendar} from '../../../../../libs/react/ui-core/src/lib/input/calendar/calendar'
 
 export function App() {
 
   return (
     <>
+
+      <Calendar />
 
       <NxWelcome title="react-ui-core-app" />
       <div />
