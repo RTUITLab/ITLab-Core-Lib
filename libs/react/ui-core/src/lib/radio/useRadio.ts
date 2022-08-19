@@ -55,6 +55,17 @@ export function useRadio(props: RadioProps) {
   const labelStyleClass = useMemo(() => {
     const classList = [styles['radio-label']];
 
+    const conditions:{[index: string]:boolean} = {
+      "radio-disabled": props.disabled === true,
+      "radio-readonly": props.readonly === true,
+    };
+
+    Object.keys(conditions).forEach((key:string) => {
+      if (conditions[key]) {
+        classList.push(styles[key]);
+      }
+    });
+
     if(typeof props.labelStyleClass === 'string') classList.push(props.labelStyleClass);
     if(typeof props.labelStyleClass === 'object') classList.push(...props.labelStyleClass);
 
