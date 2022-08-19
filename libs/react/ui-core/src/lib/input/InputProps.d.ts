@@ -75,12 +75,6 @@ export interface InputProps extends DefaultParams{
   /** Specifies the maximum number of characters allowed in an input field */
   maxLength?: number;
 
-  /** Specifies the minimum value of component */
-  min?: string | number;
-
-  /** Specifies the maximum value of component */
-  max?: string | number;
-
   /** Index of the element in tabbing order */
   tabIndex?: number
 }

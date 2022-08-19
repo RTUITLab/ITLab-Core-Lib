@@ -36,8 +36,6 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
                type={props.type || 'text'}
                maxLength={props.maxLength}
                pattern={props.pattern}
-               min={props.min}
-               max={props.max}
                tabIndex={props.tabIndex}
                onClick={props.onClick}
                onKeyUp={props.onKeyUp}
