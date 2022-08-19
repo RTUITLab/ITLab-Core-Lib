@@ -12,5 +12,5 @@ export interface BadgeProps extends DefaultParams {
   color?: 'primary' | 'red' | 'green' | 'orange' | 'transparent';
 
   /** Text inside of the badge */
-  text: string;
+  children: string | ReactNode;
 }

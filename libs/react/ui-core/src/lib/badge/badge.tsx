@@ -6,7 +6,7 @@ const Badge = forwardRef((props: BadgeProps, ref: any) => {
   const classes = useBadge(props);
   return (
     <span className={classes} ref={ref} style={props.style}>
-      {props.text}
+      {props.children}
     </span>
   );
 });

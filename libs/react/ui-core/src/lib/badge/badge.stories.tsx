@@ -20,7 +20,7 @@ const Template: ComponentStory<typeof Badge> = (args) => <Badge {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  text: 'Badge',
+  children: 'Badge',
   type: 'outline',
   color: 'primary',
   shape: 'rectangular',
