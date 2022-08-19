@@ -88,13 +88,6 @@
   }
 }
 
-.checkbox-readonly {
-  cursor: default;
-}
-.checkbox-disabled {
-  cursor: not-allowed;
-  user-select: none;
-}
 
 .checkbox-label {
   font-family: dt.$typo-font-p-regular-family;
@@ -105,4 +98,19 @@
 
   cursor: pointer;
   user-select: none;
+
+}
+.checkbox-readonly {
+  cursor: default;
+
+  & .checkbox-label {
+    cursor: default;
+  }
+}
+.checkbox-disabled {
+  cursor: not-allowed;
+  user-select: none;
+  & .checkbox-label {
+    cursor: not-allowed;
+  }
 }
