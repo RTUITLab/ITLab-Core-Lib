@@ -88,10 +88,10 @@
   }
 }
 
-&.checkbox-readonly {
+.checkbox-readonly {
   cursor: default;
 }
-&.checkbox-disabled {
+.checkbox-disabled {
   cursor: not-allowed;
   user-select: none;
 }
