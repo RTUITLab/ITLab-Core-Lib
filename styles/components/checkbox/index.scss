@@ -64,7 +64,7 @@
     border: 1px solid dt.$primary-100;
     background: dt.$primary-100;
 
-    &:not(.checkbox-disabled):not(.checkbox-invalid):hover {
+    &:not(.checkbox-disabled):not(.checkbox-invalid):not(.checkbox-readonly):hover {
       background: dt.$primary-80;
       border: 1px solid dt.$primary-80;
     }
