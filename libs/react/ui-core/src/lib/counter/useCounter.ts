@@ -40,7 +40,7 @@ export function useCounter(props: CounterProps) {
   }, [props]);
 
   const count = useMemo(() => {
-    if (props.children && props.overflowCount && Number.parseInt(props.children.toString()) > props.overflowCount) {
+    if (props.children && props.overflowCount && props.overflowCount >= 0 && Number.parseInt(props.children.toString()) > props.overflowCount) {
       return props.overflowCount + "+";
     } else {
       return props.children;

@@ -22,4 +22,5 @@ Primary.args = {
   type: 'outline',
   size: 'large',
   color: 'primary',
+  overflowCount: 99,
 };
