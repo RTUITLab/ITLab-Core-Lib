@@ -43,7 +43,8 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
              onChange={(e) => handleChange(e)}
              onFocus={props.onFocus}
              onBlur={props.onBlur}
-             style={{width: width}}
+             size={props.size}
+             style={!props.size ? {width: width} : {}}
       />
       <span className={styles['currencyInput-currency']}>{props.currency || '₽'}</span>
       {icon}

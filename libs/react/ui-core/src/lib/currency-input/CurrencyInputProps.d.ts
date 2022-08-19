@@ -77,4 +77,7 @@ export interface CurrencyInputProps extends DefaultParams{
 
   /** Index of the element in tabbing order */
   tabIndex?: number
+
+  /** Size of the element */
+  size?: number
 }

@@ -30,7 +30,8 @@ export function useInputNumber(props: CurrencyInputProps) {
 
   useEffect(() => {
     if(props.defaultValue) {
-      setValue(getSpacedValue(String(props.defaultValue)))
+      const limitedValue = String(getLimitedValue(String(props.defaultValue)))
+      setValue(getSpacedValue(limitedValue))
     }
     else setValue('')
   }, [])
@@ -44,8 +45,8 @@ export function useInputNumber(props: CurrencyInputProps) {
   const getLimitedValue = (number: string) => {
     if(number === '') return ''
     let result = number.split(' ').join('')
-    if(props.min && Number(number) <= props.min) result = String(props.min)
-    if(props.max && Number(number) >= props.max) result = String(props.max)
+    if(props.min && (Number(result) <= props.min)) result = String(props.min)
+    if(props.max && (Number(result) >= props.max)) result = String(props.max)
     return Number(result)
   }
 

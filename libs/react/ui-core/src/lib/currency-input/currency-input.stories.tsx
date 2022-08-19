@@ -22,6 +22,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   displayInformation: true,
   informationPosition: 'right',
+  defaultValue: 2500,
   information: {
     title: 'Title',
     description: 'description'
@@ -32,6 +33,7 @@ export const WithIcon = Template.bind({});
 WithIcon.args = {
   icon: <Icon name={'ri-price-tag-3-line'} />,
   displayInformation: true,
+  defaultValue: 2000,
   isSuccess: true,
   informationPosition: 'right',
   information: {
@@ -43,8 +45,8 @@ WithIcon.args = {
 export const MinMax = Template.bind({});
 MinMax.args = {
   displayInformation: true,
-  min: -10,
-  max: 1000,
+  min: -100,
+  max: 100000,
   informationPosition: 'right',
   information: {
     title: 'Title',

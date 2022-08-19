@@ -34,6 +34,7 @@
 
     & .currencyInput-number {
       color: dt.$green-100;
+      pointer-events: none;
 
       &::placeholder {
         color: dt.$green-90;
@@ -52,6 +53,8 @@
 
     & .currencyInput-number {
       color: dt.$red-100;
+      pointer-events: none;
+
       &::placeholder {
         color: dt.$red-90;
       }
