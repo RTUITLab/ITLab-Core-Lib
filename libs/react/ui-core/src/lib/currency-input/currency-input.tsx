@@ -48,7 +48,7 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
       <span className={styles['currencyInput-currency']}>{props.currency || '₽'}</span>
       {icon}
       {/*Need to count input value width and autoscale input*/}
-      <span className={styles['currencyInput-hidden']} style={{position: 'absolute', opacity: 0, left: 0, top: 0}} ref={localRef}>{value}</span>
+      <span className={styles['currencyInput-hidden']} ref={localRef}>{value}</span>
     </div>
   );
 })
