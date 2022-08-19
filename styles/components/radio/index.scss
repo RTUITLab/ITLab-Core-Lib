@@ -45,7 +45,7 @@
     border: 1px solid dt.$primary-100;
     background: dt.$primary-100;
 
-    &:not(.radio-disabled):hover {
+    &:not(.radio-disabled):not(.radio-readonly):hover {
       background: dt.$primary-80;
       border: 1px solid dt.$primary-80;
     }

@@ -1,6 +1,5 @@
 import {DefaultParams} from "../../default-types/defaultParams";
 import React from 'react'
-import Icon from '../icon/icon'
 
 export interface RadioProps extends DefaultParams {
 
@@ -21,9 +20,6 @@ export interface RadioProps extends DefaultParams {
 
   /** When present, it specifies that the element should be disabled */
   disabled?: boolean;
-
-  /** When present, it specifies that the component cannot be edited */
-  radioIcon?: React.ReactNode<Icon>;
 
   /** [It doesn't change checked state of radio] Variable which stores value, which used in when radio is checked */
   value: string;

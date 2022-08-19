@@ -16,13 +16,13 @@ export default {
 } as ComponentMeta<typeof Radio>;
 
 const Template: ComponentStory<typeof Radio> = (args) => {
-  const[checkedValue, setCheckedValue] = useState<string>()
+  const[checkedValue, setCheckedValue] = useState<string>('example')
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCheckedValue(e.target.value)
   }
   return(
     <>
-      <Radio {...args} style={{marginBottom: 10}} onChange={handleChange} value={'example'} checked={checkedValue === 'example'} label={'item 1'} />
+      <Radio {...args} style={{marginBottom: 10}} onChange={handleChange}  value={'example'} checked={checkedValue === 'example'} label={'item 1'} />
       <Radio {...args} onChange={handleChange} value={'test'} checked={checkedValue === 'test'} label={'item 2'} />
     </>
     )
