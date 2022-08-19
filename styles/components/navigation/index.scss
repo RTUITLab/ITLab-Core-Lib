@@ -302,41 +302,33 @@
         text-overflow: ellipsis;
       }
 
-      // У стрелки на @extend тригерится transition, что заставляло её крутиться при наведении.
-      // Из-за этого пришлось отделить hover и отдельно прописать ему все стили из navigation-item-content-open.
-      &:hover {
-        margin-bottom: -2px;
-        border-bottom: 2px solid dt.$primary-90;
-        color: dt.$primary-90;
-
-        .navigation-item-content-icon {
-          color: dt.$primary-90;
-          & *:nth-child(n) {
-            color: dt.$primary-90;
-          }
-        }
-      }
-
       &:focus {
         @extend .navigation-item-content-open;
       }
     }
 
-    .navigation-item-content-open {
+    // Стрелка некорректно себя ведёт при @extend (на hover тригерился transtition, на -active всегда была в одном положении)
+    // Поэтому стили для классов прописаны так
+    .navigation-item-content-open,
+    .navigation-item-content:hover,
+    .navigation-item-content-active {
       margin-bottom: -2px;
       border-bottom: 2px solid dt.$primary-90;
       color: dt.$primary-90;
-
-      .navigation-item-content-icon {
+      .navigation-item-content-icon:first-child {
         color: dt.$primary-90;
-        & *:nth-child(n) {
+        & * {
           color: dt.$primary-90;
         }
       }
     }
 
-    .navigation-item-content-active {
-      @extend .navigation-item-content-open;
+    .navigation-item-content:hover {
+      .navigation-item-content-icon:last-child {
+        & * {
+          color: dt.$primary-90;
+        }
+      }
     }
 
     .navigation-item-submenu {
