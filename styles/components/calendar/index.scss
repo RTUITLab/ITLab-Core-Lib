@@ -2,7 +2,7 @@
 @use '../../../styles/icons' as *;
 
 /* GRID */
-.row {
+.calendar-row {
   margin: 0;
   padding: 0;
   display: flex;
@@ -11,11 +11,7 @@
   width: 100%;
 }
 
-.row-middle {
-  align-items: center;
-}
-
-.col {
+.calendar-col {
   flex-grow: 1;
   flex-basis: 0;
   max-width: 100%;
@@ -32,100 +28,108 @@
   box-shadow: 0 6px 24px rgba(38, 44, 71, 0.16);
   border-radius: 6px;
   padding: 22px 28px;
-}
 
-.calendar .header {
-  font-size: 16px;
-  font-weight: 500;
+  & .calendar-header {
+    font-family: dt.$typo-font-p-medium-family;
+    font-style: dt.$typo-font-p-medium-style;
+    font-size: dt.$typo-font-p-medium-size;
+    font-weight: dt.$typo-font-p-medium-weight;
+    line-height: 24px;
 
-  margin-bottom: 20px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-.calendar .header .icon {
-  display: flex;
-  align-items: center;
-}
+    & .calendar-icon {
+      display: flex;
+      align-items: center;
 
-.calendar .header .icon i {
-  font-size: 24px;
-  cursor: pointer;
-  transition: 0.15s ease;
-  color: dt.$general-70;
-}
+      & > i {
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.15s ease;
+        color: dt.$general-70;
 
-.calendar .header .icon i:hover {
-  color: dt.$primary-100;
-}
+        &:hover {
+          color: dt.$primary-100;
+        }
+      }
+    }
+  }
 
-.calendar .title {
-  color: dt.$general-100;
-  font-family: dt.$typo-font-p-medium-family;
-  font-style: dt.$typo-font-p-medium-style;
-  font-weight: dt.$typo-font-p-medium-weight;
-  font-size: dt.$typo-font-p-medium-size;
-  line-height: 24px;
-}
+  & .calendar-title {
+    color: dt.$general-100;
+    font-family: dt.$typo-font-p-medium-family;
+    font-style: dt.$typo-font-p-medium-style;
+    font-weight: dt.$typo-font-p-medium-weight;
+    font-size: dt.$typo-font-p-medium-size;
+    line-height: 24px;
+  }
 
-.calendar .days {
-  text-transform: uppercase;
-  font-weight: 500;
-  color: #A1A7C4;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 12px;
-  text-align: center;
-}
+  & .calendar-days {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #A1A7C4;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
 
-.calendar .body .cell {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: 0.25s ease-out;
-  height: 40px;
-  width: 40px;
-  border-radius: 4px;
-}
+  & .calendar-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    & .calendar-cell {
+      box-sizing: border-box;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.15s ease;
+      height: 40px;
+      width: 42px;
+      border-radius: 4px;
 
-.calendar .body .cell:hover {
-  color: #4F81FF;
-  transition: 0.2s linear;
-}
+      &:not(&.calendar-selected):hover {
+        color: dt.$primary-80;
+      }
 
-.calendar .body .selected {
-  background-color: #4F81FF;
-}
-.calendar .body .selected .number {
-  color: white;
-}
+      & .calendar-number {
+        font-family: dt.$typo-font-p-medium-family;
+        font-style: dt.$typo-font-p-medium-style;
+        font-size: dt.$typo-font-p-medium-size;
+        font-weight: dt.$typo-font-p-regular-weight;
+        line-height: 24px;
+      }
+    }
 
-.calendar .body .row {
-  gap: 2px;
-}
+    & .calendar-current {
+      border: 1px solid dt.$primary-80;
+    }
+    & .calendar-selected {
+      background-color: dt.$primary-80;
+      color: #fff;
+    }
+    & .calendar-row {
+      gap: 2px;
 
-.calendar .body .row:last-child {
-  border-bottom: none;
-}
-
-.calendar .body .cell:nth-child(7) {
-  border-right: none;
-}
-
-.calendar .body .cell .number {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 500;
-}
-
-.calendar .body .disabled {
-  pointer-events: none;
-}
-
-.calendar .body .col {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      &:last-child {
+        border-bottom: none;
+      }
+      &:nth-child(7) {
+        border-right: none;
+      }
+    }
+    & .calendar-disabled {
+      pointer-events: none;
+    }
+    & .calendar-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

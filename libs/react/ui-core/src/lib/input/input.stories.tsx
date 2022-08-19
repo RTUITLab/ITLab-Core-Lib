@@ -2,6 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Input } from './input';
 import React from 'react'
 import Icon from '../icon/icon'
+import {Calendar} from './calendar/calendar'
 
 export default {
   component: Input,
@@ -17,7 +18,14 @@ export default {
   }
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof Input> = (args) => {
+  return (
+    <>
+      <Input {...args} />
+      <Calendar />
+    </>
+  )
+};
 
 export const Primary = Template.bind({});
 Primary.args = {

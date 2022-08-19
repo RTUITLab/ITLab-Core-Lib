@@ -3,7 +3,7 @@ import styles from './calendar.module.scss'
 import {useCalendar} from './useCalendar'
 
 export const Calendar = React.memo(() => {
-  const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth} = useCalendar()
+  const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay} = useCalendar()
 
   const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
   const weeks = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
@@ -28,7 +28,8 @@ export const Calendar = React.memo(() => {
       <CalendarHeader month={month} prevMonth={prevMonth} nextMonth={nextMonth} currentMonth={currentMonth} />
       <CalendarDays weeks={weeks} getMonday={getMonday} addDays={addDays} />
       <CalendarCells addDays={addDays} getMonday={getMonday} currentMonth={currentMonth} endOfMonth={endOfMonth} isSameMonth={isSameMonth}
-                     startOfMonth={startOfMonth} isSameDay={isSameDay} endOfWeek={endOfWeek} onDateClick={onDateClick} selectedDate={selectedDate} />
+                     startOfMonth={startOfMonth} isSameDay={isSameDay} endOfWeek={endOfWeek} onDateClick={onDateClick} selectedDate={selectedDate}
+                     isCurrentDay={isCurrentDay} />
 
     </div>
   )
@@ -36,12 +37,12 @@ export const Calendar = React.memo(() => {
 
 const CalendarHeader:FC<CalendarHeaderType> = ({month, prevMonth, nextMonth, currentMonth}) => {
   return (
-    <div className={`${styles['header']} ${styles['row']}`}>
-      <span className={`${styles['icon']}`} onClick={prevMonth}><i className='ri-arrow-left-s-line' /></span>
-      <div className={`${styles['title']}`}>
+    <div className={`${styles['calendar-header']} ${styles['calendar-row']}`}>
+      <span className={`${styles['calendar-icon']}`} onClick={prevMonth}><i className='ri-arrow-left-s-line' /></span>
+      <div className={`${styles['calendar-title']}`}>
         {month[currentMonth.getMonth()]} {currentMonth.getFullYear()}
       </div>
-      <span className={`${styles['icon']}`} onClick={nextMonth}><i className='ri-arrow-right-s-line' /></span>
+      <span className={`${styles['calendar-icon']}`} onClick={nextMonth}><i className='ri-arrow-right-s-line' /></span>
     </div>
   );
 }
@@ -57,7 +58,7 @@ const CalendarDays:FC<CalendarDaysType> = ({weeks, getMonday, addDays}) => {
   const startDate = getMonday(new Date());
   for (let i = 0; i < 7; i++) {
     days.push(
-      <div className={`${styles['col']} ${styles['col-center']}`} key={i}>
+      <div className={`${styles['calendar-col']}`} key={i}>
         {
           weeks[addDays(startDate, i - 1).getDay()]
         }
@@ -65,7 +66,7 @@ const CalendarDays:FC<CalendarDaysType> = ({weeks, getMonday, addDays}) => {
     );
   }
 
-  return <div className={`${styles['days']} ${styles['row']}`}>{days}</div>;
+  return <div className={`${styles['calendar-days']} ${styles['calendar-row']}`}>{days}</div>;
 }
 type CalendarDaysType = {
   weeks: string[]
@@ -73,7 +74,7 @@ type CalendarDaysType = {
   addDays: (start_date: Date, days: number) => Date
 }
 
-const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfMonth,
+const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfMonth, isCurrentDay,
                                                startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, onDateClick, getMonday}) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
@@ -99,21 +100,16 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
       days.push(
         <>
           {
-
             isSameMonth(day, monthStart) ?
               <div
-                className={`${styles['col']} ${styles['cell']} ${
-                  !isSameMonth(day, monthStart)
-                    ? `${styles['disabled']}`
-                    : isSameDay(day, selectedDate) ? `${styles['selected']}` : ""
-                }`}
+                className={`${styles['calendar-col']} ${styles['calendar-cell']} ${isSameDay(day, selectedDate) ? `${styles['calendar-selected']}` : ""} ${isCurrentDay(day) ? `${styles['calendar-current']}` : ""}`}
                 key={String(day)}
                 onClick={() => onDateClick(new Date(cloneDay))}
               >
-                <span className={`${styles['number']}`}>{formattedDate}</span>
+                <span className={`${styles['calendar-number']}`}>{formattedDate}</span>
               </div>
               :
-              <div className={`${styles['col']} ${styles['cell']}`}></div>
+              <div className={`${styles['calendar-col']} ${styles['calendar-cell']}`}></div>
           }
         </>
 
@@ -121,13 +117,13 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
       day = addDays(day, 1);
     }
     rows.push(
-      <div className={`${styles['row']}`} key={String(day)}>
+      <div className={`${styles['calendar-row']}`} key={String(day)}>
         {days}
       </div>
     );
     days = [];
   }
-  return <div className={`${styles['body']}`}>{rows}</div>;
+  return <div className={`${styles['calendar-body']}`}>{rows}</div>;
 }
 
 type CalendarCellsType = {
@@ -139,6 +135,7 @@ type CalendarCellsType = {
   endOfWeek: (date: Date) => Date
   isSameMonth: (day: Date, monthStart: Date) => boolean
   isSameDay: (day: Date, monthStart: Date) => boolean
+  isCurrentDay: (day: Date) => boolean
   addDays: (start_date: Date, days: number) => Date
   onDateClick: (day: Date) => void
 }
