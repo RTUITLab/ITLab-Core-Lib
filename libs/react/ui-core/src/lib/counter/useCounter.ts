@@ -14,15 +14,15 @@ export function useCounter(props: CounterProps) {
     const classList = [styles['counter']];
 
     const readyClasses: { [index: string]: boolean } = {
-      "counter-primary": props.color === "primary",
+      "counter-primary": props.color === "primary" || !props.color,
       "counter-red": props.color === "red",
       "counter-green": props.color === "green",
       "counter-orange": props.color === "orange",
       "counter-solid": props.type === "solid",
-      "counter-outline": props.type === "outline",
+      "counter-outline": props.type === "outline" || !props.type,
       "counter-light": props.type === "light",
       "counter-small": props.size === "small",
-      "counter-medium": props.size === "medium",
+      "counter-medium": props.size === "medium" || !props.size,
       "counter-large": props.size === "large",
       "counter-transparent": props.color === "transparent",
     };
@@ -33,11 +33,8 @@ export function useCounter(props: CounterProps) {
       }
     }
 
-    if (typeof props.className === "string") {
-      classList.push(props.className);
-    } else if (typeof props.className === "object") {
-      classList.push(props.className.join(" "));
-    }
+    if (typeof props.className === "string") classList.push(props.className)
+    else if (typeof props.className === "object") classList.push(props.className.join(" "))
 
     return classList.join(" ");
   }, [props]);
