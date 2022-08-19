@@ -1,3 +1,4 @@
+export * from './lib/radio-group/radio-group';
 export * from './lib/radio/radio';
 export * from './lib/avatar/avatar';
 export * from './lib/input/input';

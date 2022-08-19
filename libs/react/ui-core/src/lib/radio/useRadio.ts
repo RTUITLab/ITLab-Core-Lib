@@ -3,13 +3,12 @@ import styles from './radio.module.scss'
 import {RadioProps} from './RadioProps'
 
 /**
- * Hook for checkbox
+ * Hook for radio
  */
-export function useRadio(props: RadioProps) {
+export function useRadio(props: RadioProps, disabled: boolean, readonly: boolean) {
   const [focused, setFocused] = useState<boolean>(false)
-
   const handleFocus = (focused: boolean) => {
-    if(!props.disabled && !props.readonly) {
+    if(!disabled && !readonly) {
       setFocused(focused)
     }
   }
@@ -19,8 +18,8 @@ export function useRadio(props: RadioProps) {
 
     const conditions:{[index: string]:boolean} = {
       "radio": true,
-      "radio-disabled": props.disabled === true,
-      "radio-readonly": props.readonly === true,
+      "radio-disabled": disabled,
+      "radio-readonly": readonly,
     };
 
     Object.keys(conditions).forEach((key:string) => {
@@ -36,8 +35,8 @@ export function useRadio(props: RadioProps) {
 
     const conditions:{[index: string]:boolean} = {
       "radio-box": true,
-      "radio-disabled": props.disabled === true,
-      "radio-readonly": props.readonly === true,
+      "radio-disabled": disabled,
+      "radio-readonly": readonly,
     };
 
     Object.keys(conditions).forEach((key:string) => {
@@ -56,8 +55,8 @@ export function useRadio(props: RadioProps) {
     const classList = [styles['radio-label']];
 
     const conditions:{[index: string]:boolean} = {
-      "radio-disabled": props.disabled === true,
-      "radio-readonly": props.readonly === true,
+      "radio-disabled": disabled,
+      "radio-readonly": readonly,
     };
 
     Object.keys(conditions).forEach((key:string) => {
