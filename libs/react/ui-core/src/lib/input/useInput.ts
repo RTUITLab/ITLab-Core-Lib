@@ -4,26 +4,38 @@ import styles from './input.module.scss'
 import {useCalendar} from './calendar/useCalendar'
 
 export function useInput(props: InputProps) {
-  const [isFocus, setIsFocus] = useState<boolean>(props.autoFocus || false)
+  const [isOpen, setIsOpen] = useState<boolean>(props.autoFocus || false)
   const [value, setValue] = useState<string | number>(props.value || props.defaultValue || '')
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
+  const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
+
   const calendar = createRef<HTMLLabelElement>();
   const {getStringDate} = useCalendar()
 
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    if(props.onFocus) props.onFocus(e)
-    setIsFocus(true)
+  const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+    if(props.onClick) props.onClick(e)
+    setIsOpen(true)
   }
 
-  const handleSelectDate = (date: Date) => {
-    if(props.onSelectDate) props.onSelectDate(date)
-    setSelectedDate(date)
-    setValue(getStringDate(date))
-    // setIsFocus(false)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if(props.onChange) props.onChange(e)
+    setValue(e.target.value)
+    setSelectedDate(new Date(e.target.value))
+    setCurrentMonth(new Date(e.target.value))
   }
 
-  const handleChange = (e: any) => {
-    debugger
+  const handleSelectDate = (date: Date | string) => {
+    if(typeof date === 'string') {
+      setSelectedDate(new Date())
+      setCurrentMonth(new Date())
+      setValue('')
+    }
+    else {
+      if(props.onSelectDate) props.onSelectDate(date)
+      setSelectedDate(date)
+      setValue(getStringDate(date))
+    }
+    setIsOpen(false)
   }
 
   useEffect(() => {
@@ -35,8 +47,8 @@ export function useInput(props: InputProps) {
   })
 
   const handleClickOutside = (event: any) => {
-    if(isFocus && calendar.current && !calendar.current.contains(event.target)) {
-      setIsFocus(false)
+    if(isOpen && calendar.current && !calendar.current.contains(event.target)) {
+      setIsOpen(false)
     }
   }
 
@@ -78,8 +90,8 @@ export function useInput(props: InputProps) {
     return classList.join(' ');
   }, [props]);
 
-  console.log(isFocus)
+  console.log(isOpen)
 
-  return {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate, handleChange, selectedDate}
+  return {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, currentMonth, setCurrentMonth}
 }
 

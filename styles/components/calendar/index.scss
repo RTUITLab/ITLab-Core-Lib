@@ -134,4 +134,20 @@
       justify-content: center;
     }
   }
+  & .calendar-clearBtn {
+    display: block;
+    background: transparent;
+    outline: none;
+    margin-left: auto;
+    border: none;
+
+    font-family: dt.$typo-font-p-medium-family;
+    font-style: dt.$typo-font-p-medium-style;
+    font-size: dt.$typo-font-p-medium-size;
+    font-weight: dt.$typo-font-p-regular-weight;
+    line-height: 24px;
+
+    cursor: pointer;
+    color: dt.$primary-100;
+  }
 }

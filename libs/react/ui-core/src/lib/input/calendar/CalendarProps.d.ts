@@ -3,8 +3,14 @@ import {DefaultParams} from "../../default-types/defaultParams";
 export interface CalendarProps extends DefaultParams{
 
   /** Select date event */
-  onSelectDate: (date: Date) => void;
+  onSelectDate: (date: Date | string) => void;
 
-  /** Selected date */
+  /** Set displayed month */
+  setCurrentMonth: (currentMonth: Date) => void;
+
+  /** Displayed month */
+  currentMonth: Date
+
+  /** Selected day */
   selectedDate: Date
 }

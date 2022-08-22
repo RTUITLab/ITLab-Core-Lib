@@ -1,25 +1,23 @@
-import React, {FC, useState} from 'react'
+import React, {FC} from 'react'
 import styles from './calendar.module.scss'
 import {useCalendar} from './useCalendar'
 import {CalendarProps} from './CalendarProps'
 
-export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, selectedDate}) => {
-  const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay} = useCalendar()
+export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, setCurrentMonth, currentMonth, selectedDate}) => {
+  const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, } = useCalendar()
 
   const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
   const weeks = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
-
-  const [currentMonth, setCurrentMonth] = useState<Date>(new Date(selectedDate))
   const onDateClick = (day: Date) => {
     onSelectDate(day)
   };
 
   const nextMonth = () => {
-    setCurrentMonth((currentMonth) => new Date((new Date(currentMonth)).setMonth(currentMonth.getMonth() + 1)))
+    setCurrentMonth(new Date((new Date(currentMonth)).setMonth(currentMonth.getMonth() + 1)))
   };
 
   const prevMonth = () => {
-    setCurrentMonth((currentMonth) => new Date((new Date(currentMonth)).setMonth(currentMonth.getMonth() - 1)))
+    setCurrentMonth(new Date((new Date(currentMonth)).setMonth(currentMonth.getMonth() - 1)))
   };
 
   return (
@@ -29,7 +27,7 @@ export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, selectedDat
       <CalendarCells addDays={addDays} getMonday={getMonday} currentMonth={currentMonth} endOfMonth={endOfMonth} isSameMonth={isSameMonth}
                      startOfMonth={startOfMonth} isSameDay={isSameDay} endOfWeek={endOfWeek} onDateClick={onDateClick} selectedDate={selectedDate}
                      isCurrentDay={isCurrentDay} />
-
+      <button className={styles['calendar-clearBtn']} onClick={() => onSelectDate('')}>Удалить</button>
     </div>
   )
 });

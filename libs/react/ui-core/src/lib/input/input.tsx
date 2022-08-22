@@ -5,7 +5,7 @@ import {useInput} from './useInput'
 import {Calendar} from './calendar/calendar'
 
 export const Input = forwardRef((props: InputProps, ref: any) => {
-  const {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate, handleChange, selectedDate} = useInput(props)
+  const {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, currentMonth, setCurrentMonth} = useInput(props)
   const icons = {search: 'ri-search-line', date: 'ri-calendar-line'}
 
   const defaultIco =
@@ -41,16 +41,16 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
                maxLength={props.maxLength}
                pattern={props.pattern}
                tabIndex={props.tabIndex}
-               onClick={props.onClick}
+               onClick={handleClick}
                onKeyUp={props.onKeyUp}
                onChange={handleChange}
-               onFocus={handleFocus}
+               onFocus={props.onFocus}
                onBlur={props.onBlur}
         />
         {icon}
         {
-          isFocus &&
-          <Calendar onSelectDate={handleSelectDate} selectedDate={selectedDate} />
+          isOpen &&
+          <Calendar onSelectDate={handleSelectDate} selectedDate={selectedDate} setCurrentMonth={setCurrentMonth} currentMonth={currentMonth} />
         }
       </label>
       {(props.error && props.errorText) &&
