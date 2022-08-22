@@ -2,6 +2,7 @@
 @use '../../../styles/icons' as *;
 
 .input-wrapper {
+  position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -49,6 +50,11 @@
   & .input-icon {
     display: flex;
     align-items: center;
+  }
+
+  input[type=date]::-webkit-inner-spin-button,
+  input[type=date]::-webkit-calendar-picker-indicator {
+    display: none;
   }
 }
 

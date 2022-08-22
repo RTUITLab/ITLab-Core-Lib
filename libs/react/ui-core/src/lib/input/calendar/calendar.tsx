@@ -1,8 +1,9 @@
 import React, {FC, useState} from 'react'
 import styles from './calendar.module.scss'
 import {useCalendar} from './useCalendar'
+import {CalendarProps} from './CalendarProps'
 
-export const Calendar = React.memo(() => {
+export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate}) => {
   const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay} = useCalendar()
 
   const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
@@ -13,6 +14,7 @@ export const Calendar = React.memo(() => {
 
   const onDateClick = (day: Date) => {
     setSelectedDate(day)
+    onSelectDate(day)
   };
 
   const nextMonth = () => {
@@ -78,14 +80,8 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
                                                startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, onDateClick, getMonday}) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
-  console.log('monthEnd', monthEnd)
   const startDate = getMonday(monthStart);
   const endDate = endOfWeek(monthEnd);
-
-  console.log('monthStart', monthStart)
-  console.log('monthEnd', monthEnd)
-  console.log('startDate', startDate)
-  console.log('endDate', endDate)
 
   const rows = [];
 

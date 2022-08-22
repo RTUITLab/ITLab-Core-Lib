@@ -2,9 +2,10 @@ import React, {forwardRef} from 'react'
 import styles from './input.module.scss';
 import {InputProps} from './InputProps'
 import {useInput} from './useInput'
+import {Calendar} from './calendar/calendar'
 
 export const Input = forwardRef((props: InputProps, ref: any) => {
-  const {classes, iconClasses} = useInput(props)
+  const {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate} = useInput(props)
 
   const searchIco = <>{props.type === 'search' &&
     <span className={iconClasses}>
@@ -18,21 +19,20 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
     </span> : searchIco}
   </>
 
-
+  console.log(value)
   return (
     <>
-      <label className={`${classes}`} style={props.style}>
+      <label className={`${classes}`} ref={calendar} style={props.style}>
         <input className={styles['input']}
                ref={ref}
                autoFocus={props.autoFocus}
                disabled={(props.disabled !== undefined && props.disabled)}
-               value={props.value}
+               value={value}
                placeholder={props.placeholder}
                name={props.name}
                id={props.id}
                required={props.isRequired}
                readOnly={props.readonly}
-               defaultValue={props.defaultValue}
                type={props.type || 'text'}
                maxLength={props.maxLength}
                pattern={props.pattern}
@@ -40,10 +40,14 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
                onClick={props.onClick}
                onKeyUp={props.onKeyUp}
                onChange={props.onChange}
-               onFocus={props.onFocus}
+               onFocus={handleFocus}
                onBlur={props.onBlur}
         />
         {icon}
+        {
+          isFocus &&
+          <Calendar onSelectDate={handleSelectDate} />
+        }
       </label>
       {(props.error && props.errorText) &&
         <div className={styles['input-text-error']}>

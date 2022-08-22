@@ -2,7 +2,7 @@ import React from "react";
 import Icon from "../icon/icon";
 import {DefaultParams} from "../../default-types/defaultParams";
 
-type InputTypeEnum = 'text' | 'email' | 'password' | 'search' | 'tel'
+type InputTypeEnum = 'text' | 'email' | 'password' | 'search' | 'tel' | 'date'
 
 export interface InputProps extends DefaultParams{
 
@@ -56,6 +56,9 @@ export interface InputProps extends DefaultParams{
 
   /** On blur event */
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+
+  /** Select date event */
+  onSelectDate?: (date: Date) => void;
 
   /** Specifies that an input field must be filled out before submitting the form */
   isRequired?: boolean;

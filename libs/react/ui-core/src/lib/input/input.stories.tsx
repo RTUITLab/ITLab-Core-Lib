@@ -10,7 +10,7 @@ export default {
   argTypes: {
     icon: { control: false },
     defaultValue: { control: {type: 'text'}},
-    type: { control: {type: 'select', options: ['text', 'email', 'password', 'search', 'tel']}},
+    type: { control: {type: 'select', options: ['text', 'email', 'password', 'search', 'tel', 'date']}},
     value: { control: {type: 'text'}},
     max: { control: {type: 'text'}},
     min: { control: {type: 'text'}},
@@ -19,10 +19,13 @@ export default {
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => {
+  return <Input {...args} />
+};
+
+const CalendarTemplate: ComponentStory<typeof Input> = (args) => {
   return (
     <>
       <Input {...args} />
-      <Calendar />
     </>
   )
 };
@@ -52,4 +55,14 @@ CustomIcon.args = {
   iconPosition: 'right',
   errorText: 'Ошибка!!!',
   icon: <Icon name={'ri-flag-line'} size={24} />
+};
+
+export const DatePicker = CalendarTemplate.bind({});
+DatePicker.args = {
+  placeholder: 'Write some text',
+  size: 'medium',
+  type: 'date',
+  iconPosition: 'left',
+  errorText: 'Ошибка!!!',
+  autoFocus: true,
 };

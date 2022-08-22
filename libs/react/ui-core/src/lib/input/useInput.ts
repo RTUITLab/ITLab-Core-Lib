@@ -1,9 +1,38 @@
-import {useMemo} from 'react'
+import React, {createRef, useEffect, useMemo, useState} from 'react'
 import {InputProps} from './InputProps'
-import {getAllEvents} from '../../utils/getAllEvents'
 import styles from './input.module.scss'
+import {useCalendar} from './calendar/useCalendar'
 
 export function useInput(props: InputProps) {
+  const [isFocus, setIsFocus] = useState<boolean>(props.autoFocus || false)
+  const [value, setValue] = useState<string | number>(props.value || props.defaultValue || '')
+  const calendar = createRef<HTMLLabelElement>();
+  const {getStringDate} = useCalendar()
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    if(props.onFocus) props.onFocus(e)
+    setIsFocus(true)
+  }
+
+  const handleSelectDate = (date: Date) => {
+    if(props.onSelectDate) props.onSelectDate(date)
+    setValue(getStringDate(date))
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  })
+
+  const handleClickOutside = (event: any) => {
+    if(isFocus && calendar.current && !calendar.current.contains(event.target)) {
+      setIsFocus(false)
+    }
+  }
+
   const classes = useMemo(() => {
     const classList = [];
 
@@ -42,6 +71,6 @@ export function useInput(props: InputProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, iconClasses}
+  return {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate}
 }
 

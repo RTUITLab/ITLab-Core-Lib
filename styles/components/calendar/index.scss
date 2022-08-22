@@ -21,7 +21,9 @@
 .calendar {
   box-sizing: border-box;
   display: block;
-  position: relative;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
   width: 100%;
   max-width: 362px;
   background: #fff;
