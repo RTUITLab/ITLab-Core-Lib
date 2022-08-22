@@ -9,7 +9,7 @@ export function useInput(props: InputProps) {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
 
-  const calendar = createRef<HTMLLabelElement>();
+  const calendar = createRef<HTMLDivElement>();
   const {getStringDate} = useCalendar()
 
   const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {

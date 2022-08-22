@@ -26,7 +26,7 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
 
   return (
     <>
-      <label className={`${classes}`} ref={calendar} style={props.style}>
+      <div className={`${classes}`} ref={calendar} style={props.style}>
         <input className={styles['input']}
                ref={ref}
                autoFocus={props.autoFocus}
@@ -50,9 +50,9 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
         {icon}
         {
           isOpen &&
-          <Calendar onSelectDate={handleSelectDate} selectedDate={selectedDate} setCurrentMonth={setCurrentMonth} currentMonth={currentMonth} />
+          <Calendar onSelectDate={handleSelectDate} size={props.calendarSize} selectedDate={selectedDate} setCurrentMonth={setCurrentMonth} currentMonth={currentMonth} />
         }
-      </label>
+      </div>
       {(props.error && props.errorText) &&
         <div className={styles['input-text-error']}>
           {props.errorText}

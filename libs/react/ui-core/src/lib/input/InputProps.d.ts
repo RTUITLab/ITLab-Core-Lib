@@ -80,4 +80,7 @@ export interface InputProps extends DefaultParams{
 
   /** Index of the element in tabbing order */
   tabIndex?: number
+
+  /** Size of the calendar */
+  calendarSize?: 'default' | 'small'
 }
