@@ -6,6 +6,7 @@ import {useCalendar} from './calendar/useCalendar'
 export function useInput(props: InputProps) {
   const [isFocus, setIsFocus] = useState<boolean>(props.autoFocus || false)
   const [value, setValue] = useState<string | number>(props.value || props.defaultValue || '')
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const calendar = createRef<HTMLLabelElement>();
   const {getStringDate} = useCalendar()
 
@@ -16,7 +17,9 @@ export function useInput(props: InputProps) {
 
   const handleSelectDate = (date: Date) => {
     if(props.onSelectDate) props.onSelectDate(date)
+    setSelectedDate(date)
     setValue(getStringDate(date))
+    // setIsFocus(false)
   }
 
   const handleChange = (e: any) => {
@@ -75,6 +78,8 @@ export function useInput(props: InputProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate, handleChange}
+  console.log(isFocus)
+
+  return {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate, handleChange, selectedDate}
 }
 

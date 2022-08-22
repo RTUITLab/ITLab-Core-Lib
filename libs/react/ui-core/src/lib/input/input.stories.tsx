@@ -65,4 +65,5 @@ DatePicker.args = {
   iconPosition: 'left',
   errorText: 'Ошибка!!!',
   autoFocus: true,
+  style:{maxWidth: 194}
 };

@@ -3,17 +3,14 @@ import styles from './calendar.module.scss'
 import {useCalendar} from './useCalendar'
 import {CalendarProps} from './CalendarProps'
 
-export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate}) => {
+export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, selectedDate}) => {
   const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay} = useCalendar()
 
   const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
   const weeks = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
 
-  const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date())
-
+  const [currentMonth, setCurrentMonth] = useState<Date>(new Date(selectedDate))
   const onDateClick = (day: Date) => {
-    setSelectedDate(day)
     onSelectDate(day)
   };
 

@@ -5,7 +5,7 @@ import {useInput} from './useInput'
 import {Calendar} from './calendar/calendar'
 
 export const Input = forwardRef((props: InputProps, ref: any) => {
-  const {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate, handleChange} = useInput(props)
+  const {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate, handleChange, selectedDate} = useInput(props)
   const icons = {search: 'ri-search-line', date: 'ri-calendar-line'}
 
   const defaultIco =
@@ -24,7 +24,6 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
     </span> : defaultIco}
   </>
 
-  console.log(value)
   return (
     <>
       <label className={`${classes}`} ref={calendar} style={props.style}>
@@ -51,7 +50,7 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
         {icon}
         {
           isFocus &&
-          <Calendar onSelectDate={handleSelectDate} />
+          <Calendar onSelectDate={handleSelectDate} selectedDate={selectedDate} />
         }
       </label>
       {(props.error && props.errorText) &&

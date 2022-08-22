@@ -4,4 +4,7 @@ export interface CalendarProps extends DefaultParams{
 
   /** Select date event */
   onSelectDate: (date: Date) => void;
+
+  /** Selected date */
+  selectedDate: Date
 }
