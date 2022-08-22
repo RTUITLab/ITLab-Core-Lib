@@ -1,10 +1,10 @@
-import React, {FC} from 'react'
+import React, {FC, useCallback, useMemo} from 'react'
 import styles from './calendar.module.scss'
 import {useCalendar} from './useCalendar'
 import {CalendarProps} from './CalendarProps'
 
 export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, setCurrentMonth, currentMonth, selectedDate, size, endDate}) => {
-  const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay} = useCalendar()
+  const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, compareDates, isSameWeek} = useCalendar()
 
   const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
   const weeks = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
@@ -25,8 +25,8 @@ export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, setCurrentM
       <CalendarHeader month={month} prevMonth={prevMonth} nextMonth={nextMonth} currentMonth={currentMonth} />
       <CalendarDays weeks={weeks} getMonday={getMonday} addDays={addDays} />
       <CalendarCells addDays={addDays} getMonday={getMonday} currentMonth={currentMonth} endOfMonth={endOfMonth} isSameMonth={isSameMonth}
-                     startOfMonth={startOfMonth} isSameDay={isSameDay} endOfWeek={endOfWeek} onDateClick={onDateClick} selectedDate={selectedDate}
-                     isCurrentDay={isCurrentDay} endDate={endDate} />
+                     startOfMonth={startOfMonth} isSameDay={isSameDay} onDateClick={onDateClick} selectedDate={selectedDate}
+                     isCurrentDay={isCurrentDay} endDate={endDate} compareDates={compareDates} isSameWeek={isSameWeek} endOfWeek={endOfWeek} />
       <button className={styles['calendar-clearBtn']} onClick={() => onSelectDate('')}>Удалить</button>
     </div>
   )
@@ -71,8 +71,8 @@ type CalendarDaysType = {
   addDays: (start_date: Date, days: number) => Date
 }
 
-const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfMonth, isCurrentDay, endDate,
-                                               startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, onDateClick, getMonday}) => {
+const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfMonth, isCurrentDay, endDate, isSameWeek,
+                                               startOfMonth, compareDates, addDays, isSameDay, isSameMonth, onDateClick, getMonday, endOfWeek}) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
   const startDate = getMonday(monthStart);
@@ -83,6 +83,52 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
   let day = startDate;
   let formattedDate = 0;
 
+  const getDayClasses = useCallback((day: Date, selectedDate: Date, endDate: Date | undefined) => {
+    const classList = [] as string [];
+
+    const conditions:{[index: string]:boolean} = {
+      "calendar-col": true,
+      "calendar-cell": true,
+      "calendar-selected": (isSameDay(day, selectedDate) || (endDate && isSameDay(day, endDate))) || false,
+      "calendar-current": isCurrentDay(day),
+      "calendar-inRange-number": endDate && compareDates(day, endDate) && compareDates(selectedDate, day) || false,
+      };
+
+    Object.keys(conditions).forEach((key:string) => {
+      if (conditions[key]) {
+        classList.push(styles[key]);
+      }
+    });
+
+    return classList.join(' ');
+
+  }, []);
+
+  const getContainerDayClasses = useCallback((day: Date, selectedDate: Date, endDate: Date | undefined) => {
+    const classList = [] as string [];
+    const conditions:{[index: string]:boolean} = {
+      "calendar-dayContainer": true,
+      "calendar-dayContainer-firstRange": (isSameDay(day, selectedDate)),
+      "calendar-dayContainer-lastRange": (endDate && isSameDay(day, endDate)) || false,
+      "calendar-dayContainer-topRight": (isSameWeek(day, selectedDate)),
+      "calendar-dayContainer-topLeft": isSameDay(getMonday(addDays(selectedDate, 7)), day),
+      "calendar-dayContainer-bottomRight": (endDate && isSameDay(endOfWeek(addDays(endDate, -7)), day) )|| false,
+      "calendar-dayContainer-bottomLeft": (endDate && isSameWeek(day, endDate)) || false,
+      "calendar-dayContainer-onlyChild":
+        (endDate && isSameDay(selectedDate, endOfWeek(day)) && compareDates(endDate, addDays(day, 6))) ||
+        (endDate && isSameDay(endDate, getMonday(day)) && compareDates(addDays(day, -6), selectedDate)) || false
+      };
+
+    Object.keys(conditions).forEach((key:string) => {
+      if (conditions[key]) {
+        classList.push(styles[key]);
+      }
+    });
+
+    return classList.join(' ');
+
+  }, []);
+
   while (day <= monthEnd) {
     for (let i = 0; i < 7; i++) {
       formattedDate = day.getDate();
@@ -91,15 +137,25 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
         <>
           {
             isSameMonth(day, monthStart) ?
-              <div
-                className={`${styles['calendar-col']} ${styles['calendar-cell']} ${isSameDay(day, selectedDate) ? `${styles['calendar-selected']}` : ""} ${(endDate && isSameDay(day, endDate)) ? `${styles['calendar-selected']}` : ""} ${isCurrentDay(day) ? `${styles['calendar-current']}` : ""}`}
-                key={String(day)}
-                onClick={() => onDateClick(new Date(cloneDay))}
-              >
-                <span className={`${styles['calendar-number']}`}>{formattedDate}</span>
+              <div className={getContainerDayClasses(day, selectedDate, endDate)}>
+                <div
+                  className={getDayClasses(day, selectedDate, endDate)}
+                  key={String(day)}
+                  onClick={() => onDateClick(new Date(cloneDay))}
+                >
+                  <div className={`${styles['calendar-number']}`}>{formattedDate}</div>
+                </div>
+                {(endDate && compareDates(day, endDate) && compareDates(selectedDate, day) )&&
+                  <div className={styles['calendar-inRange']} />
+                }
               </div>
               :
-              <div className={`${styles['calendar-col']} ${styles['calendar-cell']}`}></div>
+              <div className={styles['calendar-dayContainer']}>
+                <div className={`${styles['calendar-col']} ${styles['calendar-cell']}`}></div>
+                  {/*{(endDate && compareDates(day, endDate) && compareDates(selectedDate, day)) &&*/}
+                  {/*  <div className={styles['calendar-inRange']} />*/}
+                  {/*}*/}
+              </div>
           }
         </>
 
@@ -126,7 +182,9 @@ type CalendarCellsType = {
   endOfWeek: (date: Date) => Date
   isSameMonth: (day: Date, monthStart: Date) => boolean
   isSameDay: (day: Date, monthStart: Date) => boolean
+  isSameWeek: (day: Date, selectedDate: Date) => boolean
   isCurrentDay: (day: Date) => boolean
   addDays: (start_date: Date, days: number) => Date
   onDateClick: (day: Date) => void
+  compareDates: (start: Date, end: Date) => boolean
 }

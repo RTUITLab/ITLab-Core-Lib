@@ -3,12 +3,13 @@ export function useCalendar() {
   function getMonday(date: Date) {
     date = new Date(date);
     const day = date.getDay()
-    const diff = date.getDate() - day + (day === 0 ? -6:1); // adjust when day is sunday
+    const diff = date.getDate() - day + (day === 0 ? -6:1);
     return new Date(date.setDate(diff));
   }
-  //Последний день недели
+  //Последний день недели выбранного дня
   function endOfWeek(date: Date) {
-    const lastDay = date.getDate() - (date.getDay() - 1) + 6;
+    const numberOfDay = date.getDay()
+    const lastDay = numberOfDay === 0 ? date.getDate() : (date.getDate() - (date.getDay() - 1) + 6);
     return new Date(date.getFullYear(), date.getMonth(), lastDay);
   }
   //Начало месяца
@@ -33,6 +34,15 @@ export function useCalendar() {
   function isSameDay(day: Date, selectedDay: Date) {
     return day.getMonth() === selectedDay.getMonth() && day.getFullYear() === selectedDay.getFullYear() && day.getDate() === selectedDay.getDate()
   }
+  //Получение недели конкретного дня
+  function getWeek(day: Date) {
+    const janFirst = new Date(day.getFullYear(), 0, 1);
+    return Math.ceil((((day.getTime() - janFirst.getTime()) / 86400000) + janFirst.getDay()) / 7);
+  }
+  //Если неделя такая же как у выбранного дня
+  function isSameWeek(day: Date, selectedDate: Date) {
+    return getWeek(day) === getWeek(selectedDate);
+  }
   //Если выбранный день - текущий
   function isCurrentDay(day: Date) {
     const currentDay = new Date()
@@ -48,8 +58,8 @@ export function useCalendar() {
   }
   //Сравнение двух дат
   function compareDates(start: Date, end: Date) {
-    return start < end
+    return start <= end
   }
 
-  return {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, getStringDate, getLocalStringDate, compareDates}
+  return {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, getStringDate, getLocalStringDate, compareDates, isSameWeek, getWeek}
 }
