@@ -27,27 +27,29 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
   return (
     <>
       <div className={`${classes}`} ref={calendar} style={props.style}>
-        <input className={styles['input']}
-               ref={ref}
-               autoFocus={props.autoFocus}
-               disabled={(props.disabled !== undefined && props.disabled)}
-               value={value}
-               placeholder={props.placeholder}
-               name={props.name}
-               id={props.id}
-               required={props.isRequired}
-               readOnly={props.readonly}
-               type={props.type || 'text'}
-               maxLength={props.maxLength}
-               pattern={props.pattern}
-               tabIndex={props.tabIndex}
-               onClick={handleClick}
-               onKeyUp={props.onKeyUp}
-               onChange={handleChange}
-               onFocus={props.onFocus}
-               onBlur={props.onBlur}
-        />
-        {icon}
+        <label className={styles['input-outer']} htmlFor={props.id}>
+          <input className={styles['input']}
+                 ref={ref}
+                 autoFocus={props.autoFocus}
+                 disabled={(props.disabled !== undefined && props.disabled)}
+                 value={value}
+                 placeholder={props.placeholder}
+                 name={props.name}
+                 id={props.id}
+                 required={props.isRequired}
+                 readOnly={props.readonly}
+                 type={props.type || 'text'}
+                 maxLength={props.maxLength}
+                 pattern={props.pattern}
+                 tabIndex={props.tabIndex}
+                 onClick={handleClick}
+                 onKeyUp={props.onKeyUp}
+                 onChange={handleChange}
+                 onFocus={props.onFocus}
+                 onBlur={props.onBlur}
+          />
+          {icon}
+        </label>
         {
           isOpen &&
           <Calendar onSelectDate={handleSelectDate} size={props.calendarSize} selectedDate={selectedDate} setCurrentMonth={setCurrentMonth} currentMonth={currentMonth} />

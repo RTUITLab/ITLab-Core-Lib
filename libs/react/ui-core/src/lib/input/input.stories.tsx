@@ -11,8 +11,6 @@ export default {
     defaultValue: { control: {type: 'text'}},
     type: { control: {type: 'select', options: ['text', 'email', 'password', 'search', 'tel', 'date']}},
     value: { control: {type: 'text'}},
-    max: { control: {type: 'text'}},
-    min: { control: {type: 'text'}},
     className: { control: {type: 'text'}},
   }
 } as ComponentMeta<typeof Input>;

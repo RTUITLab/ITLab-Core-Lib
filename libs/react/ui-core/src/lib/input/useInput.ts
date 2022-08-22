@@ -21,8 +21,10 @@ export function useInput(props: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(props.onChange) props.onChange(e)
     setValue(e.target.value)
-    setSelectedDate(new Date(e.target.value))
-    setCurrentMonth(new Date(e.target.value))
+    if(e.target.value !== '') {
+      setSelectedDate(new Date(e.target.value))
+      setCurrentMonth(new Date(e.target.value))
+    }
   }
 
   const handleSelectDate = (date: Date | string) => {
