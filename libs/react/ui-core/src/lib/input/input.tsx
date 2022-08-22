@@ -5,18 +5,23 @@ import {useInput} from './useInput'
 import {Calendar} from './calendar/calendar'
 
 export const Input = forwardRef((props: InputProps, ref: any) => {
-  const {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate} = useInput(props)
+  const {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate, handleChange} = useInput(props)
+  const icons = {search: 'ri-search-line', date: 'ri-calendar-line'}
 
-  const searchIco = <>{props.type === 'search' &&
-    <span className={iconClasses}>
-      <i className={"ri-search-line"}/>
-    </span>
-  }</>
+  const defaultIco =
+    <>
+      {
+        (props.type === 'date' || props.type === 'search') &&
+        <span className={iconClasses}>
+        <i className={icons[props.type]}/>
+      </span>
+      }
+    </>
 
   const icon = <>{props.icon ?
     <span className={iconClasses}>
       {props.icon}
-    </span> : searchIco}
+    </span> : defaultIco}
   </>
 
   console.log(value)
@@ -39,7 +44,7 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
                tabIndex={props.tabIndex}
                onClick={props.onClick}
                onKeyUp={props.onKeyUp}
-               onChange={props.onChange}
+               onChange={handleChange}
                onFocus={handleFocus}
                onBlur={props.onBlur}
         />

@@ -19,6 +19,10 @@ export function useInput(props: InputProps) {
     setValue(getStringDate(date))
   }
 
+  const handleChange = (e: any) => {
+    debugger
+  }
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
 
@@ -71,6 +75,6 @@ export function useInput(props: InputProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate}
+  return {classes, iconClasses, isFocus, handleFocus, calendar, value, handleSelectDate, handleChange}
 }
 

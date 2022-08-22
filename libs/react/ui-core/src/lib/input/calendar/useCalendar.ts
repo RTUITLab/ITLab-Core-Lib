@@ -33,7 +33,7 @@ export function useCalendar() {
   function isSameDay(day: Date, selectedDay: Date) {
     return day.getMonth() === selectedDay.getMonth() && day.getFullYear() === selectedDay.getFullYear() && day.getDate() === selectedDay.getDate()
   }
-  //Если выбранный день текущим
+  //Если выбранный день - текущий
   function isCurrentDay(day: Date) {
     const currentDay = new Date()
     return day.getMonth() === currentDay.getMonth() && day.getFullYear() === currentDay.getFullYear() && day.getDate() === currentDay.getDate()
