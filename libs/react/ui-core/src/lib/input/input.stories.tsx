@@ -2,7 +2,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Input } from './input';
 import React from 'react'
 import Icon from '../icon/icon'
-import {Calendar} from './calendar/calendar'
 
 export default {
   component: Input,
@@ -59,11 +58,19 @@ CustomIcon.args = {
 
 export const DatePicker = CalendarTemplate.bind({});
 DatePicker.args = {
-  placeholder: 'Write some text',
   size: 'medium',
   type: 'date',
   iconPosition: 'left',
   errorText: 'Ошибка!!!',
-  autoFocus: true,
+  style:{maxWidth: 194}
+};
+
+export const SmallDatePicker = CalendarTemplate.bind({});
+SmallDatePicker.args = {
+  size: 'medium',
+  type: 'date',
+  iconPosition: 'left',
+  calendarSize: 'small',
+  errorText: 'Ошибка!!!',
   style:{maxWidth: 194}
 };

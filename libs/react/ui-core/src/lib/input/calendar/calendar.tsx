@@ -3,7 +3,7 @@ import styles from './calendar.module.scss'
 import {useCalendar} from './useCalendar'
 import {CalendarProps} from './CalendarProps'
 
-export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, setCurrentMonth, currentMonth, selectedDate}) => {
+export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, setCurrentMonth, currentMonth, selectedDate, size}) => {
   const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, } = useCalendar()
 
   const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
@@ -21,7 +21,7 @@ export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, setCurrentM
   };
 
   return (
-    <div className={styles['calendar']}>
+    <div className={`${styles['calendar']} ${size === 'small' ? styles['calendar-small'] : ''}`}>
       <CalendarHeader month={month} prevMonth={prevMonth} nextMonth={nextMonth} currentMonth={currentMonth} />
       <CalendarDays weeks={weeks} getMonday={getMonday} addDays={addDays} />
       <CalendarCells addDays={addDays} getMonday={getMonday} currentMonth={currentMonth} endOfMonth={endOfMonth} isSameMonth={isSameMonth}
