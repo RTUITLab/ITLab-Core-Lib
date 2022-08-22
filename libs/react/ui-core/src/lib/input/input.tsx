@@ -5,13 +5,13 @@ import {useInput} from './useInput'
 import {Calendar} from './calendar/calendar'
 
 export const Input = forwardRef((props: InputProps, ref: any) => {
-  const {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, currentMonth, setCurrentMonth} = useInput(props)
-  const icons = {search: 'ri-search-line', date: 'ri-calendar-line'}
+  const {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, currentMonth, setCurrentMonth, endDate} = useInput(props)
+  const icons = {search: 'ri-search-line', date: 'ri-calendar-line', dateRange: 'ri-calendar-line'}
 
   const defaultIco =
     <>
       {
-        (props.type === 'date' || props.type === 'search') &&
+        (props.type === 'date' || props.type === 'search'|| props.type === 'dateRange') &&
         <span className={iconClasses}>
         <i className={icons[props.type]}/>
       </span>
@@ -51,8 +51,8 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
           {icon}
         </label>
         {
-          isOpen &&
-          <Calendar onSelectDate={handleSelectDate} size={props.calendarSize} selectedDate={selectedDate} setCurrentMonth={setCurrentMonth} currentMonth={currentMonth} />
+          ( isOpen &&( props.type === 'date' || props.type === 'dateRange') ) &&
+          <Calendar onSelectDate={handleSelectDate} size={props.calendarSize} endDate={endDate as Date} selectedDate={selectedDate} setCurrentMonth={setCurrentMonth} currentMonth={currentMonth} />
         }
       </div>
       {(props.error && props.errorText) &&

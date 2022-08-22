@@ -3,8 +3,8 @@ import styles from './calendar.module.scss'
 import {useCalendar} from './useCalendar'
 import {CalendarProps} from './CalendarProps'
 
-export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, setCurrentMonth, currentMonth, selectedDate, size}) => {
-  const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, } = useCalendar()
+export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, setCurrentMonth, currentMonth, selectedDate, size, endDate}) => {
+  const {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay} = useCalendar()
 
   const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
   const weeks = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
@@ -26,7 +26,7 @@ export const Calendar:FC<CalendarProps> = React.memo(({onSelectDate, setCurrentM
       <CalendarDays weeks={weeks} getMonday={getMonday} addDays={addDays} />
       <CalendarCells addDays={addDays} getMonday={getMonday} currentMonth={currentMonth} endOfMonth={endOfMonth} isSameMonth={isSameMonth}
                      startOfMonth={startOfMonth} isSameDay={isSameDay} endOfWeek={endOfWeek} onDateClick={onDateClick} selectedDate={selectedDate}
-                     isCurrentDay={isCurrentDay} />
+                     isCurrentDay={isCurrentDay} endDate={endDate} />
       <button className={styles['calendar-clearBtn']} onClick={() => onSelectDate('')}>Удалить</button>
     </div>
   )
@@ -71,12 +71,11 @@ type CalendarDaysType = {
   addDays: (start_date: Date, days: number) => Date
 }
 
-const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfMonth, isCurrentDay,
+const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfMonth, isCurrentDay, endDate,
                                                startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, onDateClick, getMonday}) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
   const startDate = getMonday(monthStart);
-  const endDate = endOfWeek(monthEnd);
 
   const rows = [];
 
@@ -93,7 +92,7 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
           {
             isSameMonth(day, monthStart) ?
               <div
-                className={`${styles['calendar-col']} ${styles['calendar-cell']} ${isSameDay(day, selectedDate) ? `${styles['calendar-selected']}` : ""} ${isCurrentDay(day) ? `${styles['calendar-current']}` : ""}`}
+                className={`${styles['calendar-col']} ${styles['calendar-cell']} ${isSameDay(day, selectedDate) ? `${styles['calendar-selected']}` : ""} ${(endDate && isSameDay(day, endDate)) ? `${styles['calendar-selected']}` : ""} ${isCurrentDay(day) ? `${styles['calendar-current']}` : ""}`}
                 key={String(day)}
                 onClick={() => onDateClick(new Date(cloneDay))}
               >
@@ -120,6 +119,7 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
 type CalendarCellsType = {
   currentMonth: Date
   selectedDate: Date
+  endDate?: Date
   startOfMonth: (date: Date) => Date
   endOfMonth: (date: Date) => Date
   getMonday: (date: Date) => Date

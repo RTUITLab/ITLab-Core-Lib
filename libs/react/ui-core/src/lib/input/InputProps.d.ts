@@ -2,7 +2,7 @@ import React from "react";
 import Icon from "../icon/icon";
 import {DefaultParams} from "../../default-types/defaultParams";
 
-type InputTypeEnum = 'text' | 'email' | 'password' | 'search' | 'tel' | 'date'
+type InputTypeEnum = 'text' | 'email' | 'password' | 'search' | 'tel' | 'date' | 'dateRange'
 
 export interface InputProps extends DefaultParams{
 

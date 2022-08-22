@@ -14,6 +14,9 @@ export interface CalendarProps extends DefaultParams{
   /** Selected day */
   selectedDate: Date
 
+  /** End day of range */
+  endDate?: Date
+
   /** Size of the component */
   size?: 'default' | 'small'
 }

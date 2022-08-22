@@ -38,10 +38,18 @@ export function useCalendar() {
     const currentDay = new Date()
     return day.getMonth() === currentDay.getMonth() && day.getFullYear() === currentDay.getFullYear() && day.getDate() === currentDay.getDate()
   }
-  //Строковая дата
+  //Строковая дата в традиционном формате
   function getStringDate(day: Date) {
     return day.getFullYear() + '-' + ('0'+(day.getMonth()+1)).slice(-2) + '-' + ('0'+day.getDate()).slice(-2)
   }
+  //Строковая дата в ru формате
+  function getLocalStringDate(day: Date) {
+    return ('0'+day.getDate()).slice(-2) + '.' + ('0'+(day.getMonth()+1)).slice(-2) + '.' +  day.getFullYear()
+  }
+  //Сравнение двух дат
+  function compareDates(start: Date, end: Date) {
+    return start < end
+  }
 
-  return {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, getStringDate}
+  return {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, getStringDate, getLocalStringDate, compareDates}
 }

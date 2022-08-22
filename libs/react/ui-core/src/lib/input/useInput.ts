@@ -8,10 +8,11 @@ export function useInput(props: InputProps) {
   const [isOpen, setIsOpen] = useState<boolean>(props.autoFocus || false)
   const [value, setValue] = useState<string | number>(props.value || props.defaultValue || '')
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
+  const [endDate, setEndDate] = useState<Date | ''>('')
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
 
   const calendar = createRef<HTMLDivElement>();
-  const {getStringDate} = useCalendar()
+  const {getStringDate, getLocalStringDate, compareDates} = useCalendar()
 
   const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
     if(props.onClick) props.onClick(e)
@@ -35,8 +36,40 @@ export function useInput(props: InputProps) {
     }
     else {
       if(props.onSelectDate) props.onSelectDate(date)
-      setSelectedDate(date)
-      setValue(getStringDate(date))
+      if(props.type === 'date') {
+        setSelectedDate(date)
+        setValue(getStringDate(date))
+      }
+      else {
+        //Если даты конца пока нет
+        if(endDate === '') {
+          //Ранее выбранная дата меньше, чем выбранная сейчас
+          if(compareDates(selectedDate, date)) {
+            setSelectedDate(selectedDate)
+            setEndDate(date)
+            setValue(getLocalStringDate(selectedDate) + ' — ' + getLocalStringDate(date))
+          }
+          else {
+            setSelectedDate(date)
+            setEndDate(selectedDate)
+            setValue(getLocalStringDate(date) + ' — ' + getLocalStringDate(selectedDate))
+          }
+        }
+        else {
+          //Если выбранная дата меньше, чем текущая начальная дата
+          if (compareDates(date, selectedDate)){
+            setSelectedDate(date)
+            setEndDate(selectedDate)
+            setValue(getLocalStringDate(date) + ' — ' + getLocalStringDate(selectedDate))
+          }
+          //Если выбранная дата больше, чем текущая дата конца или находится между
+          else {
+            setEndDate(date)
+            setValue(getLocalStringDate(selectedDate) + ' — ' + getLocalStringDate(date))
+          }
+        }
+      }
+
     }
     setIsOpen(false)
   }
@@ -93,8 +126,8 @@ export function useInput(props: InputProps) {
     return classList.join(' ');
   }, [props]);
 
-  console.log(isOpen)
+  console.log(endDate)
 
-  return {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, currentMonth, setCurrentMonth}
+  return {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, currentMonth, setCurrentMonth, endDate}
 }
 

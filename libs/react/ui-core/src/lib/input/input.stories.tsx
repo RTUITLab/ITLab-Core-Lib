@@ -9,7 +9,7 @@ export default {
   argTypes: {
     icon: { control: false },
     defaultValue: { control: {type: 'text'}},
-    type: { control: {type: 'select', options: ['text', 'email', 'password', 'search', 'tel', 'date']}},
+    type: { control: {type: 'select', options: ['text', 'email', 'password', 'search', 'tel', 'date', 'dateRange']}},
     value: { control: {type: 'text'}},
     className: { control: {type: 'text'}},
   }
@@ -71,4 +71,13 @@ SmallDatePicker.args = {
   calendarSize: 'small',
   errorText: 'Ошибка!!!',
   style:{maxWidth: 194}
+};
+
+export const RangePicker = CalendarTemplate.bind({});
+RangePicker.args = {
+  size: 'medium',
+  type: 'dateRange',
+  placeholder: 'Начало — Конец',
+  iconPosition: 'left',
+  errorText: 'Ошибка!!!',
 };
