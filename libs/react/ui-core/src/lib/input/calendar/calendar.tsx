@@ -108,15 +108,17 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
     const classList = [] as string [];
     const conditions:{[index: string]:boolean} = {
       "calendar-dayContainer": true,
-      "calendar-dayContainer-firstRange": (isSameDay(day, selectedDate)),
-      "calendar-dayContainer-lastRange": (endDate && isSameDay(day, endDate)) || false,
-      "calendar-dayContainer-topRight": (isSameWeek(day, selectedDate)),
-      "calendar-dayContainer-topLeft": isSameDay(getMonday(addDays(selectedDate, 6)), day),
-      "calendar-dayContainer-bottomRight": (endDate && isSameDay(endOfWeek(addDays(endDate, -6)), day) )|| false,
-      "calendar-dayContainer-bottomLeft": (endDate && isSameWeek(day, endDate)) || false,
+      "calendar-dayContainer-firstRange": (isSameDay(day, selectedDate)), //Стартовая дата
+      "calendar-dayContainer-lastRange": (endDate && isSameDay(day, endDate)) || false, //Конечная дата
+      "calendar-dayContainer-topRight": (isSameDay(day, endOfWeek(selectedDate))) || //Если день совпадает с концом недели стартовой даты
+        (endDate && (isSameDay(day, endOfWeek(startOfMonth(endDate))))) || false, //Если день совпадает с концом первой недели месяца конечной даты
+      "calendar-dayContainer-topLeft": isSameDay(getMonday(addDays(selectedDate, 6)), day), //Если день совпадает с началом недели дня, который на 6 дней больше стартовой даты
+      "calendar-dayContainer-bottomRight": (endDate && isSameDay(endOfWeek(addDays(endDate, -6)), day) )|| false, //Если день совпадает с концом недели дня, который на 6 дней меньше конечной даты
+      "calendar-dayContainer-bottomLeft": (endDate && isSameDay(day, getMonday(endDate))) || // Если день совпадает с началом недели конечной даты
+        (isSameDay(day, getMonday(endOfMonth(selectedDate)))) || false, //Если день совпадает с началом недели последней недели месяца начальной даты
       "calendar-dayContainer-onlyChild":
-        (endDate && isSameDay(selectedDate, endOfWeek(day)) && compareDates(endDate, addDays(day, 6))) ||
-        (endDate && isSameDay(endDate, getMonday(day)) && compareDates(addDays(day, -6), selectedDate)) || false
+        (endDate && isSameDay(selectedDate, endOfWeek(day)) && compareDates(endDate, addDays(day, 6))) || //Если стартовая дата стоит концом недели и через неделю дата не входит в выбранную
+        (endDate && isSameDay(endDate, getMonday(day)) && compareDates(addDays(day, -6), selectedDate)) || false //Если конечная дата стоит началом недели и за неделю до этого дата не входит в выбранную
       };
 
     Object.keys(conditions).forEach((key:string) => {
