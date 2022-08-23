@@ -111,8 +111,8 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
       "calendar-dayContainer-firstRange": (isSameDay(day, selectedDate)),
       "calendar-dayContainer-lastRange": (endDate && isSameDay(day, endDate)) || false,
       "calendar-dayContainer-topRight": (isSameWeek(day, selectedDate)),
-      "calendar-dayContainer-topLeft": isSameDay(getMonday(addDays(selectedDate, 7)), day),
-      "calendar-dayContainer-bottomRight": (endDate && isSameDay(endOfWeek(addDays(endDate, -7)), day) )|| false,
+      "calendar-dayContainer-topLeft": isSameDay(getMonday(addDays(selectedDate, 6)), day),
+      "calendar-dayContainer-bottomRight": (endDate && isSameDay(endOfWeek(addDays(endDate, -6)), day) )|| false,
       "calendar-dayContainer-bottomLeft": (endDate && isSameWeek(day, endDate)) || false,
       "calendar-dayContainer-onlyChild":
         (endDate && isSameDay(selectedDate, endOfWeek(day)) && compareDates(endDate, addDays(day, 6))) ||
