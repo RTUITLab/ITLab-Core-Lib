@@ -1,0 +1,15 @@
+@use '../../../styles/design-tokens' as dt;
+
+.card {
+  box-sizing: border-box;
+  width: fit-content;
+  height: fit-content;
+  overflow: hidden;
+  border: 1px solid dt.$general-50;
+  border-radius: 10px;
+  background-color: #fff;
+
+  &:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  }
+}

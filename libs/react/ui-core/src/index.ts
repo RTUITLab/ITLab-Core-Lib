@@ -1,3 +1,4 @@
+export * from './lib/card/card';
 export * from './lib/text-area/text-area';
 export * from './lib/tooltip/tooltip';
 export * from './lib/dropdown/dropdown';
