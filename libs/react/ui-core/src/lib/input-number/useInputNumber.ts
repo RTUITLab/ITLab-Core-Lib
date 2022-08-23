@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import styles from './input-number.module.scss'
 import {InputNumberProps} from './InputNumberProps'
 
@@ -7,9 +7,13 @@ import {InputNumberProps} from './InputNumberProps'
  */
 
 export function useInputNumber(props: InputNumberProps) {
-  const [value, setValue] = useState<number | string>( props.defaultValue || '')
+  const [value, setValue] = useState<number | string>('')
   const [width, setWidth] = useState<number>(String(value).length === 0 ? 1 : String(value).length)
   const step = props.step || 1
+
+  useEffect(() => {
+    setValue(props.defaultValue ? getLimitedValue(String(props.defaultValue)) : '')
+  }, [])
 
   const handleClick = (count: number) => {
     if(!props.disabled && !props.readonly) {

@@ -5,7 +5,6 @@
 .inputNumber-wrapper {
   width: fit-content;
   display: flex;
-  gap: 5px;
   align-items: center;
   height: 25px;
   box-sizing: border-box;
@@ -18,10 +17,12 @@
     cursor: pointer;
 
     &:first-child {
-      padding: 4px 0 4px 8px;
+      padding: 4px 5px 4px 8px;
+      border-radius: 6px 0 0 6px;
     }
     &:last-child {
-      padding: 4px 8px 4px 0;
+      padding: 4px 8px 4px 5px;
+      border-radius: 0 6px 6px 0;
     }
 
     & > i {
@@ -42,8 +43,11 @@
     outline: none;
     color: dt.$general-80;
     text-align: center;
-    padding: 0;
     height: 23px;
+
+    padding: 0 8px;
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
 
     font-size: 14px;
     line-height: 16px;
@@ -71,18 +75,8 @@
   &:focus-within {
     padding: 0;
     background-color: dt.$general-30;
-    gap: 0;
 
-    & .inputNumber-icon:first-child {
-      border-radius: 6px 0 0 6px;
-      padding: 4px 5px 4px 8px;
-    }
-    & .inputNumber-icon:last-child {
-      border-radius: 0 6px 6px 0;
-      padding: 4px 8px 4px 5px;
-    }
     & .inputNumber {
-      padding: 0 8px;
       border-right: 1px solid dt.$general-40;
       border-left: 1px solid dt.$general-40;
     }
