@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useMemo} from 'react'
+import React, {FC, useCallback} from 'react'
 import styles from './calendar.module.scss'
 import {useCalendar} from './useCalendar'
 import {CalendarProps} from './CalendarProps'
@@ -56,9 +56,7 @@ const CalendarDays:FC<CalendarDaysType> = ({weeks, getMonday, addDays}) => {
   for (let i = 0; i < 7; i++) {
     days.push(
       <div className={`${styles['calendar-col']}`} key={i}>
-        {
-          weeks[addDays(startDate, i - 1).getDay()]
-        }
+        {weeks[addDays(startDate, i - 1).getDay()]}
       </div>
     );
   }
@@ -154,9 +152,6 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
               :
               <div className={styles['calendar-dayContainer']}>
                 <div className={`${styles['calendar-col']} ${styles['calendar-cell']}`}></div>
-                  {/*{(endDate && compareDates(day, endDate) && compareDates(selectedDate, day)) &&*/}
-                  {/*  <div className={styles['calendar-inRange']} />*/}
-                  {/*}*/}
               </div>
           }
         </>

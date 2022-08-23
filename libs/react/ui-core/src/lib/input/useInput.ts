@@ -12,7 +12,7 @@ export function useInput(props: InputProps) {
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
 
   const calendar = createRef<HTMLDivElement>();
-  const {getStringDate, getLocalStringDate, compareDates} = useCalendar()
+  const {getStringDate, getLocalStringDate, compareDates, isDate} = useCalendar()
 
   const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
     if(props.onClick) props.onClick(e)
@@ -21,10 +21,41 @@ export function useInput(props: InputProps) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(props.onChange) props.onChange(e)
-    setValue(e.target.value)
-    if(e.target.value !== '') {
-      setSelectedDate(new Date(e.target.value))
-      setCurrentMonth(new Date(e.target.value))
+    setValue(e.target.value.split(' ').join('').replace(/-|—/, ' — '))
+    if (props.type === 'date' || props.type === 'dateRange') {
+      if(e.target.value !== '') {
+        if(props.type === 'dateRange') {
+          const dateString = e.target.value.split(' ').join('').replace(/-|—/, ' — ').split('—')
+          const firstDate = dateString[0].split(' ').join('')
+          const secondDate = dateString[1] && dateString[1].split(' ').join('')
+          if(firstDate && secondDate && isDate(firstDate) && isDate(secondDate)) {
+            if(compareDates(new Date(getStringDate(firstDate)), new Date(getStringDate(secondDate)))) {
+              setSelectedDate(new Date(getStringDate(firstDate)))
+              setEndDate(new Date(getStringDate(secondDate)))
+              setCurrentMonth(new Date(getStringDate(secondDate)))
+            }
+            else {
+              setSelectedDate(new Date(getStringDate(secondDate)))
+              setEndDate(new Date(getStringDate(firstDate)))
+              setCurrentMonth(new Date(getStringDate(firstDate)))
+            }
+          }
+          else if(firstDate && isDate(getStringDate(firstDate))) {
+            setSelectedDate(new Date(getStringDate(firstDate)))
+            setCurrentMonth(new Date(getStringDate(firstDate)))
+            setEndDate('')
+          }
+          else {
+            setSelectedDate(new Date())
+            setCurrentMonth(new Date())
+            setEndDate('')
+          }
+        }
+        else {
+          setSelectedDate(new Date(e.target.value))
+          setCurrentMonth(new Date(e.target.value))
+        }
+      }
     }
   }
 

@@ -49,17 +49,27 @@ export function useCalendar() {
     return day.getMonth() === currentDay.getMonth() && day.getFullYear() === currentDay.getFullYear() && day.getDate() === currentDay.getDate()
   }
   //Строковая дата в традиционном формате
-  function getStringDate(day: Date) {
-    return day.getFullYear() + '-' + ('0'+(day.getMonth()+1)).slice(-2) + '-' + ('0'+day.getDate()).slice(-2)
+  function getStringDate(day: Date | string) {
+    if(day instanceof Date) return day.getFullYear() + '-' + ('0'+(day.getMonth()+1)).slice(-2) + '-' + ('0'+day.getDate()).slice(-2)
+    else {
+      const dateArray = day.replace(' ', '').split('.')
+      return dateArray[2]+'-'+dateArray[1]+'-'+dateArray[0]
+    }
   }
   //Строковая дата в ru формате
   function getLocalStringDate(day: Date) {
     return ('0'+day.getDate()).slice(-2) + '.' + ('0'+(day.getMonth()+1)).slice(-2) + '.' +  day.getFullYear()
   }
-  //Сравнение двух дат
+  //Сравнение двух дат без времени
   function compareDates(start: Date, end: Date) {
-    return start <= end
+    //Двойное оборачивание для сброса времени
+    return getStringDate(getStringDate(start)) <= getStringDate(getStringDate(end))
+  }
+  //Если входная строка - дата
+  function isDate(text: string) {
+    const date = new Date(getStringDate(text))
+    return date instanceof Date && !isNaN(date.valueOf())
   }
 
-  return {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, getStringDate, getLocalStringDate, compareDates, isSameWeek, getWeek}
+  return {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, getStringDate, getLocalStringDate, compareDates, isSameWeek, getWeek, isDate}
 }
