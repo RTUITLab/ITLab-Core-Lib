@@ -4,7 +4,6 @@ import styles from './input.module.scss'
 import {useCalendar} from './calendar/useCalendar'
 
 export function useInput(props: InputProps) {
-  //readonly disabled check
   const [isOpen, setIsOpen] = useState<boolean>(props.autoFocus || false)
   const [value, setValue] = useState<string>('')
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
