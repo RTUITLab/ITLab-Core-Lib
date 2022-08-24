@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Input } from './input';
-import React from 'react'
+import React, {useState} from 'react'
 import Icon from '../icon/icon'
 
 export default {
@@ -17,14 +17,6 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args) => {
   return <Input {...args} />
-};
-
-const CalendarTemplate: ComponentStory<typeof Input> = (args) => {
-  return (
-    <>
-      <Input {...args} />
-    </>
-  )
 };
 
 export const Primary = Template.bind({});
@@ -54,7 +46,7 @@ CustomIcon.args = {
   icon: <Icon name={'ri-flag-line'} size={24} />
 };
 
-export const DatePicker = CalendarTemplate.bind({});
+export const DatePicker = Template.bind({});
 DatePicker.args = {
   size: 'medium',
   type: 'date',
@@ -63,7 +55,7 @@ DatePicker.args = {
   style:{maxWidth: 194}
 };
 
-export const SmallDatePicker = CalendarTemplate.bind({});
+export const SmallDatePicker = Template.bind({});
 SmallDatePicker.args = {
   size: 'medium',
   type: 'date',
@@ -73,7 +65,7 @@ SmallDatePicker.args = {
   style:{maxWidth: 194}
 };
 
-export const RangePicker = CalendarTemplate.bind({});
+export const RangePicker = Template.bind({});
 RangePicker.args = {
   size: 'medium',
   type: 'dateRange',

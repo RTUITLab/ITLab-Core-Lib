@@ -33,11 +33,8 @@ export interface InputProps extends DefaultParams{
   /** Name of input filed */
   name?: string;
 
-  /** Value of input field */
-  value?: string | number;
-
   /** Specifies the default value of input field */
-  defaultValue?: string | number
+  defaultValue?: string
 
   /** Specifies a short hint that describes the expected value of an input field */
   placeholder?: string;
@@ -58,7 +55,7 @@ export interface InputProps extends DefaultParams{
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 
   /** Select date event */
-  onSelectDate?: (date: Date) => void;
+  onSelectDate?: (date: string) => void;
 
   /** Specifies that an input field must be filled out before submitting the form */
   isRequired?: boolean;

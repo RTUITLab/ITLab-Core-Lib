@@ -134,27 +134,26 @@ const CalendarCells:FC<CalendarCellsType> = ({currentMonth, selectedDate, endOfM
       formattedDate = day.getDate();
       const cloneDay = day;
       days.push(
-        <>
+        <React.Fragment key={String(day)}>
           {
             isSameMonth(day, monthStart) ?
-              <div className={getContainerDayClasses(day, selectedDate, endDate)}>
+              <div key={String(day)} className={getContainerDayClasses(day, selectedDate, endDate)}>
                 <div
                   className={getDayClasses(day, selectedDate, endDate)}
-                  key={String(day)}
                   onClick={() => onDateClick(new Date(cloneDay))}
                 >
-                  <div className={`${styles['calendar-number']}`}>{formattedDate}</div>
+                  <div  className={`${styles['calendar-number']}`}>{formattedDate}</div>
                 </div>
                 {(endDate && compareDates(day, endDate) && compareDates(selectedDate, day) )&&
                   <div className={styles['calendar-inRange']} />
                 }
               </div>
               :
-              <div className={styles['calendar-dayContainer']}>
+              <div key={String(day)} className={styles['calendar-dayContainer']}>
                 <div className={`${styles['calendar-col']} ${styles['calendar-cell']}`}></div>
               </div>
           }
-        </>
+        </React.Fragment>
 
       );
       day = addDays(day, 1);

@@ -6,7 +6,7 @@ import {useCalendar} from './calendar/useCalendar'
 export function useInput(props: InputProps) {
   //readonly disabled check
   const [isOpen, setIsOpen] = useState<boolean>(props.autoFocus || false)
-  const [value, setValue] = useState<string | number>(props.value || props.defaultValue || '')
+  const [value, setValue] = useState<string>('')
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [endDate, setEndDate] = useState<Date | ''>('')
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
@@ -16,11 +16,10 @@ export function useInput(props: InputProps) {
 
   useEffect(() => {
     if(props.type === 'date' || props.type === 'dateRange') {
-      if(props.value) setValue(getStringDate(props.value as string|Date))
-      else if(props.defaultValue) setValue(getStringDate(props.defaultValue as string|Date))
+      if(props.defaultValue) setValue(getStringDate(props.defaultValue as string|Date))
       else setValue('')
     }
-    else setValue(props.value || props.defaultValue || '')
+    else setValue(props.defaultValue || '')
   }, [])
 
   const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -88,10 +87,11 @@ export function useInput(props: InputProps) {
       setCurrentMonth(new Date())
       setEndDate('')
       setValue('')
+      if(props.onSelectDate) props.onSelectDate('')
     }
     else {
-      if(props.onSelectDate) props.onSelectDate(date)
       if(props.type === 'date') {
+        if(props.onSelectDate) props.onSelectDate(getLocalStringDate(date))
         setSelectedDate(date)
         setValue(getStringDate(date))
       }
@@ -103,11 +103,13 @@ export function useInput(props: InputProps) {
             setSelectedDate(selectedDate)
             setEndDate(date)
             setValue(getLocalStringDate(selectedDate) + ' — ' + getLocalStringDate(date))
+            if(props.onSelectDate) props.onSelectDate(getLocalStringDate(selectedDate) + ' — ' + getLocalStringDate(date))
           }
           else {
             setSelectedDate(date)
             setEndDate(selectedDate)
             setValue(getLocalStringDate(date) + ' — ' + getLocalStringDate(selectedDate))
+            if(props.onSelectDate) props.onSelectDate(getLocalStringDate(date) + ' — ' + getLocalStringDate(selectedDate))
           }
         }
         else {
@@ -116,15 +118,16 @@ export function useInput(props: InputProps) {
             setSelectedDate(date)
             setEndDate(selectedDate)
             setValue(getLocalStringDate(date) + ' — ' + getLocalStringDate(selectedDate))
+            if(props.onSelectDate) props.onSelectDate(getLocalStringDate(date) + ' — ' + getLocalStringDate(selectedDate))
           }
           //Если выбранная дата больше, чем текущая дата конца или находится между
           else {
             setEndDate(date)
             setValue(getLocalStringDate(selectedDate) + ' — ' + getLocalStringDate(date))
+            if(props.onSelectDate) props.onSelectDate(getLocalStringDate(selectedDate) + ' — ' + getLocalStringDate(date))
           }
         }
       }
-
     }
     setIsOpen(false)
   }

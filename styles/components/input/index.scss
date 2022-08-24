@@ -37,7 +37,7 @@
       border: none;
       background-color: transparent;
       cursor: inherit;
-        
+
       color: dt.$general-90;
       font-family: dt.$typo-font-p-medium-family;
       font-size: dt.$typo-font-p-medium-size;
@@ -55,11 +55,16 @@
     }
 
   }
-
+  //Отключение календарика
   input[type=date]::-webkit-inner-spin-button,
   input[type=date]::-webkit-calendar-picker-indicator {
     display: none;
   }
+  //Отключение крестика
+  input[type=search]::-webkit-search-decoration,
+  input[type=search]::-webkit-search-cancel-button,
+  input[type=search]::-webkit-search-results-button,
+  input[type=search]::-webkit-search-results-decoration { display: none; }
 }
 
 .input-wrapper-readonly {
