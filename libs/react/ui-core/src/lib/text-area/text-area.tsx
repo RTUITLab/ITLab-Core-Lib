@@ -1,41 +1,37 @@
-/* eslint-disable-next-line */
-import React, {useMemo} from "react";
+import React, {forwardRef} from 'react'
 import styles from './text-area.module.scss'
 import {TextAreaProps} from "./TextAreaProps";
 import {getAllEvents} from "../../utils/getAllEvents";
+import {useTextArea} from './useTextArea'
 
-export function TextArea(props: TextAreaProps) {
+export const TextArea = forwardRef((props: TextAreaProps, ref: any) => {
+  const {classes, length, handleChange} = useTextArea(props)
 
-  const classes = useMemo(() => {
-    const classList = [styles['text-area']];
-
-    if (props.size) {
-      classList.push(styles[`${props.size}-size`]);
-    }
-
-    if (props.className) {
-      if (typeof props.className === 'string') {
-        classList.push(props.className);
-      } else if (typeof props.className === 'object') {
-        classList.push(...props.className);
-      }
-    }
-
-    return classList.join(' ');
-  }, [props.size])
   return (
-    <textarea
-      className={classes}
-      defaultValue={props.defaultValue || ""}
-      placeholder={props.placeholder || ""}
-      name={props.name || ""}
-      style={props.style}
-      disabled={props.disabled || false}
-      onChange={props.onChange}
-      {...getAllEvents(props)}
-      id={props.id || ""}>
-    </textarea>
-  );
-}
-
-export default TextArea;
+    <div className={styles['text-area-wrapper']}>
+      {props.label && <label htmlFor={props.id} className={styles['text-area-label']}>{props.label}
+          {props.isRequired && <span>*</span>}
+        </label>
+      }
+      <textarea
+        ref={ref}
+        required={props.isRequired}
+        className={classes}
+        autoFocus={props.autoFocus}
+        defaultValue={props.defaultValue || ""}
+        placeholder={props.placeholder || ""}
+        name={props.name || ""}
+        readOnly={props.readonly}
+        style={props.style}
+        disabled={props.disabled || false}
+        {...getAllEvents(props)}
+        onChange={(e) => handleChange(e)}
+        id={props.id || ""}>
+      </textarea>
+      {
+        props.maxLength &&
+        <label className={styles['text-area-count']}>{length} / {props.maxLength}</label>
+      }
+    </div>
+  )
+})

@@ -24,4 +24,7 @@ Primary.args = {
   defaultValue: '',
   placeholder: '',
   disabled: false,
+  maxLength: 100,
+  isRequired: true,
+  label: 'Комментарий',
 };
