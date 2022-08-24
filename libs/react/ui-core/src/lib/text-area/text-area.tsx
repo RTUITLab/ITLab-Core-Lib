@@ -28,6 +28,7 @@ export const TextArea = forwardRef((props: TextAreaProps, ref: any) => {
         onChange={(e) => handleChange(e)}
         id={props.id || ""}>
       </textarea>
+      <span className={styles['resizer']} />
       {
         props.maxLength &&
         <label className={styles['text-area-count']}>{length} / {props.maxLength}</label>
