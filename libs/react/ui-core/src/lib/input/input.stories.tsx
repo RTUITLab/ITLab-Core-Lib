@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Input } from './input';
-import React, {useState} from 'react'
+import React from 'react'
 import Icon from '../icon/icon'
 
 export default {
