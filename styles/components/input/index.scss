@@ -64,6 +64,10 @@
 .input-wrapper-readonly {
   cursor: default;
   user-select: none;
+  & .input-outer, .input {
+    cursor: default;
+    pointer-events: none;
+  }
 }
 
 .input-wrapper-valid {
@@ -74,7 +78,7 @@
   & i {
     color: dt.$green-100;
   }
-  & .input::placeholder {
+  & .input-outer .input::placeholder {
     color: dt.$green-60;
   }
   &:focus-within:not(&.input-wrapper-readonly) {
@@ -94,7 +98,7 @@
   & i {
     color: dt.$red-100;
   }
-  & .input::placeholder {
+  & .input-outer .input::placeholder {
     color: dt.$red-60;
   }
   &:focus-within:not(&.input-wrapper-readonly) {
@@ -163,4 +167,7 @@
   opacity: 0.5;
   cursor: not-allowed;
   user-select: none;
+  & .input-outer, .input {
+    cursor: not-allowed;
+  }
 }

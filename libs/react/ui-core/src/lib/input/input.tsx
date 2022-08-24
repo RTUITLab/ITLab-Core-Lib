@@ -23,7 +23,6 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
       {props.icon}
     </span> : defaultIco}
   </>
-
   return (
     <>
       <div className={`${classes}`} ref={calendar} style={props.style}>

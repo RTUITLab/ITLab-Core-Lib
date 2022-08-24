@@ -14,9 +14,20 @@ export function useInput(props: InputProps) {
   const calendar = createRef<HTMLDivElement>();
   const {getStringDate, getLocalStringDate, compareDates, isDate} = useCalendar()
 
+  useEffect(() => {
+    if(props.type === 'date' || props.type === 'dateRange') {
+      if(props.value) setValue(getStringDate(props.value as string|Date))
+      else if(props.defaultValue) setValue(getStringDate(props.defaultValue as string|Date))
+      else setValue('')
+    }
+    else setValue(props.value || props.defaultValue || '')
+  }, [])
+
   const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
     if(props.onClick) props.onClick(e)
-    setIsOpen(true)
+    if(!props.readonly && !props.disabled) {
+      setIsOpen(true)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
