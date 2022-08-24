@@ -39,7 +39,7 @@ export function useCollapseItem(props: CollapseItemProps) {
     setContentHeight(0);
     setTimeout(() => {
       setContentDisplay('none');
-    }, 300);
+    }, 150);
   }
 
   function toggleExpanded() {
