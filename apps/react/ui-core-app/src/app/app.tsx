@@ -2,13 +2,12 @@
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
-import React, {useEffect} from "react";
+import React from "react";
 
 export function App() {
 
   return (
     <>
-
       <NxWelcome title="react-ui-core-app" />
       <div />
 

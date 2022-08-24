@@ -2,13 +2,7 @@
 @use '../../../styles/icons' as *;
 
 .input-wrapper {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  cursor: text;
-  gap: 8px;
+  position: relative;
 
   border: 1px solid dt.$primary-30;
   border-radius: 6px;
@@ -26,36 +20,55 @@
     color: dt.$general-70;
   }
 
-  & .input {
-    width: 100%;
-    padding: 0;
+  & .input-outer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: text;
+    gap: 8px;
 
-    outline: none;
-    border: none;
-    background-color: transparent;
-    cursor: inherit;
+    & .input {
+      width: 100%;
+      padding: 0;
 
-    color: dt.$general-90;
-    font-family: dt.$typo-font-p-medium-family;
-    font-style: dt.$typo-font-p-medium-style;
-    font-weight: dt.$typo-font-p-medium-weight;
-    font-size: dt.$typo-font-p-medium-size;
-    line-height: 24px;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      cursor: inherit;
+        
+      color: dt.$general-90;
+      font-family: dt.$typo-font-p-medium-family;
+      font-size: dt.$typo-font-p-medium-size;
+      font-style: dt.$typo-font-p-medium-style;
+      font-weight: dt.$typo-font-p-medium-weight;
+      line-height: 24px;
 
-    &::placeholder {
-      color: dt.$general-60;
+      &::placeholder {
+        color: dt.$general-60;
+      }
     }
+    & .input-icon {
+      display: flex;
+      align-items: center;
+    }
+
   }
 
-  & .input-icon {
-    display: flex;
-    align-items: center;
+  input[type=date]::-webkit-inner-spin-button,
+  input[type=date]::-webkit-calendar-picker-indicator {
+    display: none;
   }
 }
 
 .input-wrapper-readonly {
   cursor: default;
   user-select: none;
+  & .input-outer, .input {
+    cursor: default;
+    pointer-events: none;
+  }
 }
 
 .input-wrapper-valid {
@@ -66,7 +79,7 @@
   & i {
     color: dt.$green-100;
   }
-  & .input::placeholder {
+  & .input-outer .input::placeholder {
     color: dt.$green-60;
   }
   &:focus-within:not(&.input-wrapper-readonly) {
@@ -86,7 +99,7 @@
   & i {
     color: dt.$red-100;
   }
-  & .input::placeholder {
+  & .input-outer .input::placeholder {
     color: dt.$red-60;
   }
   &:focus-within:not(&.input-wrapper-readonly) {
@@ -118,35 +131,44 @@
 }
 
 .input-wrapper-large{
-  height: 48px;
-  padding: 12px 18px;
+  & .input-outer {
+    height: 48px;
+    padding: 12px 18px;
 
-  & .input-icon > i {
-    font-size: 24px;
+    & .input-icon > i {
+      font-size: 24px;
+    }
   }
 }
 .input-wrapper-medium{
-  height: 40px;
-  padding: 8px 16px;
+  & .input-outer {
+    height: 40px;
+    padding: 8px 16px;
 
-  & .input-icon > i {
-      font-size: 22px;
+    & .input-icon > i {
+        font-size: 22px;
+    }
   }
 }
 .input-wrapper-small{
-  height: 38px;
-  padding: 8px 14px;
+  & .input-outer {
+    height: 38px;
+    padding: 8px 14px;
 
-  & .input {
-    line-height: 20px;
-  }
+    & .input {
+      line-height: 20px;
+    }
 
-  & .input-icon > i {
-    font-size: 20px;
+    & .input-icon > i {
+      font-size: 20px;
+    }
   }
 }
 .input-wrapper-disabled{
   opacity: 0.5;
   cursor: not-allowed;
   user-select: none;
+  & .input-outer, .input {
+    cursor: not-allowed;
+  }
 }
