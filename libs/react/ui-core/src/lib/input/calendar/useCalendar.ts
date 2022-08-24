@@ -51,14 +51,22 @@ export function useCalendar() {
   //Строковая дата в традиционном формате
   function getStringDate(day: Date | string) {
     if(day instanceof Date) return day.getFullYear() + '-' + ('0'+(day.getMonth()+1)).slice(-2) + '-' + ('0'+day.getDate()).slice(-2)
-    else {
+    else if (day.length > 2) {
       const dateArray = day.replace(' ', '').split('.')
-      return dateArray[2]+'-'+dateArray[1]+'-'+dateArray[0]
+      if(dateArray.length === 3) return dateArray[2]+'-'+dateArray[1]+'-'+dateArray[0]
+      else return day
     }
+    else return day
   }
   //Строковая дата в ru формате
-  function getLocalStringDate(day: Date) {
-    return ('0'+day.getDate()).slice(-2) + '.' + ('0'+(day.getMonth()+1)).slice(-2) + '.' +  day.getFullYear()
+  function getLocalStringDate(day: Date| string) {
+    if(day instanceof Date) return ('0'+day.getDate()).slice(-2) + '.' + ('0'+(day.getMonth()+1)).slice(-2) + '.' +  day.getFullYear()
+    else if (day.length > 2) {
+      const dateArray = day.replace(' ', '').split('.')
+      if(dateArray.length === 3) return dateArray[0]+'.'+dateArray[1]+'.'+dateArray[2]
+      else return day
+    }
+    else return day
   }
   //Сравнение двух дат без времени
   function compareDates(start: Date, end: Date) {
@@ -68,7 +76,7 @@ export function useCalendar() {
   //Если входная строка - дата
   function isDate(text: string) {
     const date = new Date(getStringDate(text))
-    return date instanceof Date && !isNaN(date.valueOf())
+    return date instanceof Date && !isNaN(date.valueOf()) && text.length > 2
   }
 
   return {getMonday, endOfMonth, startOfMonth, endOfWeek, addDays, isSameDay, isSameMonth, isCurrentDay, getStringDate, getLocalStringDate, compareDates, isSameWeek, getWeek, isDate}

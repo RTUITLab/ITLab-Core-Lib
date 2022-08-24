@@ -21,14 +21,16 @@ export function useInput(props: InputProps) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(props.onChange) props.onChange(e)
-    setValue(e.target.value.split(' ').join('').replace(/-|—/, ' — '))
     if (props.type === 'date' || props.type === 'dateRange') {
       if(e.target.value !== '') {
         if(props.type === 'dateRange') {
+          setValue(e.target.value.split(' ').join('').replace(/-|—/, ' — '))
           const dateString = e.target.value.split(' ').join('').replace(/-|—/, ' — ').split('—')
           const firstDate = dateString[0].split(' ').join('')
           const secondDate = dateString[1] && dateString[1].split(' ').join('')
+          //Если пользователь ввел обе даты
           if(firstDate && secondDate && isDate(firstDate) && isDate(secondDate)) {
+            //Если первая дата меньше второй
             if(compareDates(new Date(getStringDate(firstDate)), new Date(getStringDate(secondDate)))) {
               setSelectedDate(new Date(getStringDate(firstDate)))
               setEndDate(new Date(getStringDate(secondDate)))
@@ -40,11 +42,18 @@ export function useInput(props: InputProps) {
               setCurrentMonth(new Date(getStringDate(firstDate)))
             }
           }
+          //Если пользователь ввел только одну дату
           else if(firstDate && isDate(getStringDate(firstDate))) {
             setSelectedDate(new Date(getStringDate(firstDate)))
             setCurrentMonth(new Date(getStringDate(firstDate)))
             setEndDate('')
           }
+          else if(secondDate && isDate(getStringDate(secondDate))) {
+            setSelectedDate(new Date())
+            setEndDate(new Date(getStringDate(secondDate)))
+            setCurrentMonth(new Date(getStringDate(secondDate)))
+          }
+          //Если пользователь не ввел валидную дату
           else {
             setSelectedDate(new Date())
             setCurrentMonth(new Date())
@@ -52,17 +61,21 @@ export function useInput(props: InputProps) {
           }
         }
         else {
+          setValue(e.target.value)
           setSelectedDate(new Date(e.target.value))
           setCurrentMonth(new Date(e.target.value))
         }
       }
+      else setValue(e.target.value)
     }
+    else setValue(e.target.value)
   }
 
   const handleSelectDate = (date: Date | string) => {
     if(typeof date === 'string') {
       setSelectedDate(new Date())
       setCurrentMonth(new Date())
+      setEndDate('')
       setValue('')
     }
     else {
@@ -156,8 +169,6 @@ export function useInput(props: InputProps) {
 
     return classList.join(' ');
   }, [props]);
-
-  console.log(endDate)
 
   return {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, currentMonth, setCurrentMonth, endDate}
 }
