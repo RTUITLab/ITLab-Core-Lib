@@ -20,7 +20,7 @@ export interface CommentProps extends DefaultParams {
   content?: string;
 
   /** Reply to comment event */
-  onReply?: (e: React.MouseEvent<HTMLButtonElement>, content: string) => void;
+  onReply?: (e: React.MouseEvent<HTMLElement>, content: string) => void;
 
   /** Like comment event */
   onLike?: (e: React.MouseEvent<HTMLElement>, commentId: string | number) => void;

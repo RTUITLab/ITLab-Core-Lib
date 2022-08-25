@@ -1,2 +1,82 @@
 @use '../../../styles/design-tokens' as dt;
 @use '../../../styles/icons' as *;
+
+.comment-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  & .comment {
+    display: grid;
+    grid-template-columns: fit-content(100%) 1fr;
+    font-family: dt.$typo-font-p-medium-family;
+    font-style: dt.$typo-font-p-medium-style;
+    font-weight: dt.$typo-font-p-medium-weight;
+    font-size: dt.$typo-font-p-medium-size;
+    line-height: dt.$typo-font-p-medium-line-height;
+    grid-gap: 10px;
+
+    & .comment-content {
+      padding: 10px;
+
+      & .comment-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        & .comment-author {
+          color: dt.$general-90;
+        }
+        & .comment-datetime {
+          color: dt.$general-70;
+          font-size: 13px;
+          line-height: 15px;
+        }
+      }
+      & .comment-text {
+        white-space: pre-wrap;
+        color: dt.$general-80;
+        margin: 0 0 10px;
+      }
+      & .comment-feedback {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+
+        & .comment-rate-button-container {
+          padding: 10px;
+
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 10px;
+
+          & .comment-rate-button {
+            color: dt.$general-90;
+          }
+        }
+
+        & .comment-feedback-button {
+          color: dt.$general-80;
+          font-size: 13px;
+          line-height: 15px;
+        }
+      }
+      & .comment-reply {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: fit-content(100%) 1fr;
+      }
+    }
+  }
+  & .comment-wrapper {
+    width: calc(100% - 58px);
+    margin-left: auto;
+  }
+}
