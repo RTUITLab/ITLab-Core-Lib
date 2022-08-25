@@ -11,7 +11,7 @@ const BackTop = forwardRef((props: BackTopProps, ref: any) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  });
+  }, []);
 
   return (
     <button
