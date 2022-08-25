@@ -7,12 +7,10 @@ export default {
 } as ComponentMeta<typeof BackTop>;
 
 const Template: ComponentStory<typeof BackTop> = (args) => (
-  <BackTop {...args} />
+  <div style={{ height: '200vh' }}>
+    <BackTop {...args} />
+  </div>
 );
 
-function onClick(e: React.MouseEvent<HTMLElement>) {
-  console.log(e);
-}
-
 export const Primary = Template.bind({});
-Primary.args = { onClick: onClick };
+Primary.args = {};
