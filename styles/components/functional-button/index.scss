@@ -1,0 +1,45 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/icons' as *;
+
+.functionalButton {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 0;
+
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  color: dt.$general-90;
+  font-size: dt.$typo-font-p-medium-size;
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+  line-height: 24px;
+  transition: all .15s ease;
+
+  & .functionalButton-icon {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+  }
+
+  &:hover, &:active {
+    color: dt.$primary-90;
+  }
+
+  &:disabled {
+    color: dt.$general-70;
+    cursor: not-allowed;
+  }
+}
+
+.functionalButton-icon-left {
+  order: -1;
+}
+.functionalButton-icon-right {
+  order: 1;
+}

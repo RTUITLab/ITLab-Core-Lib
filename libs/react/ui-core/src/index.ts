@@ -1,4 +1,6 @@
 export * from './lib/card/card';
+export * from './lib/badge/badge';
+export * from './lib/functional-button/functional-button';
 export * from './lib/text-area/text-area';
 export * from './lib/tooltip/tooltip';
 export * from './lib/dropdown/dropdown';
