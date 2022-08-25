@@ -1,3 +1,4 @@
+export * from './lib/comment/comment';
 export * from './lib/radio-group/radio-group';
 export * from './lib/card/card';
 export * from './lib/badge/badge';

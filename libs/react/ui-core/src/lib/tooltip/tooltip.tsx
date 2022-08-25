@@ -1,9 +1,9 @@
 import React, {forwardRef} from 'react';
 import styles from './tooltip.module.scss';
 import {useTooltip} from "./useTooltip";
-import {TextArea} from "../text-area/text-area";
 import {Button} from "../button";
 import {TooltipProps} from "./TooltipProps";
+import {TextArea} from '../text-area/text-area'
 
 export const Tooltip = forwardRef((props: TooltipProps, ref: any) => {
   const {tooltipContent, elem, classes, tooltipStyles, recalculatePosition} = useTooltip(props);

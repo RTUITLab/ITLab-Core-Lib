@@ -22,14 +22,23 @@ const onClick = (e: React.MouseEvent<HTMLElement>) => {
 }
 Primary.args = {
   children: 'Нажми меня',
+  displayIco: true,
   onClick: onClick,
 };
 
 export const OnlyIcon = Template.bind({});
-OnlyIcon.args = {};
+OnlyIcon.args = {
+  displayIco: true,
+};
 
 export const CustomIcon = Template.bind({});
 CustomIcon.args = {
   children: 'Выйти',
+  displayIco: true,
   icon: <Icon name={'ri-logout-box-line'} type={'line'} />
+};
+
+export const OnlyText = Template.bind({});
+OnlyText.args = {
+  children: 'Ответить',
 };
