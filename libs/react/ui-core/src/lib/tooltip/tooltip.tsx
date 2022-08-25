@@ -1,7 +1,7 @@
 import React, {forwardRef} from 'react';
 import styles from './tooltip.module.scss';
 import {useTooltip} from "./useTooltip";
-import TextArea from "../text-area/text-area";
+import {TextArea} from "../text-area/text-area";
 import {Button} from "../button";
 import {TooltipProps} from "./TooltipProps";
 

@@ -24,4 +24,16 @@ Primary.args = {
   defaultValue: '',
   placeholder: '',
   disabled: false,
+  maxLength: 100,
+  isRequired: true,
+  label: 'Комментарий',
+};
+export const WithoutLabel = Template.bind({});
+WithoutLabel.args = {
+  name: '',
+  id: '',
+  defaultValue: '',
+  placeholder: '',
+  disabled: false,
+  maxLength: 200,
 };
