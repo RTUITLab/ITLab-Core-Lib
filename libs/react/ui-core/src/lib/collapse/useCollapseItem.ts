@@ -17,10 +17,8 @@ export function useCollapseItem(props: CollapseItemProps) {
 
   useEffect(() => {
     const children = Array.from(contentRef.current!.children);
-    console.log(children);
     Promise.resolve().then(() => {
       const height = getDefaultHeight(children);
-      console.log(height);
       setContentDisplay('none');
       setDefaultContentHeight(height);
     });
