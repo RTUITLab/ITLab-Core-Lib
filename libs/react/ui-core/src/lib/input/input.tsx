@@ -28,6 +28,7 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
              defaultValue={props.defaultValue}
              type={props.type || 'text'}
              maxLength={props.maxLength}
+             pattern={props.pattern}
              min={props.min}
              max={props.max}
              tabIndex={props.tabIndex}

@@ -1,11 +1,12 @@
 import React from "react";
 import Icon from "../icon/icon";
 import {DefaultParams} from "../../default-types/defaultParams";
-import {ClickableObjectMini} from "../../default-types/ClickableObjectMini";
+
+type InputTypeEnum = 'text' | 'number' | 'email' | 'password' | 'search' | 'tel'
 
 export interface InputProps extends DefaultParams{
 
-  /** Position of the icon, valid values are "left", "right". */
+  /** Position of the icon, valid values are "left", "right" */
   iconPosition?: 'left' | 'right';
 
   /** Icon object */
@@ -47,7 +48,7 @@ export interface InputProps extends DefaultParams{
   /** On blur event */
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 
-  /** Specifies that an input field must be filled out before submitting the form. */
+  /** Specifies that an input field must be filled out before submitting the form */
   isRequired?: boolean;
 
   /** When present, it specifies that the component cannot be edited */
@@ -56,16 +57,19 @@ export interface InputProps extends DefaultParams{
   /** When present, it specifies that the component should automatically get focus */
   autoFocus?: boolean;
 
-  /** Specifies the type of component. */
-  type?: string;
+  /** Specifies the type of component */
+  type?: InputTypeEnum;
 
-  /** Specifies the maximum number of characters allowed in an input field. */
+  /** Specifies the regular expression which the input's value must match */
+  pattern?: string;
+
+  /** Specifies the maximum number of characters allowed in an input field */
   maxLength?: number;
 
-  /** Specifies the minimum value of component. */
+  /** Specifies the minimum value of component */
   min?: string | number;
 
-  /** Specifies the maximum value of component. */
+  /** Specifies the maximum value of component */
   max?: string | number;
 
   /** Index of the element in tabbing order */

@@ -92,3 +92,6 @@
   cursor: pointer;
   user-select: none;
 }
+.checkbox-label-disabled {
+  cursor: not-allowed;
+}

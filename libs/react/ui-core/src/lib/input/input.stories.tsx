@@ -8,6 +8,7 @@ export default {
   argTypes: {
     icon: { control: false },
     defaultValue: { control: {type: 'text'}},
+    type: { control: {type: 'select', options: ['text', 'number', 'email', 'password', 'search', 'tel']}},
     value: { control: {type: 'text'}},
     max: { control: {type: 'text'}},
     min: { control: {type: 'text'}},
@@ -22,4 +23,5 @@ Primary.args = {
   placeholder: 'Write some text',
   iconPosition: 'right',
   size: 'large',
+  type: 'text'
 };

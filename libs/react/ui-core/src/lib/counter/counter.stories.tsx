@@ -1,12 +1,14 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import {ComponentMeta, ComponentStory} from '@storybook/react';
 import Counter from "./counter";
 
 export default {
   component: Counter,
   title: 'Counter',
-  argTypes:{
-    style:{control:false},
-    className:{control:false},
+  argTypes: {
+    className: {control: {type: 'text'}},
+    type: {control: "select", options: ["solid", "outline", "light"]},
+    color: {control: "select", options: ["primary", "red", "green", "orange", "transparent"]},
+    size: {control: "select", options: ["small", "medium", "large"]},
   }
 } as ComponentMeta<typeof Counter>;
 
@@ -18,6 +20,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   children: 5,
   type: 'outline',
-  color: 'primary',
   size: 'large',
+  color: 'primary',
+  overflowCount: 99,
 };
