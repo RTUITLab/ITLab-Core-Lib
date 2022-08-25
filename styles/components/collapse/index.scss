@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   transition: padding 150ms;
-  padding: 25px 35px 25px 27px;
+  padding: 25px 25px 25px 35px;
   &:hover {
     background-color: dt.$general-30;
   }
@@ -43,6 +43,7 @@
   color: dt.$general-90;
   font-family: dt.$typo-font-p-medium-family;
   font-weight: dt.$typo-font-p-medium-weight;
+  font-style: dt.$typo-font-p-medium-style;
   font-size: 18px;
   line-height: 28px;
 }
@@ -63,5 +64,11 @@
 }
 
 .collapse-item-content {
-  padding: 0 35px 25px 27px;
+  padding: 0 25px 25px 35px;
+  color: dt.$general-80;
+  font-family: dt.$typo-font-p-medium-family;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-style: dt.$typo-font-p-medium-style;
+  font-size: 16px;
+  line-height: 19px;
 }

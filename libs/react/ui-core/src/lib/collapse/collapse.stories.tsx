@@ -16,11 +16,7 @@ Primary.args = {
     {
       header: 'Пункт 1',
       content: (
-        <div
-          style={{
-            color: '#5A607F',
-          }}
-        >
+        <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna lorem
           dui leo eget morbi vitae. Nunc in dignissim sed ac nunc.
         </div>
@@ -29,11 +25,7 @@ Primary.args = {
     {
       header: 'Пункт 2',
       content: (
-        <div
-          style={{
-            color: '#5A607F',
-          }}
-        >
+        <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna lorem
           dui leo eget morbi vitae. Nunc in dignissim sed ac nunc.
         </div>
@@ -42,11 +34,7 @@ Primary.args = {
     {
       header: 'Пункт 3',
       content: (
-        <div
-          style={{
-            color: '#5A607F',
-          }}
-        >
+        <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna lorem
           dui leo eget morbi vitae. Nunc in dignissim sed ac nunc.
         </div>
