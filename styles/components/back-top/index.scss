@@ -21,4 +21,15 @@
   &:active {
     background-color: dt.$general-100;
   }
+
+  opacity: 1;
+  transition: opacity 150ms;
+
+  &-fading {
+    opacity: 0;
+  }
+
+  &-hidden {
+    display: none;
+  }
 }

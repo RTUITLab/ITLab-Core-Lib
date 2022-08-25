@@ -1,20 +1,17 @@
-import { forwardRef, useMemo } from 'react';
-import styles from './back-top.module.scss';
+import { forwardRef, useEffect } from 'react';
 import { BackTopProps } from './BackTopProps';
 import { Icon } from '../icon/icon';
+import { useBackTop } from './useBackTop';
 
 const BackTop = forwardRef((props: BackTopProps, ref: any) => {
-  const classes = useMemo(() => {
-    const classList = [styles['back-top']];
-    if (typeof props.className === 'string') classList.push(props.className);
-    if (typeof props.className === 'object') classList.push(...props.className);
-    return classList.join(' ');
-  }, [props.className]);
+  const { classes, scrollToTop, handleScroll } = useBackTop(props);
 
-  function scrollToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 
   return (
     <button
