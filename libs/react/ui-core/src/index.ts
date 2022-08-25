@@ -1,3 +1,4 @@
+export * from './lib/badge/badge';
 export * from './lib/functional-button/functional-button';
 export * from './lib/text-area/text-area';
 export * from './lib/tooltip/tooltip';
