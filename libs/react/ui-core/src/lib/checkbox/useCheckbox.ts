@@ -52,6 +52,9 @@ export function useCheckbox(props: CheckboxProps) {
       "checkbox-box": true,
       "checkbox-disabled": props.disabled === true,
       "checkbox-readonly": props.readonly === true,
+      "checkbox-checked": checked,
+      "checkbox-focus": focused,
+      "checkbox-invalid": isError,
     };
 
     Object.keys(conditions).forEach((key:string) => {
@@ -64,7 +67,7 @@ export function useCheckbox(props: CheckboxProps) {
     if(typeof props.className === 'object') classList.push(...props.className);
 
     return classList.join(' ');
-  }, [props]);
+  }, [props, checked, focused, isError]);
 
   const labelStyleClass = useMemo(() => {
     const classList = [styles['checkbox-label']];

@@ -2,6 +2,7 @@ import styles from './checkbox.module.scss'
 import React, {forwardRef} from 'react'
 import {useCheckbox} from './useCheckbox'
 import {CheckboxProps} from './CheckboxProps'
+import Icon from '../icon/icon'
 
 /**
  * Checkbox component
@@ -10,7 +11,7 @@ import {CheckboxProps} from './CheckboxProps'
 export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
   const {classes, containerClasses, checked, handleCheck, focused, handleFocus, handleKeyUp, labelStyleClass, isError} = useCheckbox(props);
 
-  const icon = <>{props.checkboxIcon ? <span className={'checkbox-icon'}>{props.checkboxIcon}</span> : <span className={'checkbox-icon ri-check-line'} />}</>
+  const icon = <>{props.checkboxIcon ? props.checkboxIcon : <Icon name={'ri-check-line'} type={'line'} size={16} />}</>
 
   return (
     <div onClick={() => handleCheck(checked)} className={containerClasses} style={props.style}>
@@ -34,9 +35,9 @@ export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
                onKeyDown={(e) => handleKeyUp(e)}
         />
       </div>
-      <div className={`${classes} ${checked ? styles['checkbox-checked'] : ''} ${focused ? styles['checkbox-focus'] : ''} ${isError ? styles['checkbox-invalid'] : ''}`}>
+      <label className={classes}>
         {checked && icon}
-      </div>
+      </label>
       <label htmlFor={props.inputId}
              className={labelStyleClass}>
         {props.label}
