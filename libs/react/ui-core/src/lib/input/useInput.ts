@@ -8,8 +8,6 @@ export function useInput(props: InputProps) {
   const [value, setValue] = useState<string>('')
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [endDate, setEndDate] = useState<Date | ''>('')
-  console.log(selectedDate)
-  console.log(endDate)
   const calendar = createRef<HTMLDivElement>();
 
   useEffect(() => {
