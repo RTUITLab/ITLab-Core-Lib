@@ -51,10 +51,7 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
           />
           <InputIcon />
         </label>
-        {
-          (
-            // isOpen &&
-            ( props.type === 'date' || props.type === 'dateRange') ) &&
+        {(isOpen && ( props.type === 'date' || props.type === 'dateRange') ) &&
           <div className={styles['input-calendar']}>
             <Calendar type={props.type} onSelectDate={handleSelectDate} size={props.calendarSize} defaultDate={selectedDate} defaultEndDate={endDate} />
           </div>

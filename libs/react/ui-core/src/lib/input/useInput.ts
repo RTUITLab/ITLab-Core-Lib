@@ -73,8 +73,16 @@ export function useInput(props: InputProps) {
 
   const handleSelectDate = useCallback ((date: string) => {
     setValue(CalendarFunctions.getStringDate(date))
+    if(props.type === 'date') {
+      setSelectedDate(new Date(CalendarFunctions.getStringDate(date)))
+    }
+    else {
+      const dateString = date.split('—')
+      setSelectedDate(new Date(CalendarFunctions.getStringDate(dateString[0])))
+      setEndDate(new Date(CalendarFunctions.getStringDate(dateString[1])))
+    }
     setIsOpen(false)
-  },[])
+  },[props.type])
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
