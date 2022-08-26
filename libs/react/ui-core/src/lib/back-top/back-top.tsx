@@ -4,14 +4,7 @@ import { Icon } from '../icon/icon';
 import { useBackTop } from './useBackTop';
 
 const BackTop = forwardRef((props: BackTopProps, ref: any) => {
-  const { classes, scrollToTop, handleScroll } = useBackTop(props);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const { classes, scrollToTop } = useBackTop(props);
 
   return (
     <button

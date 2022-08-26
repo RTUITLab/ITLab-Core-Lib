@@ -1,5 +1,5 @@
 import styles from './back-top.module.scss';
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { BackTopProps } from './BackTopProps';
 
 export function useBackTop(props: BackTopProps) {
@@ -7,7 +7,12 @@ export function useBackTop(props: BackTopProps) {
   const [visible, setVisible] = useState<boolean>(false);
   /** Used to hide button completely */
   const [displayed, setDisplayed] = useState<boolean>(false);
-  const [timeoutRef, setTimeoutRef] = useState<NodeJS.Timeout | undefined>();
+  const [visibleTimeoutRef, setVisibleTimeoutRef] = useState<
+    NodeJS.Timeout | undefined
+  >();
+  const [displayedTimeoutRef, setDisplayedTimeoutRef] = useState<
+    NodeJS.Timeout | undefined
+  >();
 
   const classes = useMemo(() => {
     const classList = [styles['back-top']];
@@ -23,31 +28,47 @@ export function useBackTop(props: BackTopProps) {
     document.documentElement.scrollTop = 0;
   }
 
-  function hideButton() {
-    setVisible(false);
-    if (!timeoutRef) {
-      const ref = setTimeout(() => {
-        setDisplayed(false);
-      }, 150);
-      setTimeoutRef(ref);
+  const hideButton = useCallback(() => {
+    if (visibleTimeoutRef) {
+      clearTimeout(visibleTimeoutRef);
+      setVisibleTimeoutRef(undefined);
     }
-  }
+    setVisible(false);
+    const ref = setTimeout(() => {
+      setDisplayed(false);
+    }, 150);
+    setDisplayedTimeoutRef(ref);
+  }, [visible, displayed]);
 
-  function showButton() {
-    if (timeoutRef) clearTimeout(timeoutRef);
+  const showButton = useCallback(() => {
+    if (displayedTimeoutRef) {
+      clearTimeout(displayedTimeoutRef);
+      setDisplayedTimeoutRef(undefined);
+    }
     setDisplayed(true);
-    setTimeout(() => {
+    const ref = setTimeout(() => {
       setVisible(true);
     }, 10);
-  }
+    setVisibleTimeoutRef(ref);
+  }, [visible, displayed]);
 
-  function handleScroll() {
+  const handleScroll = useCallback(() => {
     const scroll =
       document.body.scrollTop || document.documentElement.scrollTop;
     const threshold = props.threshold || 150;
-    if (scroll < threshold && visible) hideButton();
-    if (scroll >= threshold && !visible) showButton();
-  }
+    if (scroll < threshold && visible && !displayedTimeoutRef) hideButton();
+    if (scroll >= threshold && !visible && !visibleTimeoutRef) showButton();
+  }, [props.threshold, hideButton, showButton]);
 
-  return { classes, scrollToTop, handleScroll };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [
+    props.threshold,
+    handleScroll,
+  ]);
+
+  return { classes, scrollToTop };
 }
