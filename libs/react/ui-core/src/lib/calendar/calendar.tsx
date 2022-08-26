@@ -26,7 +26,7 @@ export const Calendar:FC<CalendarProps> = React.memo((props) => {
   }, [currentMonth]);
 
   return (
-    <div className={classes}>
+    <div className={classes} style={props.style}>
       <CalendarHeader currentMonth={currentMonth} month={month} prevMonth={prevMonth} nextMonth={nextMonth} />
       <CalendarDays weeks={weeks} />
       <CalendarCells currentMonth={currentMonth} selectedDate={selectedDate} endDate={endDate === '' ? undefined : endDate} onDateClick={onDateClick} />
