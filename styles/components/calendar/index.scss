@@ -273,13 +273,17 @@
   }
 
   & .calendar-body {
-    & .calendar-cell {
-      height: 35px;
-      width: 35px;
+    & .calendar-row {
+      & .calendar-dayContainer {
+        & .calendar-cell {
+          height: 35px;
+          width: 35px;
 
-      & .calendar-number {
-        font-size: 14px;
-        line-height: 21px;
+          & .calendar-number {
+            font-size: 14px;
+            line-height: 21px;
+          }
+        }
       }
     }
   }
