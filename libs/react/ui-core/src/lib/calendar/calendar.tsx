@@ -36,11 +36,12 @@ export const Calendar:FC<CalendarProps> = React.memo((props) => {
 });
 
 const CalendarHeader:FC<CalendarHeaderType> = ({currentMonth, month, prevMonth, nextMonth}) => {
+  const displayedMonth = month[currentMonth.getMonth()] + ' ' + currentMonth.getFullYear()
   return (
     <div className={`${styles['calendar-header']} ${styles['calendar-row']}`}>
       <span className={`${styles['calendar-icon']}`} onClick={prevMonth}><Icon name={'ri-arrow-left-s-line'} type={'line'}/></span>
       <div className={`${styles['calendar-title']}`}>
-        {month[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+        {displayedMonth}
       </div>
       <span className={`${styles['calendar-icon']}`} onClick={nextMonth}><Icon name={'ri-arrow-right-s-line'} type={'line'}/></span>
     </div>
