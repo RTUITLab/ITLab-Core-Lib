@@ -6,12 +6,12 @@
   width: fit-content;
   display: flex;
   align-items: center;
-  height: 25px;
   box-sizing: border-box;
   border: 1px solid dt.$general-40;
   border-radius: 6px;
 
   & .inputNumber-icon {
+    height: 100%;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -25,13 +25,13 @@
       border-radius: 0 6px 6px 0;
     }
 
-    & > i {
+    & i {
       transition: color .25s ease;
       font-size: 17px;
       color: dt.$primary-100;
     }
     &:hover {
-      & > i {
+      & i {
         color: dt.$primary-60;
       }
     }

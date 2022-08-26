@@ -49,5 +49,8 @@ export interface InputNumberProps extends DefaultParams{
   max?: string | number;
 
   /** Index of the element in tabbing order */
-  tabIndex?: number
+  tabIndex?: number;
+
+  /** Inline style of the icons */
+  iconStyle?: object;
 }
