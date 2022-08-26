@@ -24,8 +24,7 @@ export function useBackTop(props: BackTopProps) {
   }, [props.className, visible, displayed]);
 
   const scrollToTop = useCallback(() => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }, []);
 
   const hideButton = useCallback(() => {
