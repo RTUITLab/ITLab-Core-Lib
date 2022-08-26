@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import {TextArea} from './text-area';
+import Card from './card';
 
-describe('TextArea', () => {
+describe('Card', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<TextArea />);
+    const { baseElement } = render(<Card children={<></>} />);
     expect(baseElement).toBeTruthy();
   });
 });

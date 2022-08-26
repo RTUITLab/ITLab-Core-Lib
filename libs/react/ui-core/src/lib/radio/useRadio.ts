@@ -3,21 +3,40 @@ import styles from './radio.module.scss'
 import {RadioProps} from './RadioProps'
 
 /**
- * Hook for checkbox
+ * Hook for radio
  */
-export function useRadio(props: RadioProps) {
+export function useRadio(props: RadioProps, disabled: boolean, readonly: boolean) {
   const [focused, setFocused] = useState<boolean>(false)
-
   const handleFocus = (focused: boolean) => {
-    setFocused(focused)
+    if(!disabled && !readonly) {
+      setFocused(focused)
+    }
   }
 
+  const containerClasses = useMemo(() => {
+    const classList = [] as string[];
+
+    const conditions:{[index: string]:boolean} = {
+      "radio": true,
+      "radio-disabled": disabled,
+      "radio-readonly": readonly,
+    };
+
+    Object.keys(conditions).forEach((key:string) => {
+      if (conditions[key]) {
+        classList.push(styles[key]);
+      }
+    });
+    return classList.join(' ');
+  }, [props]);
+
   const classes = useMemo(() => {
-    const classList = ['checkbox-box'];
+    const classList = [];
 
     const conditions:{[index: string]:boolean} = {
       "radio-box": true,
-      "radio-disabled": props.disabled === true,
+      "radio-disabled": disabled,
+      "radio-readonly": readonly,
     };
 
     Object.keys(conditions).forEach((key:string) => {
@@ -35,11 +54,22 @@ export function useRadio(props: RadioProps) {
   const labelStyleClass = useMemo(() => {
     const classList = [styles['radio-label']];
 
+    const conditions:{[index: string]:boolean} = {
+      "radio-disabled": disabled,
+      "radio-readonly": readonly,
+    };
+
+    Object.keys(conditions).forEach((key:string) => {
+      if (conditions[key]) {
+        classList.push(styles[key]);
+      }
+    });
+
     if(typeof props.labelStyleClass === 'string') classList.push(props.labelStyleClass);
     if(typeof props.labelStyleClass === 'object') classList.push(...props.labelStyleClass);
 
     return classList.join(' ');
   }, [props]);
 
-  return {classes, labelStyleClass, focused, handleFocus}
+  return {classes, labelStyleClass, focused, handleFocus, containerClasses}
 }
