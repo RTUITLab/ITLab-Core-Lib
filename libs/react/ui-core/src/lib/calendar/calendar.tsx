@@ -9,14 +9,13 @@ import {useCalendar} from './useCalendar'
 import {CalendarCellsType} from './CalendarCellsProps'
 
 export const Calendar:FC<CalendarProps> = React.memo((props) => {
-  const {setCurrentMonth, currentMonth, selectedDate, size, endDate} = props
-  const {handleSelectDate} = useCalendar(props)
+  const {handleSelectDate, classes, setCurrentMonth, currentMonth, selectedDate, endDate} = useCalendar(props)
   const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
   const weeks = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
 
   const onDateClick = useCallback((day: Date| string) => {
     handleSelectDate(day)
-  }, []);
+  }, [selectedDate, endDate]);
 
   const nextMonth = useCallback(() => {
     setCurrentMonth(new Date((new Date(currentMonth)).setMonth(currentMonth.getMonth() + 1)))
@@ -27,10 +26,10 @@ export const Calendar:FC<CalendarProps> = React.memo((props) => {
   }, [currentMonth]);
 
   return (
-    <div className={`${styles['calendar']} ${size === 'small' ? styles['calendar-small'] : ''}`}>
-      <CalendarHeader currentMonth={props.currentMonth} month={month} prevMonth={prevMonth} nextMonth={nextMonth} />
+    <div className={classes}>
+      <CalendarHeader currentMonth={currentMonth} month={month} prevMonth={prevMonth} nextMonth={nextMonth} />
       <CalendarDays weeks={weeks} />
-      <CalendarCells currentMonth={currentMonth} selectedDate={selectedDate} endDate={endDate} onDateClick={onDateClick} />
+      <CalendarCells currentMonth={currentMonth} selectedDate={selectedDate} endDate={endDate === '' ? undefined : endDate} onDateClick={onDateClick} />
       <button className={styles['calendar-clearBtn']} onClick={() => onDateClick('')}>Удалить</button>
     </div>
   )
@@ -39,11 +38,11 @@ export const Calendar:FC<CalendarProps> = React.memo((props) => {
 const CalendarHeader:FC<CalendarHeaderType> = ({currentMonth, month, prevMonth, nextMonth}) => {
   return (
     <div className={`${styles['calendar-header']} ${styles['calendar-row']}`}>
-      <span className={`${styles['calendar-icon']}`} onClick={prevMonth}><Icon name={'ri-arrow-left-s-line'} size={24} type={'line'}/></span>
+      <span className={`${styles['calendar-icon']}`} onClick={prevMonth}><Icon name={'ri-arrow-left-s-line'} type={'line'}/></span>
       <div className={`${styles['calendar-title']}`}>
         {month[currentMonth.getMonth()]} {currentMonth.getFullYear()}
       </div>
-      <span className={`${styles['calendar-icon']}`} onClick={nextMonth}><Icon name={'ri-arrow-right-s-line'} size={24} type={'line'}/></span>
+      <span className={`${styles['calendar-icon']}`} onClick={nextMonth}><Icon name={'ri-arrow-right-s-line'} type={'line'}/></span>
     </div>
   );
 }
@@ -63,7 +62,6 @@ const CalendarDays:FC<CalendarDaysType> = ({weeks}) => {
 }
 
 const CalendarCells:FC<CalendarCellsType> = React.memo(({currentMonth, selectedDate, endDate, onDateClick}) => {
-
   const monthStart = useMemo(() => CalendarFunctions.startOfMonth(currentMonth), [currentMonth]);
   const monthEnd = useMemo(() => CalendarFunctions.endOfMonth(currentMonth), [currentMonth])
   const startDate = useMemo(() => CalendarFunctions.getMonday(monthStart), [monthStart])
@@ -82,7 +80,7 @@ const CalendarCells:FC<CalendarCellsType> = React.memo(({currentMonth, selectedD
       "calendar-selected": (CalendarFunctions.isSameDay(day, selectedDate) || (endDate && CalendarFunctions.isSameDay(day, endDate))) || false,
       "calendar-current": CalendarFunctions.isCurrentDay(day),
       "calendar-inRange-number": endDate && CalendarFunctions.compareDates(day, endDate) && CalendarFunctions.compareDates(selectedDate, day) || false,
-      };
+    };
 
     Object.keys(conditions).forEach((key:string) => {
       if (conditions[key]) {
@@ -109,7 +107,7 @@ const CalendarCells:FC<CalendarCellsType> = React.memo(({currentMonth, selectedD
       "calendar-dayContainer-onlyChild":
         (endDate && CalendarFunctions.isSameDay(selectedDate, CalendarFunctions.endOfWeek(day)) && CalendarFunctions.compareDates(endDate, CalendarFunctions.addDays(day, 6))) || //Если стартовая дата стоит концом недели и через неделю дата не входит в выбранную
         (endDate && CalendarFunctions.isSameDay(endDate, CalendarFunctions.getMonday(day)) && CalendarFunctions.compareDates(CalendarFunctions.addDays(day, -6), selectedDate)) || false //Если конечная дата стоит началом недели и за неделю до этого дата не входит в выбранную
-      };
+    };
 
     Object.keys(conditions).forEach((key:string) => {
       if (conditions[key]) {
@@ -137,7 +135,7 @@ const CalendarCells:FC<CalendarCellsType> = React.memo(({currentMonth, selectedD
                   >
                     <div  className={`${styles['calendar-number']}`}>{formattedDate}</div>
                   </div>
-                  {(endDate && CalendarFunctions.compareDates(day, endDate) && CalendarFunctions.compareDates(selectedDate, day) )&&
+                  {endDate && (CalendarFunctions.compareDates(day, endDate) && CalendarFunctions.compareDates(selectedDate, day) )&&
                     <div className={styles['calendar-inRange']} />
                   }
                 </div>
@@ -158,7 +156,7 @@ const CalendarCells:FC<CalendarCellsType> = React.memo(({currentMonth, selectedD
       );
       days = [];
     }
-  }, [currentMonth, selectedDate])
+  }, [currentMonth, selectedDate, endDate])
 
   return <div className={`${styles['calendar-body']}`}>{rows}</div>;
 })

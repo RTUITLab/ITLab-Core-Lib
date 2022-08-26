@@ -21,7 +21,7 @@
 .calendar {
   box-sizing: border-box;
   display: block;
-  max-width: 362px;
+  width: 362px;
   background: #fff;
   box-shadow: 0 6px 24px rgba(38, 44, 71, 0.16);
   border-radius: 6px;
@@ -82,6 +82,7 @@
     margin-bottom: 5px;
     & .calendar-row {
       gap: 2px;
+      justify-content: center;
 
       & .calendar-dayContainer {
         position: relative;
@@ -95,8 +96,8 @@
           overflow: hidden;
           cursor: pointer;
           transition: color 0.15s ease;
-          height: 40px;
-          width: 40px;
+          height: 42px;
+          width: 42px;
 
           &:not(&.calendar-selected):hover {
             color: dt.$primary-80;
@@ -107,6 +108,7 @@
           }
 
           & .calendar-number {
+            user-select: none;
             font-family: dt.$typo-font-p-medium-family;
             font-style: dt.$typo-font-p-medium-style;
             font-size: dt.$typo-font-p-medium-size;
@@ -214,9 +216,6 @@
           }
         }
       }
-
-
-
       &:last-child {
         border-bottom: none;
       }
@@ -252,13 +251,14 @@
 }
 
 .calendar-small {
+  width: 317px;
   & .calendar-header {
     & .calendar-title {
       font-size: 14px;
       line-height: 21px;
     }
     & .calendar-icon {
-      & > i {
+      & i {
         font-size: 21px;
       }
     }

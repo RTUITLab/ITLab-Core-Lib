@@ -7,8 +7,20 @@ export default {
 } as ComponentMeta<typeof Calendar>;
 
 const Template: ComponentStory<typeof Calendar> = (args) => (
-  <Calendar {...args} setCurrentMonth={() => new Date()} currentMonth={new Date()} selectedDate={new Date()} onSelectDate={()=>{}} />
+  <Calendar {...args} />
 );
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  type: 'date'
+};
+
+export const SmallCalendar = Template.bind({});
+SmallCalendar.args = {
+  type: 'date',
+  size: 'small',
+};
+export const RangeCalendar = Template.bind({});
+RangeCalendar.args = {
+  type: 'dateRange',
+};

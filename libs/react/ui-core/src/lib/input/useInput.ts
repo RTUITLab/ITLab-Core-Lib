@@ -8,8 +8,8 @@ export function useInput(props: InputProps) {
   const [value, setValue] = useState<string>('')
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [endDate, setEndDate] = useState<Date | ''>('')
-  const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
-
+  console.log(selectedDate)
+  console.log(endDate)
   const calendar = createRef<HTMLDivElement>();
 
   useEffect(() => {
@@ -42,36 +42,30 @@ export function useInput(props: InputProps) {
             if(CalendarFunctions.compareDates(new Date(CalendarFunctions.getStringDate(firstDate)), new Date(CalendarFunctions.getStringDate(secondDate)))) {
               setSelectedDate(new Date(CalendarFunctions.getStringDate(firstDate)))
               setEndDate(new Date(CalendarFunctions.getStringDate(secondDate)))
-              setCurrentMonth(new Date(CalendarFunctions.getStringDate(secondDate)))
             }
             else {
               setSelectedDate(new Date(CalendarFunctions.getStringDate(secondDate)))
               setEndDate(new Date(CalendarFunctions.getStringDate(firstDate)))
-              setCurrentMonth(new Date(CalendarFunctions.getStringDate(firstDate)))
             }
           }
           //Если пользователь ввел только одну дату
           else if(firstDate && CalendarFunctions.isDate(CalendarFunctions.getStringDate(firstDate))) {
             setSelectedDate(new Date(CalendarFunctions.getStringDate(firstDate)))
-            setCurrentMonth(new Date(CalendarFunctions.getStringDate(firstDate)))
             setEndDate('')
           }
           else if(secondDate && CalendarFunctions.isDate(CalendarFunctions.getStringDate(secondDate))) {
             setSelectedDate(new Date())
             setEndDate(new Date(CalendarFunctions.getStringDate(secondDate)))
-            setCurrentMonth(new Date(CalendarFunctions.getStringDate(secondDate)))
           }
           //Если пользователь не ввел валидную дату
           else {
             setSelectedDate(new Date())
-            setCurrentMonth(new Date())
             setEndDate('')
           }
         }
         else {
           setValue(e.target.value)
           setSelectedDate(new Date(e.target.value))
-          setCurrentMonth(new Date(e.target.value))
         }
       }
       else setValue(e.target.value)
@@ -79,54 +73,8 @@ export function useInput(props: InputProps) {
     else setValue(e.target.value)
   }, [])
 
-  const handleSelectDate = useCallback ((date: Date | string) => {
-    if(typeof date === 'string') {
-      setSelectedDate(new Date())
-      setCurrentMonth(new Date())
-      setEndDate('')
-      setValue('')
-      if(props.onSelectDate) props.onSelectDate('')
-    }
-    else {
-      if(props.type === 'date') {
-        if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(date))
-        setSelectedDate(date)
-        setValue(CalendarFunctions.getStringDate(date))
-      }
-      else {
-        //Если даты конца пока нет
-        if(endDate === '') {
-          //Ранее выбранная дата меньше, чем выбранная сейчас
-          if(CalendarFunctions.compareDates(selectedDate, date)) {
-            setSelectedDate(selectedDate)
-            setEndDate(date)
-            setValue(CalendarFunctions.getLocalStringDate(selectedDate) + ' — ' + CalendarFunctions.getLocalStringDate(date))
-            if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(selectedDate) + ' — ' + CalendarFunctions.getLocalStringDate(date))
-          }
-          else {
-            setSelectedDate(date)
-            setEndDate(selectedDate)
-            setValue(CalendarFunctions.getLocalStringDate(date) + ' — ' + CalendarFunctions.getLocalStringDate(selectedDate))
-            if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(date) + ' — ' + CalendarFunctions.getLocalStringDate(selectedDate))
-          }
-        }
-        else {
-          //Если выбранная дата меньше, чем текущая начальная дата
-          if (CalendarFunctions.compareDates(date, selectedDate)){
-            setSelectedDate(date)
-            setEndDate(selectedDate)
-            setValue(CalendarFunctions.getLocalStringDate(date) + ' — ' + CalendarFunctions.getLocalStringDate(selectedDate))
-            if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(date) + ' — ' + CalendarFunctions.getLocalStringDate(selectedDate))
-          }
-          //Если выбранная дата больше, чем текущая дата конца или находится между
-          else {
-            setEndDate(date)
-            setValue(CalendarFunctions.getLocalStringDate(selectedDate) + ' — ' + CalendarFunctions.getLocalStringDate(date))
-            if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(selectedDate) + ' — ' + CalendarFunctions.getLocalStringDate(date))
-          }
-        }
-      }
-    }
+  const handleSelectDate = useCallback ((date: string) => {
+    setValue(CalendarFunctions.getStringDate(date))
     setIsOpen(false)
   },[])
 
@@ -182,6 +130,6 @@ export function useInput(props: InputProps) {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, currentMonth, setCurrentMonth, endDate}
+  return {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, endDate}
 }
 
