@@ -23,10 +23,10 @@ export function useBackTop(props: BackTopProps) {
     return classList.join(' ');
   }, [props.className, visible, displayed]);
 
-  function scrollToTop() {
+  const scrollToTop = useCallback(() => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  }
+  }, []);
 
   const hideButton = useCallback(() => {
     if (visibleTimeoutRef) {
@@ -36,9 +36,10 @@ export function useBackTop(props: BackTopProps) {
     setVisible(false);
     const ref = setTimeout(() => {
       setDisplayed(false);
+      setDisplayedTimeoutRef(undefined);
     }, 150);
     setDisplayedTimeoutRef(ref);
-  }, [visible, displayed]);
+  }, [visible, displayed, visibleTimeoutRef, displayedTimeoutRef]);
 
   const showButton = useCallback(() => {
     if (displayedTimeoutRef) {
@@ -48,9 +49,10 @@ export function useBackTop(props: BackTopProps) {
     setDisplayed(true);
     const ref = setTimeout(() => {
       setVisible(true);
+      setVisibleTimeoutRef(undefined);
     }, 10);
     setVisibleTimeoutRef(ref);
-  }, [visible, displayed]);
+  }, [visible, displayed, visibleTimeoutRef, displayedTimeoutRef]);
 
   const handleScroll = useCallback(() => {
     const scroll =
@@ -65,10 +67,7 @@ export function useBackTop(props: BackTopProps) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [
-    props.threshold,
-    handleScroll,
-  ]);
+  }, [props.threshold, handleScroll]);
 
   return { classes, scrollToTop };
 }
