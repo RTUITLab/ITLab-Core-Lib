@@ -88,6 +88,24 @@
   }
 }
 
+.counter-orange{
+  color: dt.$orange-100;
+  border-color: dt.$orange-100;
+
+  &.counter-solid {
+    background: dt.$orange-100;
+    color: #FFFFFF;
+  }
+
+  &.counter-outline {
+    background: #FFFFFF;
+  }
+
+  &.counter-light {
+    background: dt.$orange-30;
+  }
+}
+
 .counter-transparent{
   color: dt.$general-70;
   background-color: transparent;
