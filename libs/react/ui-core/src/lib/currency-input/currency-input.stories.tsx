@@ -47,6 +47,7 @@ MinMax.args = {
   displayInformation: true,
   min: -100,
   max: 100000,
+  defaultValue: -1000000,
   informationPosition: 'right',
   information: {
     title: 'Title',

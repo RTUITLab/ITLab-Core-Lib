@@ -18,7 +18,18 @@ export function useInputNumber(props: CurrencyInputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(props.onChange) props.onChange(e)
     const value = e.target.value
-    const limitedValue = String(getLimitedValue(value))
+    const erasedValue = getErasedNumber(value)
+    if(erasedValue === '' || !isNaN(Number(erasedValue))) {
+      const spacedValue = getSpacedValue(erasedValue)
+      if(spacedValue === '') setValue('')
+      else setValue(spacedValue)
+    }
+    else if (value === '-') setValue('-')
+  }
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if(props.onBlur) props.onBlur(e)
+    const limitedValue = String(getLimitedValue(String(value)))
 
     if(limitedValue === '' || !isNaN(Number(limitedValue))) {
       const spacedValue = getSpacedValue(limitedValue)
@@ -44,10 +55,15 @@ export function useInputNumber(props: CurrencyInputProps) {
 
   const getLimitedValue = (number: string) => {
     if(number === '') return ''
-    let result = number.split(' ').join('')
+    let result = getErasedNumber(number)
     if(props.min && (Number(result) <= props.min)) result = String(props.min)
     if(props.max && (Number(result) >= props.max)) result = String(props.max)
     return Number(result)
+  }
+
+  const getErasedNumber = (number:string) => {
+    if(number === '') return ''
+    return number.split(' ').join('')
   }
 
 
@@ -76,5 +92,5 @@ export function useInputNumber(props: CurrencyInputProps) {
 
   }, [props]);
 
-  return {classes, width, handleChange, value, localRef}
+  return {classes, width, handleChange, handleBlur, value, localRef}
 }

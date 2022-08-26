@@ -5,7 +5,7 @@ import React, {forwardRef} from 'react'
 import {Tooltip} from '../tooltip/tooltip'
 
 export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) => {
-  const {classes, width, handleChange, value, localRef} = useInputNumber(props)
+  const {classes, width, handleChange, value, localRef, handleBlur} = useInputNumber(props)
 
   const icon = <>
     {props.displayInformation && (props.isSuccess || props.isAwaiting) && (
@@ -42,7 +42,7 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
              onKeyUp={props.onKeyUp}
              onChange={(e) => handleChange(e)}
              onFocus={props.onFocus}
-             onBlur={props.onBlur}
+             onBlur={handleBlur}
              size={props.size}
              style={!props.size ? {width: width} : {}}
       />
