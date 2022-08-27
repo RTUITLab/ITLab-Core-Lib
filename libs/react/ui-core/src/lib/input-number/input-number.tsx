@@ -10,7 +10,7 @@ import { IcoProps } from './IcoProps';
  */
 
 export const InputNumber = forwardRef((props: InputNumberProps, ref: any) => {
-  const {classes, width, handleChange, handleClick, step, value} = useInputNumber(props)
+  const {classes, width, handleChange, handleClick, step, value, handleBlur} = useInputNumber(props)
 
   return (
     <div className={classes}>
@@ -33,9 +33,9 @@ export const InputNumber = forwardRef((props: InputNumberProps, ref: any) => {
              tabIndex={props.tabIndex}
              onClick={props.onClick}
              onKeyUp={props.onKeyUp}
-             onChange={(e) => handleChange(e)}
+             onChange={handleChange}
              onFocus={props.onFocus}
-             onBlur={props.onBlur}
+             onBlur={handleBlur}
              style={{width: width + 'ch', ...props.style}}
       />
       <LocalIco style={props.iconStyle} name={'ri-add-fill'} id={props.id} handleClick={handleClick} step={step} />

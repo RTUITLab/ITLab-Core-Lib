@@ -24,3 +24,10 @@ export const Float = Template.bind({});
 Float.args = {
   step: 0.5,
 };
+
+export const MinMax = Template.bind({});
+MinMax.args = {
+  step: 0.5,
+  min: -10,
+  max: 10000
+};

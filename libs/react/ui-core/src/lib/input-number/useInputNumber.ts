@@ -34,19 +34,29 @@ export function useInputNumber(props: InputNumberProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(props.onChange) props.onChange(e)
     const value = e.target.value
-    const limitedValue = getLimitedValue(value)
 
-    if(limitedValue === '' || !isNaN(Number(limitedValue))) {
-      setValueWidth(limitedValue)
-      if(limitedValue === '') setValue('')
-      else setValue(Number(limitedValue))
+    if(value === '' || !isNaN(Number(value))) {
+      setValueWidth(value)
+      if(value === '') setValue('')
+      else setValue(Number(value))
     }
-    else if (limitedValue === '-') setValue('-')
+    else if (value === '-') setValue('-')
   }
 
   const setValueWidth = (number: string) => {
     if(number.length === 0) setWidth(1)
     else setWidth(number.length)
+  }
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if(props.onBlur) props.onBlur(e)
+    const limitedValue = String(getLimitedValue(String(value)))
+
+    if(limitedValue === '' || !isNaN(Number(limitedValue))) {
+      setValue(limitedValue)
+    }
+    else if (value === '-') setValue('-')
+    setValueWidth(limitedValue)
   }
 
   //protection from 1.53 + 0.5 = 2.0300000000000002, etc.
@@ -88,6 +98,6 @@ export function useInputNumber(props: InputNumberProps) {
 
   }, [props]);
 
-  return {classes, width, handleChange, step, handleClick, value}
+  return {classes, width, handleChange, step, handleClick, value, handleBlur}
 }
 
