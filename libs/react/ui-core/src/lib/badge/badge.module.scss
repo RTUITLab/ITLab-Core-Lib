@@ -1,0 +1,15 @@
+@use '../../../../../../styles/components/badge' as *;
+
+.badge {
+  padding: 4px 8px;
+  line-height: 15px;
+  font-size: 12px;
+}
+
+.badge-rectangular {
+  border-radius: 6px;
+}
+
+.badge-circle {
+  border-radius: 44px;
+}

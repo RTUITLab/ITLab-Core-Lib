@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import {TextArea} from './text-area';
+import Badge from './badge';
 
-describe('TextArea', () => {
+describe('Badge', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<TextArea />);
+    const { baseElement } = render(<Badge children={'Badge'} />);
     expect(baseElement).toBeTruthy();
   });
 });

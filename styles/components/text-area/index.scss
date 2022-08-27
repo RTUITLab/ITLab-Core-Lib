@@ -1,61 +1,178 @@
 @use '../../../styles/design-tokens' as dt;
 
 
-.text-area {
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 12px 18px;
-  gap: 8px;
-
-  width: 390px;
-  height: 168px;
-
-  border: 1px solid dt.$primary-30;
-  border-radius: 6px;
-
-  color: dt.$general-90;
-
-  font-family: dt.$typo-font-p-regular-family;
-  font-style: dt.$typo-font-p-regular-style;
-  font-weight: dt.$typo-font-p-regular-weight;
-  font-size: dt.$typo-font-p-regular-size;
-  line-height: 24px;
-
-  width: 390px;
-  height: 168px;
-
-  outline: none;
-
-  resize: none;
-
-  &::placeholder{
-    color: dt.$general-60;
+.text-area-wrapper {
+  width: fit-content;
+  position: relative;
+  & , & .text-area {
+    font-family: dt.$typo-font-p-regular-family;
+    font-style: dt.$typo-font-p-regular-style;
+    font-weight: dt.$typo-font-p-medium-weight;
+    font-size: dt.$typo-font-p-regular-size;
+    line-height: 24px;
   }
 
-  &:focus-within {
-    border-color: dt.$general-70;
+  & .text-area {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 12px 18px 36px;
+    gap: 8px;
+
+    width: 390px;
+    height: 168px;
+
+    background-color: #fff;
+    border: 1px solid dt.$primary-40;
+    border-radius: 6px;
+
+    color: dt.$general-90;
+
+    &::-webkit-resizer {
+      opacity: 0;
+    }
+    outline: none;
+
+    &::placeholder{
+      color: dt.$general-60;
+    }
+
+    &:focus-within + .resizer {
+      border-bottom-color: dt.$general-70;
+    }
+    &:focus-within {
+      border-color: dt.$general-70;
+    }
+
+    &:not(&:focus-within):not(&:disabled):not(&.text-area-readonly):hover + .resizer {
+      border-bottom-color: dt.$general-60;
+    }
+    &:not(&:focus-within):not(&:disabled):not(&.text-area-readonly):hover {
+      border-color: dt.$general-60;
+    }
+
+    &:disabled {
+      resize: none;
+      cursor: not-allowed;
+    }
+    &:disabled + .resizer {
+      cursor: not-allowed;
+    }
+    &:disabled + .resizer + .text-area-count{
+      opacity: 0.5;
+    }
+
+    &.text-area-readonly {
+      cursor: default;
+      pointer-events: none;
+      resize: none;
+    }
+    &.text-area-valid + .resizer{
+      border-bottom-color: dt.$green-100;
+      &:before,  &:after {
+        border-bottom-color: dt.$green-30;
+      }
+    }
+    &.text-area-valid + .resizer + .text-area-count{
+      color: dt.$green-100;
+      background-color: dt.$green-30;
+    }
+    &.text-area-valid {
+      color: dt.$green-100;
+      background-color: dt.$green-30;
+    }
+    &.text-area-valid {
+      background-color: dt.$green-30;
+      &, &:focus-within, &:hover, {
+        border-color: dt.$green-100 !important;
+      }
+      &:hover + .resizer {
+        border-bottom-color: dt.$green-100 !important;
+      }
+    }
+    &.text-area-invalid + .resizer{
+      border-bottom-color: dt.$red-100;
+      &:before,  &:after {
+        border-bottom-color: dt.$red-30;
+      }
+    }
+    &.text-area-invalid + .resizer + .text-area-count{
+      color: dt.$red-100;
+      background-color: dt.$red-30;
+    }
+    &.text-area-invalid {
+      background-color: dt.$red-30;
+      &, &:hover, &:focus-within {
+        border-color: dt.$red-100 !important;
+      }
+      &:hover + .resizer {
+        border-bottom-color: dt.$red-100 !important;
+      }
+    }
   }
 
-  & :not(&:focus-within):hover {
-    border-color: dt.$general-60;
+  & .resizer {
+    border-bottom: 13px solid dt.$primary-40;
+    border-left: 13px solid transparent;
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    &:after {
+      position: absolute;
+      content: "";
+      border-bottom: 3px solid #fff;
+      border-left: 3px solid transparent;
+      bottom: -13px;
+      right: 0px;
+    }
+    &:before {
+      position: absolute;
+      content: "";
+      transform: rotate(-225deg);
+      border-bottom: 2px solid #fff;
+      border-left: 2px solid transparent;
+      border-right: 2px solid transparent;
+      height: 0;
+      width: 11px;
+      bottom: -10px;
+      right: -4px;
+    }
   }
 
-  &:disabled{
-    opacity: 0.5;
-    cursor: not-allowed;
-    border-color: dt.$primary-30;
+  & .text-area-label {
+    display: inline-block;
+    color: dt.$general-100;
+    margin-bottom: 10px;
+    & span {
+      color: dt.$red-100;
+    }
   }
-}
 
-.medium-size{
-  width: 350px;
-  height: 144px;
-}
+  & .text-area-count {
+    pointer-events: none;
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 1px;
+    height: calc(12px + 23px);
+    background-color: #fff;
+    color: dt.$general-70;
+  }
 
-.small-size{
-  width: 310px;
-  height: 120px;
+  .large-size{
+    width: 390px;
+    height: 200px;
+  }
+
+  .medium-size{
+    width: 390px;
+    height: 176px;
+  }
+
+  .small-size{
+    width: 280px;
+    height: 152px;
+  }
 }
