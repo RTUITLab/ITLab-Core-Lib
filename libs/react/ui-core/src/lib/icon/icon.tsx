@@ -1,6 +1,7 @@
 import {forwardRef, useCallback, useMemo} from "react";
 import {IconProps} from "./IconProps";
 import {getAllEvents} from "../../utils/getAllEvents";
+import styles from './icon.module.scss'
 
 /**
  * Here the icons are taken from: https://remixicon.com/
