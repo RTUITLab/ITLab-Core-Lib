@@ -1,32 +1,13 @@
 @use '../../../styles/design-tokens' as dt;
 @use '../../../styles/icons' as *;
+@use '../../../styles/components/checkbox' as *;
 
 .radio {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  gap: 12px;
-
-  height: 24px;
-
-  width: fit-content;
+  @extend .checkbox;
 }
 
 .radio-hidden-input {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-
-  & input {
-    transform: scale(0);
-  }
+  @extend .checkbox-hidden-input;
 }
 
 .radio-box {
@@ -39,12 +20,13 @@
 
   box-sizing: border-box;
   border: 1px solid dt.$general-50;
-  border-radius: 50%;
   transition: background .5ms ease-in,
   border .5ms ease-in,
   box-shadow .5ms ease-in;
+  border-radius: 50%;
+  cursor: pointer;
 
-  &:not(.radio-disabled):hover {
+  &:not(.radio-disabled):not(.radio-readonly):hover {
     background: dt.$general-30;
     border: 1px solid dt.$primary-100;
   }
@@ -63,14 +45,13 @@
     border: 1px solid dt.$primary-100;
     background: dt.$primary-100;
 
-    &:not(.radio-disabled):hover {
+    &:not(.radio-disabled):not(.radio-readonly):hover {
       background: dt.$primary-80;
       border: 1px solid dt.$primary-80;
     }
   }
 
   &.radio-disabled {
-    cursor: not-allowed;
     user-select: none;
     opacity: 0.5;
 
@@ -81,15 +62,15 @@
   }
 }
 
-.radio-label {
-  font-family: dt.$typo-font-p-regular-family;
-  font-style: dt.$typo-font-p-regular-style;
-  font-weight: dt.$typo-font-p-regular-weight;
-  font-size: dt.$typo-font-p-regular-size;
-  line-height: 24px;
+.radio-readonly {
+  cursor: default;
+}
+.radio-disabled {
+  cursor: not-allowed;
+}
 
-  cursor: pointer;
-  user-select: none;
+.radio-label {
+  @extend .checkbox-label;
 }
 .radio-label-disabled {
   cursor: not-allowed;
