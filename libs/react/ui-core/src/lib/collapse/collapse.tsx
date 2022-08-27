@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { forwardRef } from 'react';
+import Icon from '../icon/icon';
 import styles from './collapse.module.scss';
 import { CollapseItemProps, CollapseProps } from './CollapseProps';
 import { useCollapseItem } from './useCollapseItem';
@@ -31,22 +32,15 @@ const CollapseItem = React.memo((props: CollapseItemProps) => {
     toggleExpanded,
   } = useCollapseItem(props);
 
-  const arrow = (
-    <span className={styles['collapse-arrow']}>
-      <i className={'ri-arrow-down-s-line'} style={{ fontSize: 24 }} />
-    </span>
-  );
-
   return (
     <div className={itemClasses} style={props.style}>
-      <div
-        className={headerClasses}
-        onClick={(e) => {
-          toggleExpanded();
-        }}
-      >
+      <div className={headerClasses} onClick={toggleExpanded}>
         <div className={styles['collapse-item-header']}>{props.header}</div>
-        {arrow}
+        <Icon
+          name={'ri-arrow-down-s-line'}
+          className={styles['collapse-arrow']}
+          size={24}
+        />
       </div>
       <div
         className={styles['collapse-item-content-wrapper']}

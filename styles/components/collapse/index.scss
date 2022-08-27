@@ -32,6 +32,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   transition: padding 150ms;
   padding: 25px 25px 25px 35px;
   &:hover {
@@ -49,13 +50,8 @@
 }
 
 .collapse-arrow {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
   transition: rotate 0.2s ease-in-out;
-  & i {
-    color: dt.$general-70;
-  }
+  color: dt.$general-70;
 }
 
 .collapse-item-content-wrapper {
@@ -69,6 +65,6 @@
   font-family: dt.$typo-font-p-medium-family;
   font-weight: dt.$typo-font-p-medium-weight;
   font-style: dt.$typo-font-p-medium-style;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: dt.$typo-font-p-medium-size;
+  line-height: dt.$typo-font-p-medium-line-height;
 }

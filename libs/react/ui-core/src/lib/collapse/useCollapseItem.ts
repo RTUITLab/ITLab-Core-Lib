@@ -1,4 +1,4 @@
-import { createRef, useEffect, useMemo, useState } from 'react';
+import { createRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { CollapseItemProps } from './CollapseProps';
 import styles from './collapse.module.scss';
 
@@ -24,26 +24,26 @@ export function useCollapseItem(props: CollapseItemProps) {
     });
   }, [props.content, props.className, props.style]);
 
-  function open() {
+  const open = useCallback(() => {
     setExpanded(true);
     setContentDisplay('block');
     setTimeout(() => {
       setContentHeight(defaultContentHeight);
     }, 10);
-  }
+  }, [expanded, contentHeight, contentDisplay]);
 
-  function close() {
+  const close = useCallback(() => {
     setExpanded(false);
     setContentHeight(0);
     setTimeout(() => {
       setContentDisplay('none');
     }, 150);
-  }
+  }, [expanded, contentHeight, contentDisplay]);
 
-  function toggleExpanded() {
+  const toggleExpanded = useCallback(() => {
     if (expanded) close();
     else open();
-  }
+  }, [open, close]);
 
   const itemClasses = useMemo(() => {
     const classList = [styles['collapse-item']];
