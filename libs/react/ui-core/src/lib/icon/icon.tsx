@@ -1,4 +1,3 @@
-import styles from './icon.module.scss';
 import {forwardRef, useCallback, useMemo} from "react";
 import {IconProps} from "./IconProps";
 import {getAllEvents} from "../../utils/getAllEvents";
@@ -8,6 +7,7 @@ import {getAllEvents} from "../../utils/getAllEvents";
  */
 
 // TODO: удалить белый цвет. Он должен сам заменяться при смене темы, а не быть захардкоженным.
+
 
 export const Icon = forwardRef(({size = 24, color, type = "line", name, ...props}: IconProps, ref: any) => {
   const camelToKebab = useCallback((str: string) => {
