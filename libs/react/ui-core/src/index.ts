@@ -1,4 +1,6 @@
 export * from './lib/input-number/input-number';
+export * from './lib/currency-input/currency-input';
+export * from './lib/back-top/back-top';
 export * from './lib/comment/comment';
 export * from './lib/radio-group/radio-group';
 export * from './lib/card/card';

@@ -2,24 +2,24 @@ import styles from './checkbox.module.scss'
 import React, {forwardRef} from 'react'
 import {useCheckbox} from './useCheckbox'
 import {CheckboxProps} from './CheckboxProps'
+import Icon from '../icon/icon'
 
 /**
  * Checkbox component
  */
 
 export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
-  const {classes, checked, handleCheck, focused, handleFocus, handleKeyUp, labelStyleClass} = useCheckbox(props);
+  const {classes, containerClasses, checked, handleCheck, focused, handleFocus, handleKeyUp, labelStyleClass, isError} = useCheckbox(props);
 
-  const icon = <>{props.checkboxIcon ? <span className={'checkbox-icon'}>{props.checkboxIcon}</span> : <span className={'checkbox-icon ri-check-line'} />}</>
+  const icon = <>{props.checkboxIcon ? props.checkboxIcon : <Icon name={'ri-check-line'} type={'line'} size={16} />}</>
 
   return (
-    <div className={styles['checkbox']} style={props.style}>
+    <div onClick={() => handleCheck(checked)} className={containerClasses} style={props.style}>
       <div className={styles['checkbox-hidden-input']}>
         <input ref={ref}
                type='checkbox'
                id={props.inputId}
                value={props.value}
-               defaultChecked={props.defaultChecked}
                checked={checked}
                readOnly={props.readonly}
                name={props.name}
@@ -35,12 +35,11 @@ export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
                onKeyDown={(e) => handleKeyUp(e)}
         />
       </div>
-      <div onClick={() => handleCheck(checked)}
-           className={`${checked && styles['checkbox-checked']} ${focused && styles['checkbox-focus']} ${classes}`}>
+      <label className={classes}>
         {checked && icon}
-      </div>
-      <label onClick={() => handleCheck(checked)} htmlFor={props.inputId}
-             className={`${labelStyleClass} ${props.disabled ? styles['checkbox-label-disabled'] : ''}`}>
+      </label>
+      <label htmlFor={props.inputId}
+             className={labelStyleClass}>
         {props.label}
       </label>
     </div>

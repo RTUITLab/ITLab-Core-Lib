@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Checkbox } from './checkbox';
+import Icon from '../icon/icon'
 
 export default {
   component: Checkbox,
@@ -17,4 +18,9 @@ const Template: ComponentStory<typeof Checkbox> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   label: 'Click me',
+};
+export const CustomIcon = Template.bind({});
+CustomIcon.args = {
+  label: 'Click me',
+  checkboxIcon: <Icon name={'ri-calendar-line'} type={'line'} size={16} />
 };
