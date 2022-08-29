@@ -35,7 +35,7 @@ export const Calendar:FC<CalendarProps> = React.memo((props) => {
   )
 });
 
-const CalendarHeader:FC<CalendarHeaderType> = ({currentMonth, month, prevMonth, nextMonth}) => {
+const CalendarHeader:FC<CalendarHeaderType> = React.memo(({currentMonth, month, prevMonth, nextMonth}) => {
   const displayedMonth = month[currentMonth.getMonth()] + ' ' + currentMonth.getFullYear()
   return (
     <div className={`${styles['calendar-header']} ${styles['calendar-row']}`}>
@@ -46,9 +46,9 @@ const CalendarHeader:FC<CalendarHeaderType> = ({currentMonth, month, prevMonth, 
       <span className={`${styles['calendar-icon']}`} onClick={nextMonth}><Icon name={'ri-arrow-right-s-line'} type={'line'}/></span>
     </div>
   );
-}
+})
 
-const CalendarDays:FC<CalendarDaysType> = ({weeks}) => {
+const CalendarDays:FC<CalendarDaysType> = React.memo(({weeks}) => {
   const days = [];
   const startDate = CalendarFunctions.getMonday(new Date());
   for (let i = 0; i < 7; i++) {
@@ -60,7 +60,7 @@ const CalendarDays:FC<CalendarDaysType> = ({weeks}) => {
   }
 
   return <div className={`${styles['calendar-days']} ${styles['calendar-row']}`}>{days}</div>;
-}
+})
 
 const CalendarCells:FC<CalendarCellsType> = React.memo(({currentMonth, selectedDate, endDate, onDateClick}) => {
   const monthStart = useMemo(() => CalendarFunctions.startOfMonth(currentMonth), [currentMonth]);
@@ -78,9 +78,9 @@ const CalendarCells:FC<CalendarCellsType> = React.memo(({currentMonth, selectedD
     const conditions:{[index: string]:boolean} = {
       "calendar-col": true,
       "calendar-cell": true,
-      "calendar-selected": (CalendarFunctions.isSameDay(day, selectedDate) || (endDate && CalendarFunctions.isSameDay(day, endDate))) || false,
+      "calendar-selected": (CalendarFunctions.isSameDay(day, selectedDate) || (!!endDate && CalendarFunctions.isSameDay(day, endDate))),
       "calendar-current": CalendarFunctions.isCurrentDay(day),
-      "calendar-inRange-number": endDate && CalendarFunctions.compareDates(day, endDate) && CalendarFunctions.compareDates(selectedDate, day) || false,
+      "calendar-inRange-number": !!endDate && CalendarFunctions.compareDates(day, endDate) && CalendarFunctions.compareDates(selectedDate, day),
     };
 
     Object.keys(conditions).forEach((key:string) => {
@@ -98,16 +98,16 @@ const CalendarCells:FC<CalendarCellsType> = React.memo(({currentMonth, selectedD
     const conditions:{[index: string]:boolean} = {
       "calendar-dayContainer": true,
       "calendar-dayContainer-firstRange": (CalendarFunctions.isSameDay(day, selectedDate)), //Стартовая дата
-      "calendar-dayContainer-lastRange": (endDate && CalendarFunctions.isSameDay(day, endDate)) || false, //Конечная дата
+      "calendar-dayContainer-lastRange": (!!endDate && CalendarFunctions.isSameDay(day, endDate)), //Конечная дата
       "calendar-dayContainer-topRight": (CalendarFunctions.isSameDay(day, CalendarFunctions.endOfWeek(selectedDate))) || //Если день совпадает с концом недели стартовой даты
-        (endDate && (CalendarFunctions.isSameDay(day, CalendarFunctions.endOfWeek(CalendarFunctions.startOfMonth(endDate))))) || false, //Если день совпадает с концом первой недели месяца конечной даты
+        (!!endDate && (CalendarFunctions.isSameDay(day, CalendarFunctions.endOfWeek(CalendarFunctions.startOfMonth(endDate))))), //Если день совпадает с концом первой недели месяца конечной даты
       "calendar-dayContainer-topLeft": CalendarFunctions.isSameDay(CalendarFunctions.getMonday(CalendarFunctions.addDays(selectedDate, 6)), day), //Если день совпадает с началом недели дня, который на 6 дней больше стартовой даты
-      "calendar-dayContainer-bottomRight": (endDate && CalendarFunctions.isSameDay(CalendarFunctions.endOfWeek(CalendarFunctions.addDays(endDate, -6)), day) )|| false, //Если день совпадает с концом недели дня, который на 6 дней меньше конечной даты
-      "calendar-dayContainer-bottomLeft": (endDate && CalendarFunctions.isSameDay(day, CalendarFunctions.getMonday(endDate))) || // Если день совпадает с началом недели конечной даты
-        (CalendarFunctions.isSameDay(day, CalendarFunctions.getMonday(CalendarFunctions.endOfMonth(selectedDate)))) || false, //Если день совпадает с началом недели последней недели месяца начальной даты
+      "calendar-dayContainer-bottomRight": (!!endDate && CalendarFunctions.isSameDay(CalendarFunctions.endOfWeek(CalendarFunctions.addDays(endDate, -6)), day) ), //Если день совпадает с концом недели дня, который на 6 дней меньше конечной даты
+      "calendar-dayContainer-bottomLeft": (!!endDate && CalendarFunctions.isSameDay(day, CalendarFunctions.getMonday(endDate))) || // Если день совпадает с началом недели конечной даты
+        (CalendarFunctions.isSameDay(day, CalendarFunctions.getMonday(CalendarFunctions.endOfMonth(selectedDate)))), //Если день совпадает с началом недели последней недели месяца начальной даты
       "calendar-dayContainer-onlyChild":
-        (endDate && CalendarFunctions.isSameDay(selectedDate, CalendarFunctions.endOfWeek(day)) && CalendarFunctions.compareDates(endDate, CalendarFunctions.addDays(day, 6))) || //Если стартовая дата стоит концом недели и через неделю дата не входит в выбранную
-        (endDate && CalendarFunctions.isSameDay(endDate, CalendarFunctions.getMonday(day)) && CalendarFunctions.compareDates(CalendarFunctions.addDays(day, -6), selectedDate)) || false //Если конечная дата стоит началом недели и за неделю до этого дата не входит в выбранную
+        (!!endDate && CalendarFunctions.isSameDay(selectedDate, CalendarFunctions.endOfWeek(day)) && CalendarFunctions.compareDates(endDate, CalendarFunctions.addDays(day, 6))) || //Если стартовая дата стоит концом недели и через неделю дата не входит в выбранную
+        (!!endDate && CalendarFunctions.isSameDay(endDate, CalendarFunctions.getMonday(day)) && CalendarFunctions.compareDates(CalendarFunctions.addDays(day, -6), selectedDate)) //Если конечная дата стоит началом недели и за неделю до этого дата не входит в выбранную
     };
 
     Object.keys(conditions).forEach((key:string) => {
