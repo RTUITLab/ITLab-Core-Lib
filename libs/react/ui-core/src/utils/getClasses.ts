@@ -1,6 +1,6 @@
-export function getClasses(props:{[index: string]: any}, styles: any, className?: string | string[]):{[index: string]: any} {
-  const classList = Object.keys(props).reduce((classList:any, key) => {
-    if (typeof props[key]==="boolean" && props[key]) {
+export function getClasses(conditions:{[index: string]: boolean}, styles: any, className?: string | string[]): string {
+  const classList = Object.keys(conditions).reduce((classList:any, key) => {
+    if (conditions[key]) {
       classList[key] = styles[key]
     }
     return Object.values(classList);

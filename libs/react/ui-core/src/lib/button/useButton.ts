@@ -8,7 +8,7 @@ import {getClasses} from '../../utils/getClasses'
  */
 export function useButton(props:ButtonProps) {
   const classes = useMemo(() => {
-    const conditions:{[index: string]:boolean | string} = {
+    const conditions:{[index: string]:boolean} = {
       "button": true,
       "button-icon-only": !props.children,
       "button-solid": props.type === 'solid' || !props.type,
