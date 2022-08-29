@@ -26,3 +26,5 @@ export const List = forwardRef((props: ListProps, ref: any) => {
     </>
   );
 });
+
+List.defaultProps = { type: 'unordered' };

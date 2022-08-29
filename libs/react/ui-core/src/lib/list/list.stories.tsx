@@ -4,6 +4,9 @@ import { List } from './list';
 export default {
   component: List,
   title: 'List',
+  argTypes: {
+    type: { table: { defaultValue: { summary: 'unordered' } } },
+  },
 } as ComponentMeta<typeof List>;
 
 const Template: ComponentStory<typeof List> = (args) => <List {...args} />;
