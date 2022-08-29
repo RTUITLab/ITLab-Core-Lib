@@ -21,11 +21,8 @@ export function useButton(props:ButtonProps) {
       "button-small": props.size === 'small',
       "button-medium": props.size === 'medium' || !props.size,
       "button-large": props.size === 'large',
-      "className": typeof props.className === 'string' ? props.className : props.className?.join(' ') || false
     };
-    const classList = getClasses(conditions, styles) as string[]
-
-    return classList.join(' ');
+    return getClasses(conditions, styles, props.className)
   }, [props]);
 
   const iconClasses = useMemo(() => {

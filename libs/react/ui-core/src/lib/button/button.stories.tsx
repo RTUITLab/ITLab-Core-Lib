@@ -38,8 +38,8 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   children:"Кнопка",
-  // className: ['Testtets', 'asdasdasdas']
-  className: 'Test class'
+  className: ['Testtets', 'asdasdasdas']
+  // className: 'Test class'
 };
 
 export const WithIcon = Template.bind({});
