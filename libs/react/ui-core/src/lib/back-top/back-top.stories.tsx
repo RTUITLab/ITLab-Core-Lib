@@ -1,11 +1,13 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import BackTop from './back-top';
+import {BackTop} from './back-top';
 
 export default {
   component: BackTop,
   title: 'BackTop',
   argTypes: {
-    threshold: { control: 'number', min: 1 },
+    threshold: { control: 'number', min: 1,
+      table: {defaultValue: {summary: 150}}
+    },
   },
 } as ComponentMeta<typeof BackTop>;
 

@@ -7,15 +7,15 @@ export function useBadge(props: BadgeProps) {
     const classList = [styles['badge']];
 
     const readyClasses: { [index: string]: boolean } = {
-      'badge-primary': props.color === 'primary',
+      'badge-primary': props.color === 'primary' || !props.color,
       'badge-red': props.color === 'red',
       'badge-green': props.color === 'green',
       'badge-orange': props.color === 'orange',
       'badge-transparent': props.color === 'transparent',
       'badge-solid': props.type === 'solid',
-      'badge-outline': props.type === 'outline',
+      'badge-outline': props.type === 'outline' || !props.type,
       'badge-light': props.type === 'light',
-      'badge-rectangular': props.shape === 'rectangular',
+      'badge-rectangular': props.shape === 'rectangular' || !props.shape,
       'badge-circle': props.shape === 'circle',
     };
 
@@ -34,5 +34,5 @@ export function useBadge(props: BadgeProps) {
     return classList.join(' ');
   }, [props.color, props.type, props.shape, props.className]);
 
-  return classes;
+  return { classes };
 }
