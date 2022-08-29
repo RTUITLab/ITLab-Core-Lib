@@ -1,4 +1,4 @@
-import {useMemo, useState} from 'react'
+import {useCallback, useMemo, useState} from 'react'
 import styles from './radio.module.scss'
 import {RadioProps} from './RadioProps'
 
@@ -7,11 +7,11 @@ import {RadioProps} from './RadioProps'
  */
 export function useRadio(props: RadioProps, disabled: boolean, readonly: boolean) {
   const [focused, setFocused] = useState<boolean>(false)
-  const handleFocus = (focused: boolean) => {
+  const handleFocus = useCallback((focused: boolean) => {
     if(!disabled && !readonly) {
       setFocused(focused)
     }
-  }
+  }, [disabled, readonly])
 
   const containerClasses = useMemo(() => {
     const classList = [] as string[];

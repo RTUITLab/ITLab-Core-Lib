@@ -1,4 +1,4 @@
-import React, {createRef, useEffect, useMemo, useState} from 'react'
+import React, {createRef, useCallback, useEffect, useMemo, useState} from 'react'
 import {DropdownProps} from "./DropdownProps";
 import styles from './dropdown.module.scss'
 import {useDropdownProps} from './useDropdownProps'
@@ -13,11 +13,6 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
   const [activeLabel, setActiveLabel] = useState<string | null>(
     props.defaultSelectedKey && props.items.find((item) => item.key === props.defaultSelectedKey)?.label
     || null)
-  const icon = (props.icon ? (
-    <span className={styles['dropdown-icon']}>
-       {typeof props.icon === "string" ? <i className={props.icon}/> : props.icon}
-    </span>
-  ) : null)
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
@@ -27,19 +22,19 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
     }
   })
 
-  const handleOpen = (isOpen: boolean) => {
+  const handleOpen = useCallback((isOpen: boolean) => {
     if(!props.disabled && !props.error) {
       setIsOpen(isOpen)
       if(isOpen && props.onOpen) props.onOpen()
       else if(!isOpen && props.onClose) props.onClose()
     }
-  }
-  const handleKeyUp = (label: string, key: string | number, event: React.KeyboardEvent<HTMLElement>) => {
+  }, [props])
+  const handleKeyUp = useCallback((label: string, key: string | number, event: React.KeyboardEvent<HTMLElement>) => {
     if(event.key === 'Space' || event.key === 'Enter') {
       handleSelect(label, key, event)
     }
-  }
-  const handleSelect = (label: string, key: string | number, event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => {
+  }, [])
+  const handleSelect = useCallback((label: string, key: string | number, event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => {
     if(!props.disabled && !props.error && !props.items.find((item) => item.key === key)?.disabled) {
       setActiveItemKey(key)
       setActiveLabel(label)
@@ -48,12 +43,12 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
         props.onSelect({label, key, event})
       }
     }
-  }
-  const handleClickOutside = (event: any) => {
+  }, [props])
+  const handleClickOutside = useCallback((event: any) => {
     if(isOpen && list.current && !list.current.contains(event.target)) {
       handleOpen(false)
     }
-  }
+  }, [isOpen, list])
   const containerClasses = useMemo(() => {
     const classList = [];
 
@@ -120,5 +115,5 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
     return classList.join(' ');
   }, [props]);
 
-  return {classes, itemClasses, containerClasses, activeItemKey, icon, activeLabel, isOpen, handleOpen, handleSelect, handleKeyUp, list}
+  return {classes, itemClasses, containerClasses, activeItemKey, activeLabel, isOpen, handleOpen, handleSelect, handleKeyUp, list}
 }

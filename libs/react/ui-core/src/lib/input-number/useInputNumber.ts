@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react'
+import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import styles from './input-number.module.scss'
 import {InputNumberProps} from './InputNumberProps'
 
@@ -8,14 +8,15 @@ import {InputNumberProps} from './InputNumberProps'
 
 export function useInputNumber(props: InputNumberProps) {
   const [value, setValue] = useState<number | string>('')
-  const [width, setWidth] = useState<number>(String(value).length === 0 ? 1 : String(value).length)
+  const [width, setWidth] = useState<number>(1)
   const step = props.step || 1
 
   useEffect(() => {
     setValue(props.defaultValue ? getLimitedValue(String(props.defaultValue)) : '')
+    setWidth(props.defaultValue ? ((props.defaultValue.toString().length === 0 ) ? 1 : props.defaultValue.toString().length) : 1 )
   }, [])
 
-  const handleClick = (count: number) => {
+  const handleClick = useCallback((count: number) => {
     if(!props.disabled && !props.readonly) {
       let result
       if(value === '-') {
@@ -29,9 +30,9 @@ export function useInputNumber(props: InputNumberProps) {
       setValueWidth(limitedValue)
       setValue(Number(limitedValue))
     }
-  }
+  }, [props, value])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if(props.onChange) props.onChange(e)
     const value = e.target.value
 
@@ -41,14 +42,14 @@ export function useInputNumber(props: InputNumberProps) {
       else setValue(Number(value))
     }
     else if (value === '-') setValue('-')
-  }
+  }, [props])
 
-  const setValueWidth = (number: string) => {
+  const setValueWidth = useCallback((number: string) => {
     if(number.length === 0) setWidth(1)
     else setWidth(number.length)
-  }
+  }, [])
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
     if(props.onBlur) props.onBlur(e)
     const limitedValue = String(getLimitedValue(String(value)))
 
@@ -57,24 +58,26 @@ export function useInputNumber(props: InputNumberProps) {
     }
     else if (value === '-') setValue('-')
     setValueWidth(limitedValue)
-  }
+  }, [props, value])
 
   //protection from 1.53 + 0.5 = 2.0300000000000002, etc.
-  const getNumberAfterComma = (number: string) => {
+  const getNumberAfterComma = useCallback((number: string) => {
     return number.includes('.') ? (number.split('.')[1].length) : (0)
-  }
-  const getPrecision = () => {
+  }, [])
+
+  const getPrecision = useCallback(() => {
     const stepLength = getNumberAfterComma(String(step))
     const valueLength = getNumberAfterComma(String(value))
 
     return (valueLength > stepLength) ? valueLength : stepLength
-  }
-  const getLimitedValue = (number: string) => {
+  }, [value, step])
+
+  const getLimitedValue = useCallback((number: string) => {
     let result = number
     if(props.min && number <= props.min) result = String(props.min)
     if(props.max && number >= props.max) result = String(props.max)
     return result
-  }
+  }, [props.min, props.max])
 
   const classes = useMemo(() => {
     const classList = [];

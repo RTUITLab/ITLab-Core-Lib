@@ -2,6 +2,7 @@ import styles from './tabs.module.scss';
 import React, {forwardRef, useMemo} from 'react'
 import {TabItemProps, TabsProps} from './TabsProps'
 import {useTabs, useTabsProps} from './useTabs'
+import {Badge} from '../badge/badge'
 
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const state = useTabs(props);
@@ -52,7 +53,7 @@ const TabItem = (localProps: { item: TabItemProps, props: TabsProps, state: useT
     <div className={`${state.itemClasses} ${state.activeItem === item.key ? classes : ''}`} onClick={(e) => state.handleClick(item.key, e)} key={item.key}>
       {item.label}
       {item.badge &&
-        <span className={styles['tab-item-badge']}>{item.badge < 100 ? item.badge : '99+'}</span>
+        <Badge className={styles['tab-item-badge']} type={'solid'}  shape={'circle'} color={'red'}>{item.badge < 100 ? item.badge : '99+'}</Badge>
       }
     </div>
   )

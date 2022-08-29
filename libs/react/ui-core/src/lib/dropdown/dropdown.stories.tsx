@@ -11,6 +11,10 @@ export default {
     defaultSelectedKey: { control: {type: 'text'}},
     className: { control: {type: 'text'}},
     itemClass: { control: {type: 'text'}},
+    size: {table: {defaultValue: {summary: 'medium'}},},
+    disabled: {table: {defaultValue: {summary: 'false'}},},
+    defaultOpen: {table: {defaultValue: {summary: 'false'}},},
+    error: {table: {defaultValue: {summary: 'false'}},},
   }
 } as ComponentMeta<typeof Dropdown>;
 

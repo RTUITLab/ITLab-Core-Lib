@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react'
+import React, {useCallback, useMemo, useState} from 'react'
 import {TabsProps} from "./TabsProps";
 import styles from './tabs.module.scss'
 
@@ -15,19 +15,18 @@ export interface useTabsProps{
 export function useTabs(props:TabsProps):useTabsProps {
   const [activeItem, setActiveItem] = useState<string | number>(props.defaultActiveItem || '');
 
-  const handleClick = (key: string | number, clickEvent: React.MouseEvent<HTMLElement>) => {
+  const handleClick = useCallback((key: string | number, clickEvent: React.MouseEvent<HTMLElement>) => {
     setActiveItem(key)
     if(props.onChange && key !== activeItem) {
       props.onChange({key, clickEvent})
     }
-  }
+  }, [props, activeItem])
 
   const classes = useMemo(() => {
     const classList = [];
 
     const conditions:{[index: string]:boolean} = {
       "tabs": true,
-
       "tabs-small": props.size === 'small',
       "tabs-medium": props.size === 'medium',
       "tabs-large": props.size === 'large',
@@ -52,7 +51,6 @@ export function useTabs(props:TabsProps):useTabsProps {
 
     const conditions:{[index: string]:boolean} = {
       "tab-item": true,
-
       "tab-item-small": props.size === 'small',
       "tab-item-medium": props.size === 'medium',
       "tab-item-large": props.size === 'large',

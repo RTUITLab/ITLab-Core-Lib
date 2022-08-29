@@ -2,10 +2,6 @@ import {useMemo} from "react";
 import styles from './functional-button.module.scss'
 import {FunctionalButtonProps} from './FunctionalButtonProps'
 
-
-/**
- * Hook for button
- */
 export function useFunctionalButton(props:FunctionalButtonProps) {
   const classes = useMemo(() => {
     const classList = [styles['functionalButton']];

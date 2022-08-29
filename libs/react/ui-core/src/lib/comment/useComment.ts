@@ -1,4 +1,4 @@
-import React, {createRef, useEffect, useMemo, useRef, useState} from 'react'
+import React, {createRef, useCallback, useEffect, useMemo, useRef, useState} from 'react'
 import {CommentProps} from './CommentProps'
 import styles from './comment.module.scss'
 
@@ -19,29 +19,29 @@ export const useComment = (props: CommentProps): UseCommentProps => {
   const [replyValue, setReplyValue] = useState<string>('')
   const localRef = createRef<HTMLDivElement>();
 
-  const handleReplyOpen = (openReply: boolean) => {
+  const handleReplyOpen = useCallback((openReply: boolean) => {
     setIsReplyOpen(openReply)
-  }
+  }, [])
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReplyValue(e.target.value)
-  }
+  }, [])
 
-  const handleReply = (e: React.MouseEvent<HTMLElement>) => {
+  const handleReply = useCallback((e: React.MouseEvent<HTMLElement>) => {
     if(props.onReply && replyValue.length > 0) {
       props.onReply(e, replyValue)
       handleReplyOpen(false)
       setReplyValue('')
     }
-  }
+  }, [props, replyValue])
 
-  const handleLike = (e: React.MouseEvent<HTMLElement>) => {
+  const handleLike = useCallback((e: React.MouseEvent<HTMLElement>) => {
     if(props.onLike) props.onLike(e, props.commentId)
-  }
+  }, [props])
 
-  const handleDislike = (e: React.MouseEvent<HTMLElement>) => {
+  const handleDislike = useCallback((e: React.MouseEvent<HTMLElement>) => {
     if(props.onDislike) props.onDislike(e, props.commentId)
-  }
+  }, [props])
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
@@ -51,11 +51,11 @@ export const useComment = (props: CommentProps): UseCommentProps => {
     }
   })
 
-  const handleClickOutside = (event: any) => {
+  const handleClickOutside = useCallback((event: any) => {
     if(isReplyOpen && localRef.current && !localRef.current.contains(event.target)) {
       handleReplyOpen(false)
     }
-  }
+  }, [isReplyOpen, localRef])
 
   const classes = useMemo(() => {
     const classList = [styles['comment']];

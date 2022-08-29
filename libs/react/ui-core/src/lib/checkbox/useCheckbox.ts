@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react'
+import React, {useCallback, useMemo, useState} from 'react'
 import styles from './checkbox.module.scss'
 import {CheckboxProps} from './CheckboxProps'
 
@@ -17,15 +17,15 @@ export function useCheckbox(props: CheckboxProps) {
     }
   }
 
-  const handleFocus = (focused: boolean) => {
+  const handleFocus = useCallback((focused: boolean) => {
     setFocused(focused)
-  }
+  }, [])
 
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyUp = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
     if((e.code === 'Space' || e.code === 'Enter') && !props.readonly && !props.disabled) {
       setChecked(!checked)
     }
-  }
+  }, [checked, props])
 
   const containerClasses = useMemo(() => {
     const classList = [] as string[];
