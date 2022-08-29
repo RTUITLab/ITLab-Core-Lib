@@ -43,6 +43,9 @@ export interface TextAreaProps extends DefaultParams, ClickableObjectMini{
   /** When present, it specifies that the component should automatically get focus */
   autoFocus?: boolean;
 
-  /** The onChange action */
+  /** The onChange event */
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+
+  /** The excess length event */
+  onError?: () => void
 }

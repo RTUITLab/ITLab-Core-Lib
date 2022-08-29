@@ -8,8 +8,15 @@ export default {
     onChange: { action: 'onChange executed!' },
     onBlur: { action: 'onBlur executed!' },
     onFocus: { action: 'onFocus executed!' },
-    className: { control: false },
-    style: { control: false },
+    onError: { action: 'a lot of symbols detected!' },
+    className: { control: 'text' },
+    isRequired: {table: {defaultValue: {summary: 'false'}},},
+    readonly: {table: {defaultValue: {summary: 'false'}},},
+    disabled: {table: {defaultValue: {summary: 'false'}},},
+    error: {table: {defaultValue: {summary: 'false'}},},
+    valid: {table: {defaultValue: {summary: 'false'}},},
+    autoFocus: {table: {defaultValue: {summary: 'false'}},},
+    size: {table: {defaultValue: {summary: 'medium'}},control:{type: 'radio', options:['small', 'medium', 'large']}},
   },
 } as ComponentMeta<typeof TextArea>;
 

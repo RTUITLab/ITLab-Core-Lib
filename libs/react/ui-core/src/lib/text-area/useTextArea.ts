@@ -1,14 +1,15 @@
-import React, {useMemo, useState} from 'react'
+import React, {useCallback, useMemo, useState} from 'react'
 import styles from './text-area.module.scss'
 import {TextAreaProps} from './TextAreaProps'
 
 export function useTextArea(props: TextAreaProps) {
   const [length, setLength] = useState(props.defaultValue?.length || 0)
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if(props.onChange) props.onChange(e)
+    if(!!props.onError && !!props.maxLength) props.onError()
     setLength(e.target.value.length)
-  }
+  }, [props])
 
   const classes = useMemo(() => {
     const classList = [];
@@ -27,14 +28,13 @@ export function useTextArea(props: TextAreaProps) {
     });
 
     if (props.size) classList.push(styles[`${props.size}-size`]);
-    if (!props.size) classList.push(styles[`medium-size`]);
+    else if (!props.size) classList.push(styles[`medium-size`]);
 
-    if (props.className) {
-      if (typeof props.className === 'string') classList.push(props.className);
-      else if (typeof props.className === 'object') classList.push(...props.className);
-    }
+    if (typeof props.className === 'string') classList.push(props.className);
+    else if (typeof props.className === 'object') classList.push(...props.className);
+
     return classList.join(' ');
-  }, [props.size, length])
+  }, [props, length])
 
   return {classes, handleChange, length}
 }
