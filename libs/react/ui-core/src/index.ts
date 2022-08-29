@@ -1,3 +1,4 @@
+export * from './lib/list/list';
 export * from './lib/input-number/input-number';
 export * from './lib/currency-input/currency-input';
 export * from './lib/back-top/back-top';
