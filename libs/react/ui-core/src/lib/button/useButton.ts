@@ -1,41 +1,29 @@
 import {useMemo} from "react";
 import {ButtonProps} from "./ButtonProps";
 import styles from './button.module.scss'
-
+import {getClasses} from '../../utils/getClasses'
 
 /**
  * Hook for button
  */
 export function useButton(props:ButtonProps) {
   const classes = useMemo(() => {
-    const classList = [styles['button']];
-
-    const conditions:{[index: string]:boolean} = {
+    const conditions:{[index: string]:boolean | string} = {
+      "button": true,
       "button-icon-only": !props.children,
-      "button-solid": props.type === 'solid',
+      "button-solid": props.type === 'solid' || !props.type,
       "button-outline": props.type === 'outline',
       "button-light": props.type === 'light',
-      "button-primary": props.color === 'primary',
+      "button-primary": props.color === 'primary' || !props.color,
       "button-green": props.color === 'green',
       "button-red": props.color === 'red',
       "button-transparent": props.color === 'transparent',
       "button-small": props.size === 'small',
-      "button-medium": props.size === 'medium',
+      "button-medium": props.size === 'medium' || !props.size,
       "button-large": props.size === 'large',
+      "className": typeof props.className === 'string' ? props.className : props.className?.join(' ') || false
     };
-
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-
-    if(!props.type) classList.push(styles['button-solid']);
-    if(!props.size) classList.push(styles['button-medium']);
-    if(!props.color) classList.push(styles['button-primary']);
-
-    if(typeof props.className === 'string') classList.push(props.className);
-    if(typeof props.className === 'object') classList.push(...props.className);
+    const classList = getClasses(conditions, styles) as string[]
 
     return classList.join(' ');
   }, [props]);
