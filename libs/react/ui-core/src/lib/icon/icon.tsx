@@ -9,6 +9,7 @@ import styles from './icon.module.scss'
 
 // TODO: удалить белый цвет. Он должен сам заменяться при смене темы, а не быть захардкоженным.
 
+
 export const Icon = forwardRef(({size = 24, color, type = "line", name, ...props}: IconProps, ref: any) => {
   const camelToKebab = useCallback((str: string) => {
     return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();

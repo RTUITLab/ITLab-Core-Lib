@@ -11,7 +11,8 @@ describe('Navigation', () => {
         {
           label: 'Home',
           icon: 'ri-home-line',
-          disabled: false
+          disabled: false,
+          key: 'key-1',
         }
       ]
     }
