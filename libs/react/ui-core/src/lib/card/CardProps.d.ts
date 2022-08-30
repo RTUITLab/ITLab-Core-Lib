@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { DefaultParams } from '../../default-types/defaultParams';
 
 export interface CardProps extends DefaultParams {

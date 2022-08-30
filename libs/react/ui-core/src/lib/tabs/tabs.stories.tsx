@@ -8,6 +8,7 @@ export default {
     className: { control: {type: 'text'}},
     itemStyleClass: { control: {type: 'text'}},
     defaultActiveItem: { control: {type: 'text'}},
+    size: { control: {type: 'radio', options: ['small', 'medium', 'large']}, table: {defaultValue: {summary: 'medium'}}}
   }
 } as ComponentMeta<typeof Tabs>;
 

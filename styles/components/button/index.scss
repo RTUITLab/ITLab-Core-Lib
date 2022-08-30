@@ -23,6 +23,8 @@
   font-family: dt.$typo-font-p-medium-family;
   font-style: dt.$typo-font-p-medium-style;
   font-weight: dt.$typo-font-p-medium-weight;
+  font-size: dt.$typo-font-p-medium-size;
+  line-height: 24px;
 
   text-align: center;
 
@@ -36,9 +38,6 @@
   display: flex;
   align-items: center;
 
-  i{
-    font-size: 18px;
-  }
 }
 
 .button-icon-left {

@@ -27,6 +27,9 @@ export interface TabsProps extends DefaultParams{
   /** Style class of the tab item */
   itemStyleClass?: string | string[]
 
+  /** Max count to show */
+  overflowCount?: number
+
   /** On change event */
   onChange?: (item: {key: string | number, clickEvent: React.MouseEvent<HTMLElement>}) => void
 }

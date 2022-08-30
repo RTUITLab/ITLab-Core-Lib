@@ -1,6 +1,7 @@
 import {useMemo} from "react";
 import styles from "./counter.module.scss";
 import {CounterProps} from "./CounterProps";
+import {getClasses} from '../../utils/getClasses'
 
 export function useCounter(props: CounterProps) {
   const style = useMemo(() => {
@@ -11,9 +12,8 @@ export function useCounter(props: CounterProps) {
   }, [props.children, props.style])
 
   const classes = useMemo(() => {
-    const classList = [styles['counter']];
-
-    const readyClasses: { [index: string]: boolean } = {
+    const conditions: { [index: string]: boolean } = {
+      "counter": true,
       "counter-primary": props.color === "primary" || !props.color,
       "counter-red": props.color === "red",
       "counter-green": props.color === "green",
@@ -26,17 +26,7 @@ export function useCounter(props: CounterProps) {
       "counter-large": props.size === "large",
       "counter-transparent": props.color === "transparent",
     };
-
-    for (const i of Object.keys(readyClasses)) {
-      if (readyClasses[i]) {
-        classList.push(styles[i]);
-      }
-    }
-
-    if (typeof props.className === "string") classList.push(props.className)
-    else if (typeof props.className === "object") classList.push(props.className.join(" "))
-
-    return classList.join(" ");
+    return getClasses(conditions, styles, props.className)
   }, [props]);
 
   const count = useMemo(() => {

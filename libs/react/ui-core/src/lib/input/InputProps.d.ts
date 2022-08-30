@@ -2,7 +2,7 @@ import React from "react";
 import Icon from "../icon/icon";
 import {DefaultParams} from "../../default-types/defaultParams";
 
-type InputTypeEnum = 'text' | 'number' | 'email' | 'password' | 'search' | 'tel'
+type InputTypeEnum = 'text' | 'email' | 'password' | 'search' | 'tel' | 'date' | 'dateRange'
 
 export interface InputProps extends DefaultParams{
 
@@ -18,17 +18,23 @@ export interface InputProps extends DefaultParams{
   /** If true, the input will be disabled */
   disabled?: boolean;
 
+  /** If true, the input will be valid */
+  valid?: boolean;
+
+  /** If true, the input will be invalid */
+  error?: boolean;
+
+  /** Text of the error */
+  errorText?: string;
+
   /** Identifier of the component */
   id?: string;
 
   /** Name of input filed */
   name?: string;
 
-  /** Value of input field */
-  value?: string | number;
-
   /** Specifies the default value of input field */
-  defaultValue?: string | number
+  defaultValue?: string
 
   /** Specifies a short hint that describes the expected value of an input field */
   placeholder?: string;
@@ -48,6 +54,9 @@ export interface InputProps extends DefaultParams{
   /** On blur event */
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 
+  /** Select date event */
+  onSelectDate?: (date: string) => void;
+
   /** Specifies that an input field must be filled out before submitting the form */
   isRequired?: boolean;
 
@@ -66,12 +75,9 @@ export interface InputProps extends DefaultParams{
   /** Specifies the maximum number of characters allowed in an input field */
   maxLength?: number;
 
-  /** Specifies the minimum value of component */
-  min?: string | number;
-
-  /** Specifies the maximum value of component */
-  max?: string | number;
-
   /** Index of the element in tabbing order */
   tabIndex?: number
+
+  /** Size of the calendar */
+  calendarSize?: 'default' | 'small'
 }

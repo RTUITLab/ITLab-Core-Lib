@@ -1,4 +1,6 @@
 export * from './lib/list/list';
+export * from './lib/collapse/collapse';
+export * from './lib/calendar/calendar';
 export * from './lib/input-number/input-number';
 export * from './lib/currency-input/currency-input';
 export * from './lib/back-top/back-top';
@@ -18,4 +20,4 @@ export * from './lib/counter/counter';
 export * from './lib/checkbox/checkbox';
 export * from './lib/navigation/navigation';
 export * from './lib/icon/icon';
-export * from './lib/button/index';
+export * from './lib/button/button';

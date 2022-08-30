@@ -6,7 +6,7 @@ import {FunctionalButton} from '../functional-button/functional-button'
 import {useComment, UseCommentProps} from './useComment'
 import Icon from '../icon/icon'
 import {TextArea} from '../text-area/text-area'
-import {Button} from '../button'
+import {Button} from '../button/button'
 
 export const Comment = forwardRef((props: CommentProps, ref: any) => {
 

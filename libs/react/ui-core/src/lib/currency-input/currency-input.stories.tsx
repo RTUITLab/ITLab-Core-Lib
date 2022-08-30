@@ -9,8 +9,16 @@ export default {
     min: { control: {type: 'text'}},
     max: { control: {type: 'text'}},
     className: { control: {type: 'text'}},
-    currency: { control: {type: 'select', options: ['₽', '$', '€', '£', '¥']}},
-    informationPosition: { control: {type: 'select', options: ["left", "right", "top", "bottom", "top-left", "top-right", "bottom-left", "bottom-right", "left-top", "left-bottom", "right-top", "right-bottom"]}},
+    currency: { control: {type: 'select', options: ['₽', '$', '€', '£', '¥']}, table: {defaultValue: {summary: '₽'}}},
+    informationPosition: { control: {type: 'select', options: ["left", "right", "top", "bottom", "top-left", "top-right", "bottom-left", "bottom-right", "left-top", "left-bottom", "right-top", "right-bottom"]},
+      table: {defaultValue: {summary: 'right'}}},
+    isRequired: {table: {defaultValue: {summary: 'false'}},},
+    readonly: {table: {defaultValue: {summary: 'false'}},},
+    disabled: {table: {defaultValue: {summary: 'false'}},},
+    invalid: {table: {defaultValue: {summary: 'false'}},},
+    isSuccess: {table: {defaultValue: {summary: 'false'}},},
+    isAwaiting: {table: {defaultValue: {summary: 'false'}},},
+    autoFocus: {table: {defaultValue: {summary: 'false'}},},
   }
 } as ComponentMeta<typeof CurrencyInput>;
 
@@ -22,7 +30,6 @@ export const Primary = Template.bind({});
 Primary.args = {
   displayInformation: true,
   informationPosition: 'right',
-  defaultValue: 2500,
   information: {
     title: 'Title',
     description: 'description'
@@ -33,7 +40,7 @@ export const WithIcon = Template.bind({});
 WithIcon.args = {
   icon: <Icon name={'ri-price-tag-3-line'} />,
   displayInformation: true,
-  defaultValue: 2000,
+  defaultValue: 0,
   isSuccess: true,
   informationPosition: 'right',
   information: {
@@ -47,7 +54,7 @@ MinMax.args = {
   displayInformation: true,
   min: -100,
   max: 100000,
-  defaultValue: -1000000,
+  defaultValue: 0,
   informationPosition: 'right',
   information: {
     title: 'Title',

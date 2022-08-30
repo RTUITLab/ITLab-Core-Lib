@@ -3,6 +3,7 @@ import {CurrencyInputProps} from './CurrencyInputProps'
 import {useInputNumber} from './useCurrencyInput'
 import React, {forwardRef} from 'react'
 import {Tooltip} from '../tooltip/tooltip'
+import Icon from '../icon/icon'
 
 export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) => {
   const {classes, width, handleChange, value, localRef, handleBlur} = useInputNumber(props)
@@ -17,7 +18,7 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
       :
         <Tooltip hidden={props.disabled} tooltipContent={<></>} type={'meta'} position={props.informationPosition || 'top'} metaTitle={props.information?.title} metaDescription={props.information?.description}>
           <span className={styles['currencyInput-icon']}>
-            <i className={'ri-information-line'}></i>
+            <Icon name={'ri-information-line'} />
           </span>
         </Tooltip>
     )}</>

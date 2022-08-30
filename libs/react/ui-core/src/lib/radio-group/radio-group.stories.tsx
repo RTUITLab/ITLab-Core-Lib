@@ -6,6 +6,12 @@ import React, {useState} from 'react'
 export default {
   component: RadioGroup,
   title: 'RadioGroup',
+  argTypes: {
+    isRequired: {table: {defaultValue: {summary: 'false'}},},
+    readonly: {table: {defaultValue: {summary: 'false'}},},
+    disabled: {table: {defaultValue: {summary: 'false'}},},
+    className: {control: {type: 'text'}},
+  }
 } as ComponentMeta<typeof RadioGroup>;
 
 const Template: ComponentStory<typeof RadioGroup> = (args) => {

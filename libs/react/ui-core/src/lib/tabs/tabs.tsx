@@ -2,6 +2,8 @@ import styles from './tabs.module.scss';
 import React, {forwardRef, useMemo} from 'react'
 import {TabItemProps, TabsProps} from './TabsProps'
 import {useTabs, useTabsProps} from './useTabs'
+import {Counter} from '../counter/counter'
+import {getClasses} from '../../utils/getClasses'
 
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const state = useTabs(props);
@@ -26,34 +28,25 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   );
 })
 
-const TabItem = (localProps: { item: TabItemProps, props: TabsProps, state: useTabsProps }) => {
+const TabItem = React.memo((localProps: { item: TabItemProps, props: TabsProps, state: useTabsProps }) => {
   const {item, props, state} = localProps
 
   const classes = useMemo(() => {
-    const classList = [];
     const conditions:{[index: string]:boolean} = {
       "tab-item-active": true,
-
       "tab-item-active-small": props.size === 'small',
-      "tab-item-active-medium": props.size === 'medium',
+      "tab-item-active-medium": props.size === 'medium' ||!props.size,
       "tab-item-active-large": props.size === 'large',
     };
-
-    if(!props.size) classList.push(styles['tab-item-active-medium']);
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-    return classList.join(' ');;
+    return getClasses(conditions, styles)
   },[props])
 
   return (
     <div className={`${state.itemClasses} ${state.activeItem === item.key ? classes : ''}`} onClick={(e) => state.handleClick(item.key, e)} key={item.key}>
       {item.label}
       {item.badge &&
-        <span className={styles['tab-item-badge']}>{item.badge < 100 ? item.badge : '99+'}</span>
+        <Counter className={styles['tab-item-badge']} overflowCount={props.overflowCount || 99} size={'small'} type={'solid'} color={'red'}>{item.badge}</Counter>
       }
     </div>
   )
-}
+})

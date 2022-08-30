@@ -1,40 +1,29 @@
-import React, {useMemo, useState} from 'react'
+import React, {useCallback, useMemo, useState} from 'react'
 import styles from './text-area.module.scss'
 import {TextAreaProps} from './TextAreaProps'
+import {getClasses} from '../../utils/getClasses'
 
 export function useTextArea(props: TextAreaProps) {
   const [length, setLength] = useState(props.defaultValue?.length || 0)
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if(props.onChange) props.onChange(e)
+    if(!!props.onError && !!props.maxLength) props.onError()
     setLength(e.target.value.length)
-  }
+  }, [props])
 
   const classes = useMemo(() => {
-    const classList = [];
-
     const conditions:{[index: string]:boolean} = {
       "text-area": true,
-      "text-area-readonly": props.readonly !== undefined && props.readonly,
-      "text-area-valid":  props.valid !== undefined && props.valid,
-      "text-area-invalid":  (props.error !== undefined && props.error) || (props.maxLength !== undefined && props.maxLength < length),
+      "text-area-readonly": !!props.readonly,
+      "text-area-valid":  !!props.valid,
+      "text-area-invalid":  !!props.error || (!!props.maxLength && props.maxLength < length),
+      "small-size": props.size === 'small',
+      "medium-size": props.size === 'medium' || !props.size,
+      "large-size": props.size === 'large',
     };
-
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-
-    if (props.size) classList.push(styles[`${props.size}-size`]);
-    if (!props.size) classList.push(styles[`medium-size`]);
-
-    if (props.className) {
-      if (typeof props.className === 'string') classList.push(props.className);
-      else if (typeof props.className === 'object') classList.push(...props.className);
-    }
-    return classList.join(' ');
-  }, [props.size, length])
+    return getClasses(conditions, styles, props.className);
+  }, [props, length])
 
   return {classes, handleChange, length}
 }

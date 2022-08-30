@@ -8,7 +8,10 @@ export default {
   title: 'FunctionalButton',
   argTypes: {
     className: {control: {type: 'text'}},
-    icon: {control: false}
+    icon: {control: false},
+    disabled: {table: {defaultValue: {summary: 'false'}},},
+    displayIco: {table: {defaultValue: {summary: 'false'}},},
+    iconPosition: {table: {defaultValue: {summary: 'left'}},},
   }
 } as ComponentMeta<typeof FunctionalButton>;
 

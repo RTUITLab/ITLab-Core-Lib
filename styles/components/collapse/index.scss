@@ -1,0 +1,70 @@
+@use '../../../styles/design-tokens' as dt;
+
+.collapse {
+  box-sizing: border-box;
+  width: 720px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid dt.$general-40;
+  overflow: hidden;
+  .collapse-item:not(:last-child) {
+    border-bottom: 1px solid dt.$general-30;
+  }
+}
+
+.collapse-item {
+  background-color: #fff;
+  &-expanded {
+    .collapse-item-header-container {
+      background: dt.$general-30;
+    }
+    .collapse-item-content-wrapper {
+      background: dt.$general-30;
+    }
+    .collapse-arrow {
+      rotate: 180deg;
+    }
+  }
+}
+
+.collapse-item-header-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: padding 150ms;
+  padding: 25px 25px 25px 35px;
+  &:hover {
+    background-color: dt.$general-30;
+  }
+}
+
+.collapse-item-header {
+  color: dt.$general-90;
+  font-family: dt.$typo-font-p-medium-family;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-style: dt.$typo-font-p-medium-style;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.collapse-arrow {
+  transition: rotate 0.2s ease-in-out;
+  color: dt.$general-70;
+}
+
+.collapse-item-content-wrapper {
+  transition: height 150ms;
+  overflow: hidden;
+}
+
+.collapse-item-content {
+  padding: 0 25px 25px 35px;
+  color: dt.$general-80;
+  font-family: dt.$typo-font-p-medium-family;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-style: dt.$typo-font-p-medium-style;
+  font-size: dt.$typo-font-p-medium-size;
+  line-height: dt.$typo-font-p-medium-line-height;
+}
