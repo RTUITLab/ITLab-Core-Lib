@@ -2,7 +2,7 @@ import { forwardRef, useMemo } from 'react';
 import { CardProps } from './CardProps';
 import styles from './card.module.scss';
 
-const Card = forwardRef((props: CardProps, ref: any) => {
+export const Card = forwardRef((props: CardProps, ref: any) => {
   const classes = useMemo(()=> {
     const classList = [styles['card']];
     if(typeof props.className === 'string') classList.push(props.className);
@@ -15,5 +15,3 @@ const Card = forwardRef((props: CardProps, ref: any) => {
     </div>
   );
 });
-
-export default Card;

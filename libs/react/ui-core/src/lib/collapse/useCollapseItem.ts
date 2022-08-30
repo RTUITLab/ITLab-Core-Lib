@@ -1,6 +1,7 @@
 import { createRef, useCallback, useEffect, useMemo, useState } from 'react';
 import { CollapseItemProps } from './CollapseProps';
 import styles from './collapse.module.scss';
+import {getClasses} from '../../utils/getClasses'
 
 export function useCollapseItem(props: CollapseItemProps) {
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -11,18 +12,20 @@ export function useCollapseItem(props: CollapseItemProps) {
   );
   const contentRef = createRef<HTMLDivElement>();
 
-  function getDefaultHeight(children: Element[]): number {
+  const getDefaultHeight = useCallback((children: Element[]): number => {
     return children.reduce((acc, child) => acc + child.clientHeight, 0);
-  }
+  }, [])
 
   useEffect(() => {
-    const children = Array.from(contentRef.current!.children);
-    Promise.resolve().then(() => {
-      const height = getDefaultHeight(children);
-      setContentDisplay('none');
-      setDefaultContentHeight(height);
-    });
-  }, [props.content, props.className, props.style]);
+    if(contentRef.current) {
+      const children = Array.from(contentRef.current.children);
+      Promise.resolve().then(() => {
+        const height = getDefaultHeight(children);
+        setContentDisplay('none');
+        setDefaultContentHeight(height);
+      });
+    }
+  }, []);
 
   const open = useCallback(() => {
     setExpanded(true);
@@ -30,7 +33,7 @@ export function useCollapseItem(props: CollapseItemProps) {
     setTimeout(() => {
       setContentHeight(defaultContentHeight);
     }, 10);
-  }, [expanded, contentHeight, contentDisplay]);
+  }, [defaultContentHeight]);
 
   const close = useCallback(() => {
     setExpanded(false);
@@ -38,27 +41,28 @@ export function useCollapseItem(props: CollapseItemProps) {
     setTimeout(() => {
       setContentDisplay('none');
     }, 150);
-  }, [expanded, contentHeight, contentDisplay]);
+  }, []);
 
   const toggleExpanded = useCallback(() => {
     if (expanded) close();
     else open();
-  }, [open, close]);
+  }, [expanded, open, close]);
 
   const itemClasses = useMemo(() => {
-    const classList = [styles['collapse-item']];
-    if (expanded) classList.push(styles['collapse-item-expanded']);
-    if (typeof props.className === 'string') classList.push(props.className);
-    if (typeof props.className === 'object') classList.push(...props.className);
-    return classList.join(' ');
+    const conditions:{[index: string]:boolean} = {
+      "collapse-item": true,
+      "collapse-item-expanded": expanded,
+    };
+    return getClasses(conditions, styles, props.className)
   }, [props.className, expanded]);
 
   const headerClasses = useMemo(() => {
-    const classList = [styles['collapse-item-header-container']];
-    if (expanded)
-      classList.push(styles['collapse-item-header-container-expanded']);
-    else classList.push(styles['collapse-item-header-container-contracted']);
-    return classList.join(' ');
+    const conditions:{[index: string]:boolean} = {
+      "collapse-item-header-container": true,
+      "collapse-item-header-container-expanded": expanded,
+      "collapse-item-header-container-contracted": !expanded,
+    };
+    return getClasses(conditions, styles)
   }, [expanded]);
 
   return {

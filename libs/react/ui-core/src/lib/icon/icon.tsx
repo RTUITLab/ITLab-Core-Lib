@@ -20,7 +20,7 @@ export const Icon = forwardRef(({size = 24, color, type = "line", name, ...props
   }, [props]);
 
   const classes = useMemo(() => {
-    return `${color && styles[camelToKebab(color)]} ri-${camelToKebab(name.replace(new RegExp('(ri\\-|\\-fill|\\-line)', "gmi"), ""))}-${type}`;
+    return `${color ? styles[camelToKebab(color)] : ''} ri-${camelToKebab(name.replace(new RegExp('(ri\\-|\\-fill|\\-line)', "gmi"), ""))}-${type}`;
   }, [color, type, name]);
 
   return (

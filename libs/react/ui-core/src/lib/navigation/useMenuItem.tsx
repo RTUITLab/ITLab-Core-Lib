@@ -1,6 +1,6 @@
 import {NavigationItem, NavigationProps} from "./NavigationProps";
-import {useNavigationProps} from "./useNavigation";
-import React, {createRef, useEffect, useMemo, useState} from "react";
+import {useNavigationProps} from './useNavigationProps'
+import React, {createRef, useCallback, useEffect, useMemo, useState} from 'react'
 import styles from "./navigation.module.scss";
 
 export function useMenuItem(localProps: { item: NavigationItem; props: NavigationProps; state: useNavigationProps }) {
@@ -10,9 +10,6 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
   const [submenuHeight, setSubmenuHeight] = useState(0)
   const [submenuDisplay, setSubmenuDisplay] = useState("block")
   const [defaultSubmenuHeight, setDefaultSubmenuHeight] = useState(0)
-  const icon = (state.showIcons ? <span className={styles['navigation-item-content-icon']}>
-      {typeof item.icon === "string" ? <i className={item.icon}/> : item.icon}
-          </span> : null)
 
   const menuItemManager = useMemo(() => {
     return {
@@ -30,11 +27,11 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
     }
   }, [])
 
-  function calculateDefaultSubmenuHeight(children: Element[]) {
+  const calculateDefaultSubmenuHeight = useCallback((children: Element[]) => {
     setDefaultSubmenuHeight(children.reduce((acc, child) => acc + child.clientHeight, 0))
-  }
+  }, [])
 
-  function initItems() {
+  const initItems = useCallback(() => {
     if (submenu.current) {
       if (props.defaultOpenedItems?.includes(item.key) && props.type !== "horizontal") {
         const children = Array.from(submenu.current.children)
@@ -59,7 +56,7 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
         }
       }
     }
-  }
+  }, [item, props, submenu])
 
   useEffect(() => {
     if (!submenu.current) {
@@ -98,15 +95,15 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
     }
   }, [state.activeItem])
 
-  function closeItem() {
+  const closeItem = useCallback(() => {
     menuItemManager.remove(styles['navigation-item-content-open']);
     setSubmenuHeight(0)
     setTimeout(() => {
       setSubmenuDisplay("none")
     }, 150)
-  }
+  }, [menuItemManager])
 
-  function openItem(height?: number) {
+  const openItem = useCallback((height?: number) => {
     state.setLastOpenedItem(item.key);
     setSubmenuDisplay("block")
 
@@ -115,17 +112,17 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
       setSubmenuHeight(height || defaultSubmenuHeight);
       menuItemManager.push(styles['navigation-item-content-open']);
     }, 2)
-  }
+  }, [menuItemManager, state, item, defaultSubmenuHeight])
 
-  const onMenuClick = async () => {
+  const onMenuClick = useCallback(async () => {
     if (contentItemClasses.includes(styles['navigation-item-content-open'])) {
       closeItem();
     } else {
       openItem();
     }
-  }
+  }, [contentItemClasses, openItem, closeItem])
 
-  const submenuClick = (key: string | number, e?: React.MouseEvent<HTMLElement>) => {
+  const submenuClick = useCallback((key: string | number, e?: React.MouseEvent<HTMLElement>) => {
     state.setActiveMenuItem(key);
     state.setActiveItem(item.key);
     if (props.type === "horizontal") {
@@ -134,8 +131,7 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
     if (props.onChange && e) {
       props.onChange({key: key, clickEvent: e});
     }
-  }
-
+  }, [state, props, item, closeItem])
 
   return {
     contentItemClasses,
@@ -145,7 +141,6 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
     submenu,
     submenuHeight,
     submenuDisplay,
-    icon,
     onMenuClick,
     closeItem,
     openItem,

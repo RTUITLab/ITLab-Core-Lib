@@ -31,7 +31,6 @@ const CollapseItem = React.memo((props: CollapseItemProps) => {
     headerClasses,
     toggleExpanded,
   } = useCollapseItem(props);
-
   return (
     <div className={itemClasses} style={props.style}>
       <div className={headerClasses} onClick={toggleExpanded}>

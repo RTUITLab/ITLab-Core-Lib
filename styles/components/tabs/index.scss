@@ -61,19 +61,11 @@
   }
 
   & .tab-item-badge {
-    color: #fff;
-    background-color: dt.$red-100;
-
-    padding: 0 5px;
-
     min-width: 20px;
     height: 20px;
-
-    border-radius: 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0 5px;
+    line-height: 18px;
+    border: none;
   }
 }
 

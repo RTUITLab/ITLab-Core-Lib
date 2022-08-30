@@ -2,6 +2,7 @@ import React, {createRef, useCallback, useEffect, useMemo, useState} from 'react
 import {InputProps} from './InputProps'
 import styles from './input.module.scss'
 import {CalendarFunctions} from '../calendar/CalendarFunctions'
+import {getClasses} from '../../utils/getClasses'
 
 export function useInput(props: InputProps) {
   const [isOpen, setIsOpen] = useState<boolean>(props.autoFocus || false)
@@ -99,41 +100,26 @@ export function useInput(props: InputProps) {
   }, [])
 
   const classes = useMemo(() => {
-    const classList = [];
-
-    const conditions:{[index: string]:boolean} = {
+     const conditions:{[index: string]:boolean} = {
       "input-wrapper": true,
       "input-wrapper-large": props.size === 'large',
       "input-wrapper-small": props.size === 'small',
-      "input-wrapper-medium": props.size === 'medium',
-      "input-wrapper-disabled": props.disabled !== undefined && props.disabled,
-      "input-wrapper-readonly":  props.readonly !== undefined && props.readonly,
-      "input-wrapper-valid":  props.valid !== undefined && props.valid,
-      "input-wrapper-invalid":  props.error !== undefined && props.error,
+      "input-wrapper-medium": props.size === 'medium' || !props.size,
+      "input-wrapper-disabled": !!props.disabled,
+      "input-wrapper-readonly":  !!props.readonly,
+      "input-wrapper-valid":  !!props.valid,
+      "input-wrapper-invalid":  !!props.error,
     };
-
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-
-    if(!props.size) classList.push(styles['input-wrapper-medium']);
-
-    if(typeof props.className === 'string') classList.push(props.className);
-    if(typeof props.className === 'object') classList.push(...props.className);
-
-    return classList.join(' ');
-
+    return getClasses(conditions, styles, props.className)
   }, [props]);
 
   const iconClasses = useMemo(() => {
-    const classList = [styles['input-icon']];
-
-    if(props.iconPosition === 'left' || !props.iconPosition) classList.push(styles['input-icon-left']);
-    if(props.iconPosition === 'right') classList.push(styles['input-icon-right']);
-
-    return classList.join(' ');
+    const conditions:{[index: string]:boolean} = {
+      "input-icon": true,
+      "input-icon-left": props.iconPosition === 'left' || !props.iconPosition,
+      "input-icon-right": props.iconPosition === 'right',
+    };
+    return getClasses(conditions, styles)
   }, [props]);
 
   return {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, endDate}

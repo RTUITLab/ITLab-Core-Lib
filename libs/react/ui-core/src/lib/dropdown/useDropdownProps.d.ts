@@ -16,9 +16,6 @@ export interface useDropdownProps {
   /** Key of active item */
   activeItemKey: string | number;
 
-  /** Icon object */
-  icon: React.ReactNode | null;
-
   /** If true, the dropdown will be open */
   isOpen: boolean;
 

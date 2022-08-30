@@ -6,6 +6,13 @@ import React, {useState} from 'react'
 export default {
   component: Comment,
   title: 'Comment',
+  argTypes: {
+    avatar: {table: {defaultValue: {summary: '<Avatar size={48} />'}},},
+    isRate: {table: {defaultValue: {summary: 'false'}},},
+    likeCount: {table: {defaultValue: {summary: 0}},},
+    dislikeCount: {table: {defaultValue: {summary: 0}},},
+    className: {control: {type: 'text'}},
+  }
 } as ComponentMeta<typeof Comment>;
 
 const Template: ComponentStory<typeof Comment> = (args) => {
@@ -15,10 +22,10 @@ const Template: ComponentStory<typeof Comment> = (args) => {
     window.alert(content)
   }
   const onDislike = (e: React.MouseEvent<HTMLElement>) => {
-    setRateType('dislike')
+    setRateType((rateType) => rateType === 'dislike' ? '' : 'dislike')
   }
   const onLike = (e: React.MouseEvent<HTMLElement>) => {
-    setRateType('like')
+    setRateType((rateType) => rateType === 'like' ? '' : 'like')
   }
 
   return (<Comment {...args} likeCount={rateType === 'like' ? 11 : 10} dislikeCount={rateType === 'dislike' ? 11 : 10} rateType={(rateType === 'like' || rateType === 'dislike') ? rateType : undefined} onReply={onReply} onDislike={onDislike} onLike={onLike}/>)

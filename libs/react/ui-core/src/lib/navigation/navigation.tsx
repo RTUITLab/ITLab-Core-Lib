@@ -1,8 +1,12 @@
 import styles from './navigation.module.scss';
-import React, {createRef, forwardRef, useEffect, useMemo, useState} from "react";
-import {NavigationItem, NavigationLabel, NavigationProps} from "./NavigationProps";
-import {useNavigation, useNavigationProps} from "./useNavigation";
+import React, {FC, forwardRef, useMemo} from 'react'
+import {NavigationProps} from "./NavigationProps";
+import {useNavigation,} from "./useNavigation";
 import {useMenuItem} from "./useMenuItem";
+import Icon from '../icon/icon'
+import {MenuItemContentProps} from './MenuItemContentProps'
+import {SubmenuButtonProps} from './SubmenuButtonProps'
+import {MenuItemProps} from './MenuItemProps'
 
 
 export const Navigation = forwardRef<HTMLDivElement, NavigationProps>((props, ref) => {
@@ -26,7 +30,7 @@ export const Navigation = forwardRef<HTMLDivElement, NavigationProps>((props, re
   </div>);
 })
 
-function MenuItem(localProps: { item: NavigationItem, props: NavigationProps, state: useNavigationProps }) {
+const MenuItem:FC<MenuItemProps> = React.memo((localProps) => {
   const {
     contentItemClasses,
     item,
@@ -35,9 +39,7 @@ function MenuItem(localProps: { item: NavigationItem, props: NavigationProps, st
     submenu,
     submenuHeight,
     submenuDisplay,
-    icon,
     onMenuClick,
-    closeItem,
     submenuClick
   } = useMenuItem(localProps);
 
@@ -51,7 +53,7 @@ function MenuItem(localProps: { item: NavigationItem, props: NavigationProps, st
 
   return (
     <div className={classes.join(" ")} key={item.key}>
-      <MenuItemContent strings={contentItemClasses} onClick={onMenuClick} icon={icon} item={item}/>
+      <MenuItemContent showIcons={state.showIcons} icon={item.icon} strings={contentItemClasses} onClick={onMenuClick} item={item}/>
       <div style={{height: submenuHeight, display: submenuDisplay}} ref={submenu}
            className={styles['navigation-item-submenu']}>
         {item.list?.map((item) => {
@@ -74,10 +76,9 @@ function MenuItem(localProps: { item: NavigationItem, props: NavigationProps, st
       </div>
     </div>
   )
-}
+})
 
-function SubmenuButton(props: { onClick: (e: React.MouseEvent<HTMLElement>) => void, item: NavigationLabel, state: useNavigationProps }) {
-
+const SubmenuButton:FC<SubmenuButtonProps> = React.memo((props) => {
   const classes = useMemo((): Array<string> => {
     if(props.state.activeMenuItem===props.item.key) {
       return [styles["navigation-item-submenu-button"], styles["navigation-item-submenu-button-active"]]
@@ -87,22 +88,31 @@ function SubmenuButton(props: { onClick: (e: React.MouseEvent<HTMLElement>) => v
   },[props.state.activeMenuItem])
 
   return (
-    <div
-      onClick={props.onClick}
-      className={classes.join(" ")}
-    >{props.item.label}</div>
+    <div onClick={props.onClick} className={classes.join(" ")}>
+      {props.item.label}
+    </div>
   )
+})
 
-}
-
-function MenuItemContent(props: { strings: Array<string>, onClick: () => Promise<void>, icon: JSX.Element | null, item: NavigationItem }) {
-  return <div className={props.strings.join(" ")} onClick={props.onClick}>
-    {props.icon}
-    <span className={styles["navigation-item-content-label"]}>
-            {props.item.label}
-          </span>
-    <span className={styles["navigation-item-content-icon"]}>
-             <i className="ri-arrow-down-s-line"/>
-          </span>
-  </div>;
-}
+const MenuItemContent:FC<MenuItemContentProps> = React.memo((props) => {
+  const LocalIcon:FC<{showIcons: boolean, icon: React.ReactNode | string}> = React.memo(({icon, showIcons}) => {
+    return (
+      showIcons ?
+        <span className={styles['navigation-item-content-icon']}>
+          {typeof icon === "string" ? <Icon name={icon} /> : icon}
+        </span>
+      : null
+    )
+  })
+  return (
+    <div className={props.strings.join(" ")} onClick={props.onClick}>
+      <LocalIcon icon={props.icon} showIcons />
+      <span className={styles["navigation-item-content-label"]}>
+        {props.item.label}
+      </span>
+      <span className={styles["navigation-item-content-icon"]}>
+        <i className="ri-arrow-down-s-line"/>
+      </span>
+    </div>
+  );
+})

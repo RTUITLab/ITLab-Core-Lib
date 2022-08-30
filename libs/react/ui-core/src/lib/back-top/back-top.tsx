@@ -1,9 +1,9 @@
-import { forwardRef, useEffect } from 'react';
+import { forwardRef } from 'react';
 import { BackTopProps } from './BackTopProps';
 import { Icon } from '../icon/icon';
 import { useBackTop } from './useBackTop';
 
-const BackTop = forwardRef((props: BackTopProps, ref: any) => {
+export const BackTop = forwardRef((props: BackTopProps, ref: any) => {
   const { classes, scrollToTop } = useBackTop(props);
 
   return (
@@ -11,9 +11,7 @@ const BackTop = forwardRef((props: BackTopProps, ref: any) => {
       style={props.style}
       className={classes}
       ref={ref}
-      onClick={(e) => {
-        scrollToTop();
-      }}
+      onClick={scrollToTop}
     >
       <Icon
         name={'arrow-up-circle-line'}
@@ -25,4 +23,3 @@ const BackTop = forwardRef((props: BackTopProps, ref: any) => {
   );
 });
 
-export default BackTop;

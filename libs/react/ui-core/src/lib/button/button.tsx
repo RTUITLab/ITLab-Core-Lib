@@ -1,8 +1,9 @@
-import React, {forwardRef, useMemo} from "react";
+import React, {FC, forwardRef, ReactNode, useMemo} from 'react'
 import {useButton} from "./useButton";
 import {ButtonProps} from "./ButtonProps";
 import "../../../../../../styles/icons/_index.scss";
 import {getAllEvents} from "../../utils/getAllEvents";
+import Icon from '../icon/icon'
 
 /**
  * Button component
@@ -15,15 +16,20 @@ export const Button=forwardRef((props: ButtonProps, ref: any) => {
     return getAllEvents(props)
   },[props]);
 
-  const icon = <>{props.icon && <span className={iconClasses}>
-      {props.icon}
-    </span>}</>
+  const LocalIcon:FC<{icon?: ReactNode}> = React.memo(({icon}) => (
+    <>
+      {icon && <span className={iconClasses}>{props.icon}</span>}
+    </>
+  ))
+  const LoadingIcon:FC<{loadingIcon?: ReactNode}> = React.memo(({loadingIcon}) => (
+    <>{loadingIcon ? <span className={iconClasses}>{props.loadingIcon}</span>
+      : <span className={iconClasses}><Icon name={"ri-loader-2-line"} size={18}/></span>}
+    </>
+))
 
-  const loadingIcon = <>{props.loadingIcon ? <span className={iconClasses}>{props.loadingIcon}</span> : <span className={iconClasses + " " + "ri-loader-2-line"} style={{fontSize: "18px"}}/>}</>
-
-  return (<button {...events} ref={ref} style={props.style} className={classes}
-                  disabled={(props.disabled !== undefined && props.disabled) || props.loading}>
-    {props.children}
-    {props.loading ? loadingIcon : icon}
-  </button>);
+  return (
+    <button {...events} ref={ref} style={props.style} className={classes} disabled={(!!props.disabled) || !!props.loading}>
+      {props.children}
+      {props.loading ? <LoadingIcon loadingIcon={props.loadingIcon} /> : <LocalIcon icon={props.icon} />}
+    </button>);
 });

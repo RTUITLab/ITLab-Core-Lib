@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import BackTop from './back-top';
+import {BackTop} from './back-top';
 
 describe('BackTop', () => {
   it('should render successfully', () => {

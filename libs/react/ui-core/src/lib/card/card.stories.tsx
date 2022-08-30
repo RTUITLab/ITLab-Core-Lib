@@ -1,10 +1,12 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Card from './card';
+import {Card} from './card';
 
 export default {
   component: Card,
   title: 'Card',
-  argTypes: {},
+  argTypes: {
+    className: {control: {type: 'text'}}
+  },
 } as ComponentMeta<typeof Card>;
 
 const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
