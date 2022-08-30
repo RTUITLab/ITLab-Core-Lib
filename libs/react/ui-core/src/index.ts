@@ -1,3 +1,5 @@
+export * from './lib/collapse/collapse';
+export * from './lib/calendar/calendar';
 export * from './lib/input-number/input-number';
 export * from './lib/currency-input/currency-input';
 export * from './lib/back-top/back-top';
