@@ -2,47 +2,137 @@
 @use '../../../styles/icons' as *;
 
 .input-wrapper {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  cursor: text;
-  gap: 8px;
+  position: relative;
 
   border: 1px solid dt.$primary-30;
   border-radius: 6px;
   width: 350px;
 
-  &:focus-within {
+  &:focus-within:not(&.input-wrapper-readonly) {
     color: dt.$general-90;
     border-color: dt.$general-70;
   }
-  &:not(.input-wrapper-disabled):not(&:focus-within):hover {
+  &:not(.input-wrapper-disabled):not(&:focus-within):not(&.input-wrapper-readonly):hover {
     border-color: dt.$general-60;
   }
 
-  .input {
-    width: 100%;
-    padding: 0;
+  & i {
+    color: dt.$general-70;
+  }
 
-    outline: none;
-    border: none;
-    background-color: transparent;
-    cursor: inherit;
+  & .input-outer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: text;
+    gap: 8px;
 
-    color: dt.$general-90;
-    font-family: dt.$typo-font-p-medium-family;
-    font-style: dt.$typo-font-p-medium-style;
-    font-weight: dt.$typo-font-p-medium-weight;
-    line-height: 24px;
+    & .input {
+      width: 100%;
+      padding: 0;
 
-    &::placeholder {
-      color: dt.$general-60;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      cursor: inherit;
+
+      color: dt.$general-90;
+      font-family: dt.$typo-font-p-medium-family;
+      font-size: dt.$typo-font-p-medium-size;
+      font-style: dt.$typo-font-p-medium-style;
+      font-weight: dt.$typo-font-p-medium-weight;
+      line-height: 24px;
+
+      &::placeholder {
+        color: dt.$general-60;
+      }
     }
+    & .input-icon {
+      display: flex;
+      align-items: center;
+    }
+
+  }
+  //Отключение календарика
+  input[type=date]::-webkit-inner-spin-button,
+  input[type=date]::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+  //Отключение крестика
+  input[type=search]::-webkit-search-decoration,
+  input[type=search]::-webkit-search-cancel-button,
+  input[type=search]::-webkit-search-results-button,
+  input[type=search]::-webkit-search-results-decoration { display: none; }
+
+  & .input-calendar {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: max-content;
   }
 }
 
+.input-wrapper-readonly {
+  cursor: default;
+  user-select: none;
+  & .input-outer, .input {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.input-wrapper-valid {
+  background-color: dt.$green-30;
+  color: dt.$green-80;
+  border-color: dt.$green-80;
+
+  & i {
+    color: dt.$green-100;
+  }
+  & .input-outer .input::placeholder {
+    color: dt.$green-60;
+  }
+  &:focus-within:not(&.input-wrapper-readonly) {
+    color: dt.$green-90;
+    border-color: dt.$green-70;
+  }
+  &:not(.input-wrapper-disabled):not(&:focus-within):not(&.input-wrapper-readonly):hover {
+    border-color: dt.$green-60;
+  }
+}
+
+.input-wrapper-invalid {
+  background-color: dt.$red-30;
+  color: dt.$red-80;
+  border-color: dt.$red-80;
+
+  & i {
+    color: dt.$red-100;
+  }
+  & .input-outer .input::placeholder {
+    color: dt.$red-60;
+  }
+  &:focus-within:not(&.input-wrapper-readonly) {
+    color: dt.$red-90;
+    border-color: dt.$red-70;
+  }
+  &:not(.input-wrapper-disabled):not(&:focus-within):not(&.input-wrapper-readonly):hover {
+    border-color: dt.$red-60;
+  }
+}
+
+.input-text-error {
+  margin-top: 5px;
+  color: dt.$red-80;
+
+  font-family: dt.$typo-font-p-regular-family;
+  font-style: dt.$typo-font-p-regular-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-size: 14px;
+  line-height: 24px;
+}
 
 .input-icon-left {
   order: -1;
@@ -53,23 +143,44 @@
 }
 
 .input-wrapper-large{
-  height: 48px;
-  padding: 12px 18px;
+  & .input-outer {
+    height: 48px;
+    padding: 12px 18px;
+
+    & .input-icon > i {
+      font-size: 24px;
+    }
+  }
 }
 .input-wrapper-medium{
-  height: 40px;
-  padding: 8px 16px;
+  & .input-outer {
+    height: 40px;
+    padding: 8px 16px;
+
+    & .input-icon > i {
+        font-size: 22px;
+    }
+  }
 }
 .input-wrapper-small{
-  height: 38px;
-  padding: 8px 14px;
+  & .input-outer {
+    height: 38px;
+    padding: 8px 14px;
 
-  .input {
-    line-height: 20px;
+    & .input {
+      line-height: 20px;
+    }
+
+    & .input-icon > i {
+      font-size: 20px;
+    }
   }
 }
 .input-wrapper-disabled{
   opacity: 0.5;
   cursor: not-allowed;
-  border-color: dt.$primary-30;
+  user-select: none;
+  & .input-outer, .input {
+    cursor: not-allowed;
+  }
 }
