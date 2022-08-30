@@ -22,7 +22,7 @@ export const Switch = forwardRef((props: SwitchProps, ref: any) => {
       >
       </button>
       {
-        props.label &&
+        (props.label && props.size !== 'small') &&
         <label className={labelClasses} htmlFor={props.id}>{props.label}</label>
       }
     </div>

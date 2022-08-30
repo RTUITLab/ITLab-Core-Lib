@@ -22,10 +22,9 @@
 
     &:disabled {
       cursor: not-allowed;
-      background: dt.$general-50;
+      opacity: .5;
 
       &:after{
-        background-color: dt.$general-30;
         animation-name: none;
         cursor: not-allowed;
       }
