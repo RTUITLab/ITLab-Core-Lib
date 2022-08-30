@@ -6,13 +6,13 @@ export default {
   title: 'Badge',
   argTypes: {
     className: { control: 'text' },
-    type: { control: 'select', options: ['solid', 'outline', 'light'], table: {defaultValue: {summary: 'outline'}}, },
+    type: { control: 'radio', options: ['solid', 'outline', 'light'], table: {defaultValue: {summary: 'outline'}}, },
     color: {
       control: 'select',
       options: ['primary', 'red', 'green', 'orange', 'transparent'],
       table: {defaultValue: {summary: 'primary'}},
     },
-    shape: { control: 'select', options: ['rectangular', 'circle'], table: {defaultValue: {summary: 'rectangular'}}, },
+    shape: { control: 'radio', options: ['rectangular', 'circle'], table: {defaultValue: {summary: 'rectangular'}}, },
   },
 } as ComponentMeta<typeof Badge>;
 

@@ -1,6 +1,7 @@
 import React, {useCallback, useMemo, useState} from 'react'
 import styles from './checkbox.module.scss'
 import {CheckboxProps} from './CheckboxProps'
+import {getClasses} from '../../utils/getClasses'
 
 /**
  * Hook for checkbox
@@ -10,12 +11,12 @@ export function useCheckbox(props: CheckboxProps) {
   const [focused, setFocused] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(props.error || false)
 
-  const handleCheck = (checked: boolean) => {
+  const handleCheck = useCallback((checked: boolean) => {
     if(!props.readonly && !props.disabled) {
       setChecked(!checked)
       setIsError(false)
     }
-  }
+  }, [props])
 
   const handleFocus = useCallback((focused: boolean) => {
     setFocused(focused)
@@ -28,54 +29,28 @@ export function useCheckbox(props: CheckboxProps) {
   }, [checked, props])
 
   const containerClasses = useMemo(() => {
-    const classList = [] as string[];
-
     const conditions:{[index: string]:boolean} = {
       "checkbox": true,
-      "checkbox-disabled": props.disabled === true,
-      "checkbox-readonly": props.readonly === true,
+      "checkbox-disabled": !!props.disabled,
+      "checkbox-readonly": !!props.readonly,
     };
-
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-
-    return classList.join(' ');
+    return getClasses(conditions, styles);
   }, [props]);
 
   const classes = useMemo(() => {
-    const classList = [];
-
     const conditions:{[index: string]:boolean} = {
       "checkbox-box": true,
-      "checkbox-disabled": props.disabled === true,
-      "checkbox-readonly": props.readonly === true,
+      "checkbox-disabled": !!props.disabled,
+      "checkbox-readonly": !!props.readonly,
       "checkbox-checked": checked,
       "checkbox-focus": focused,
       "checkbox-invalid": isError,
     };
-
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-
-    if(typeof props.className === 'string') classList.push(props.className);
-    if(typeof props.className === 'object') classList.push(...props.className);
-
-    return classList.join(' ');
+    return getClasses(conditions, styles, props.className)
   }, [props, checked, focused, isError]);
 
   const labelStyleClass = useMemo(() => {
-    const classList = [styles['checkbox-label']];
-
-    if(typeof props.labelStyleClass === 'string') classList.push(props.labelStyleClass);
-    if(typeof props.labelStyleClass === 'object') classList.push(...props.labelStyleClass);
-
-    return classList.join(' ');
+    return getClasses({'checkbox-label': true}, styles, props.labelStyleClass)
   }, [props]);
 
   return {classes, containerClasses, labelStyleClass, checked, handleCheck, handleKeyUp, focused, handleFocus, isError}

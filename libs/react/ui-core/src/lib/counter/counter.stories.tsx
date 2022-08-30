@@ -6,9 +6,9 @@ export default {
   title: 'Counter',
   argTypes: {
     className: {control: {type: 'text'}},
-    type: {control: "select", options: ["solid", "outline", "light"], table: {defaultValue: {summary: 'outline'}}},
+    type: {control: "radio", options: ["solid", "outline", "light"], table: {defaultValue: {summary: 'outline'}}},
     color: {control: "select", options: ["primary", "red", "green", "orange", "transparent"], table: {defaultValue: {summary: 'primary'}}},
-    size: {control: "select", options: ["small", "medium", "large"], table: {defaultValue: {summary: 'medium'}}},
+    size: {control: "radio", options: ["small", "medium", "large"], table: {defaultValue: {summary: 'medium'}}},
   }
 } as ComponentMeta<typeof Counter>;
 

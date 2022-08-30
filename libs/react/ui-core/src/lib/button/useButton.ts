@@ -26,13 +26,13 @@ export function useButton(props:ButtonProps) {
   }, [props]);
 
   const iconClasses = useMemo(() => {
-    const classList = [styles['button-icon']];
-
-    if(!props.iconPosition || props.iconPosition === 'left') classList.push(styles['button-icon-left']);
-    if(props.iconPosition === 'right') classList.push(styles['button-icon-right']);
-    if(props.loading) classList.push(styles['spin-anim']);
-
-    return classList.join(' ');
+    const conditions:{[index: string]:boolean} = {
+      "button-icon": true,
+      "button-icon-left": !props.iconPosition || props.iconPosition === 'left',
+      "button-icon-right": props.iconPosition === 'right',
+      "spin-anim": !!props.loading,
+    };
+    return getClasses(conditions, styles)
   }, [props]);
 
   return {classes, iconClasses}

@@ -1,5 +1,5 @@
 import {NavigationItem, NavigationProps} from "./NavigationProps";
-import {useNavigationProps} from "./useNavigation";
+import {useNavigationProps} from './useNavigationProps'
 import React, {createRef, useCallback, useEffect, useMemo, useState} from 'react'
 import styles from "./navigation.module.scss";
 
