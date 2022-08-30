@@ -22,6 +22,9 @@ export interface CheckboxProps extends DefaultParams {
   /** When present, it specifies that the element should be disabled */
   disabled?: boolean;
 
+  /** When present, it specifies that the error occurred */
+  error?: boolean;
+
   /** Identifier of the focus input to match a label defined for the component */
   inputId?: string;
 

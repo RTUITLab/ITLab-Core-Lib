@@ -16,4 +16,7 @@ export interface FunctionalButtonProps extends DefaultParams, ClickableObjectMin
 
   /** If true, the button will be disabled */
   disabled?: boolean;
+
+  /** If true, the icon will be displayed */
+  displayIco?: boolean
 }

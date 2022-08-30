@@ -22,7 +22,7 @@ export const FunctionalButton=forwardRef((props: FunctionalButtonProps, ref: any
   return (
     <button style={props.style} {...events} ref={ref} className={classes} disabled={props.disabled}>
       {props.children}
-      {icon}
+      {props.displayIco && icon}
     </button>
   );
 })
