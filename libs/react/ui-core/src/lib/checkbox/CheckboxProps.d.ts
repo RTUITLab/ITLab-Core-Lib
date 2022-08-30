@@ -28,7 +28,7 @@ export interface CheckboxProps extends DefaultParams {
   /** Identifier of the focus input to match a label defined for the component */
   inputId?: string;
 
-  /** When present, it specifies that the component cannot be edited */
+  /** Icon object */
   checkboxIcon?: React.ReactNode<Icon>;
 
   /** [It doesn't change checked state of checkbox] Variable which stores value, which used in when checkbox is checked */
