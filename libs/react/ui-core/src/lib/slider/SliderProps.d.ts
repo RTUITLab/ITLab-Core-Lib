@@ -9,14 +9,19 @@ export interface SliderProps extends DefaultParams {
   showInput?: boolean;
 
   /** Default value of the slider */
-  defaultValue?: number | [number, number];
+  defaultValue: number[];
 
   /** On change event */
-  onChange?: (value: number) => void;
+  onChange?: (values: number[]) => void;
 
   /** Specifies the minimum value of component */
   min?: number;
 
   /** Specifies the maximum value of component */
   max?: number;
+
+  /** Step of slider */
+  step?: number;
+
+  onDrag?: (values: number[]) => void;
 }
