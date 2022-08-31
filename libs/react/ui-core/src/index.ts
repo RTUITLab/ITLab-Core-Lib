@@ -1,3 +1,4 @@
+export * from './lib/slider/slider';
 export * from './lib/collapse/collapse';
 export * from './lib/calendar/calendar';
 export * from './lib/input-number/input-number';
