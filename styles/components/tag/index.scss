@@ -1,0 +1,13 @@
+@use '../../../styles/design-tokens' as dt;
+
+.tag {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.tag-badge {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 6px 4px 8px;
+}
