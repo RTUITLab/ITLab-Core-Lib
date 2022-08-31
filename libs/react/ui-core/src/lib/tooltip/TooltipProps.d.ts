@@ -14,8 +14,11 @@ export interface TooltipProps {
   /** Style properties */
   style?: React.CSSProperties;
 
+  /** Text style properties */
+  textStyle?: React.CSSProperties;
+
   /** Text or other content on Tooltip */
-  tooltipContent: React.ReactNode;
+  tooltipContent?: React.ReactNode;
 
   /** Type of tooltip content */
   type?: "interactive" | "meta" | "default";

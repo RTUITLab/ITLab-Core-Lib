@@ -33,7 +33,9 @@ export const Tooltip = forwardRef((props: TooltipProps, ref: any) => {
        onTouchStart={recalculatePosition}
        ref={elem}
      >
-       {props.children}
+       <div style={props.textStyle}>
+         {props.children}
+       </div>
        {props.hidden? null : (
          <div
            ref={(e)=>{
