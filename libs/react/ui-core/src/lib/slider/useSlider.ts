@@ -95,9 +95,8 @@ export const useSlider = ({min = 1, max = 20, showInput = false, range = false, 
   )
 
   const handleDrag = React.useCallback(
-    //@todo change any
     (e: any) => {
-      const { activeHandleIndex, onDrag } = getLatest()
+      const { activeHandleIndex} = getLatest()
       const clientX =
         e.type === 'touchmove' ? e.changedTouches[0].clientX : e.clientX
       const newValue = getValueForClientX(clientX)
@@ -108,12 +107,7 @@ export const useSlider = ({min = 1, max = 20, showInput = false, range = false, 
         newRoundedValue,
         ...defaultValue.slice(activeHandleIndex + 1),
       ]
-
-      if (onDrag) {
-        onDrag(newValues)
-      } else {
-        setTempValues(newValues)
-      }
+      setTempValues(newValues)
     },
     [getLatest, getValueForClientX, roundToStep, defaultValue]
   )
@@ -121,7 +115,6 @@ export const useSlider = ({min = 1, max = 20, showInput = false, range = false, 
   const handleKeyDown = React.useCallback(
     (e: React.KeyboardEvent, index: number) => {
       const { values, onChange } = getLatest()
-      // Left Arrow || Right Arrow
       if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
         setActiveHandleIndex(index)
         const direction = e.key === 'ArrowLeft' ? -1 : 1
@@ -146,7 +139,6 @@ export const useSlider = ({min = 1, max = 20, showInput = false, range = false, 
           tempValues,
           values,
           onChange,
-          onDrag,
         } = getLatest()
 
         document.removeEventListener('mousemove', handleDrag)
@@ -155,7 +147,6 @@ export const useSlider = ({min = 1, max = 20, showInput = false, range = false, 
         document.removeEventListener('touchend', handleRelease)
         const sortedValues = sortNumList(tempValues || values)
         onChange(sortedValues)
-        onDrag(sortedValues)
         setActiveHandleIndex(null)
         setTempValues(null)
       }
