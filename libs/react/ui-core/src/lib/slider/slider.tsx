@@ -5,8 +5,9 @@ import {useSlider} from './useSlider'
 
 export const Slider = forwardRef(({min = 1, max = 20, step = 1, showInput = false, ...props}: SliderProps, ref: any) => {
 
-  const { getTrackProps, handles } = useSlider(props);
+  const { getTrackProps, handles, getSegmentStyle } = useSlider(props);
   const localRef = createRef()
+
   return (
     <div>
       <div className={styles['slider']}
@@ -14,6 +15,7 @@ export const Slider = forwardRef(({min = 1, max = 20, step = 1, showInput = fals
           ref: localRef
         })}
       >
+        <div className={styles['slider-segment']} style={getSegmentStyle()} />
         {handles.map(({ getHandleProps }: any) => (
           <button className={styles['slider-button']}
             {...getHandleProps({

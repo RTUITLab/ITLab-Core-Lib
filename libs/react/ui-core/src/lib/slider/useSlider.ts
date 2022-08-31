@@ -31,21 +31,9 @@ const useGetLatest = (val: any) => {
 
 export const useSlider = ({min = 1, max = 20, showInput = false, range = false, onChange, defaultValue, step = 1, ...props}: SliderProps,
                           interpolator = linearInterpolator) => {
-  const [value, setValue] = useState<number | [number, number]>()
 
   const [activeHandleIndex, setActiveHandleIndex] = React.useState<number | null>(null)
   const [tempValues, setTempValues] = React.useState<number[] | null>()
-
-  // useEffect(() => {
-  //   if(values) {
-  //     if(typeof values === 'number') {
-  //       setValue(min)
-  //     }
-  //     else {
-  //       setValue([min, max])
-  //     }
-  //   }
-  // }, [values])
 
   const getLatest = useGetLatest({
     activeHandleIndex,
@@ -255,11 +243,27 @@ export const useSlider = ({min = 1, max = 20, showInput = false, range = false, 
     }
   }
 
+  const getSegmentStyle = useCallback(() => {
+    if(defaultValue.length === 1) {
+      return {
+        left: 0,
+        width: getPercentageForValue(segments[0].value) + '%'
+      }
+    }
+    else {
+      return {
+        left: getPercentageForValue(segments[0].value) + '%',
+        width: getPercentageForValue(segments[1].value) - getPercentageForValue(segments[0].value) + '%'
+      }
+    }
+  }, [defaultValue, segments, getPercentageForValue])
+
   return {
     activeHandleIndex,
     segments,
     handles,
     getTrackProps,
+    getSegmentStyle,
   }
 }
 
