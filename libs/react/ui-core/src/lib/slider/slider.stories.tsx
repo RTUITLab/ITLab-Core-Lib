@@ -13,13 +13,13 @@ export default {
 const Template: ComponentStory<typeof Slider> = (args) => {
   const [values, setValues] = useState<number[]>([5]);
   return (
-    <Slider {...args} defaultValue={values} onChange={setValues} />
+    <Slider {...args} style={{margin:50}} defaultValue={values} onChange={setValues} />
     )
 };
 const RangeTemplate: ComponentStory<typeof Slider> = (args) => {
   const [values, setValues] = useState<number[]>([5, 10]);
   return (
-    <Slider {...args} defaultValue={values} onChange={setValues} />
+    <Slider {...args} style={{margin:50}} defaultValue={values} onChange={setValues} />
     )
 };
 

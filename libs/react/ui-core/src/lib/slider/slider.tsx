@@ -10,7 +10,7 @@ export const Slider = forwardRef(({min = 1, max = 20, step = 1, showInput = fals
   const localRef = createRef()
 
   return (
-    <div>
+    <div ref={ref} style={props.style}>
       <div className={styles['slider']}
         {...getTrackProps({
           ref: localRef
