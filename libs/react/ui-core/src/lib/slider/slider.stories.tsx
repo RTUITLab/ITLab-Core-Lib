@@ -7,6 +7,7 @@ export default {
   title: 'Slider',
   argTypes: {
     className: { control: {type: 'text'}},
+    defaultValue: {control: false}
   }
 } as ComponentMeta<typeof Slider>;
 
@@ -27,6 +28,13 @@ export const Primary = Template.bind({});
 Primary.args = {
   min: -10,
   max: 20,
+};
+
+export const WithInputNumber = Template.bind({});
+WithInputNumber.args = {
+  min: -10,
+  max: 20,
+  showInput: true,
 };
 
 export const Range = RangeTemplate.bind({});

@@ -35,6 +35,15 @@
       z-index: 0;
     }
   }
+
+  & .slider-input {
+    border-color: dt.$primary-40;
+
+    & input {
+      color: dt.$general-100;
+      text-align: left;
+    }
+  }
 }
 
 
