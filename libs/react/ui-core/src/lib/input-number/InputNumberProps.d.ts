@@ -19,7 +19,10 @@ export interface InputNumberProps extends DefaultParams{
   defaultValue?: number
 
   /** On change action */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: number | string) => void;
+
+  /** If true, the input buttons will be displayed */
+  displayButtons?: boolean;
 
   /** On key up action */
   onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;

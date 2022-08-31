@@ -9,12 +9,15 @@ import { IcoProps } from './IcoProps';
  * InputNumber component
  */
 
-export const InputNumber = forwardRef((props: InputNumberProps, ref: any) => {
+export const InputNumber = forwardRef(({displayButtons = true, ...props}: InputNumberProps, ref: any) => {
   const {classes, width, handleChange, handleClick, step, value, handleBlur} = useInputNumber(props)
 
   return (
     <div className={classes}>
-      <LocalIco style={props.iconStyle} name={'ri-subtract-fill'} id={props.id} handleClick={handleClick} step={-step} />
+      {
+        displayButtons &&
+        <LocalIco style={props.iconStyle} name={'ri-subtract-fill'} id={props.id} handleClick={handleClick} step={-step} />
+      }
       <input className={styles['inputNumber']}
              type='text'
              ref={ref}
@@ -38,7 +41,10 @@ export const InputNumber = forwardRef((props: InputNumberProps, ref: any) => {
              onBlur={handleBlur}
              style={{width: width + 'ch', ...props.style}}
       />
-      <LocalIco style={props.iconStyle} name={'ri-add-fill'} id={props.id} handleClick={handleClick} step={step} />
+      {
+        displayButtons &&
+        <LocalIco style={props.iconStyle} name={'ri-add-fill'} id={props.id} handleClick={handleClick} step={step} />
+      }
     </div>
   );
 })

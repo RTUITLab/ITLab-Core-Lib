@@ -15,7 +15,7 @@ export function useInputNumber(props: InputNumberProps) {
   useEffect(() => {
     setValue(props.defaultValue ? getLimitedValue(String(props.defaultValue)) : '')
     setWidth(props.defaultValue ? ((props.defaultValue.toString().length === 0 ) ? 1 : props.defaultValue.toString().length) : 1 )
-  }, [])
+  }, [props.defaultValue])
 
   const handleClick = useCallback((count: number) => {
     if(!props.disabled && !props.readonly) {
@@ -34,15 +34,23 @@ export function useInputNumber(props: InputNumberProps) {
   }, [props, value])
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if(props.onChange) props.onChange(e)
-    const value = e.target.value
+    const localValue = e.target.value
 
-    if(value === '' || !isNaN(Number(value))) {
-      setValueWidth(value)
-      if(value === '') setValue('')
-      else setValue(Number(value))
+    if(localValue === '' || !isNaN(Number(localValue))) {
+      setValueWidth(localValue)
+      if(localValue === '') {
+        if(props.onChange) props.onChange(e, Number(value))
+        setValue('')
+      }
+      else {
+        if(props.onChange) props.onChange(e, Number(localValue))
+        setValue(Number(localValue))
+      }
     }
-    else if (value === '-') setValue('-')
+    else if (localValue === '-') {
+      setValue('-')
+      if(props.onChange) props.onChange(e, '-')
+    }
   }, [props])
 
   const setValueWidth = useCallback((number: string) => {

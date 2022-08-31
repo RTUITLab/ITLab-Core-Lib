@@ -52,7 +52,11 @@
     line-height: 17px;
     font-family: dt.$typo-font-p-medium-family;
     font-weight: dt.$typo-font-p-medium-weight;
+  }
 
+  & .inputNumber:only-child {
+    border-radius: 5px;
+    border: none;
   }
 
   &.inputNumber-wrapper-readonly {
@@ -78,6 +82,9 @@
     & .inputNumber {
       border-right: 1px solid dt.$general-40;
       border-left: 1px solid dt.$general-40;
+    }
+    & .inputNumber:only-child {
+      border: none;
     }
   }
 }

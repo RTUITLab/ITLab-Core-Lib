@@ -3,7 +3,7 @@ export function getClasses(conditions:{[index: string]: boolean}, styles: any, c
     if (conditions[key]) {
       classList[key] = styles[key]
     }
-    return Object.defaultValue(classList);
+    return Object.values(classList);
   },{});
 
   if(typeof className === 'string') classList.push(className)
