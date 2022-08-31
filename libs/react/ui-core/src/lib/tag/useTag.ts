@@ -1,5 +1,7 @@
 import {TagProps} from './TagProps'
-import React, {useEffect, useState} from 'react'
+import styles from './tag.module.scss'
+import React, {useEffect, useMemo, useState} from 'react'
+import {getClasses} from '../../utils/getClasses'
 
 export const useTag = (props: TagProps) => {
   const [hidden, setHidden] = useState<boolean>(false)
@@ -16,5 +18,9 @@ export const useTag = (props: TagProps) => {
     }
   }, [tagRef, props.maxLength])
 
-  return {tagRef, hidden}
+  const classes = useMemo(() => {
+    return getClasses({'tag-badge': true}, styles, props.className)
+  }, [props.className])
+
+  return {tagRef, hidden, classes}
 }
