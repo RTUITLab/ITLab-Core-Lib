@@ -23,9 +23,6 @@ export const useSlider = ({onChange, defaultValue, onDrag, step = 1, ...props}: 
     if(!isNaN(Number(value))) {
       setValue([Number(value)])
     }
-    // else if(value === '-') {
-    //   setValue([-1])
-    // }
   }, [])
 
   const trackElRef = React.useRef()

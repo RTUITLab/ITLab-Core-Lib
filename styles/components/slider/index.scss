@@ -24,6 +24,10 @@
       border-radius: 50%;
       cursor: pointer;
       position: absolute;
+
+      &:active {
+        box-shadow: 0 0 0 5px rgba(dt.$primary-100, 50%);
+      }
     }
 
     & .slider-segment {

@@ -24,7 +24,7 @@ export const Slider = forwardRef(({min = -10, max = 20, step = 1, id = String(Ma
                 style : {}, ref: getTrackProps().ref
               })}
             >
-              <Tooltip position={'top'} tooltipContent={value} textStyle={{width: 11, height: 11}}>
+              <Tooltip position={'top'} tooltipContent={value} textStyle={{width: 9, height: 9}}>
 
               </Tooltip>
             </button>
