@@ -7,7 +7,7 @@ export interface TimelineItemProps extends DefaultParams {
   label?: string
 }
 
-export interface TimelineProps {
+export interface TimelineProps extends DefaultParams {
   children?: React.ReactNode;
 }
 

@@ -1,19 +1,16 @@
 import styles from './timeline.module.scss';
-import {FC} from 'react'
-import {TimelineType} from './TimelineProps'
+import {TimelineProps, TimelineType} from './TimelineProps'
 import {useTimeline} from './useTimeline'
 import {TimelineItem} from './timelineItem'
+import {forwardRef} from 'react'
 
-export const Timeline: TimelineType = (props) => {
-  const {} = useTimeline(props)
+export const Timeline = forwardRef<TimelineType>((props: TimelineProps) => {
+  const {classes} = useTimeline(props)
 
   return (
-    <ul>
-
+    <ul className={classes}>
+      {props.children}
     </ul>
   );
 
-}
-
-Timeline.Item = TimelineItem;
-
+})
