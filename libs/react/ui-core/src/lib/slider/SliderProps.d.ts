@@ -23,5 +23,6 @@ export interface SliderProps extends DefaultParams {
   /** Identifier for input-number */
   id?: string;
 
-  onDrag?: (values: number[]) => void;
+  /** On drag event */
+  onDrag?: (values: [number] | [number, number]) => void;
 }

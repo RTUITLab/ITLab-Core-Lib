@@ -7,11 +7,11 @@ import {InputNumber} from '../input-number/input-number'
 
 export const Slider = forwardRef(({min = -10, max = 20, step = 1, defaultValue = [1], id = String(Math.random()), showInput = false, ...props}: SliderProps, ref: any) => {
 
-  const { getTrackProps, handles, getSegmentStyle, value, handleChange} = useSlider({min, max, step, defaultValue, ...props});
+  const { getTrackProps, handles, getSegmentStyle, value, handleChange, classes} = useSlider({min, max, step, defaultValue, ...props});
   const localRef = createRef()
 
   return (
-    <div ref={ref} style={props.style} className={styles['slider-wrapper']}>
+    <div ref={ref} style={props.style} className={classes}>
       <div className={styles['slider']}
         {...getTrackProps({
           ref: localRef

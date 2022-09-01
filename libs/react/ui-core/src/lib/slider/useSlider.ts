@@ -1,6 +1,8 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useMemo, useState} from 'react'
+import styles from './slider.module.scss'
 import {SliderProps} from './SliderProps'
 import {SliderFunctions} from './SliderFunctions'
+import {getClasses} from '../../utils/getClasses'
 
 export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...props}: SliderProps,
                           interpolator = SliderFunctions.linearInterpolator) => {
@@ -119,7 +121,7 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
 
   const handleKeyDown = React.useCallback(
     (e: React.KeyboardEvent, index: number) => {
-      const { values, onChange } = getLatest()
+      const { values, onChange, onDrag } = getLatest()
       if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
         setActiveHandleIndex(index)
         const direction = e.key === 'ArrowLeft' ? -1 : 1
@@ -130,7 +132,8 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
           ...values.slice(index + 1),
         ]
         const sortedValues = SliderFunctions.sortNumList(newValues)
-        onChange(sortedValues)
+        if(onChange) onChange(sortedValues)
+        if(onDrag) onDrag(sortedValues)
       }
     },
     [getLatest, getNextStep]
@@ -144,6 +147,7 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
           tempValues,
           values,
           onChange,
+          onDrag,
         } = getLatest()
 
         document.removeEventListener('mousemove', handleDrag)
@@ -151,7 +155,8 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
         document.removeEventListener('mouseup', handleRelease)
         document.removeEventListener('touchend', handleRelease)
         const sortedValues = SliderFunctions.sortNumList(tempValues || values)
-        onChange(sortedValues)
+        if(onChange) onChange(sortedValues)
+        if(onDrag) onDrag(sortedValues)
         setActiveHandleIndex(null)
         setTempValues(null)
       }
@@ -278,6 +283,10 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
     }
   }, [value, segments, getPercentageForValue])
 
+  const classes = useMemo(() => {
+    return getClasses({'slider-wrapper': true}, styles, props.className)
+  }, [props.className])
+
   return {
     activeHandleIndex,
     segments,
@@ -286,5 +295,6 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
     getSegmentStyle,
     value,
     handleChange,
+    classes,
   }
 }
