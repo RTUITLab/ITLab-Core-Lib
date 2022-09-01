@@ -5,7 +5,7 @@ import {useSlider} from './useSlider'
 import {Tooltip} from '../tooltip/tooltip'
 import {InputNumber} from '../input-number/input-number'
 
-export const Slider = forwardRef(({min = -10, max = 20, step = 1, defaultValue = [1], id = String(Math.random()), showInput = false, ...props}: SliderProps, ref: any) => {
+export const Slider = forwardRef(({min = -10, max = 20, step = 1, defaultValue = [1], showInput = false, ...props}: SliderProps, ref: any) => {
   const { getTrackProps, handles, getSegmentStyle, value, handleChange, classes, localRef} = useSlider({min, max, step, defaultValue, ...props});
 
   return (
@@ -30,7 +30,7 @@ export const Slider = forwardRef(({min = -10, max = 20, step = 1, defaultValue =
       </div>
       {
         showInput &&
-        <InputNumber className={styles['slider-input']} min={min} id={id} max={max} step={step} style={{width: String(max).length + 1 + 'ch'}} displayButtons={false} onChange={handleChange} defaultValue={value[0]} />
+        <InputNumber className={styles['slider-input']} min={min} id={props.id || 'slider-id'} max={max} step={step} style={{width: String(max).length + 1 + 'ch'}} displayButtons={false} onChange={handleChange} defaultValue={value[0]} />
       }
     </div>
     );
