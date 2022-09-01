@@ -1,11 +1,17 @@
 import {TimelineItemProps} from './TimelineProps'
 import styles from './timeline.module.scss'
-import {createRef, useMemo} from 'react'
+import {createRef, useEffect, useMemo, useState} from 'react'
 import {getClasses} from '../../utils/getClasses'
 
 export const useTimelineItem = (props:TimelineItemProps) => {
-
+  const [itemHeight, setItemHeight] = useState<number>(0)
   const timelineItemRef = createRef<HTMLLIElement>()
+
+  useEffect(() => {
+    if(timelineItemRef.current) {
+      setItemHeight( timelineItemRef.current.clientHeight - 10)
+    }
+  }, [timelineItemRef.current])
 
   const classes = useMemo(() => {
     return getClasses({'timeline-item': true}, styles, props.className)
@@ -21,5 +27,5 @@ export const useTimelineItem = (props:TimelineItemProps) => {
     return getClasses(conditions, styles)
   }, [props.type]);
 
-  return {classes, dotClasses, timelineItemRef}
+  return {classes, dotClasses, timelineItemRef, itemHeight}
 }

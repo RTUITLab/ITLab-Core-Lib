@@ -47,13 +47,14 @@
     }
     & .timeline-item-content {
       margin-left: 23px;
-
+       & > * {
+         margin: 0;
+       }
     }
     & .timeline-item-tail {
       position: absolute;
       top: 12px;
       left: 6px;
-      height: calc(100% - 10px);
       border-left: 1px solid dt.$general-50;
     }
   }

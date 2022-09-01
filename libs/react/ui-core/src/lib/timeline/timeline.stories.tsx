@@ -12,9 +12,14 @@ export default {
 
 const Template: ComponentStory<typeof Timeline> = (args) => (
   <Timeline {...args}>
-    <TimelineItem label={'String'} date={'01.09.2022'} type={'default'} />
-    <TimelineItem label={'string 2'} date={'01.09.2022'} type={'success'} />
-    <TimelineItem label={'string 3'} date={'01.09.2022'} type={'error'} />
+    <TimelineItem date={'01.09.2022'} type={'default'} >String 1</TimelineItem>
+    <TimelineItem date={'01.09.2022'} type={'success'} >string2</TimelineItem>
+    <TimelineItem date={'01.09.2022'} type={'error'} >string 3</TimelineItem>
+    <TimelineItem date={'01.09.2022'} type={'default'} >
+      <p>Куку</p>
+      <p>Привет</p>
+      <p>Привет</p>
+    </TimelineItem>
   </Timeline>
 );
 

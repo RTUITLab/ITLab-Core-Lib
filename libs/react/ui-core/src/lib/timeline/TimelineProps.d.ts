@@ -4,7 +4,7 @@ import {DefaultParams} from '../../default-types/defaultParams'
 export interface TimelineItemProps extends DefaultParams {
   type?: 'default' | 'success' | 'error'
   date?: string
-  label?: string
+  children?: string | React.ReactNode
 }
 
 export interface TimelineProps extends DefaultParams {
