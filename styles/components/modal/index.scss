@@ -1,0 +1,63 @@
+@use '../../../styles/design-tokens' as dt;
+
+.modal-container,
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-container {
+  display: none;
+  &-visible {
+    display: block;
+  }
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px 35px;
+  background: #ffffff;
+  box-shadow: 0px 4px 30px rgba(90, 96, 127, 0.15);
+  border-radius: 10px;
+
+  color: dt.$general-80;
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-size: dt.$typo-font-p-medium-size;
+  line-height: dt.$typo-font-p-medium-line-height;
+
+  &-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  &-header {
+    color: dt.$general-100;
+    font-family: dt.$typo-font-p-semi-bold-family;
+    font-style: dt.$typo-font-p-semi-bold-style;
+    font-weight: dt.$typo-font-p-semi-bold-weight;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  &-close-icon {
+    color: dt.$general-70;
+    cursor: pointer;
+  }
+}
+
+.modal-background {
+  background-color: rgba(#000000, 0.4);
+  &-clickable {
+    cursor: pointer;
+  }
+}
