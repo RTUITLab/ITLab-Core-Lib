@@ -1,14 +1,12 @@
 import styles from './slider.module.scss';
-import React, {createRef, forwardRef} from 'react'
+import React, {forwardRef} from 'react'
 import {SliderProps} from './SliderProps'
 import {useSlider} from './useSlider'
 import {Tooltip} from '../tooltip/tooltip'
 import {InputNumber} from '../input-number/input-number'
 
 export const Slider = forwardRef(({min = -10, max = 20, step = 1, defaultValue = [1], id = String(Math.random()), showInput = false, ...props}: SliderProps, ref: any) => {
-
-  const { getTrackProps, handles, getSegmentStyle, value, handleChange, classes} = useSlider({min, max, step, defaultValue, ...props});
-  const localRef = createRef()
+  const { getTrackProps, handles, getSegmentStyle, value, handleChange, classes, localRef} = useSlider({min, max, step, defaultValue, ...props});
 
   return (
     <div ref={ref} style={props.style} className={classes}>

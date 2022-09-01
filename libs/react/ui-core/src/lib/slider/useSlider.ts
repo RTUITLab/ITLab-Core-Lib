@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useState} from 'react'
+import React, {createRef, useCallback, useMemo, useState} from 'react'
 import styles from './slider.module.scss'
 import {SliderProps} from './SliderProps'
 import {SliderFunctions} from './SliderFunctions'
@@ -28,6 +28,7 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
   }, [])
 
   const trackElRef = React.useRef()
+  const localRef = React.useRef()
 
   const getValueForClientX = useCallback(
     (clientX: number) => {
@@ -297,5 +298,6 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
     value,
     handleChange,
     classes,
+    localRef
   }
 }
