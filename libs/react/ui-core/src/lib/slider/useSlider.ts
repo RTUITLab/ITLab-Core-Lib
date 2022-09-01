@@ -102,7 +102,7 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
 
   const handleDrag = React.useCallback(
     (e: any) => {
-      const { activeHandleIndex} = getLatest()
+      const { activeHandleIndex, onDrag} = getLatest()
       const clientX =
         e.type === 'touchmove' ? e.changedTouches[0].clientX : e.clientX
       const newValue = getValueForClientX(clientX)
@@ -115,28 +115,31 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
       ]
       setTempValues(newValues as [number] | [number, number])
       setValue(newValues as [number] | [number, number])
+      if(onDrag) onDrag(newValues as [number] | [number, number])
     },
     [getLatest, getValueForClientX, roundToStep, value]
   )
 
   const handleKeyDown = React.useCallback(
     (e: React.KeyboardEvent, index: number) => {
-      const { values, onChange, onDrag } = getLatest()
+
+      const { onChange } = getLatest()
       if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
         setActiveHandleIndex(index)
         const direction = e.key === 'ArrowLeft' ? -1 : 1
-        const newValue = getNextStep(values[index], direction)
+
+        const newValue = getNextStep(value[index], direction)
         const newValues = [
-          ...values.slice(0, index),
+          ...value.slice(0, index),
           newValue,
-          ...values.slice(index + 1),
+          ...value.slice(index + 1),
         ]
-        const sortedValues = SliderFunctions.sortNumList(newValues)
-        if(onChange) onChange(sortedValues)
-        if(onDrag) onDrag(sortedValues)
+        setTempValues(newValues as [number] | [number, number])
+        setValue(newValues as [number] | [number, number])
+        if(onChange) onChange(newValues)
       }
     },
-    [getLatest, getNextStep]
+    [getLatest, getNextStep, value]
   )
 
   const handlePress = React.useCallback(
@@ -147,7 +150,6 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
           tempValues,
           values,
           onChange,
-          onDrag,
         } = getLatest()
 
         document.removeEventListener('mousemove', handleDrag)
@@ -156,7 +158,6 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...pr
         document.removeEventListener('touchend', handleRelease)
         const sortedValues = SliderFunctions.sortNumList(tempValues || values)
         if(onChange) onChange(sortedValues)
-        if(onDrag) onDrag(sortedValues)
         setActiveHandleIndex(null)
         setTempValues(null)
       }
