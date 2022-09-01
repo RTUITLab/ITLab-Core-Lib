@@ -1,7 +1,6 @@
 @use '../../../styles/design-tokens' as dt;
 
 .slider-wrapper {
-  //width: fit-content;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -13,6 +12,7 @@
     background: dt.$general-40;
     border-radius: 3px;
     user-select: none;
+    cursor: pointer;
 
     & .slider-button {
       border: 1px solid dt.$primary-100;

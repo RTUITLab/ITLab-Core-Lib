@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react'
 import {SliderProps} from './SliderProps'
 import {SliderFunctions} from './SliderFunctions'
 
-export const useSlider = ({onChange, defaultValue, onDrag, step = 1, ...props}: SliderProps,
+export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...props}: SliderProps,
                           interpolator = SliderFunctions.linearInterpolator) => {
 
   const [activeHandleIndex, setActiveHandleIndex] = React.useState<number | null>(null)
@@ -65,6 +65,37 @@ export const useSlider = ({onChange, defaultValue, onDrag, step = 1, ...props}: 
       else return
     },
     [max, min, step]
+  )
+
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const clientX = e.clientX
+      const newValue = getValueForClientX(clientX)
+      const newRoundedValue = roundToStep(newValue)
+      let newValues, activeHandleIndex
+      if(value.length === 2 && newRoundedValue) {
+        if(Math.abs(value[0] - newRoundedValue) <= Math.abs(value[1] - newRoundedValue)) {
+          activeHandleIndex = 0
+        }
+        else {
+          activeHandleIndex = 1
+        }
+        newValues = [
+          ...value.slice(0, activeHandleIndex),
+          newRoundedValue,
+          ...value.slice(activeHandleIndex + 1),
+        ]
+      }
+      else {
+        newValues = [
+          ...value.slice(0, 0),
+          newRoundedValue,
+        ]
+      }
+      setTempValues(newValues as [number] | [number, number])
+      setValue(newValues as [number] | [number, number])
+    },
+    [getLatest, getValueForClientX, roundToStep, value]
   )
 
   const handleDrag = React.useCallback(
@@ -140,7 +171,6 @@ export const useSlider = ({onChange, defaultValue, onDrag, step = 1, ...props}: 
 
   const segments = React.useMemo(() => {
     const sortedValues = SliderFunctions.sortNumList(tempValues || value)
-
     return [...sortedValues, max].map((value, i) => ({
       value,
       getSegmentProps: ({ key = i, style = {}, ...rest } = {}) => {
@@ -225,6 +255,10 @@ export const useSlider = ({onChange, defaultValue, onDrag, step = 1, ...props}: 
             ref.current = el
           }
         }
+      },
+      onClick: (e: React.MouseEvent<HTMLDivElement>) => {
+        e.persist()
+        handleClick(e)
       },
     }
   }
