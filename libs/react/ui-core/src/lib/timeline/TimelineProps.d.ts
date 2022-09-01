@@ -1,4 +1,5 @@
 import React from 'react'
+import {TimelineItem} from './timelineItem'
 import {DefaultParams} from '../../default-types/defaultParams'
 
 export interface TimelineItemProps extends DefaultParams {
@@ -8,11 +9,14 @@ export interface TimelineItemProps extends DefaultParams {
 }
 
 export interface TimelineProps extends DefaultParams {
-  children?: React.ReactNode;
+
+  /** The items to display in the timeline
+   *
+   * TimelineItem {<br/>
+   *   &nbsp;&nbsp;date?: string;<br/>
+   *   &nbsp;&nbsp;children?: React.ReactNode | string;<br/>
+   *   &nbsp;&nbsp;type?: 'default' | 'success' | 'error';<br/>
+   * }
+   */
+  children?: React.ReactNode<TimelineItem>
 }
-
-export interface TimelineType extends React.FC<TimelineProps> {
-  Item: React.FC<TimelineItemProps>
-}
-
-
