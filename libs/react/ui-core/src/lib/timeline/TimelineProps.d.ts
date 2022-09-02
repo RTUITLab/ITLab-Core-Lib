@@ -3,7 +3,7 @@ import {TimelineItem} from './timelineItem'
 import {DefaultParams} from '../../default-types/defaultParams'
 
 export interface TimelineItemProps extends DefaultParams {
-  type?: 'default' | 'success' | 'error'
+  type?: 'default' | 'success' | 'error' | 'icon'
   date?: string
   children?: string | React.ReactNode
 }

@@ -7,6 +7,15 @@
   margin: 0;
   width: fit-content;
 
+  & .timeline-hidden {
+    & .timeline-item:last-child {
+      padding-bottom: 30px;
+      & .timeline-item-tail {
+        border-left: 1px solid dt.$general-50;
+      }
+    }
+  }
+
   & .timeline-item {
     color: dt.$general-100;
     font-family: dt.$typo-font-p-regular-family;
@@ -35,7 +44,7 @@
       border-radius: 100px;
       background-color: #fff;
 
-      &-primary {
+      &-primary, &-icon {
         border-color: dt.$primary-100;
       }
       &-green {
