@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useState } from 'react';
+import { forwardRef } from 'react';
 import Icon from '../icon/icon';
 import styles from './alert.module.scss';
 import { AlertProps } from './AlertProps';
