@@ -1,17 +1,19 @@
-import { forwardRef, useCallback } from 'react';
+import { forwardRef, useCallback, useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import Icon from '../icon/icon';
 import styles from './modal.module.scss';
 import { ModalProps } from './ModalProps';
 import { useModal } from './useModal';
 
 export const Modal = forwardRef((props: ModalProps, ref: any) => {
-  const { containerClasses, backgroundClasses, modalClasses } = useModal(props);
+  const { containerClasses, backgroundClasses, modalClasses, container } =
+    useModal(props);
 
   const closeBackground = useCallback(() => {
     if (props.closeOnBackground) props.onClose();
   }, [props.onClose, props.closeOnBackground]);
 
-  return (
+  return ReactDOM.createPortal(
     <div className={containerClasses} style={{ zIndex: props.zIndex }}>
       <div className={backgroundClasses} onClick={closeBackground}></div>
       <div className={modalClasses} style={props.style} ref={ref}>
@@ -26,8 +28,9 @@ export const Modal = forwardRef((props: ModalProps, ref: any) => {
         </div>
         {props.children}
       </div>
-    </div>
+    </div>,
+    container
   );
 });
 
-Modal.defaultProps = { closeOnBackground: true, zIndex: 3 };
+Modal.defaultProps = { closeOnBackground: true, zIndex: 1000 };

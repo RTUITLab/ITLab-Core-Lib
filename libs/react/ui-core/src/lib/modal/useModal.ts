@@ -1,9 +1,12 @@
 import { ModalProps } from './ModalProps';
 import styles from './modal.module.scss';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { getClasses } from '../../utils/getClasses';
 
 export function useModal(props: ModalProps) {
+  const [container] = useState(() => {
+    return document.createElement('div');
+  });
   const containerClasses = useMemo(() => {
     const conditions = {
       'modal-container': true,
@@ -25,5 +28,13 @@ export function useModal(props: ModalProps) {
     return getClasses(conditions, styles, props.className);
   }, [props.className]);
 
-  return { containerClasses, backgroundClasses, modalClasses };
+  useEffect(() => {
+    container.classList.add('modal-root');
+    document.body.appendChild(container);
+    return () => {
+      document.body.removeChild(container);
+    };
+  }, []);
+
+  return { containerClasses, backgroundClasses, modalClasses, container };
 }
