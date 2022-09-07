@@ -1,22 +1,24 @@
 import React, {forwardRef} from 'react'
 import styles from './timeline.module.scss'
-import {useCollapseItem} from '../collapse/useCollapseItem'
 import {TimelineItem} from './timelineItem'
 import {FunctionalButton} from '../functional-button/functional-button'
+import {UseTimelineHiddenItems} from './useTimelineHiddenItems'
+import {TimelineHiddenProps} from './TimelineHiddenProps'
 
-export const TimelineHiddenItems = forwardRef((props: any, ref: any) => {
+export const TimelineHiddenItems = forwardRef(({openText = 'Показать предыдущние', closeText = 'Скрыть предыдущие', ...props}: TimelineHiddenProps, ref: any) => {
   const {
     contentRef,
     contentDisplay,
     contentHeight,
     toggleExpanded,
-  } = useCollapseItem(props);
+    expanded,
+  } = UseTimelineHiddenItems();
 
   return (
-    <div className={styles['timeline-hidden']}>
-      <TimelineItem type={'icon'}>
-        <FunctionalButton onClick={toggleExpanded}>
-          {props.openText}
+    <div ref={ref} className={styles['timeline-hidden']}>
+      <TimelineItem active={expanded} type={'icon'}>
+        <FunctionalButton className={styles['timeline-button']} onClick={toggleExpanded}>
+          {!expanded ? openText : closeText}
         </FunctionalButton>
       </TimelineItem>
       <div ref={contentRef}

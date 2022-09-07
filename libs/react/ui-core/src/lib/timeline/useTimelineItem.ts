@@ -1,7 +1,7 @@
-import {TimelineItemProps} from './TimelineProps'
 import styles from './timeline.module.scss'
 import {createRef, useEffect, useMemo, useState} from 'react'
 import {getClasses} from '../../utils/getClasses'
+import {TimelineItemProps} from './TimelineItemProps'
 
 export const useTimelineItem = (props:TimelineItemProps) => {
   const [itemHeight, setItemHeight] = useState<number>(0)
@@ -27,6 +27,13 @@ export const useTimelineItem = (props:TimelineItemProps) => {
     };
     return getClasses(conditions, styles)
   }, [props.type]);
+  const iconClasses = useMemo(() => {
+    const conditions:{[index: string]:boolean} = {
+      "timeline-item-dot-ico": true,
+      "timeline-item-dot-ico-active": !!props.active,
+    };
+    return getClasses(conditions, styles)
+  }, [props.active]);
 
-  return {classes, dotClasses, timelineItemRef, itemHeight}
+  return {classes, dotClasses, timelineItemRef, itemHeight, iconClasses}
 }

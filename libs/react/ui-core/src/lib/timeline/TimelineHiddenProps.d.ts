@@ -1,8 +1,13 @@
 import React from 'react'
 import {TimelineItem} from './timelineItem'
-import {DefaultParams} from '../../default-types/defaultParams'
 
-export interface TimelineProps extends DefaultParams {
+export interface TimelineHiddenProps {
+
+  /** Text displayed when timeline items are visible */
+  closeText?: string
+
+  /** Text displayed when timeline items are hidden */
+  openText?: string
 
   /** The items to display in the timeline
    *

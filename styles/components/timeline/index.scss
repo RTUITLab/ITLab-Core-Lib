@@ -14,6 +14,12 @@
         border-left: 1px solid dt.$general-50;
       }
     }
+    & .timeline-button {
+      color: dt.$primary-100;
+      font-size: 12px;
+      line-height: 14px;
+      font-weight: 700;
+    }
   }
 
   & .timeline-item {
@@ -47,11 +53,28 @@
       &-primary, &-icon {
         border-color: dt.$primary-100;
       }
+      &-icon {
+        line-height: initial;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: dt.$primary-100;
+      }
       &-green {
         border-color: dt.$green-100;
       }
       &-red {
         border-color: dt.$red-100;
+      }
+
+      &-ico {
+        color: white;
+        position: relative;
+        transition: transform .2s ease;
+
+        &-active {
+          transform: rotate(180deg);
+        }
       }
     }
     & .timeline-item-content {
