@@ -2,7 +2,7 @@ import {forwardRef} from 'react'
 import {NoDataProps} from './NoDataProps'
 import {useNoData} from './useNoData'
 import {ReactComponent as Empty} from '../../../../../../assets/NoDataWithoutLogo.svg'
-import {ReactComponent as WithLogo} from '../../../../../../assets/NoDataWithLogo.svg'
+import {ReactComponent as Logo} from '../../../../../../assets/NoDataWithLogo.svg'
 
 export const NoData = forwardRef(({displayLogo = false, ...props}: NoDataProps, ref: any) => {
   const {classes} = useNoData(props)
@@ -11,7 +11,7 @@ export const NoData = forwardRef(({displayLogo = false, ...props}: NoDataProps, 
     <div ref={ref} style={props.style} className={classes}>
       {
         displayLogo
-        ? <WithLogo />
+        ? <Logo />
         : <Empty />
       }
     </div>
