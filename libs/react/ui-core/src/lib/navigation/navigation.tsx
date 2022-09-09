@@ -7,6 +7,7 @@ import Icon from '../icon/icon'
 import {MenuItemContentProps} from './MenuItemContentProps'
 import {SubmenuButtonProps} from './SubmenuButtonProps'
 import {MenuItemProps} from './MenuItemProps'
+import {useDropdownItem} from '../../utils/useDropdownItem'
 
 
 export const Navigation = forwardRef<HTMLDivElement, NavigationProps>((props, ref) => {
@@ -32,16 +33,14 @@ export const Navigation = forwardRef<HTMLDivElement, NavigationProps>((props, re
 
 const MenuItem:FC<MenuItemProps> = React.memo((localProps) => {
   const {
-    contentItemClasses,
-    item,
-    props,
-    state,
-    submenu,
-    submenuHeight,
-    submenuDisplay,
-    onMenuClick,
-    submenuClick
-  } = useMenuItem(localProps);
+    contentRef,
+    contentDisplay,
+    contentHeight,
+    toggleExpanded,
+    expanded,
+  } = useDropdownItem();
+
+  const {contentItemClasses, item, props, state, submenuClick} = useMenuItem({...localProps, expanded, contentRef, toggleExpanded});
 
   const classes = useMemo(() => {
     const classList = [styles['navigation-item']];
@@ -53,8 +52,8 @@ const MenuItem:FC<MenuItemProps> = React.memo((localProps) => {
 
   return (
     <div className={classes.join(" ")} key={item.key}>
-      <MenuItemContent showIcons={state.showIcons} icon={item.icon} strings={contentItemClasses} onClick={onMenuClick} item={item}/>
-      <div style={{height: submenuHeight, display: submenuDisplay}} ref={submenu}
+      <MenuItemContent showIcons={state.showIcons} icon={item.icon} strings={contentItemClasses} onClick={toggleExpanded} item={item}/>
+      <div style={{height: contentHeight, display: contentDisplay}} ref={contentRef}
            className={styles['navigation-item-submenu']}>
         {item.list?.map((item) => {
           return <SubmenuButton key={item.key}

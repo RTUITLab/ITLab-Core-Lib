@@ -3,7 +3,7 @@ import React from 'react'
 
 export type MenuItemContentProps = {
   strings: Array<string>,
-  onClick: () => Promise<void>,
+  onClick: () => void,
   item: NavigationItem,
   showIcons: boolean,
   icon: React.ReactNode | string

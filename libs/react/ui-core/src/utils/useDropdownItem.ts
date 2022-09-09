@@ -1,6 +1,6 @@
-import {createRef, useCallback, useEffect, useState} from 'react'
+import { createRef, useCallback, useEffect, useState } from 'react';
 
-export const UseTimelineHiddenItems = () => {
+export function useDropdownItem() {
   const [expanded, setExpanded] = useState<boolean>(false);
   const [contentHeight, setContentHeight] = useState<number>(0);
   const [defaultContentHeight, setDefaultContentHeight] = useState<number>(0);
@@ -50,6 +50,6 @@ export const UseTimelineHiddenItems = () => {
     contentDisplay,
     contentHeight,
     toggleExpanded,
-    expanded
-  }
+    expanded,
+  };
 }

@@ -2,8 +2,8 @@ import React, {forwardRef} from 'react'
 import styles from './timeline.module.scss'
 import {TimelineItem} from './timelineItem'
 import {FunctionalButton} from '../functional-button/functional-button'
-import {UseTimelineHiddenItems} from './useTimelineHiddenItems'
 import {TimelineHiddenProps} from './TimelineHiddenProps'
+import {useDropdownItem} from '../../utils/useDropdownItem'
 
 export const TimelineHiddenItems = forwardRef(({openText = 'Показать предыдущние', closeText = 'Скрыть предыдущие', ...props}: TimelineHiddenProps, ref: any) => {
   const {
@@ -12,7 +12,7 @@ export const TimelineHiddenItems = forwardRef(({openText = 'Показать п�
     contentHeight,
     toggleExpanded,
     expanded,
-  } = UseTimelineHiddenItems();
+  } = useDropdownItem();
 
   return (
     <div ref={ref} className={styles['timeline-hidden']}>

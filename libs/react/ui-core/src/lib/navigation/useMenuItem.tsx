@@ -1,15 +1,12 @@
 import {NavigationItem, NavigationProps} from "./NavigationProps";
 import {useNavigationProps} from './useNavigationProps'
-import React, {createRef, useCallback, useEffect, useMemo, useState} from 'react'
+import React, {RefObject, useCallback, useEffect, useMemo, useState} from 'react'
 import styles from "./navigation.module.scss";
 
-export function useMenuItem(localProps: { item: NavigationItem; props: NavigationProps; state: useNavigationProps }) {
+export function useMenuItem(localProps: { item: NavigationItem; props: NavigationProps; state: useNavigationProps,
+  expanded: boolean, contentRef: RefObject<HTMLDivElement>, toggleExpanded: () => void }) {
   const [contentItemClasses, setContentItemClasses] = useState<Array<string>>([styles['navigation-item-content']]);
-  const {item, props, state} = localProps;
-  const submenu = createRef<HTMLDivElement>();
-  const [submenuHeight, setSubmenuHeight] = useState(0)
-  const [submenuDisplay, setSubmenuDisplay] = useState("block")
-  const [defaultSubmenuHeight, setDefaultSubmenuHeight] = useState(0)
+  const {item, props, state, contentRef, expanded, toggleExpanded} = localProps;
 
   const menuItemManager = useMemo(() => {
     return {
@@ -17,29 +14,20 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
         setContentItemClasses(prevState => {
           return [...prevState, className]
         });
-      }, remove: (className: string) => {
+      },
+      remove: (className: string) => {
         setContentItemClasses((prevState) => {
           return prevState.filter((c: string) => c !== className)
         });
-      }, get: () => {
+      },
+      get: () => {
         return contentItemClasses;
       }
     }
   }, [])
 
-  const calculateDefaultSubmenuHeight = useCallback((children: Element[]) => {
-    setDefaultSubmenuHeight(children.reduce((acc, child) => acc + child.clientHeight, 0))
-  }, [])
-
   const initItems = useCallback(() => {
-    if (submenu.current) {
-      if (props.defaultOpenedItems?.includes(item.key) && props.type !== "horizontal") {
-        const children = Array.from(submenu.current.children)
-        const height = children.reduce((acc, child) => acc + child.clientHeight, 0)
-        openItem(height)
-      }else{
-        closeItem()
-      }
+    if (contentRef?.current) {
       if (props.defaultSelectedKey) {
         if (item.list) {
           if (item.list.map((e) => e.key).includes(props.defaultSelectedKey)) {
@@ -56,32 +44,7 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
         }
       }
     }
-  }, [item, props, submenu])
-
-  useEffect(() => {
-    if (!submenu.current) {
-      setDefaultSubmenuHeight(0)
-      return;
-    }
-
-    setSubmenuDisplay("block")
-    const children = Array.from(submenu.current.children);
-    Promise.resolve().then(() => {
-      calculateDefaultSubmenuHeight(children);
-
-      if (!state.showIcons) {
-        menuItemManager.push(styles['navigation-item-content-without-first-icon'])
-      }
-
-      initItems();
-    })
-  }, [props]);
-
-  useEffect(() => {
-    if (props.type === "horizontal" && state.lastOpenedItem !== item.key && submenu.current) {
-      closeItem();
-    }
-  }, [state.lastOpenedItem])
+  }, [item, props, contentRef])
 
   useEffect(() => {
     initItems();
@@ -95,55 +58,30 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
     }
   }, [state.activeItem])
 
-  const closeItem = useCallback(() => {
-    menuItemManager.remove(styles['navigation-item-content-open']);
-    setSubmenuHeight(0)
-    setTimeout(() => {
-      setSubmenuDisplay("none")
-    }, 150)
-  }, [menuItemManager])
-
-  const openItem = useCallback((height?: number) => {
-    state.setLastOpenedItem(item.key);
-    setSubmenuDisplay("block")
-
-    /* эти действия запустятся после изменения предыдущего состояния */
-    setTimeout(() => {
-      setSubmenuHeight(height || defaultSubmenuHeight);
-      menuItemManager.push(styles['navigation-item-content-open']);
-    }, 2)
-  }, [menuItemManager, state, item, defaultSubmenuHeight])
-
-  const onMenuClick = useCallback(async () => {
-    if (contentItemClasses.includes(styles['navigation-item-content-open'])) {
-      closeItem();
-    } else {
-      openItem();
+  useEffect(() => {
+    if(expanded) {
+      state.setLastOpenedItem(item.key);
+      setTimeout(() => {
+        menuItemManager.push(styles['navigation-item-content-open']);
+      }, 2)
     }
-  }, [contentItemClasses, openItem, closeItem])
+    else menuItemManager.remove(styles['navigation-item-content-open']);
+  }, [expanded, item, menuItemManager, state])
 
   const submenuClick = useCallback((key: string | number, e?: React.MouseEvent<HTMLElement>) => {
     state.setActiveMenuItem(key);
     state.setActiveItem(item.key);
-    if (props.type === "horizontal") {
-      closeItem();
-    }
+    if(props.type === 'horizontal' && expanded) toggleExpanded()
     if (props.onChange && e) {
       props.onChange({key: key, clickEvent: e});
     }
-  }, [state, props, item, closeItem])
+  }, [state, props, item])
 
   return {
     contentItemClasses,
     item,
     props,
     state,
-    submenu,
-    submenuHeight,
-    submenuDisplay,
-    onMenuClick,
-    closeItem,
-    openItem,
     submenuClick,
   };
 }

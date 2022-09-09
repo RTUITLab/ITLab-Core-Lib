@@ -16,8 +16,8 @@ export interface TimelineHiddenProps {
    *   &nbsp;&nbsp;children?: React.ReactNode | string;<br/>
    *   &nbsp;&nbsp;type?: 'default' | 'success' | 'error';<br/>
    *   &nbsp;&nbsp;active?: boolean;<br/>
-   *   style?: CSSProperties;
-   *   className?: string | string[];
+   *   &nbsp;&nbsp;style?: CSSProperties;
+   *   &nbsp;&nbsp;className?: string | string[];
    * }
    */
   children?: React.ReactNode<TimelineItem>
