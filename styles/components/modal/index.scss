@@ -25,6 +25,7 @@
   background: #ffffff;
   box-shadow: 0px 4px 30px rgba(90, 96, 127, 0.15);
   border-radius: 10px;
+  max-width: calc(100vw - 40px);
 
   color: dt.$general-80;
   font-family: dt.$typo-font-p-medium-family;
@@ -57,7 +58,4 @@
 
 .modal-background {
   background-color: rgba(#000000, 0.4);
-  &-clickable {
-    cursor: pointer;
-  }
 }

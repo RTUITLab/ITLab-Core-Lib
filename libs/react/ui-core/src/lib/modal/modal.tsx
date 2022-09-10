@@ -6,16 +6,15 @@ import { ModalProps } from './ModalProps';
 import { useModal } from './useModal';
 
 export const Modal = forwardRef((props: ModalProps, ref: any) => {
-  const { containerClasses, backgroundClasses, modalClasses, container } =
+  const { containerClasses, modalClasses, container, closeBackground } =
     useModal(props);
-
-  const closeBackground = useCallback(() => {
-    if (props.closeOnBackground) props.onClose();
-  }, [props.onClose, props.closeOnBackground]);
 
   return ReactDOM.createPortal(
     <div className={containerClasses} style={{ zIndex: props.zIndex }}>
-      <div className={backgroundClasses} onClick={closeBackground}></div>
+      <div
+        className={styles['modal-background']}
+        onClick={closeBackground}
+      ></div>
       <div className={modalClasses} style={props.style} ref={ref}>
         <div className={styles['modal-header-container']}>
           <div className={styles['modal-header']}>{props.title}</div>
