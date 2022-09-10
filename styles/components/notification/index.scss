@@ -1,0 +1,110 @@
+@use '../../../styles/design-tokens' as dt;
+
+.notice {
+  position: relative;
+  min-width: 284px;
+  box-sizing: border-box;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0px 0px 32px rgba(28, 41, 61, 0.05),
+    0px 32px 32px rgba(28, 41, 61, 0.06);
+  border-radius: 8px;
+
+  &-main-info {
+    display: flex;
+    column-gap: 14px;
+    align-items: flex-start;
+  }
+
+  &-titles {
+    flex-grow: 1;
+  }
+
+  &-icon {
+    &-info {
+      color: dt.$primary-90;
+    }
+    &-success {
+      color: dt.$green-90;
+    }
+    &-warning {
+      color: dt.$yellow-90;
+    }
+    &-error {
+      color: dt.$red-90;
+    }
+  }
+
+  &-title {
+    color: dt.$general-90;
+    font-family: dt.$typo-font-h6-family;
+    font-style: dt.$typo-font-h6-style;
+    font-weight: dt.$typo-font-h6-weight;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  &-subtitle {
+    margin-top: 4px;
+    color: dt.$general-80;
+    font-family: dt.$typo-font-p-regular-family;
+    font-style: dt.$typo-font-p-regular-style;
+    font-weight: dt.$typo-font-p-regular-weight;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  &-close-icon-container {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: dt.$general-30;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  &-close-icon {
+    color: dt.$general-90;
+    height: 10px;
+  }
+
+  &-horizontal-line {
+    width: 100%;
+    height: 1px;
+    background-color: dt.$general-50;
+    margin: 12px 0;
+  }
+
+  // animations
+  left: 0;
+  opacity: 1;
+  transition: opacity 300ms ease-in-out, left 300ms ease-in-out;
+
+  &-moving {
+    left: 284px;
+    opacity: 0;
+  }
+}
+
+.notifications {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  padding-right: 100px;
+
+  &-top {
+    justify-content: flex-start;
+    padding-top: 60px;
+  }
+  &-bottom {
+    justify-content: flex-end;
+    padding-bottom: 60px;
+  }
+}
