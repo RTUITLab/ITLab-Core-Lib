@@ -8,10 +8,10 @@ import { useNotificationLogic } from './useNotificationLogic';
 import Icon from '../icon/icon';
 import { ReactComponent as CloseIcon } from '../../../../../../assets/close.svg';
 
-const Notice = forwardRef((props: NoticeProps, ref?: any) => {
+const Notice = (props: NoticeProps) => {
   const { classes, iconName, iconClasses, close } = useNotice(props);
   return (
-    <div className={classes} ref={ref} style={props.style}>
+    <div className={classes} style={props.style}>
       <div className={styles['notice-main-info']}>
         <Icon name={iconName} className={iconClasses} size={20} type="fill" />
         <div className={styles['notice-titles']}>
@@ -37,7 +37,7 @@ const Notice = forwardRef((props: NoticeProps, ref?: any) => {
       )}
     </div>
   );
-});
+};
 
 Notice.defaultProps = { type: 'info', closable: true };
 
