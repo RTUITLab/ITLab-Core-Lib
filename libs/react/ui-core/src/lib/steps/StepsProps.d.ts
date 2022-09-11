@@ -1,0 +1,24 @@
+import React from 'react';
+import { DefaultParams } from '../../default-types/defaultParams';
+
+export interface StepsItemProps {
+  /** Title of the step */
+  title: string;
+
+  /** Subtitle of the step */
+  subtitle?: string;
+}
+
+export interface StepsProps extends DefaultParams {
+  /** Steps to show */
+  steps: StepsItemProps[];
+
+  /** Index of the current step */
+  current: number;
+
+  /** Size of the steps */
+  size?: 'small' | 'medium' | 'large';
+
+  /** Icon name, if not specified will show hollow circle */
+  iconName?: string;
+}
