@@ -86,6 +86,7 @@
     "auto": "10.37.1",
     "babel-jest": "27.5.1",
     "babel-loader": "8.1.0",
+    "camelcase": "6.3.0",
     "chromatic": "6.5.6",
     "cypress": "10.0.3",
     "eslint": "8.15.0",
