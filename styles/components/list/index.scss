@@ -1,0 +1,86 @@
+@use '../../../styles/design-tokens' as dt;
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &-item {
+    color: dt.$general-90;
+    font-family: dt.$typo-font-p-medium-family;
+    font-style: dt.$typo-font-p-medium-style;
+    font-weight: dt.$typo-font-p-medium-weight;
+    font-size: 18px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+  }
+
+  &-unordered {
+    @extend %regular-list;
+    .list-item::before {
+      content: '\200B'; //zero-width space
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: dt.$primary-100;
+    }
+  }
+
+  &-ordered {
+    @extend %regular-list;
+    counter-reset: ordered-list-counter;
+    .list-item {
+      counter-increment: ordered-list-counter;
+      &::before {
+        content: counter(ordered-list-counter) '.';
+        text-align: end;
+        color: dt.$primary-100;
+        font-family: dt.$typo-font-p-medium-family;
+        font-style: dt.$typo-font-p-medium-style;
+        font-weight: dt.$typo-font-p-medium-weight;
+        font-size: 18px;
+        line-height: 28px;
+      }
+    }
+    &-small {
+      .list-item::before {
+        width: 17px;
+      }
+    }
+    &-medium {
+      .list-item::before {
+        width: 28px;
+      }
+    }
+    &-large {
+      .list-item::before {
+        width: 39px;
+      }
+    }
+  }
+
+  &-table {
+    border: 1px solid dt.$general-30;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .list-item {
+      padding: 20px 30px;
+      &:not(:last-child) {
+        border-bottom: 1px solid dt.$general-30;
+      }
+    }
+  }
+}
+
+%regular-list {
+  .list-item {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+    &::before {
+      margin-right: 10px;
+    }
+  }
+}
