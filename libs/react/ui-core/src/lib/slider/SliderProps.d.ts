@@ -1,4 +1,5 @@
 import {DefaultParams} from '../../default-types/defaultParams'
+import {CSSProperties} from 'react'
 
 export interface SliderProps extends DefaultParams {
 
@@ -25,4 +26,16 @@ export interface SliderProps extends DefaultParams {
 
   /** On drag event */
   onDrag?: (values: [number] | [number, number]) => void;
+
+  /** Inline style of the Track */
+  trackStyle?: CSSProperties;
+
+  /** Inline style of the Dot */
+  dotStyle?: CSSProperties;
+
+  /** Style class of the Track */
+  trackClassName?: string | string[];
+
+  /** Style class of the Dot */
+  dotClassName?: string | string[];
 }

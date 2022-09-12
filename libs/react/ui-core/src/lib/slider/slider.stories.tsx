@@ -7,6 +7,8 @@ export default {
   title: 'Slider',
   argTypes: {
     className: { control: {type: 'text'}},
+    dotClassName: { control: {type: 'text'}},
+    trackClassName: { control: {type: 'text'}},
     defaultValue: {control: false}
   }
 } as ComponentMeta<typeof Slider>;

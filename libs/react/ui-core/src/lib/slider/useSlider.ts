@@ -24,6 +24,13 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, ...props}: Slid
     tempValues,
   })
 
+  const trackClasses = useMemo(() => {
+    return getClasses({'slider-segment': true}, styles, props.trackClassName)
+  }, [props]);
+  const dotClasses = useMemo(() => {
+    return getClasses({'slider-button': true}, styles, props.dotClassName)
+  }, [props]);
+
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>, value: number | string) => {
     if(!isNaN(Number(value))) {
       setValue([Number(value)])
@@ -277,13 +284,15 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, ...props}: Slid
     if(value.length === 1) {
       return {
         left: 0,
-        width: getPercentageForValue(segments[0].value as number) + '%'
+        width: getPercentageForValue(segments[0].value as number) + '%',
+        ...props.trackStyle,
       }
     }
     else {
       return {
         left: getPercentageForValue(segments[0].value as number) + '%',
-        width: getPercentageForValue(segments[1].value as number) - getPercentageForValue(segments[0].value as number) + '%'
+        width: getPercentageForValue(segments[1].value as number) - getPercentageForValue(segments[0].value as number) + '%',
+        ...props.trackStyle,
       }
     }
   }, [value, segments, getPercentageForValue])
@@ -301,6 +310,8 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, ...props}: Slid
     value,
     handleChange,
     classes,
-    localRef
+    localRef,
+    trackClasses,
+    dotClasses,
   }
 }

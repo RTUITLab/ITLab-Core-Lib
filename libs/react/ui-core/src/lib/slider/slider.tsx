@@ -6,7 +6,7 @@ import {Tooltip} from '../tooltip/tooltip'
 import {InputNumber} from '../input-number/input-number'
 
 export const Slider = forwardRef((props: SliderProps, ref: any) => {
-  const { getTrackProps, handles, getSegmentStyle, value, handleChange, classes, localRef} = useSlider(props);
+  const { getTrackProps, handles, getSegmentStyle, value, handleChange, classes, localRef, dotClasses, trackClasses} = useSlider(props);
 
   return (
     <div ref={ref} style={props.style} className={classes}>
@@ -15,16 +15,14 @@ export const Slider = forwardRef((props: SliderProps, ref: any) => {
           ref: localRef
         })}
       >
-        <div className={styles['slider-segment']} style={getSegmentStyle()} />
+        <div className={trackClasses} style={getSegmentStyle()} />
         {handles.map(({ getHandleProps, value }: any) => (
-            <button className={styles['slider-button']}
+            <button className={dotClasses}
               {...getHandleProps({
-                style : {}, ref: getTrackProps().ref
+                style: props.dotStyle, ref: getTrackProps().ref
               })}
             >
-              <Tooltip position={'top'} tooltipContent={value} textStyle={{width: 9, height: 9}}>
-
-              </Tooltip>
+              <Tooltip position={'top'} tooltipContent={value} textStyle={{width: 9, height: 9}}> </Tooltip>
             </button>
         ))}
       </div>
