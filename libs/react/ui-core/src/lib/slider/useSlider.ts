@@ -1,15 +1,18 @@
-import React, {createRef, useCallback, useMemo, useState} from 'react'
+import React, {useCallback, useMemo, useState} from 'react'
 import styles from './slider.module.scss'
 import {SliderProps} from './SliderProps'
 import {SliderFunctions} from './SliderFunctions'
 import {getClasses} from '../../utils/getClasses'
 
-export const useSlider = ({onChange, defaultValue = [1], onDrag, step = 1, ...props}: SliderProps,
+export const useSlider = ({onChange, defaultValue = [1], onDrag, ...props}: SliderProps,
                           interpolator = SliderFunctions.linearInterpolator) => {
 
   const [activeHandleIndex, setActiveHandleIndex] = React.useState<number | null>(null)
   const [tempValues, setTempValues] = React.useState<[number] | [number, number]| null>()
   const [value, setValue] = useState<[number] | [number, number]>(defaultValue)
+  const step = useMemo(() => {
+    return (!!props.step && props.step >= 0 ) ? props.step : 1
+  }, [props.step])
 
   const {min, max} = props
 
