@@ -11,7 +11,7 @@ export function useStep(props: StepProps) {
       'step-current': props.state === 'current',
       'step-future': props.state === 'future',
       'step-has-icon': !!props.iconName,
-      'step-no-icon': props.iconName === undefined,
+      'step-no-icon': !props.iconName,
       'step-clickable': !!props.onClick && props.state !== 'current',
     };
     return getClasses(conditions, styles, []);
