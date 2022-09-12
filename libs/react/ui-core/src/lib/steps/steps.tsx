@@ -19,7 +19,7 @@ const Step: FC<StepProps> = React.memo((props: StepProps) => {
   }, [props.iconName]);
 
   return (
-    <div className={classes}>
+    <div className={classes} onClick={props.onClick}>
       <div className={styles['step-figure-container']}>{figure}</div>
       <div className={styles['step-title']}>{props.title}</div>
       {props.subtitle && (
@@ -38,9 +38,20 @@ export const Steps = forwardRef((props: StepsProps, ref?: any) => {
       if (index < props.current) state = 'past';
       else if (index === props.current) state = 'current';
       else state = 'future';
-      return <Step {...step} state={state} key={index} />;
+      return (
+        <Step
+          {...step}
+          state={state}
+          key={index}
+          onClick={
+            props.onChange && state !== 'current'
+              ? () => props.onChange?.(index)
+              : undefined
+          }
+        />
+      );
     });
-  }, [props.steps, props.current]);
+  }, [props.steps, props.current, props.onChange]);
   return (
     <div className={classes} style={props.style} ref={ref}>
       {stepsList}

@@ -10,10 +10,11 @@ export function useStep(props: StepProps) {
       'step-past': props.state === 'past',
       'step-current': props.state === 'current',
       'step-future': props.state === 'future',
-      'step-has-icon': props.iconName !== undefined,
+      'step-has-icon': !!props.iconName,
       'step-no-icon': props.iconName === undefined,
+      'step-clickable': !!props.onClick && props.state !== 'current',
     };
     return getClasses(conditions, styles, []);
-  }, [props.state]);
+  }, [props.state, props.onClick]);
   return { classes };
 }

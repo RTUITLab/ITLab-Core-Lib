@@ -21,4 +21,7 @@ export interface StepsProps extends DefaultParams {
 
   /** Size of the steps */
   size?: 'small' | 'medium' | 'large';
+
+  /** Callback, triggered when step is clicked */
+  onChange?: (index: number) => void;
 }
