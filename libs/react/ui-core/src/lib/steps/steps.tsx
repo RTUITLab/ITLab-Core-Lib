@@ -38,11 +38,9 @@ export const Steps = forwardRef((props: StepsProps, ref?: any) => {
       if (index < props.current) state = 'past';
       else if (index === props.current) state = 'current';
       else state = 'future';
-      return (
-        <Step {...step} state={state} iconName={props.iconName} key={index} />
-      );
+      return <Step {...step} state={state} key={index} />;
     });
-  }, [props.steps, props.current, props.iconName]);
+  }, [props.steps, props.current]);
   return (
     <div className={classes} style={props.style} ref={ref}>
       {stepsList}

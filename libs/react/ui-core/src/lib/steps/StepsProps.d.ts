@@ -7,6 +7,9 @@ export interface StepsItemProps {
 
   /** Subtitle of the step */
   subtitle?: string;
+
+  /** Icon name, if not specified will show hollow circle */
+  iconName?: string;
 }
 
 export interface StepsProps extends DefaultParams {
@@ -18,7 +21,4 @@ export interface StepsProps extends DefaultParams {
 
   /** Size of the steps */
   size?: 'small' | 'medium' | 'large';
-
-  /** Icon name, if not specified will show hollow circle */
-  iconName?: string;
 }
