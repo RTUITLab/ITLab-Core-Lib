@@ -7,17 +7,20 @@ import {Badge} from '../badge/badge'
 import {FunctionalButton} from '../functional-button/functional-button'
 import Icon from '../icon/icon'
 
-export const Tag = forwardRef(({maxLength = 150, ...props}: TagProps, ref: any) => {
+export const Tag = forwardRef((props: TagProps, ref: any) => {
   const {tagRef, hidden, classes} = useTag(props)
+  const tooltipStyle = {padding: '6px 8px', fontSize: 12, lineHeight: '14px'}
 
   return (
     <Badge ref={ref} className={classes} color={props.color} type={props.type} shape={props.shape} style={props.style}>
-      <Tooltip hidden={hidden} position={props.tooltipPosition || 'top'} textStyle={{maxWidth: maxLength, textOverflow: 'ellipsis', overflowX: 'hidden', whiteSpace: 'nowrap'}} tooltipContent={props.children} ref={tagRef}>
+      <Tooltip style={tooltipStyle} hidden={hidden} position={props.tooltipPosition || 'top'} textStyle={{maxWidth: props.maxLength, textOverflow: 'ellipsis', overflowX: 'hidden', whiteSpace: 'nowrap'}} tooltipContent={props.children} ref={tagRef}>
         {props.children}
       </Tooltip>
-      <Tooltip position={props.tooltipPosition || 'top'} tooltipContent={props.tooltipCrossContent || 'Удалить'}>
+      <Tooltip style={tooltipStyle} position={props.tooltipPosition || 'top'} tooltipContent={props.tooltipCrossContent || 'Удалить'}>
         <FunctionalButton onClick={props.onClick} displayIco icon={<Icon name={'ri-close-line'} type={'line'} size={13} />} />
       </Tooltip>
     </Badge>
   );
 })
+
+Tag.defaultProps = {maxLength: 150}
