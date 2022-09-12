@@ -4,7 +4,7 @@ import {SliderProps} from './SliderProps'
 import {SliderFunctions} from './SliderFunctions'
 import {getClasses} from '../../utils/getClasses'
 
-export const useSlider = ({onChange, defaultValue = [1], onDrag, ...props}: SliderProps,
+export const useSlider = ({onChange, defaultValue = [1], onDrag, min = -10, max = 20, ...props}: SliderProps,
                           interpolator = SliderFunctions.linearInterpolator) => {
 
   const [activeHandleIndex, setActiveHandleIndex] = React.useState<number | null>(null)
@@ -14,7 +14,7 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, ...props}: Slid
     return (!!props.step && props.step >= 0 ) ? props.step : 1
   }, [props.step])
 
-  const {min, max} = props
+  // const {min, max} = props
 
   const getLatest = SliderFunctions.useGetLatest({
     activeHandleIndex,
@@ -23,6 +23,13 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, ...props}: Slid
     defaultValue: value,
     tempValues,
   })
+
+  const inputNumberWidth = useMemo(() => {
+    const minLength = min.toString().length
+    const maxLength = max.toString().length
+    if(maxLength > minLength) return maxLength
+    else return minLength
+  }, [max, min])
 
   const trackClasses = useMemo(() => {
     return getClasses({'slider-segment': true}, styles, props.trackClassName)
@@ -313,5 +320,6 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, ...props}: Slid
     localRef,
     trackClasses,
     dotClasses,
+    inputNumberWidth,
   }
 }
