@@ -1,6 +1,12 @@
 @use '../../../styles/design-tokens' as dt;
 @use '../../../styles/icons' as *;
 
+@mixin inputNumberFont {
+  font-size: 14px;
+  line-height: 17px;
+  font-family: dt.$typo-font-p-medium-family;
+  font-weight: dt.$typo-font-p-medium-weight;
+}
 
 .inputNumber-wrapper {
   width: fit-content;
@@ -20,11 +26,6 @@
       padding: 4px 5px 4px 8px;
       border-radius: 6px 0 0 6px;
     }
-    &:last-child {
-      padding: 4px 8px 4px 5px;
-      border-radius: 0 6px 6px 0;
-    }
-
     & i {
       transition: color .25s ease;
       font-size: 17px;
@@ -37,6 +38,11 @@
     }
   }
 
+  & .inputNumber + .inputNumber-icon {
+    padding: 4px 8px 4px 5px;
+    border-radius: 0 6px 6px 0;
+  }
+
   & .inputNumber {
     background-color: #fff;
     border: none;
@@ -47,11 +53,7 @@
     padding: 4px 8px;
     border-right: 1px solid transparent;
     border-left: 1px solid transparent;
-
-    font-size: 14px;
-    line-height: 17px;
-    font-family: dt.$typo-font-p-medium-family;
-    font-weight: dt.$typo-font-p-medium-weight;
+    @include inputNumberFont();
   }
 
   & .inputNumber:only-child {
@@ -86,5 +88,15 @@
     & .inputNumber:only-child {
       border: none;
     }
+  }
+
+  & .inputNumber-hidden {
+    @include inputNumberFont();
+
+    pointer-events: none;
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    top: 0;
   }
 }

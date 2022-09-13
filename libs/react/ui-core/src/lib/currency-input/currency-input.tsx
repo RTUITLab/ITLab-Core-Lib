@@ -9,7 +9,7 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
   const {classes, width, handleChange, value, localRef, handleBlur} = useInputNumber(props)
 
   return (
-    <div className={classes} style={props.style}>
+    <div className={classes}>
       <input className={styles['currencyInput-number']}
              type='text'
              ref={ref}
@@ -30,7 +30,7 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
              onFocus={props.onFocus}
              onBlur={handleBlur}
              size={props.size}
-             style={!props.size ? {width: width} : {}}
+             style={!props.size ? {width: width, ...props.style} : {...props.style}}
       />
       <span className={styles['currencyInput-currency']}>{props.currency || '₽'}</span>
       <LocalIco {...props} />

@@ -10,12 +10,11 @@ import { IcoProps } from './IcoProps';
  */
 
 export const InputNumber = forwardRef(({displayButtons = true, ...props}: InputNumberProps, ref: any) => {
-  const {classes, width, handleChange, handleClick, step, value, handleBlur} = useInputNumber(props)
+  const {classes, width, handleChange, handleClick, step, value, handleBlur, spanValueRef} = useInputNumber(props)
 
   return (
     <div className={classes}>
-      {
-        displayButtons &&
+      {displayButtons &&
         <LocalIco style={props.iconStyle} name={'ri-subtract-fill'} id={props.id} handleClick={handleClick} step={-step} />
       }
       <input className={styles['inputNumber']}
@@ -39,12 +38,13 @@ export const InputNumber = forwardRef(({displayButtons = true, ...props}: InputN
              onChange={handleChange}
              onFocus={props.onFocus}
              onBlur={handleBlur}
-             style={{width: width + 'ch', ...props.style}}
+             style={{width: width, ...props.style}}
       />
-      {
-        displayButtons &&
+      {displayButtons &&
         <LocalIco style={props.iconStyle} name={'ri-add-fill'} id={props.id} handleClick={handleClick} step={step} />
       }
+      {/*Need to count input value width and autoscale input*/}
+      <span className={styles['inputNumber-hidden']} ref={spanValueRef}>{value}</span>
     </div>
   );
 })
