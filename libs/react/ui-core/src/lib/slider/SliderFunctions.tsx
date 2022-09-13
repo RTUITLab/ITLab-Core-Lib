@@ -21,7 +21,7 @@ export class SliderFunctions {
     }
   }
 
-  static useGetLatest = (val: any) => {
+  static getLatest = (val: any) => {
     const ref = React.useRef(val)
     ref.current = val
     return React.useCallback(() => ref.current, [])

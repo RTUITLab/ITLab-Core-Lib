@@ -15,19 +15,21 @@ export const Slider = forwardRef((props: SliderProps, ref: any) => {
           ref: localRef
         })}
       >
-        <div className={trackClasses} style={getSegmentStyle()} />
-        {handles.map(({ getHandleProps, value }: any) => (
-            <button className={dotClasses}
-              {...getHandleProps({
-                style: props.dotStyle, ref: getTrackProps().ref
-              })}
-            >
-              <Tooltip position={'top'} style={{padding: '6px 8px'}} tooltipContent={value} textStyle={{width: 9, height: 9}}> </Tooltip>
-            </button>
-        ))}
+        <div className={styles['slider-track']}>
+          <div className={trackClasses} style={getSegmentStyle()} />
+          {handles.map(({ getHandleProps, value }: any) => (
+              <button className={dotClasses}
+                {...getHandleProps({
+                  style: props.dotStyle, ref: getTrackProps().ref
+                })}
+              >
+                <Tooltip position={'top'} style={{padding: '6px 8px'}} tooltipContent={value} textStyle={{width: 9, height: 9}}> </Tooltip>
+              </button>
+          ))}
+        </div>
       </div>
       {
-        props.showInput &&
+        (props.showInput && props.defaultValue?.length === 1) &&
         <InputNumber className={styles['slider-input']} min={props.min} id={props.id || 'slider-id'} max={props.max} step={props.step} style={{width: inputNumberWidth + 'ch'}} displayButtons={false} onChange={handleChange} defaultValue={value[0]} />
       }
     </div>

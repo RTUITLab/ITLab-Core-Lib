@@ -14,9 +14,7 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, min = -10, max 
     return (!!props.step && props.step >= 0 ) ? props.step : 1
   }, [props.step])
 
-  // const {min, max} = props
-
-  const getLatest = SliderFunctions.useGetLatest({
+  const getLatest = SliderFunctions.getLatest({
     activeHandleIndex,
     onChange,
     onDrag,
@@ -39,10 +37,28 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, min = -10, max 
   }, [props]);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>, value: number | string) => {
-    if(!isNaN(Number(value))) {
-      setValue([Number(value)])
+    const number = Number(value)
+    if(!isNaN(number)) {
+      if(number >= max) {
+        setValue([Number(max)])
+        setTempValues([Number(max)])
+        if(onChange) onChange([max])
+      }
+      else if(number <= min) {
+        setValue([Number(min)])
+        setTempValues([Number(min)])
+        if(onChange) onChange([min])
+      }
+      else {
+        const roundedValue = roundToStep(number)
+        //input value
+        setValue([Number(number)])
+        //slider value
+        setTempValues([Number(roundedValue)])
+        if(onChange) onChange([Number(roundedValue)])
+      }
     }
-  }, [])
+  }, [max, min])
 
   const trackElRef = React.useRef()
   const localRef = React.useRef()
@@ -58,12 +74,11 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, min = -10, max 
   const getNextStep = useCallback(
     (val: number, direction: number) => {
       const nextVal = val + step * direction
-      if (min && nextVal >= min  && max && nextVal <= max) {
+      if (min && nextVal >= min && max && nextVal <= max) {
         return nextVal
       } else {
         return val
       }
-
     },
     [max, min, step]
   )
@@ -72,11 +87,10 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, min = -10, max 
     (val: number) => {
       if(max && min) {
         let left = min
-        let right = max
         while (left < val && left + step < val) {
           left += step
         }
-        right = Math.min(left + step, max as number)
+        const right = Math.min(left + step, max)
         if (val - left < right - val) {
           return left
         }
@@ -84,7 +98,7 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, min = -10, max 
       }
       else return
     },
-    [max, min, step]
+    [max, min, step, value, activeHandleIndex]
   )
 
   const handleClick = React.useCallback(
@@ -115,8 +129,9 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, min = -10, max 
       setTempValues(newValues as [number] | [number, number])
       setValue(newValues as [number] | [number, number])
     },
-    [getLatest, getValueForClientX, roundToStep, value]
+    [getLatest, getValueForClientX, roundToStep, value, getLatest]
   )
+  console.log('value', value[0])
 
   const handleDrag = React.useCallback(
     (e: any) => {
@@ -302,7 +317,7 @@ export const useSlider = ({onChange, defaultValue = [1], onDrag, min = -10, max 
         ...props.trackStyle,
       }
     }
-  }, [value, segments, getPercentageForValue])
+  }, [value, segments, getPercentageForValue, props.trackStyle])
 
   const classes = useMemo(() => {
     return getClasses({'slider-wrapper': true}, styles, props.className)
