@@ -8,21 +8,6 @@ import Icon from '../icon/icon'
 export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) => {
   const {classes, width, handleChange, value, localRef, handleBlur} = useInputNumber(props)
 
-  const icon = <>
-    {props.displayInformation && (props.isSuccess || props.isAwaiting) && (
-      props.icon
-      ?
-        <Tooltip hidden={props.disabled} tooltipContent={<></>} type={'meta'} position={props.informationPosition || 'top'} metaTitle={props.information?.title} metaDescription={props.information?.description}>
-          <span className={styles['currencyInput-icon']}>{props.icon}</span>
-        </Tooltip>
-      :
-        <Tooltip hidden={props.disabled} tooltipContent={<></>} type={'meta'} position={props.informationPosition || 'top'} metaTitle={props.information?.title} metaDescription={props.information?.description}>
-          <span className={styles['currencyInput-icon']}>
-            <Icon name={'ri-information-line'} />
-          </span>
-        </Tooltip>
-    )}</>
-
   return (
     <div className={classes} style={props.style}>
       <input className={styles['currencyInput-number']}
@@ -48,7 +33,7 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
              style={!props.size ? {width: width} : {}}
       />
       <span className={styles['currencyInput-currency']}>{props.currency || '₽'}</span>
-      {icon}
+      <LocalIco {...props} />
       {/*Need to count input value width and autoscale input*/}
       <span className={styles['currencyInput-hidden']} ref={localRef}>{value}</span>
     </div>
@@ -56,3 +41,27 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
 })
 
 export default CurrencyInput;
+
+const LocalIco = React.memo((props: CurrencyInputProps) => {
+  if(props.displayInformation && (props.isSuccess || props.isAwaiting)) {
+    if(props.icon) {
+      return (
+        <Tooltip hidden={props.disabled} tooltipContent={<></>} type={'meta'}
+                 position={props.informationPosition || 'top'} metaTitle={props.information?.title}
+                 metaDescription={props.information?.description}>
+          <span className={styles['currencyInput-icon']}>{props.icon}</span>
+        </Tooltip>
+      )
+    }
+    else {
+      return (
+        <Tooltip hidden={props.disabled} tooltipContent={<></>} type={'meta'} position={props.informationPosition || 'top'} metaTitle={props.information?.title} metaDescription={props.information?.description}>
+            <span className={styles['currencyInput-icon']}>
+              <Icon name={'ri-information-line'} />
+            </span>
+        </Tooltip>
+      )
+    }
+  }
+  return null
+})
