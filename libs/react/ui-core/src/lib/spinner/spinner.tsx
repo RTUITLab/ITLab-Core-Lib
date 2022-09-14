@@ -4,10 +4,10 @@ import { ReactComponent as Logo } from '../../../../../../assets/logo.svg';
 import { SpinnerProps } from './SpinnerProps';
 import { useSpinner } from './useSpinner';
 
-export const Spinner = forwardRef((props: SpinnerProps) => {
+export const Spinner = forwardRef((props: SpinnerProps, ref?: any) => {
   const { classes } = useSpinner(props);
   return (
-    <div className={classes}>
+    <div className={classes} ref={ref} style={props.style}>
       <div className={styles['spinner']}>
         <div className={styles['spinner-cap']}></div>
         <div className={styles['spinner-bottom-left']}></div>
