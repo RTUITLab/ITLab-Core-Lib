@@ -30,7 +30,7 @@ export const useTimelineItem = (props:TimelineItemProps) => {
   const iconClasses = useMemo(() => {
     const conditions:{[index: string]:boolean} = {
       "timeline-item-dot-ico": true,
-      "timeline-item-dot-ico-active": !!props.active,
+      "timeline-item-dot-ico-active": Boolean(props.active),
     };
     return getClasses(conditions, styles)
   }, [props.active]);

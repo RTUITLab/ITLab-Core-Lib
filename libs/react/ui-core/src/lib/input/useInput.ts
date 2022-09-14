@@ -105,10 +105,10 @@ export function useInput(props: InputProps) {
       "input-wrapper-large": props.size === 'large',
       "input-wrapper-small": props.size === 'small',
       "input-wrapper-medium": props.size === 'medium' || !props.size,
-      "input-wrapper-disabled": !!props.disabled,
-      "input-wrapper-readonly":  !!props.readonly,
-      "input-wrapper-valid":  !!props.valid,
-      "input-wrapper-invalid":  !!props.error,
+      "input-wrapper-disabled": Boolean(props.disabled),
+      "input-wrapper-readonly":  Boolean(props.readonly),
+      "input-wrapper-valid":  Boolean(props.valid),
+      "input-wrapper-invalid":  Boolean(props.error),
     };
     return getClasses(conditions, styles, props.className)
   }, [props]);

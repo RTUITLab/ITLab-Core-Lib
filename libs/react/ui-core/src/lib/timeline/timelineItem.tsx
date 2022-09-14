@@ -6,7 +6,6 @@ import {TimelineItemProps} from './TimelineItemProps'
 
 export const TimelineItem = forwardRef((props:TimelineItemProps, ref: any) => {
   const {classes, dotClasses, timelineItemRef, itemHeight, iconClasses} = useTimelineItem(props)
-  console.log(itemHeight)
 
   return (
     <li className={classes} ref={timelineItemRef} style={props.style}>

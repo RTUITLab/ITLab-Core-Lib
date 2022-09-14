@@ -15,7 +15,7 @@ export function useCollapseItem(props: CollapseItemProps, expanded?: boolean) {
   const headerClasses = useMemo(() => {
     const conditions:{[index: string]:boolean} = {
       "collapse-item-header-container": true,
-      "collapse-item-header-container-expanded": !!expanded,
+      "collapse-item-header-container-expanded": Boolean(expanded),
       "collapse-item-header-container-contracted": !expanded,
     };
     return getClasses(conditions, styles)
