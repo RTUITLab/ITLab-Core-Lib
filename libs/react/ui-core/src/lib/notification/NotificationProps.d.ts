@@ -3,6 +3,9 @@ import { DefaultParams } from '../../default-types/defaultParams';
 export interface NotificationsProps extends DefaultParams {
   /** Position of the notifications */
   position?: 'top' | 'bottom';
+
+  /** Z-index of the container */
+  zIndex?: number;
 }
 
 export interface OpenProps extends OpenNotificationProps {

@@ -70,7 +70,11 @@ export const Notifications = forwardRef<NotificationsRef, NotificationsProps>(
     }));
 
     return createPortal(
-      <div className={classes} ref={ref} style={props.style}>
+      <div
+        className={classes}
+        ref={ref}
+        style={{ ...props.style, zIndex: props.zIndex }}
+      >
         {noticesList}
       </div>,
       container
@@ -78,4 +82,4 @@ export const Notifications = forwardRef<NotificationsRef, NotificationsProps>(
   }
 );
 
-Notifications.defaultProps = { position: 'top' };
+Notifications.defaultProps = { position: 'top', zIndex: 999 };
