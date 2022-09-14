@@ -61,6 +61,7 @@ export function useMenuItem(localProps: { item: NavigationItem; props: Navigatio
   useEffect(() => {
     if(expanded) {
       state.setLastOpenedItem(item.key);
+      // эти действия запустятся после изменения предыдущего состояния
       setTimeout(() => {
         menuItemManager.push(styles['navigation-item-content-open']);
       }, 2)
