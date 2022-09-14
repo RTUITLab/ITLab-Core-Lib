@@ -7,7 +7,7 @@ export function useCollapseItem(props: CollapseItemProps, expanded?: boolean) {
   const itemClasses = useMemo(() => {
     const conditions:{[index: string]:boolean} = {
       "collapse-item": true,
-      "collapse-item-expanded": !!expanded,
+      "collapse-item-expanded": Boolean(expanded),
     };
     return getClasses(conditions, styles, props.className)
   }, [props.className, expanded]);
