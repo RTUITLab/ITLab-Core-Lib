@@ -1,3 +1,4 @@
+export * from './lib/switch/switch';
 export * from './lib/modal/modal';
 export * from './lib/no-data/no-data';
 export * from './lib/alert/alert';
