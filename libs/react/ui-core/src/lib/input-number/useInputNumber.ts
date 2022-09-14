@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import styles from './input-number.module.scss'
 import {InputNumberProps} from './InputNumberProps'
+import {getClasses} from '../../utils/getClasses'
 
 /**
  * Hook for input-number
@@ -80,25 +81,12 @@ export function useInputNumber(props: InputNumberProps) {
   }, [props.min, props.max])
 
   const classes = useMemo(() => {
-    const classList = [];
-
     const conditions:{[index: string]:boolean} = {
       "inputNumber-wrapper": true,
       "inputNumber-wrapper-disabled": props.disabled === true,
       "inputNumber-wrapper-readonly": props.readonly === true,
     };
-
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-
-    if(typeof props.className === 'string') classList.push(props.className);
-    if(typeof props.className === 'object') classList.push(...props.className);
-
-    return classList.join(' ');
-
+    return getClasses(conditions, styles, props.className)
   }, [props]);
 
   return {classes, width, handleChange, step, handleClick, value, handleBlur}

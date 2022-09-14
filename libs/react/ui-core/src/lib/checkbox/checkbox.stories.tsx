@@ -8,6 +8,7 @@ export default {
   argTypes: {
     checkboxIcon: { control: false},
     className: { control: 'text'},
+    labelStyleClass: { control: 'text'},
     isRequired: {table: {defaultValue: {summary: 'false'}},},
     readonly: {table: {defaultValue: {summary: 'false'}},},
     disabled: {table: {defaultValue: {summary: 'false'}},},

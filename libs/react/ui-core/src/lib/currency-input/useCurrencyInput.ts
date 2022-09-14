@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import styles from './currency-input.module.scss'
 import {CurrencyInputProps} from './CurrencyInputProps'
+import {getClasses} from '../../utils/getClasses'
 
 /**
  * Hook for currency-input
@@ -65,9 +66,7 @@ export function useInputNumber(props: CurrencyInputProps) {
     return number.split(' ').join('')
   }, [])
 
-
   const classes = useMemo(() => {
-    const classList = [];
     const conditions:{[index: string]:boolean} = {
       "currencyInput-wrapper": true,
       "currencyInput-wrapper-default": !props.isSuccess && !props.isAwaiting,
@@ -77,17 +76,7 @@ export function useInputNumber(props: CurrencyInputProps) {
       "currencyInput-wrapper-awaiting": props.isAwaiting === true,
       "currencyInput-wrapper-invalid": props.invalid === true,
     };
-
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-
-    if(typeof props.className === 'string') classList.push(props.className);
-    if(typeof props.className === 'object') classList.push(...props.className);
-
-    return classList.join(' ');
+    return getClasses(conditions, styles, props.className)
 
   }, [props]);
 

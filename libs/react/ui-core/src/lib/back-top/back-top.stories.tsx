@@ -8,6 +8,7 @@ export default {
     threshold: { control: 'number', min: 1,
       table: {defaultValue: {summary: 150}}
     },
+    className: { control: 'text'}
   },
 } as ComponentMeta<typeof BackTop>;
 

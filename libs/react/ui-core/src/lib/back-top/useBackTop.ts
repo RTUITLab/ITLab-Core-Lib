@@ -1,6 +1,7 @@
 import styles from './back-top.module.scss';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { BackTopProps } from './BackTopProps';
+import {getClasses} from '../../utils/getClasses'
 
 export function useBackTop(props: BackTopProps) {
   /** Used to determine opacity of the button (needed for animation) */
@@ -15,12 +16,12 @@ export function useBackTop(props: BackTopProps) {
   >();
 
   const classes = useMemo(() => {
-    const classList = [styles['back-top']];
-    if (!visible) classList.push(styles['back-top-fading']);
-    if (!displayed) classList.push(styles['back-top-hidden']);
-    if (typeof props.className === 'string') classList.push(props.className);
-    if (typeof props.className === 'object') classList.push(...props.className);
-    return classList.join(' ');
+    const conditions:{[index: string]:boolean} = {
+      "back-top": true,
+      "back-top-fading": !visible,
+      "back-top-hidden": !displayed,
+    };
+    return getClasses(conditions, styles, props.className)
   }, [props.className, visible, displayed]);
 
   const scrollToTop = useCallback(() => {

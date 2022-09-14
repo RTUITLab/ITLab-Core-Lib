@@ -119,6 +119,8 @@
     position: absolute;
     bottom: 3px;
     right: 3px;
+    pointer-events: none;
+
     &:after {
       position: absolute;
       content: "";

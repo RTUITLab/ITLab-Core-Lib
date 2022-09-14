@@ -32,6 +32,9 @@ export interface DropdownProps extends DefaultParams{
   /** If true, the dropdown will be error */
   error?: boolean;
 
+  /** Text of the dropdown error */
+  errorText?: string;
+
   /** The default selected key */
   defaultSelectedKey?: string | number;
 

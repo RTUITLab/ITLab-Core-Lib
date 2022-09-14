@@ -2,6 +2,7 @@ import React, {createRef, useCallback, useEffect, useMemo, useState} from 'react
 import {DropdownProps} from "./DropdownProps";
 import styles from './dropdown.module.scss'
 import {useDropdownProps} from './useDropdownProps'
+import {getClasses} from '../../utils/getClasses'
 
 /**
  * Hook for dropdown
@@ -23,7 +24,7 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
   })
 
   const handleOpen = useCallback((isOpen: boolean) => {
-    if(!props.disabled && !props.error) {
+    if(!props.disabled) {
       setIsOpen(isOpen)
       if(isOpen && props.onOpen) props.onOpen()
       else if(!isOpen && props.onClose) props.onClose()
@@ -35,7 +36,7 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
     }
   }, [])
   const handleSelect = useCallback((label: string, key: string | number, event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => {
-    if(!props.disabled && !props.error && !props.items.find((item) => item.key === key)?.disabled) {
+    if(!props.disabled && !props.items.find((item) => item.key === key)?.disabled) {
       setActiveItemKey(key)
       setActiveLabel(label)
       setIsOpen(false)
@@ -50,69 +51,32 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
     }
   }, [isOpen, list])
   const containerClasses = useMemo(() => {
-    const classList = [];
-
     const conditions:{[index: string]:boolean} = {
       "dropdown-container": true,
       "dropdown-disabled": props.disabled !== undefined && props.disabled,
       "dropdown-error": props.error !== undefined && props.error,
     };
-
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-
-    if(typeof props.className === 'string') classList.push(props.className);
-    if(typeof props.className === 'object') classList.push(...props.className);
-
-    return classList.join(' ');
+    return getClasses(conditions, styles, props.className)
   }, [props]);
 
   const classes = useMemo(() => {
-    const classList = [];
-
     const conditions:{[index: string]:boolean} = {
       "dropdown-value": true,
       "dropdown-small": props.size === 'small',
-      "dropdown-medium": props.size === 'medium',
+      "dropdown-medium": props.size === 'medium' || !props.size,
       "dropdown-large": props.size === 'large',
     };
-
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-
-    if(!props.size) classList.push(styles['dropdown-medium']);
-
-    return classList.join(' ');
+    return getClasses(conditions, styles)
   }, [props]);
 
   const itemClasses = useMemo(() => {
-    const classList = [];
-
     const conditions:{[index: string]:boolean} = {
       "dropdown-item": true,
       "dropdown-small": props.size === 'small',
-      "dropdown-medium": props.size === 'medium',
+      "dropdown-medium": props.size === 'medium' || !props.size,
       "dropdown-large": props.size === 'large',
     };
-
-    Object.keys(conditions).forEach((key:string) => {
-      if (conditions[key]) {
-        classList.push(styles[key]);
-      }
-    });
-
-    if(!props.size) classList.push(styles['dropdown-medium']);
-
-    if(typeof props.itemClass === 'string') classList.push(props.itemClass);
-    if(typeof props.itemClass === 'object') classList.push(...props.itemClass);
-
-    return classList.join(' ');
+    return getClasses(conditions, styles, props.itemClass)
   }, [props]);
 
   return {classes, itemClasses, containerClasses, activeItemKey, activeLabel, isOpen, handleOpen, handleSelect, handleKeyUp, list}

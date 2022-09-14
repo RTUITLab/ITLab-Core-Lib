@@ -38,15 +38,13 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   children:"Кнопка",
-  className: ['Testtets', 'asdasdasdas']
-  // className: 'Test class'
 };
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   children:"Кнопка",
   icon: <Icon name={'ri-check-line'} size={18} />,
-  iconPosition: 'right',
+  iconPosition: 'left',
 };
 
 export const CustomLoaderIcon = Template.bind({});
