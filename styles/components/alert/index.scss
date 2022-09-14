@@ -1,0 +1,100 @@
+@use '../../../styles/design-tokens' as dt;
+@mixin color-items($backgroundColor, $headerColor, $iconColor, $closeColor) {
+  background-color: rgba($backgroundColor, 0.1);
+  .alert-icon {
+    color: rgba($iconColor, 0.7);
+  }
+  .alert-header {
+    color: $headerColor;
+  }
+  .alert-close-icon-container {
+    background-color: $closeColor;
+  }
+}
+.alert {
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  border-radius: 8px;
+  column-gap: 12px;
+  width: 287px;
+  box-sizing: border-box;
+  transform-origin: left top;
+  overflow-y: hidden;
+
+  &-info {
+    @include color-items(
+      dt.$primary-90,
+      dt.$primary-100,
+      dt.$primary-90,
+      dt.$primary-40
+    );
+  }
+  &-success {
+    @include color-items(
+      dt.$green-90,
+      dt.$green-100,
+      dt.$green-100,
+      dt.$green-40
+    );
+  }
+  &-warning {
+    @include color-items(
+      dt.$yellow-90,
+      dt.$yellow-100,
+      dt.$yellow-90,
+      dt.$yellow-40
+    );
+  }
+  &-error {
+    @include color-items(dt.$red-90, dt.$red-100, dt.$red-90, dt.$red-40);
+  }
+
+  // Closing animation
+  transition: max-height 150ms, padding 150ms, opacity 150ms;
+  &-closing {
+    max-height: 0;
+    opacity: 0;
+    padding: 0 16px;
+  }
+}
+
+.alert-content {
+  flex-grow: 1;
+}
+
+.alert-header {
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
+  font-weight: dt.$typo-font-p-medium-weight;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.alert-close-icon-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  width: 24px;
+  height: 24px;
+}
+
+.alert-close-icon {
+  color: dt.$general-90;
+}
+
+.alert-subtitle {
+  color: dt.$general-80;
+  font-family: dt.$typo-font-p-regular-family;
+  font-style: dt.$typo-font-p-regular-style;
+  font-weight: dt.$typo-font-p-regular-weight;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 4px;
+}
+
+.alert-children {
+  margin-top: 10px;
+}
