@@ -1,3 +1,4 @@
+export * from './lib/modal/modal';
 export * from './lib/no-data/no-data';
 export * from './lib/alert/alert';
 export * from './lib/list/list';
