@@ -1,5 +1,5 @@
 import styles from './steps.module.scss';
-import React, { FC, useMemo, useRef } from 'react';
+import React, { FC, useMemo } from 'react';
 import { forwardRef } from 'react';
 import { StepsItemProps, StepsProps } from './StepsProps';
 import { useSteps } from './useSteps';

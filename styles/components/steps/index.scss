@@ -119,7 +119,7 @@
   &-small {
     .step {
       &-icon {
-        font-size: 12px;
+        font-size: 13px;
       }
 
       &-circle {
@@ -134,19 +134,13 @@
         line-height: 15px;
       }
 
-      &-has-icon {
-        @include lineSizes(12px);
-      }
-
-      &-no-icon {
-        @include lineSizes(13px);
-      }
+      @include lineSizes(13px);
     }
   }
   &-medium {
     .step {
       &-icon {
-        font-size: 17px;
+        font-size: 20px;
       }
 
       &-circle {
@@ -164,20 +158,13 @@
         font-size: 12px;
         line-height: 15px;
       }
-
-      &-has-icon {
-        @include lineSizes(17px);
-      }
-
-      &-no-icon {
-        @include lineSizes(20px);
-      }
+      @include lineSizes(20px);
     }
   }
   &-large {
     .step {
       &-icon {
-        font-size: 22px;
+        font-size: 26px;
       }
 
       &-circle {
@@ -196,13 +183,7 @@
         line-height: 17px;
       }
 
-      &-has-icon {
-        @include lineSizes(22px);
-      }
-
-      &-no-icon {
-        @include lineSizes(26px);
-      }
+      @include lineSizes(26px);
     }
   }
 }
