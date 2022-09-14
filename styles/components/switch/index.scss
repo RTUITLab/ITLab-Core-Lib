@@ -27,6 +27,7 @@
       &:after{
         animation-name: none;
         cursor: not-allowed;
+        background-color: dt.$general-30;
       }
       &:hover:after{
         transform: scale(1);

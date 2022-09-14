@@ -1,7 +1,7 @@
 import {NavigationItem, NavigationProps} from "./NavigationProps";
-import {useNavigationProps} from "./useNavigation";
 import React, {createRef, useCallback, useEffect, useMemo, useState} from 'react'
 import styles from "./navigation.module.scss";
+import { useNavigationProps } from "./useNavigationProps";
 
 export function useMenuItem(localProps: { item: NavigationItem; props: NavigationProps; state: useNavigationProps }) {
   const [contentItemClasses, setContentItemClasses] = useState<Array<string>>([styles['navigation-item-content']]);
