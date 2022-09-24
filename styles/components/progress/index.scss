@@ -1,0 +1,164 @@
+@use '../../../styles/design-tokens' as dt;
+
+.progress {
+  position: relative;
+  box-sizing: border-box;
+
+  .label {
+    font-family: dt.$typo-font-p-regular-family;
+    font-style: dt.$typo-font-p-regular-style;
+    color: dt.$general-100;
+  }
+
+  .indicator {
+    transition: width 250ms, stroke-dashoffset 250ms;
+  }
+
+  &-linear {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+
+    .figure {
+      width: 100%;
+    }
+
+    .track {
+      fill: dt.$general-40;
+    }
+
+    .track,
+    .indicator {
+      height: 100%;
+    }
+
+    .label {
+      font-weight: dt.$typo-font-p-regular-weight;
+      line-height: 24px;
+    }
+  }
+
+  &-radial {
+    display: inline-block;
+    .label,
+    .label-icon {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+    }
+
+    .label {
+      font-weight: dt.$typo-font-p-medium-weight;
+    }
+
+    .figure {
+      transform: rotate(-90deg);
+    }
+
+    .track {
+      stroke: dt.$general-40;
+    }
+  }
+
+  // Colors
+  &-success {
+    .label-icon {
+      color: dt.$green-80;
+    }
+  }
+
+  &-error {
+    .label-icon {
+      color: dt.$red-100;
+    }
+  }
+
+  &-linear.progress-success {
+    .indicator {
+      fill: dt.$green-80;
+    }
+  }
+  &-linear.progress-error {
+    .indicator {
+      fill: dt.$red-100;
+    }
+  }
+  &-linear.progress-regular {
+    .indicator {
+      fill: dt.$primary-100;
+    }
+  }
+
+  &-radial.progress-success {
+    .indicator {
+      stroke: dt.$green-80;
+    }
+  }
+  &-radial.progress-error {
+    .indicator {
+      stroke: dt.$red-100;
+    }
+  }
+  &-radial.progress-regular {
+    .indicator {
+      stroke: dt.$primary-100;
+    }
+  }
+
+  // Sizes
+  &-linear.progress-standart {
+    height: 20px;
+    .figure {
+      height: 11px;
+    }
+    .label {
+      font-size: dt.$typo-font-p-regular-size;
+    }
+    .label-icon {
+      font-size: 20px;
+    }
+  }
+
+  &-linear.progress-small {
+    height: 15px;
+    .figure {
+      height: 7px;
+    }
+    .label {
+      font-size: 12px;
+    }
+    .label-icon {
+      font-size: 15px;
+    }
+  }
+
+  &-radial.progress-standart {
+    height: 164px;
+    .figure {
+      height: 164px;
+    }
+    .label {
+      font-size: 36px;
+      line-height: 44px;
+    }
+    .label-icon {
+      font-size: 55px;
+    }
+  }
+
+  &-radial.progress-small {
+    height: 82px;
+    .figure {
+      height: 82px;
+    }
+    .label {
+      font-size: 18px;
+      line-height: 22px;
+    }
+    .label-icon {
+      font-size: 20px;
+    }
+  }
+}
