@@ -1,12 +1,13 @@
 import React, {FC} from 'react'
 import styles from '../markdown.module.scss'
 import {MarkdownRedactorPropsType} from './MarkdownRedactorProps'
-import {TextArea} from '@itlab-core-lib/react/ui-core'
+import {TextArea} from '../../text-area/text-area'
 
-const MarkdownRedactor:FC<MarkdownRedactorPropsType> = ({redactorRef, onKeyDown, height}) => {
+const MarkdownRedactor:FC<MarkdownRedactorPropsType> = ({redactorRef, onKeyDown, height, markdownText = '', handleChange}) => {
   return (
     <div className={styles['redactor']}>
-      <TextArea style={{height: height}} resize={'none'} onKeyDown={onKeyDown} ref={redactorRef} className={styles['markdown-textarea']} />
+      <TextArea onChange={handleChange} defaultValue={markdownText} style={{height: height}} resize={'none'}
+                onKeyDown={onKeyDown} ref={redactorRef} className={styles['markdown-textarea']} />
     </div>
   )
 }

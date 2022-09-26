@@ -5,7 +5,7 @@ import {getAllEvents} from "../../utils/getAllEvents";
 import {useTextArea} from './useTextArea'
 
 export const TextArea = forwardRef((props: TextAreaProps, ref: any) => {
-  const {classes, length, handleChange} = useTextArea(props)
+  const {classes, length, handleChange, value} = useTextArea(props)
 
   return (
     <div className={styles['text-area-wrapper']}>
@@ -18,7 +18,7 @@ export const TextArea = forwardRef((props: TextAreaProps, ref: any) => {
         required={props.isRequired}
         className={classes}
         autoFocus={props.autoFocus}
-        defaultValue={props.defaultValue || ""}
+        value={value}
         placeholder={props.placeholder || ""}
         name={props.name || ""}
         readOnly={props.readonly}

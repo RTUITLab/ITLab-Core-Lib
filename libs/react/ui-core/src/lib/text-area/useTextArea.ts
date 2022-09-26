@@ -1,14 +1,20 @@
-import React, {useCallback, useMemo, useState} from 'react'
+import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import styles from './text-area.module.scss'
 import {TextAreaProps} from './TextAreaProps'
 import {getClasses} from '../../utils/getClasses'
 
 export function useTextArea(props: TextAreaProps) {
   const [length, setLength] = useState(props.defaultValue?.length || 0)
+  const [value, setValue] = useState(props.defaultValue || '')
+
+  useEffect(() => {
+    setValue(props.defaultValue || '')
+  }, [props.defaultValue])
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if(props.onChange) props.onChange(e)
     if(!!props.onError && !!props.maxLength) props.onError()
+    setValue(e.target.value)
     setLength(e.target.value.length)
   }, [props])
 
@@ -28,6 +34,6 @@ export function useTextArea(props: TextAreaProps) {
     return getClasses(conditions, styles, props.className);
   }, [props, length])
 
-  return {classes, handleChange, length}
+  return {classes, handleChange, length, value}
 }
 

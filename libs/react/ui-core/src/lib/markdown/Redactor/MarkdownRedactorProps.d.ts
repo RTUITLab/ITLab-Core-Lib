@@ -7,4 +7,8 @@ export type MarkdownRedactorPropsType = {
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>
 
   height?:number
+
+  markdownText?: string
+
+  handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
