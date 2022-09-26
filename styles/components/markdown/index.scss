@@ -1,10 +1,107 @@
 @use '../../../styles/design-tokens' as dt;
 
-.preview {
-  width: 100%;
+.markdown {
+
+  & .markdown-together {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+
+    border: 1px solid dt.$general-50;
+    border-radius: 6px;
+
+    &-section {
+      width: 50%;
+
+      &:first-child {
+        border-right: 1px solid dt.$general-50;
+      }
+      & .preview {
+        border: none;
+      }
+    }
+    &-top {
+      font-family: dt.$typo-font-p-medium-family;
+      font-style: dt.$typo-font-p-medium-style;
+      font-weight: dt.$typo-font-p-medium-weight;
+      font-size: dt.$typo-font-p-medium-size;
+      line-height: 24px;
+
+      padding: 15px;
+      border-bottom: 1px solid dt.$general-50;
+    }
+    &-buttons {
+      padding: 15px 5px;
+    }
+    .redactor {
+      & .markdown-textarea {
+        width: 100%;
+        border: none;
+      }
+    }
+  }
+
+  & .markdown-split {
+    &-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 10px;
+    }
+  }
+
+  & .markdown-buttons {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 5px;
+
+    & .markdown-buttons-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 10px;
+      padding: 0 10px;
+      border-right: 2px solid dt.$general-50;
+
+      &:last-child {
+        border-right: none;
+      }
+      & i {
+        cursor: pointer;
+      }
+      & label {
+        height: 24px;
+      }
+    }
+  }
+
+  & .preview {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 12px 18px;
+    border-radius: 6px;
+    border: 1px solid dt.$primary-40;
+  }
+
+  & .redactor {
+    & .markdown-textarea {
+      width: 100%;
+    }
+
+    & > div {
+      width: 100%;
+    }
+  }
 }
 
 .markdownPreview {
+  font-family: dt.$typo-font-p-medium-family;
+  font-style: dt.$typo-font-p-medium-style;
   color: dt.$general-100;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;

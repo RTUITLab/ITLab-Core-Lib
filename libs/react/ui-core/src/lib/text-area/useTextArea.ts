@@ -21,6 +21,9 @@ export function useTextArea(props: TextAreaProps) {
       "small-size": props.size === 'small',
       "medium-size": props.size === 'medium' || !props.size,
       "large-size": props.size === 'large',
+      "resize-vertical": props.resize === 'vertical',
+      "resize-horizontal": props.resize === 'horizontal',
+      "resize-none": props.resize === 'none',
     };
     return getClasses(conditions, styles, props.className);
   }, [props, length])

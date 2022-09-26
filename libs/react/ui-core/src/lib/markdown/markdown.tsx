@@ -8,36 +8,61 @@ import {Tabs} from '../tabs/tabs'
 import MarkdownButtons from './Buttons/markdownButtons'
 
 export const Markdown = forwardRef((props: MarkdownProps, ref: any) => {
-  const {redactorRef, activeTab} = useMarkdown(props)
-  const {split} = props
+  const {redactorRef, activeTab, onKeyDown, pressButton, changeTabs} = useMarkdown(props)
+  const {split, height} = props
 
   return (
-    <div className={styles['markdown']}>
+    <div className={styles['markdown']} ref={ref}>
       {
         split
           ?
-            <div>
+            <div className={styles['markdown-together']}>
+              <div className={styles['markdown-together-section']}>
+                <div className={styles['markdown-together-top']}>
+                  Редактор
+                </div>
+                <div className={styles['markdown-together-content']}>
+                  <div className={styles['markdown-together-buttons']}>
+                    <MarkdownButtons pressButton={pressButton} handleAttachFile={props.handleAttachFile} />
+                  </div>
+                  <MarkdownRedactor height={height} onKeyDown={onKeyDown} redactorRef={redactorRef} />
+                </div>
+              </div>
+              <div className={styles['markdown-together-section']}>
+                <div className={styles['markdown-together-top']}>
+                  Просмотр
+                </div>
+                <div className={styles['markdown-together-content']}>
+                  <MarkdownPreview height={height} children={'# Privet\n' +
+                    '# Privet\n' +
+                    '> 123\n' +
+                    '\n' +
+                    '``asd``'} />
+                </div>
+              </div>
 
             </div>
           :(
             activeTab === 'Writing'
               ?
-                <div>
-                  <div>
-                    <Tabs items={[{label: 'Редактор', key: 'Writing'}, {label: 'Просмотре', key: 'Preview'}]} />
-                    <MarkdownButtons />
+                <div className={styles['markdown-split']}>
+                  <div className={styles['markdown-split-top']}>
+                    <Tabs onChange={changeTabs} defaultActiveItem={activeTab} items={[{label: 'Редактор', key: 'Writing'}, {label: 'Просмотр', key: 'Preview'}]} />
+                    <MarkdownButtons pressButton={pressButton} handleAttachFile={props.handleAttachFile} />
                   </div>
-                  <MarkdownRedactor redactorRef={redactorRef} />
+                  <MarkdownRedactor height={height} onKeyDown={onKeyDown} redactorRef={redactorRef} />
                 </div>
               :
-              <>
-                <Tabs items={[{label: 'Редактор', key: 'Writing'}, {label: 'Просмотре', key: 'Preview'}]} />
-                <MarkdownPreview children={'# Privet\n' +
-                  '# Privet\n' +
-                  '> 123\n' +
-                  '\n' +
-                  '``asd``'} />
-              </>
+              <div className={styles['markdown-split']}>
+                <div className={styles['markdown-split-top']}>
+                  <Tabs onChange={changeTabs} defaultActiveItem={activeTab} items={[{label: 'Редактор', key: 'Writing'}, {label: 'Просмотр', key: 'Preview'}]} />
+                </div>
+                <MarkdownPreview height={height} children={'# Privet\n' +
+                '# Privet\n' +
+                '> 123\n' +
+                '\n' +
+                '``asd``'} />
+              </div>
           )
 
       }
@@ -45,3 +70,5 @@ export const Markdown = forwardRef((props: MarkdownProps, ref: any) => {
       </div>
   );
 })
+
+Markdown.defaultProps = {split: true, initialSection: 'Writing', height: 200}

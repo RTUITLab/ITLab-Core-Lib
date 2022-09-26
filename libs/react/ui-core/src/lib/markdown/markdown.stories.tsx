@@ -11,4 +11,6 @@ const Template: ComponentStory<typeof Markdown> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  // height: 650
+};

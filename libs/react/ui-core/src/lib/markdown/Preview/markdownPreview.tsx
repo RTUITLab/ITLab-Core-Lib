@@ -5,9 +5,9 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import {MarkdownPreviewPropsType} from './MarkdownPreviewProps'
 
-export const MarkdownPreview:FC<MarkdownPreviewPropsType> = ({children = ''}) => {
+export const MarkdownPreview:FC<MarkdownPreviewPropsType> = ({children = '', height}) => {
   return (
-    <div className={styles['preview']}>
+    <div style={{height: height}} className={styles['preview']}>
       <ReactMarkdown className={styles['markdownPreview']} children={children} remarkPlugins={[remarkGfm]} />
     </div>
   )

@@ -48,4 +48,10 @@ export interface TextAreaProps extends DefaultParams, ClickableObjectMini{
 
   /** The excess length event */
   onError?: () => void
+
+  /** The onKeyDown event */
+  onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>
+
+  /** Axes of possible resize */
+  resize?: 'all' | 'vertical' | 'horizontal' | 'none'
 }

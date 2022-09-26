@@ -24,11 +24,14 @@ export const TextArea = forwardRef((props: TextAreaProps, ref: any) => {
         readOnly={props.readonly}
         style={props.style}
         disabled={props.disabled || false}
+        onKeyDown={props.onKeyDown}
         {...getAllEvents(props)}
         onChange={(e) => handleChange(e)}
         id={props.id || ""}>
       </textarea>
-      <span className={styles['resizer']} />
+      {
+        props.resize !== 'none' && <span className={styles['resizer']} />
+      }
       {
         props.maxLength &&
         <label className={styles['text-area-count']}>{length} / {props.maxLength}</label>
