@@ -1,0 +1,93 @@
+@use '../../../styles/design-tokens' as dt;
+
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: fit-content;
+
+  & .timeline-hidden {
+    & .timeline-item:last-child {
+      padding-bottom: 30px;
+      & .timeline-item-tail {
+        border-left: 1px solid dt.$general-50;
+      }
+    }
+    & .timeline-button {
+      color: dt.$primary-100;
+      font-size: 12px;
+      line-height: 14px;
+      font-weight: 700;
+    }
+  }
+
+  & .timeline-item {
+    color: dt.$general-100;
+    font-family: dt.$typo-font-p-regular-family;
+    font-style: dt.$typo-font-p-regular-style;
+    font-weight: dt.$typo-font-p-regular-weight;
+    font-size: 12px;
+    line-height: 14px;
+    position: relative;
+    padding-bottom: 30px;
+
+    &:last-child {
+      padding-bottom: 0;
+
+      & .timeline-item-tail {
+        border: none
+      }
+    }
+
+    & .timeline-item-dot {
+      z-index: 1;
+      position: absolute;
+      box-sizing: border-box;
+      width: 13px;
+      height: 13px;
+      border: 1px solid transparent;
+      border-radius: 100px;
+      background-color: #fff;
+
+      &-primary, &-icon {
+        border-color: dt.$primary-100;
+      }
+      &-icon {
+        line-height: initial;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: dt.$primary-100;
+      }
+      &-green {
+        border-color: dt.$green-100;
+      }
+      &-red {
+        border-color: dt.$red-100;
+      }
+
+      &-ico {
+        color: white;
+        position: relative;
+        transition: transform .2s ease;
+
+        &-active {
+          transform: rotate(180deg);
+        }
+      }
+    }
+    & .timeline-item-content {
+      margin-left: 23px;
+       & > * {
+         margin: 0;
+       }
+    }
+    & .timeline-item-tail {
+      position: absolute;
+      top: 12px;
+      left: 6px;
+      border-left: 1px solid dt.$general-50;
+    }
+  }
+}
