@@ -23,7 +23,7 @@ const MarkdownButtons:FC<MarkdownButtonsPropsType> = ({pressButton, handleAttach
       </div>
       <div className={styles['markdown-buttons-section']}>
         <label htmlFor='attach'><Icon size={24} name={'ri-attachment-2'} type={''}></Icon></label>
-        <input type='file' id='attach' style={{display: 'none'}} onChange={(e) => handleAttachFile(e)} multiple />
+        <input type='file' id='attach' style={{display: 'none'}} onChange={handleAttachFile} multiple />
       </div>
     </div>
   )

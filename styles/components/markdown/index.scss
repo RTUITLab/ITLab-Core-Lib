@@ -81,16 +81,18 @@
 
   & .preview {
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
     padding: 12px 18px;
     border-radius: 6px;
     border: 1px solid dt.$primary-40;
+    user-select: none;
   }
 
   & .redactor {
     & .markdown-textarea {
       width: 100%;
+      color: dt.$general-100;
     }
 
     & > div {
@@ -150,6 +152,7 @@
     font: inherit;
     margin: 0;
     overflow: visible;
+    line-height: inherit;
   }
 
   & [type=checkbox] {
@@ -159,12 +162,6 @@
   & *, & [type=checkbox] {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-  }
-
-  & input {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
   }
 
   & a:hover {
@@ -467,3 +464,15 @@
   }
 }
 
+.task-list-item {
+  list-style-type: none
+}
+
+.task-list-item + .task-list-item {
+  margin-top: 3px
+}
+
+.task-list-item input {
+  margin: 0 .2em .25em -1.6em;
+  vertical-align: middle
+}

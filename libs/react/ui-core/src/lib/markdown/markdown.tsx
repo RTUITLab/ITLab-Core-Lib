@@ -6,10 +6,13 @@ import {MarkdownPreview} from './Preview/markdownPreview'
 import MarkdownRedactor from './Redactor/markdownRedactor'
 import {Tabs} from '../tabs/tabs'
 import MarkdownButtons from './Buttons/markdownButtons'
+import {useDropdownItem} from '../../utils/useDropdownItem'
 
 export const Markdown = forwardRef((props: MarkdownProps, ref: any) => {
   const {redactorRef, activeTab, onKeyDown, pressButton, changeTabs, markdownText, handleChange} = useMarkdown(props)
-  const {split, height} = props
+  const {contentRef, defaultContentHeight} = useDropdownItem()
+  const {split, height = 200} = props
+  const markdownHeight = height < 100 ? 200 : height
 
   return (
     <div className={styles['markdown']} ref={ref}>
@@ -22,10 +25,10 @@ export const Markdown = forwardRef((props: MarkdownProps, ref: any) => {
                   Редактор
                 </div>
                 <div className={styles['markdown-together-content']}>
-                  <div className={styles['markdown-together-buttons']}>
-                    <MarkdownButtons pressButton={pressButton} handleAttachFile={props.handleAttachFile} />
+                  <div ref={contentRef} className={styles['markdown-together-buttons']}>
+                    <MarkdownButtons pressButton={pressButton} handleAttachFile={props.onAttachFile} />
                   </div>
-                  <MarkdownRedactor handleChange={handleChange} markdownText={markdownText} height={height} onKeyDown={onKeyDown} redactorRef={redactorRef} />
+                  <MarkdownRedactor handleChange={handleChange} markdownText={markdownText} height={markdownHeight} onKeyDown={onKeyDown} redactorRef={redactorRef} />
                 </div>
               </div>
               <div className={styles['markdown-together-section']}>
@@ -33,10 +36,10 @@ export const Markdown = forwardRef((props: MarkdownProps, ref: any) => {
                   Просмотр
                 </div>
                 <div className={styles['markdown-together-content']}>
-                  <MarkdownPreview height={height} children={markdownText} />
+                  {/*user height + height of buttons + padding of buttons*/}
+                  <MarkdownPreview height={markdownHeight + defaultContentHeight + 30} children={markdownText} />
                 </div>
               </div>
-
             </div>
           :(
             activeTab === 'Writing'
@@ -44,23 +47,21 @@ export const Markdown = forwardRef((props: MarkdownProps, ref: any) => {
                 <div className={styles['markdown-split']}>
                   <div className={styles['markdown-split-top']}>
                     <Tabs onChange={changeTabs} defaultActiveItem={activeTab} items={[{label: 'Редактор', key: 'Writing'}, {label: 'Просмотр', key: 'Preview'}]} />
-                    <MarkdownButtons pressButton={pressButton} handleAttachFile={props.handleAttachFile} />
+                    <MarkdownButtons pressButton={pressButton} handleAttachFile={props.onAttachFile} />
                   </div>
-                  <MarkdownRedactor handleChange={handleChange} markdownText={markdownText} height={height} onKeyDown={onKeyDown} redactorRef={redactorRef} />
+                  <MarkdownRedactor handleChange={handleChange} markdownText={markdownText} height={markdownHeight} onKeyDown={onKeyDown} redactorRef={redactorRef} />
                 </div>
               :
               <div className={styles['markdown-split']}>
                 <div className={styles['markdown-split-top']}>
                   <Tabs onChange={changeTabs} defaultActiveItem={activeTab} items={[{label: 'Редактор', key: 'Writing'}, {label: 'Просмотр', key: 'Preview'}]} />
                 </div>
-                <MarkdownPreview height={height} children={markdownText} />
+                <MarkdownPreview height={markdownHeight} children={markdownText} />
               </div>
           )
-
       }
-
       </div>
   );
 })
 
-Markdown.defaultProps = {split: true, initialSection: 'Writing', height: 200}
+Markdown.defaultProps = {split: true, initialSection: 'Writing', height: 200, value: ''}

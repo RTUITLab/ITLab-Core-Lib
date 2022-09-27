@@ -4,5 +4,5 @@ export type MarkdownButtonsPropsType = {
 
   pressButton: (code: string) => void
 
-  handleAttachFile: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleAttachFile?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
