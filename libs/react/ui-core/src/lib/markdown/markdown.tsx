@@ -24,21 +24,17 @@ export const Markdown = forwardRef((props: MarkdownProps, ref: any) => {
                 <div className={styles['markdown-together-top']}>
                   Редактор
                 </div>
-                <div className={styles['markdown-together-content']}>
-                  <div ref={contentRef} className={styles['markdown-together-buttons']}>
-                    <MarkdownButtons pressButton={pressButton} handleAttachFile={props.onAttachFile} />
-                  </div>
-                  <MarkdownRedactor handleChange={handleChange} markdownText={markdownText} height={markdownHeight} onKeyDown={onKeyDown} redactorRef={redactorRef} />
+                <div ref={contentRef} className={styles['markdown-together-buttons']}>
+                  <MarkdownButtons pressButton={pressButton} handleAttachFile={props.onAttachFile} />
                 </div>
+                <MarkdownRedactor handleChange={handleChange} markdownText={markdownText} height={markdownHeight} onKeyDown={onKeyDown} redactorRef={redactorRef} />
               </div>
               <div className={styles['markdown-together-section']}>
                 <div className={styles['markdown-together-top']}>
                   Просмотр
                 </div>
-                <div className={styles['markdown-together-content']}>
-                  {/*user height + height of buttons + padding of buttons*/}
-                  <MarkdownPreview height={markdownHeight + defaultContentHeight + 30} children={markdownText} />
-                </div>
+                {/*user height + height of buttons + padding of buttons*/}
+                <MarkdownPreview height={markdownHeight + defaultContentHeight + 30} children={markdownText} />
               </div>
             </div>
           :(
