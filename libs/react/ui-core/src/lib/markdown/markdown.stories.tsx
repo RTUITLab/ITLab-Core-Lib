@@ -9,6 +9,7 @@ export default {
     onAttachFile: { action: 'File attached!' },
     initialSection: { defaultValue: 'Writing' },
     split: { defaultValue: true },
+    value: { control: false },
   }
 } as ComponentMeta<typeof Markdown>;
 

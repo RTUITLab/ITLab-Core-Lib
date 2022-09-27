@@ -9,4 +9,7 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'svg'],
   coverageDirectory: '../../../coverage/libs/react/ui-core',
+  moduleNameMapper: {
+    'react-markdown': '<rootDir>/../../../node_modules/react-markdown/react-markdown.min.js',
+  },
 };
