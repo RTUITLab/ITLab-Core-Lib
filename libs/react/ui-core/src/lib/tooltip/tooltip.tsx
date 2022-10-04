@@ -33,9 +33,9 @@ export const Tooltip = forwardRef((props: TooltipProps, ref: any) => {
        ref={elem}
      >
        <div style={props.textStyle}>
-        {props.children}
+         {props.children}
        </div>
-       {!props.hidden && (
+       {props.hidden? null : (
          <div
            ref={(e)=>{
              tooltipContent.current = e;
