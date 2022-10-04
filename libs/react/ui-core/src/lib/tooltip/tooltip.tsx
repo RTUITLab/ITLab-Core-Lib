@@ -24,7 +24,6 @@ export const Tooltip = forwardRef((props: TooltipProps, ref: any) => {
       <p>{props.metaDescription}</p>
     </div>
   )
-
   return (
    <div ref={ref}>
      <div
