@@ -1,0 +1,107 @@
+@use '../../../styles/design-tokens' as dt;
+@use '../../../styles/helpers/loading' as *;
+
+.spinner-container {
+  position: relative;
+  display: inline-block;
+  &-extra {
+    width: 64px;
+    height: 64px;
+  }
+  &-large {
+    width: 32px;
+    height: 32px;
+  }
+  &-medium {
+    width: 24px;
+    height: 24px;
+  }
+  &-small {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.spinner {
+  @extend .spin-anim;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 0;
+
+  &-cap {
+    position: absolute;
+    top: 10.4%;
+    left: 10.4%;
+    background: white;
+    width: 79.2%;
+    height: 79.2%;
+    border-radius: 50%;
+  }
+
+  &-bottom-left,
+  &-bottom-right,
+  &-top-left {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    z-index: -1;
+  }
+
+  &-bottom-left {
+    top: 50%;
+    left: 0;
+    &::after {
+      position: absolute;
+      content: '';
+      border-radius: 50%;
+      background: linear-gradient(
+        180deg,
+        rgba(dt.$general-80, 1) 0%,
+        rgba(dt.$general-80, 0.98) 50%,
+        rgba(dt.$general-80, 0) 100%
+      );
+      width: 20.8%;
+      height: 20.8%;
+      top: -10.4%;
+    }
+    background: linear-gradient(
+      to bottom right,
+      rgba(dt.$general-80, 1) 0%,
+      rgba(dt.$general-80, 1) 5%,
+      rgba(dt.$general-80, 0.6) 100%
+    );
+  }
+
+  &-bottom-right {
+    top: 50%;
+    left: 50%;
+    background: linear-gradient(
+      to top right,
+      rgba(dt.$general-80, 0.65) 0%,
+      rgba(dt.$general-80, 0.13) 100%
+    );
+  }
+
+  &-top-left {
+    top: 0;
+    left: 50%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(dt.$general-80, 0) 50%,
+      rgba(dt.$general-80, 0.2) 100%
+    );
+  }
+
+  &-logo {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 60.75%;
+    height: 60.75%;
+  }
+}
