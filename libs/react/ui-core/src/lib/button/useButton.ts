@@ -30,7 +30,7 @@ export function useButton(props:ButtonProps) {
       "button-icon": true,
       "button-icon-left": !props.iconPosition || props.iconPosition === 'left',
       "button-icon-right": props.iconPosition === 'right',
-      "spin-anim": !!props.loading,
+      "spin-anim": Boolean(props.loading),
     };
     return getClasses(conditions, styles)
   }, [props]);

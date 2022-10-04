@@ -31,8 +31,8 @@ export function useCheckbox(props: CheckboxProps) {
   const containerClasses = useMemo(() => {
     const conditions:{[index: string]:boolean} = {
       "checkbox": true,
-      "checkbox-disabled": !!props.disabled,
-      "checkbox-readonly": !!props.readonly,
+      "checkbox-disabled": Boolean(props.disabled),
+      "checkbox-readonly": Boolean(props.readonly),
     };
     return getClasses(conditions, styles);
   }, [props]);
@@ -40,8 +40,8 @@ export function useCheckbox(props: CheckboxProps) {
   const classes = useMemo(() => {
     const conditions:{[index: string]:boolean} = {
       "checkbox-box": true,
-      "checkbox-disabled": !!props.disabled,
-      "checkbox-readonly": !!props.readonly,
+      "checkbox-disabled": Boolean(props.disabled),
+      "checkbox-readonly": Boolean(props.readonly),
       "checkbox-checked": checked,
       "checkbox-focus": focused,
       "checkbox-invalid": isError,
