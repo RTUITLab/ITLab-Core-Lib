@@ -17,8 +17,8 @@ export function useRadio(props: RadioProps, disabled: boolean, readonly: boolean
   const containerClasses = useMemo(() => {
     const conditions:{[index: string]:boolean} = {
       "radio": true,
-      "radio-disabled": disabled,
-      "radio-readonly": readonly,
+      "radio-disabled": Boolean(disabled),
+      "radio-readonly": Boolean(readonly),
     };
     return getClasses(conditions, styles)
   }, [disabled, readonly]);
@@ -26,8 +26,8 @@ export function useRadio(props: RadioProps, disabled: boolean, readonly: boolean
   const classes = useMemo(() => {
     const conditions:{[index: string]:boolean} = {
       "radio-box": true,
-      "radio-disabled": disabled,
-      "radio-readonly": readonly,
+      "radio-disabled": Boolean(disabled),
+      "radio-readonly": Boolean(readonly),
     };
     return getClasses(conditions, styles, props.className)
   }, [props.className, disabled, readonly]);
@@ -35,8 +35,8 @@ export function useRadio(props: RadioProps, disabled: boolean, readonly: boolean
   const labelStyleClass = useMemo(() => {
     const conditions:{[index: string]:boolean} = {
       'radio-label': true,
-      "radio-disabled": disabled,
-      "radio-readonly": readonly,
+      "radio-disabled": Boolean(disabled),
+      "radio-readonly": Boolean(readonly),
     };
     return getClasses(conditions, styles, props.labelStyleClass)
   }, [props.labelStyleClass, disabled, readonly]);

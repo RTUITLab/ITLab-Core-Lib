@@ -8,16 +8,16 @@ export function useTextArea(props: TextAreaProps) {
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if(props.onChange) props.onChange(e)
-    if(!!props.onError && !!props.maxLength) props.onError()
+    if(props.onError && props.maxLength) props.onError()
     setLength(e.target.value.length)
   }, [props])
 
   const classes = useMemo(() => {
     const conditions:{[index: string]:boolean} = {
       "text-area": true,
-      "text-area-readonly": !!props.readonly,
-      "text-area-valid":  !!props.valid,
-      "text-area-invalid":  !!props.error || (!!props.maxLength && props.maxLength < length),
+      "text-area-readonly": Boolean(props.readonly),
+      "text-area-valid":  Boolean(props.valid),
+      "text-area-invalid": Boolean((props.error) || (props.maxLength && props.maxLength < length)),
       "small-size": props.size === 'small',
       "medium-size": props.size === 'medium' || !props.size,
       "large-size": props.size === 'large',

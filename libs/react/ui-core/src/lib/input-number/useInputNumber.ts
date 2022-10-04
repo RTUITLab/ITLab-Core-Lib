@@ -9,13 +9,13 @@ import {getClasses} from '../../utils/getClasses'
 
 export function useInputNumber(props: InputNumberProps) {
   const [value, setValue] = useState<number | string>('')
-  const [width, setWidth] = useState<number>(1)
+  const [width, setWidth] = useState<string>('1ch')
   const step = props.step || 1
+  const spanValueRef = React.useRef<any>()
 
   useEffect(() => {
     setValue(props.defaultValue ? getLimitedValue(String(props.defaultValue)) : '')
-    setWidth(props.defaultValue ? ((props.defaultValue.toString().length === 0 ) ? 1 : props.defaultValue.toString().length) : 1 )
-  }, [])
+  }, [props.defaultValue])
 
   const handleClick = useCallback((count: number) => {
     if(!props.disabled && !props.readonly) {
@@ -28,27 +28,34 @@ export function useInputNumber(props: InputNumberProps) {
       }
 
       const limitedValue = getLimitedValue(result)
-      setValueWidth(limitedValue)
       setValue(Number(limitedValue))
     }
   }, [props, value])
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if(props.onChange) props.onChange(e)
-    const value = e.target.value
+    const localValue = e.target.value
 
-    if(value === '' || !isNaN(Number(value))) {
-      setValueWidth(value)
-      if(value === '') setValue('')
-      else setValue(Number(value))
+    if(localValue === '' || !isNaN(Number(localValue))) {
+      if(localValue === '') {
+        if(props.onChange) props.onChange(e, Number(value))
+        setValue('')
+      }
+      else {
+        if(props.onChange) props.onChange(e, Number(localValue))
+        setValue(Number(localValue))
+      }
     }
-    else if (value === '-') setValue('-')
+    else if (localValue === '-') {
+      setValue('-')
+      if(props.onChange) props.onChange(e, '-')
+    }
   }, [props])
 
-  const setValueWidth = useCallback((number: string) => {
-    if(number.length === 0) setWidth(1)
-    else setWidth(number.length)
-  }, [])
+  useEffect(() => {
+    const valueWidth = spanValueRef.current.scrollWidth
+    if(valueWidth === 0) setWidth(1 + 'ch')
+    else setWidth(valueWidth + 'px')
+  }, [value])
 
   const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
     if(props.onBlur) props.onBlur(e)
@@ -58,7 +65,6 @@ export function useInputNumber(props: InputNumberProps) {
       setValue(limitedValue)
     }
     else if (value === '-') setValue('-')
-    setValueWidth(limitedValue)
   }, [props, value])
 
   //protection from 1.53 + 0.5 = 2.0300000000000002, etc.
@@ -89,6 +95,6 @@ export function useInputNumber(props: InputNumberProps) {
     return getClasses(conditions, styles, props.className)
   }, [props]);
 
-  return {classes, width, handleChange, step, handleClick, value, handleBlur}
+  return {classes, width, handleChange, step, handleClick, value, handleBlur, spanValueRef}
 }
 
