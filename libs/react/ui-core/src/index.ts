@@ -1,3 +1,4 @@
+export * from './lib/timeline/timeline';
 export * from './lib/slider/slider';
 export * from './lib/tag/tag';
 export * from './lib/switch/switch';

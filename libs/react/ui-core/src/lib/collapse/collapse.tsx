@@ -4,6 +4,7 @@ import Icon from '../icon/icon';
 import styles from './collapse.module.scss';
 import { CollapseItemProps, CollapseProps } from './CollapseProps';
 import { useCollapseItem } from './useCollapseItem';
+import {useDropdownItem} from '../../utils/useDropdownItem'
 
 export const Collapse = forwardRef((props: CollapseProps, ref: any) => {
   const classes = useMemo(() => {
@@ -27,10 +28,10 @@ const CollapseItem = React.memo((props: CollapseItemProps) => {
     contentRef,
     contentDisplay,
     contentHeight,
-    itemClasses,
-    headerClasses,
     toggleExpanded,
-  } = useCollapseItem(props);
+    expanded,
+  } = useDropdownItem();
+  const {itemClasses, headerClasses} = useCollapseItem(props, expanded)
   return (
     <div className={itemClasses} style={props.style}>
       <div className={headerClasses} onClick={toggleExpanded}>
