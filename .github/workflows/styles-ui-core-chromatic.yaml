@@ -10,5 +10,6 @@ on:
 jobs:
   angular-chromatic-deployment:
     uses: './.github/workflows/angular-ui-core-chromatic.yaml'
-  # TODO: react-chromatic-deployment
+  react-chromatic-deployment:
+    uses: './.github/workflows/react-ui-core-chromatic.yaml'
   # TODO: vue-chromatic-deployment

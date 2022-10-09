@@ -1,0 +1,189 @@
+@use '../../../styles/design-tokens' as dt;
+@use 'sass:math';
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-clickable {
+    cursor: pointer;
+  }
+
+  &-line {
+    position: absolute;
+    height: 0px;
+    border-width: 1px;
+    border-color: dt.$general-50;
+  }
+
+  &:first-of-type {
+    align-items: flex-start;
+  }
+  &:last-of-type {
+    align-items: flex-end;
+  }
+
+  &-figure-container {
+    position: relative;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  &:last-of-type {
+    .step-line {
+      display: none;
+    }
+  }
+
+  &-circle {
+    box-sizing: border-box;
+    border-radius: 50%;
+    border-style: solid;
+  }
+  &-past {
+    .step-icon {
+      color: dt.$green-80;
+    }
+    .step-circle {
+      border-color: dt.$green-80;
+    }
+    .step-line {
+      border-style: solid;
+    }
+  }
+  &-current {
+    .step-icon {
+      color: dt.$primary-100;
+    }
+    .step-circle {
+      border-color: dt.$primary-100;
+    }
+    .step-line {
+      border-style: dashed;
+    }
+  }
+  &-future {
+    .step-icon {
+      color: dt.$general-60;
+    }
+    .step-circle {
+      border-color: dt.$general-60;
+    }
+    .step-line {
+      border-style: dashed;
+    }
+  }
+
+  &-title,
+  &-subtitle {
+    font-family: dt.$typo-font-p-medium-family;
+    font-style: dt.$typo-font-p-medium-style;
+    font-weight: dt.$typo-font-p-medium-weight;
+  }
+
+  &-title {
+    color: dt.$general-100;
+  }
+
+  &-subtitle {
+    color: dt.$general-80;
+  }
+}
+
+@mixin lineSizes($size) {
+  .step-line {
+    top: calc(math.div($size, 2) - 1px);
+    left: calc(50% + math.div($size, 2));
+    width: calc(100% - $size);
+  }
+  &:first-of-type {
+    .step-line {
+      left: $size;
+      width: calc(150% - $size - math.div($size, 2));
+    }
+  }
+  &:nth-last-of-type(2) {
+    .step-line {
+      width: calc(150% - $size - math.div($size, 2));
+    }
+  }
+}
+
+.steps {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  padding: 30px;
+
+  &-small {
+    .step {
+      &-icon {
+        font-size: 13px;
+      }
+
+      &-circle {
+        border-width: 2px;
+        width: 13px;
+        height: 13px;
+      }
+
+      &-title,
+      &-subtitle {
+        font-size: 12px;
+        line-height: 15px;
+      }
+
+      @include lineSizes(13px);
+    }
+  }
+  &-medium {
+    .step {
+      &-icon {
+        font-size: 20px;
+      }
+
+      &-circle {
+        border-width: 3px;
+        width: 20px;
+        height: 20px;
+      }
+
+      &-title {
+        font-size: 14px;
+        line-height: 17px;
+      }
+
+      &-subtitle {
+        font-size: 12px;
+        line-height: 15px;
+      }
+      @include lineSizes(20px);
+    }
+  }
+  &-large {
+    .step {
+      &-icon {
+        font-size: 26px;
+      }
+
+      &-circle {
+        border-width: 4px;
+        width: 26px;
+        height: 26px;
+      }
+
+      &-title {
+        font-size: dt.$typo-font-p-medium-size;
+        line-height: dt.$typo-font-p-medium-line-height;
+      }
+
+      &-subtitle {
+        font-size: 14px;
+        line-height: 17px;
+      }
+
+      @include lineSizes(26px);
+    }
+  }
+}

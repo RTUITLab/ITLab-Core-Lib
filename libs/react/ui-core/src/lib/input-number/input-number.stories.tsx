@@ -36,3 +36,9 @@ MinMax.args = {
   min: -10,
   max: 10000
 };
+
+export const WithoutButtons = Template.bind({});
+WithoutButtons.args = {
+  step: 10,
+  displayButtons: false
+};

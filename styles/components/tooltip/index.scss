@@ -80,18 +80,19 @@
     margin-left: -15px;
     border-style: solid;
     border-color: transparent transparent transparent transparent;
+    pointer-events: none;
   }
-}
-
-.tooltip .tooltip-content::before {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: calc(50%);
-  margin-left: -8px;
-  border-width: 8px;
-  border-style: solid;
-  border-color: #fff transparent transparent transparent;
+  &:before {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: calc(50%);
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+  }
 }
 
 .tooltip:hover .tooltip-content {
