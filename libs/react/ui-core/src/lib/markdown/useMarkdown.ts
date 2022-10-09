@@ -172,10 +172,11 @@ export const useMarkdown = (props: MarkdownProps) => {
     if (changed) {
       setTimeout(() => {
         if(redactorRef.current) {
+          redactorRef.current.focus()
           redactorRef.current.selectionStart = start;
           redactorRef.current.selectionEnd = end;
         }
-      }, 100);
+      }, 1);
     }
   }, [markdownText, redactorRef])
 
