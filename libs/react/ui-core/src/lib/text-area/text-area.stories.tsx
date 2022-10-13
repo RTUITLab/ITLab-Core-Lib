@@ -9,6 +9,7 @@ export default {
     onBlur: { action: 'onBlur executed!' },
     onFocus: { action: 'onFocus executed!' },
     onError: { action: 'a lot of symbols detected!' },
+    onKeyDown: { action: 'key pressed' , control: false},
     className: { control: 'text' },
     isRequired: {table: {defaultValue: {summary: 'false'}},},
     readonly: {table: {defaultValue: {summary: 'false'}},},
@@ -16,6 +17,7 @@ export default {
     error: {table: {defaultValue: {summary: 'false'}},},
     valid: {table: {defaultValue: {summary: 'false'}},},
     autoFocus: {table: {defaultValue: {summary: 'false'}},},
+    resize: {table: {defaultValue: {summary: 'all'}},control:{type: 'select', options:['all', 'vertical', 'horizontal', 'none']}},
     size: {table: {defaultValue: {summary: 'medium'}},control:{type: 'radio', options:['small', 'medium', 'large']}},
   },
 } as ComponentMeta<typeof TextArea>;

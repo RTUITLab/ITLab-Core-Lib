@@ -2,8 +2,9 @@
 
 
 .text-area-wrapper {
-  width: fit-content;
   position: relative;
+  width: fit-content;
+
   & , & .text-area {
     font-family: dt.$typo-font-p-regular-family;
     font-style: dt.$typo-font-p-regular-style;
@@ -113,6 +114,20 @@
     }
   }
 
+  & .resize-vertical {
+    resize: vertical;
+  }
+  & .resize-horizontal {
+    resize: horizontal;
+  }
+  & .resize-none {
+    resize: none;
+
+    & .resizer {
+      display: none;
+    }
+  }
+
   & .resizer {
     border-bottom: 13px solid dt.$primary-40;
     border-left: 13px solid transparent;
@@ -153,6 +168,7 @@
   }
 
   & .text-area-count {
+    width: fit-content;
     pointer-events: none;
     position: absolute;
     left: 18px;
@@ -163,17 +179,17 @@
     color: dt.$general-70;
   }
 
-  .large-size{
+  & .large-size{
     width: 390px;
     height: 200px;
   }
 
-  .medium-size{
+  & .medium-size{
     width: 390px;
     height: 176px;
   }
 
-  .small-size{
+  & .small-size{
     width: 280px;
     height: 152px;
   }

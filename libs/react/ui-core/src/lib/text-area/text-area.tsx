@@ -5,7 +5,7 @@ import {getAllEvents} from "../../utils/getAllEvents";
 import {useTextArea} from './useTextArea'
 
 export const TextArea = forwardRef((props: TextAreaProps, ref: any) => {
-  const {classes, length, handleChange} = useTextArea(props)
+  const {classes, length, handleChange, value} = useTextArea(props)
 
   return (
     <div className={styles['text-area-wrapper']}>
@@ -18,17 +18,20 @@ export const TextArea = forwardRef((props: TextAreaProps, ref: any) => {
         required={props.isRequired}
         className={classes}
         autoFocus={props.autoFocus}
-        defaultValue={props.defaultValue || ""}
+        value={value}
         placeholder={props.placeholder || ""}
         name={props.name || ""}
         readOnly={props.readonly}
         style={props.style}
         disabled={props.disabled || false}
+        onKeyDown={props.onKeyDown}
         {...getAllEvents(props)}
         onChange={(e) => handleChange(e)}
         id={props.id || ""}>
       </textarea>
-      <span className={styles['resizer']} />
+      {
+        props.resize !== 'none' && <span className={styles['resizer']} />
+      }
       {
         props.maxLength &&
         <label className={styles['text-area-count']}>{length} / {props.maxLength}</label>

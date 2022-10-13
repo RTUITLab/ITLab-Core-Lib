@@ -8,12 +8,11 @@ export function useDropdownItem() {
     'block'
   );
   const contentRef = createRef<HTMLDivElement>();
-
   const getDefaultHeight = useCallback((children: Element[]): number => {
     return children.reduce((acc, child) => acc + child.clientHeight, 0);
   }, [])
 
-  useEffect(() => {
+  const setDefaultParams = useCallback(() => {
     if(contentRef.current) {
       const children = Array.from(contentRef.current.children);
       Promise.resolve().then(() => {
@@ -22,7 +21,16 @@ export function useDropdownItem() {
         setDefaultContentHeight(height);
       });
     }
-  }, []);
+  }, [contentRef, getDefaultHeight])
+
+  useEffect(() => {
+    setDefaultParams()
+    window.addEventListener('resize', () => setDefaultParams())
+
+    return () => {
+      window.removeEventListener('resize', () => setDefaultParams())
+    }
+  }, [setDefaultParams]);
 
   const open = useCallback(() => {
     setExpanded(true);
@@ -51,5 +59,6 @@ export function useDropdownItem() {
     contentHeight,
     toggleExpanded,
     expanded,
+    defaultContentHeight
   };
 }

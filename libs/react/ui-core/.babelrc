@@ -6,6 +6,14 @@
         "runtime": "automatic",
         "useBuiltIns": "usage"
       }
+    ],
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
     ]
   ],
   "plugins": []

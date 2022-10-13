@@ -1,5 +1,5 @@
 import {render} from '@testing-library/react';
-import {Button} from "@itlab-core-lib/react/ui-core";
+import {Button} from './button'
 
 
 describe('Button', () => {

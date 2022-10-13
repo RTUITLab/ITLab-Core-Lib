@@ -1,3 +1,4 @@
+export * from './lib/markdown/markdown';
 export * from './lib/spinner/spinner';
 export * from './lib/steps/steps';
 export * from './lib/timeline/timeline';
@@ -9,6 +10,7 @@ export * from './lib/no-data/no-data';
 export * from './lib/notification/notifications';
 export * from './lib/alert/alert';
 export * from './lib/list/list';
+export * from './lib/timeline/timeline';
 export * from './lib/collapse/collapse';
 export * from './lib/calendar/calendar';
 export * from './lib/input-number/input-number';
