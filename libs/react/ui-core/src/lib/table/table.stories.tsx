@@ -24,8 +24,24 @@ const Template: ComponentStory<typeof Table> = (args) => {
       dataIndex: 'name',
       key: 1,
       colSpan: 2,
-      rowSpan: 2,
-      width: 500
+      width: 500,
+      onCell: (value, index) => {
+        if (index === 0) {
+          return {rowSpan: 3}
+        }
+        else if(index === 1 || index === 2) {
+          return {rowSpan: 0}
+        }
+        else {
+          return {rowSpan: 1}
+        }
+        // if (index % 2 === 1) {
+        //   return {rowSpan: 0}
+        // }
+        // else {
+        //   return {rowSpan: 2}
+        // }
+      }
     },
     {
       title: 'Phone',

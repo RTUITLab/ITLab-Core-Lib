@@ -13,4 +13,10 @@ export interface ColumnsType<RecordType> {
   colSpan?: number
   rowSpan?: number
   width?: number
+  onCell?: GetComponentProps<RecordType>
 }
+
+export type GetComponentProps<DataType> = (
+  data: DataType,
+  index: number,
+) => React.TdHTMLAttributes<any>;

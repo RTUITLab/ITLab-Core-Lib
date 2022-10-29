@@ -20,13 +20,18 @@ export const Table = forwardRef((props: TableProps<any>, ref: any) => {
       </thead>
       <tbody>
         {
-          (Object.values(props.data)).map((item) => {
+          (Object.values(props.data)).map((item, index) => {
+
             return (
               <tr key={item.key}>
-                {props.columns.map((column, index) => {
-                  if(column.colSpan === 0 || column.rowSpan === 0) return null
+                {props.columns.map((column, tdIndex) => {
+                  let attributes
+                  if(column.onCell) {
+                    attributes = column.onCell(item, index)
+                  }
+                  if((attributes?.colSpan === 0 || column.colSpan === 0) || (attributes?.rowSpan === 0 || column.rowSpan === 0)) return null
                   return (
-                    <td colSpan={column.colSpan} rowSpan={column.rowSpan} style={{width: item.width}} key={index}>
+                    <td colSpan={attributes?.colSpan || column.colSpan} rowSpan={attributes?.rowSpan || column.rowSpan} style={{width: item.width}} key={tdIndex}>
                       {item[column.dataIndex]}
                     </td>
                   )
