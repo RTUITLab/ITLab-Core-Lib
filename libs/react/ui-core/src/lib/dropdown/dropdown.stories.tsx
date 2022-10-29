@@ -31,5 +31,5 @@ Primary.args = {
     {label: 'Вариант 04', key: 'key 4'},
   ],
   icon: <Icon size={24} name={"ri-calendar-event-line"} />,
-  errorText: 'Ошибка!!!'
+  errorText: 'Ошибка!!!',
 };

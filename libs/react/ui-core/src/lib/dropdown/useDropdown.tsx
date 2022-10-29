@@ -16,12 +16,18 @@ export function useDropdown(props:DropdownProps):useDropdownProps {
     || null)
 
   useEffect(() => {
+    if(props.defaultSelectedKey) {
+      setActiveItemKey(props.defaultSelectedKey)
+    }
+  }, [props.defaultSelectedKey])
+
+  useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  })
+  }, [])
 
   const handleOpen = useCallback((isOpen: boolean) => {
     if(!props.disabled) {
