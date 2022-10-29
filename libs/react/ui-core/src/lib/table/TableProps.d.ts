@@ -1,23 +1,16 @@
 import {DefaultParams} from '../../default-types/defaultParams'
+import React from 'react'
 
-export interface TableProps extends DefaultParams{
-  columns: ColumnType<RecordType>
-  data: any
+export interface TableProps<RecordType> extends DefaultParams{
+  columns: ColumnsType<RecordType>[]
+  data: readonly RecordType[]
 }
 
-export interface ColumnType<RecordType> {
-  title?: ColumnTitle<RecordType>
-  // Sorter
-  sorter?:
-    | boolean
-    | CompareFn<RecordType>
-    | {
-    compare?: CompareFn<RecordType>;
-    /** Config multiple sorter order priority */
-    multiple?: number
-  };
-  sortOrder?: SortOrder;
-  defaultSortOrder?: SortOrder;
-  sortDirections?: SortOrder[];
-  showSorterTooltip?: boolean | TooltipProps
+export interface ColumnsType<RecordType> {
+  title: React.ReactNode | string
+  key: React.Key
+  dataIndex: string
+  colSpan?: number
+  rowSpan?: number
+  width?: number
 }
