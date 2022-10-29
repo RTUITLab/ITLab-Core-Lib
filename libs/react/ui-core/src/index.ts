@@ -1,3 +1,4 @@
+export * from './lib/table/table';
 export * from './lib/markdown/markdown';
 export * from './lib/spinner/spinner';
 export * from './lib/steps/steps';
