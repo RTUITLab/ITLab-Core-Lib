@@ -7,102 +7,18 @@ import {Badge} from '../badge/badge'
 import Input from '../input/input'
 import {InputNumber} from '../input-number/input-number'
 import CurrencyInput from '../currency-input/currency-input'
+import {Checkbox} from '../checkbox/checkbox'
 
 export default {
   component: Table,
   title: 'Table',
+  argTypes: {
+    tableLayout: { defaultValue: 'auto' },
+    className: {control: {type: 'text'}},
+  }
 } as ComponentMeta<typeof Table>;
 
 const Template: ComponentStory<typeof Table> = (args) => {
-
-  interface DataType {
-    key: number | string;
-    name: string | React.ReactNode;
-    phone: string;
-    age: number;
-  }
-
-  const columns: ColumnsType<DataType>[] = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 1,
-      colSpan: 2,
-      width: 500,
-      onCell: (value, index) => {
-
-        if (index === 0) {
-          return {rowSpan: 3}
-        }
-        else if(index === 1 || index === 2) {
-          return {rowSpan: 0}
-        }
-        else {
-          return {rowSpan: 1}
-        }
-      }
-    },
-    {
-      title: 'Phone',
-      dataIndex: 'phone',
-      colSpan: 0,
-      rowSpan: 0,
-      key: 2,
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 3,
-      sorter: true
-    },
-  ]
-
-  const data: DataType[] = [
-    {
-      key: 1,
-      name: 'name1',
-      phone: 'phone1',
-      age:1,
-    },
-    {
-      key: 4,
-      phone: 'phone4',
-      name: 'name4',
-      age: 4,
-    },
-    {
-      key: 2,
-      name: 'name2',
-      phone: 'phone2',
-      age: 2,
-    },
-    {
-      key: 5,
-      name: <Button children={'батон'} />,
-      phone: 'phone5',
-      age: 5,
-    },
-    {
-      key: 6,
-      name: 'name6',
-      phone: 'phone6',
-      age: 6,
-    },
-    {
-      key: 3,
-      name: 'name3',
-      phone: 'phone3',
-      age: 3,
-    },
-  ]
-
-  const footer: DataType = {
-    key: 7,
-    name: 'name7',
-    phone: 'phone7',
-    age: 7,
-  }
-  const footerNode = <div>Итого</div>
 
   return (
       <Table {...args} />
@@ -450,11 +366,11 @@ CustomComponents.args = {
   data: [
     {
       key: 1,
-      name: <Badge children={'Steven'} />,
+      name: <Badge style={{margin: 'auto'}} children={'Steven'} />,
       phone: <Input defaultValue={'8-800-555-35-35'} readonly />,
       age:18,
       county: 'Russia',
-      city: <CurrencyInput defaultValue={20000} />
+      city: <Checkbox label={'Чек'} />
     },
     {
       key: 2,

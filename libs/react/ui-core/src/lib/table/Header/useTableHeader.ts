@@ -9,7 +9,6 @@ export const useTableHeader = (props: TableHeaderProps<any>) => {
     const conditions:{[index: string]:boolean} = {
       "table-head-sort": true,
       "table-head-sort-active": props.sortValue === title && props.sortType !== '',
-      "table-head-sort-descending": props.sortType === 'descending' || props.sortType === '',
       "table-head-sort-ascending": props.sortType === 'ascending',
     };
     return getClasses(conditions, styles)

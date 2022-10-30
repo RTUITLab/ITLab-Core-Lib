@@ -4,6 +4,7 @@
   border-collapse: collapse;
   table-layout: auto;
   overflow: auto;
+  width: 100%;
 
   &.table-fixed {
     table-layout: fixed;
@@ -33,6 +34,7 @@
     & .table-head-cell {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 4px;
 
       & .table-head-sort {
@@ -43,9 +45,6 @@
       }
       & .table-head-sort-active {
         opacity: 1;
-      }
-      & .table-head-sort-descending {
-
       }
       & .table-head-sort-ascending {
         transform: rotate(-180deg);
