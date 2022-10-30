@@ -10,10 +10,10 @@ export const useTable = (props: TableProps<any>) => {
 
   const sortData = useCallback((value: string, type: string) => {
     if (type === 'ascending') {
-      return props.data.sort((a: any, b: any) => a[value] > b[value] ? 1 : -1)
+      return (props.data.map((item) => item)).sort((a, b) => a[value] > b[value] ? 1 : -1)
     }
     else if (type === 'descending') {
-      return props.data.sort((a:any, b:any) => a[value] <= b[value] ? 1 : -1)
+      return (props.data.map((item) => item)).sort((a, b) => a[value] <= b[value] ? 1 : -1)
     }
     else return props.data
   }, [props.data])
@@ -40,7 +40,7 @@ export const useTable = (props: TableProps<any>) => {
       setSortType('ascending')
       setData(sortData(value, 'ascending'))
     }
-    return props.data.sort((a, b) => a[value] > b[value] ? 1 : -1)
+    return (props.data.map((item) => item)).sort((a, b) => a[value] > b[value] ? 1 : -1)
   }, [props.data, sortValue, sortData])
 
   useEffect(() => {

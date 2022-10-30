@@ -74,7 +74,7 @@ const Template: ComponentStory<typeof Table> = (args) => {
     },
     {
       key: 5,
-      name: 'name5',
+      name: <Button children={'батон'} />,
       phone: 'phone5',
       age: 5,
     },
