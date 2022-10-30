@@ -26,6 +26,7 @@ const Template: ComponentStory<typeof Table> = (args) => {
       colSpan: 2,
       width: 500,
       onCell: (value, index) => {
+
         if (index === 0) {
           return {rowSpan: 3}
         }
@@ -96,6 +97,7 @@ const Template: ComponentStory<typeof Table> = (args) => {
     phone: 'phone7',
     age: 7,
   }
+  const footerNode = <div>Итого</div>
 
   return (
       <Table {...args} columns={columns} data={data} footer={footer} />

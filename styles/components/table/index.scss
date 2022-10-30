@@ -14,8 +14,17 @@
     color: dt.$general-90;
     padding: 16px 20px;
     text-align: center;
+
+    font-size: dt.$typo-font-p-medium-size;
+    line-height: dt.$typo-font-p-medium-line-height;
+    font-weight: dt.$typo-font-p-medium-weight;
   }
   & .table-head, .table-footer {
     background-color: dt.$general-30;
+  }
+  & .table-footer {
+    &-element {
+      text-align: left;
+    }
   }
 }

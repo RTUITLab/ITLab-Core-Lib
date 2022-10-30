@@ -4,7 +4,7 @@ import React from 'react'
 export interface TableProps<RecordType> extends DefaultParams{
   columns: ColumnsType<RecordType>[]
   data: RecordType[]
-  footer?: RecordType
+  footer?: RecordType | React.ReactNode
   tableLayout?: TableLayout
 }
 
