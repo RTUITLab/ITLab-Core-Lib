@@ -3,6 +3,7 @@
 .table {
   border-collapse: collapse;
   table-layout: auto;
+  overflow: auto;
 
   &.table-fixed {
     table-layout: fixed;

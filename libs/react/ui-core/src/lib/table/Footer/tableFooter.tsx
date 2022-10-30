@@ -3,11 +3,12 @@ import styles from '../table.module.scss'
 import {ColumnsType} from '../TableProps'
 
 const TableFooter:FC<MyProps<any>> = ({footer, columns, dataLength}) => {
+
   return (
     <>
       {
-        footer &&
-        !React.isValidElement(footer)
+       footer &&
+        (!React.isValidElement(footer)
           ?
           <tfoot className={styles['table-footer']}>
             <tr>
@@ -16,9 +17,10 @@ const TableFooter:FC<MyProps<any>> = ({footer, columns, dataLength}) => {
                 if(column.onCell) {
                   attributes = column.onCell(footer, dataLength) // footer row number
                 }
+                console.log(attributes?.colSpan)
                 if((attributes?.colSpan === 0 || column.colSpan === 0) || (attributes?.rowSpan === 0 || column.rowSpan === 0)) return null
                 return (
-                  <td className={styles['table-cell']} colSpan={column.colSpan} rowSpan={column.rowSpan} style={{width: column.width, ...attributes?.style}} key={index}>
+                  <td className={styles['table-cell']} colSpan={attributes?.colSpan || column.colSpan} rowSpan={attributes?.rowSpan || column.rowSpan} style={{width: column.width, ...attributes?.style}} key={index}>
                     {footer[column.dataIndex]}
                   </td>
                 )
@@ -28,11 +30,11 @@ const TableFooter:FC<MyProps<any>> = ({footer, columns, dataLength}) => {
           :
           <tfoot className={styles['table-footer']}>
             <tr>
-              <td className={`${styles['table-cell']} ${styles['table-footer-element']}`} colSpan={3}>
+              <td className={`${styles['table-cell']} ${styles['table-footer-element']}`} colSpan={columns.length}>
                 {footer}
               </td>
             </tr>
-          </tfoot>
+          </tfoot>)
       }
     </>
   )

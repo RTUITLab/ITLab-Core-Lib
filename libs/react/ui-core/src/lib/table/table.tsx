@@ -8,7 +8,7 @@ import TableFooter from './Footer/tableFooter'
 
 export const Table = forwardRef((props: TableProps<any>, ref: any) => {
   const {classes, sortValue, sortType, sortTable, data} = useTable(props)
-  console.log(props.data)
+
   return (
     <table ref={ref} className={classes}>
       <TableHeader columns={props.columns} sortValue={sortValue} sortType={sortType} sortTable={sortTable} />
