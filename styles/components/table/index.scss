@@ -1,10 +1,21 @@
 @use '../../../styles/design-tokens' as dt;
 
-.container {
-  border: 1px solid black;
+.table {
   border-collapse: collapse;
+  table-layout: auto;
 
-  & th, td {
-    border: 1px solid black;
+  &.table-fixed {
+    table-layout: fixed;
+  }
+
+  & .table-head, .table-cell {
+    box-sizing: border-box;
+    border: 1px solid dt.$general-50;
+    color: dt.$general-90;
+    padding: 16px 20px;
+    text-align: center;
+  }
+  & .table-head, .table-footer {
+    background-color: dt.$general-30;
   }
 }

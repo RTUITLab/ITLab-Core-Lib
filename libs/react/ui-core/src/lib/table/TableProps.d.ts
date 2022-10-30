@@ -3,7 +3,9 @@ import React from 'react'
 
 export interface TableProps<RecordType> extends DefaultParams{
   columns: ColumnsType<RecordType>[]
-  data: readonly RecordType[]
+  data: RecordType[]
+  footer?: RecordType
+  tableLayout?: TableLayout
 }
 
 export interface ColumnsType<RecordType> {
@@ -20,3 +22,5 @@ export type GetComponentProps<DataType> = (
   data: DataType,
   index: number,
 ) => React.TdHTMLAttributes<any>;
+
+export type TableLayout = 'auto' | 'fixed';

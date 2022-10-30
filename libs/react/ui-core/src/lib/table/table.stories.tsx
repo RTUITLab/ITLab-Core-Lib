@@ -35,12 +35,6 @@ const Template: ComponentStory<typeof Table> = (args) => {
         else {
           return {rowSpan: 1}
         }
-        // if (index % 2 === 1) {
-        //   return {rowSpan: 0}
-        // }
-        // else {
-        //   return {rowSpan: 2}
-        // }
       }
     },
     {
@@ -96,8 +90,15 @@ const Template: ComponentStory<typeof Table> = (args) => {
     },
   ]
 
+  const footer: DataType = {
+    key: 7,
+    name: 'name7',
+    phone: 'phone7',
+    age: 7,
+  }
+
   return (
-      <Table {...args} columns={columns} data={data} />
+      <Table {...args} columns={columns} data={data} footer={footer} />
     )
 };
 
