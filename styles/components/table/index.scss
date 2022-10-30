@@ -18,9 +18,38 @@
     font-size: dt.$typo-font-p-medium-size;
     line-height: dt.$typo-font-p-medium-line-height;
     font-weight: dt.$typo-font-p-medium-weight;
+    font-family: dt.$typo-font-p-regular-family;
   }
   & .table-head, .table-footer {
     background-color: dt.$general-30;
+  }
+  & .table-head {
+
+    &:hover .table-head-cell .table-head-sort {
+      opacity: .7;
+    }
+
+    & .table-head-cell {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      & .table-head-sort {
+        cursor: pointer;
+        color: dt.$general-90;
+        opacity: .3;
+        transition: all 0.2s ease;
+      }
+      & .table-head-sort-active {
+        opacity: 1;
+      }
+      & .table-head-sort-descending {
+
+      }
+      & .table-head-sort-ascending {
+        transform: rotate(-180deg);
+      }
+    }
   }
   & .table-footer {
     &-element {

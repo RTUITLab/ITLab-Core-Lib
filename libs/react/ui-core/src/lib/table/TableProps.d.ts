@@ -15,6 +15,7 @@ export interface ColumnsType<RecordType> {
   colSpan?: number
   rowSpan?: number
   width?: number
+  sorter?: boolean
   onCell?: GetComponentProps<RecordType>
 }
 
@@ -24,3 +25,5 @@ export type GetComponentProps<DataType> = (
 ) => React.TdHTMLAttributes<any>;
 
 export type TableLayout = 'auto' | 'fixed';
+
+export type TableSortType = 'descending' | 'ascending' | ''

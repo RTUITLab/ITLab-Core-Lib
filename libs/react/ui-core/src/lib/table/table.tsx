@@ -7,13 +7,13 @@ import TableBody from './Body/tableBody'
 import TableFooter from './Footer/tableFooter'
 
 export const Table = forwardRef((props: TableProps<any>, ref: any) => {
-  const {classes} = useTable(props)
-
+  const {classes, sortValue, sortType, sortTable, data} = useTable(props)
+  console.log(props.data)
   return (
     <table ref={ref} className={classes}>
-      <TableHeader columns={props.columns} />
-      <TableBody data={props.data} columns={props.columns} />
-      <TableFooter footer={props.footer} columns={props.columns} dataLength={props.data.length} />
+      <TableHeader columns={props.columns} sortValue={sortValue} sortType={sortType} sortTable={sortTable} />
+      <TableBody data={data} columns={props.columns} />
+      <TableFooter footer={props.footer} columns={props.columns} dataLength={data.length} />
     </table>
   );
 })

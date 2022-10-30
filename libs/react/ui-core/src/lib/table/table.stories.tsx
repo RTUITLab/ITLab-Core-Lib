@@ -49,6 +49,7 @@ const Template: ComponentStory<typeof Table> = (args) => {
       title: 'Age',
       dataIndex: 'age',
       key: 3,
+      sorter: true
     },
   ]
 
@@ -60,26 +61,20 @@ const Template: ComponentStory<typeof Table> = (args) => {
       age:1,
     },
     {
-      key: 2,
-      name: 'name2',
-      phone: 'phone2',
-      age: 2,
-    },
-    {
-      key: 3,
-      name: 'name3',
-      phone: 'phone3',
-      age: 3,
-    },
-    {
       key: 4,
       phone: 'phone4',
       name: 'name4',
       age: 4,
     },
     {
+      key: 2,
+      name: 'name2',
+      phone: 'phone2',
+      age: 2,
+    },
+    {
       key: 5,
-      name: <Button children={'123'} size={'small'} />,
+      name: 'name5',
       phone: 'phone5',
       age: 5,
     },
@@ -88,6 +83,12 @@ const Template: ComponentStory<typeof Table> = (args) => {
       name: 'name6',
       phone: 'phone6',
       age: 6,
+    },
+    {
+      key: 3,
+      name: 'name3',
+      phone: 'phone3',
+      age: 3,
     },
   ]
 
