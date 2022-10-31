@@ -4,16 +4,14 @@ import {ClickableObjectMini} from '../../default-types/ClickableObjectMini'
 
 export interface TableProps<RecordType> extends DefaultParams, ClickableObjectMini{
 
-
-  /** ColumnsType
-   *
-   * interface ColumnsType<{DataType}> { <br/>
-   *  &nbsp;&nbsp; title: React.ReactNode | string <br/>
+  /** ColumnsType<{DataType}> { <br/>
+   *  &nbsp;&nbsp; title: string <br/>
    *  &nbsp;&nbsp; key: React.Key <br/>
    *  &nbsp;&nbsp; dataIndex: string <br/>
    *  &nbsp;&nbsp; colSpan?: number <br/>
    *  &nbsp;&nbsp; rowSpan?: number <br/>
    *  &nbsp;&nbsp; width?: number <br/>
+   *  &nbsp;&nbsp; render?: (value: DataType, index: number) => React.ReactNode <br/>
    *  &nbsp;&nbsp; sorter?: boolean <br/>
    *  &nbsp;&nbsp; onCell?: GetComponentProps<RecordType> <br/>
    * }
@@ -40,13 +38,17 @@ export interface TableProps<RecordType> extends DefaultParams, ClickableObjectMi
 }
 
 export interface ColumnsType<RecordType> {
-  title: React.ReactNode | string
+  title: string
   key: React.Key
   dataIndex: string
   colSpan?: number
   rowSpan?: number
   width?: number
   sorter?: boolean
+  render?: (
+    value: RecordType,
+    index: number,
+  ) => React.ReactNode;
   onCell?: GetComponentProps<RecordType>
 }
 

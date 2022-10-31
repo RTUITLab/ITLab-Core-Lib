@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import styles from '../table.module.scss'
 import {ColumnsType} from '../TableProps'
 
-const TableFooter:FC<MyProps<any>> = ({footer, columns, dataLength}) => {
+const TableFooter:FC<MyProps<any>> = React.memo(({footer, columns, dataLength}) => {
 
   return (
     <>
@@ -38,7 +38,7 @@ const TableFooter:FC<MyProps<any>> = ({footer, columns, dataLength}) => {
       }
     </>
   )
-}
+})
 
 export default TableFooter
 

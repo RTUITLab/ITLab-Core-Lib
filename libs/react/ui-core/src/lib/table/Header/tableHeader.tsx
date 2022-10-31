@@ -4,7 +4,7 @@ import {ColumnsType, TableSortType} from '../TableProps'
 import Icon from '../../icon/icon'
 import {useTableHeader} from './useTableHeader'
 
-const TableHeader:FC<TableHeaderProps<any>> = ({columns, sortValue, sortType, sortTable}) => {
+const TableHeader:FC<TableHeaderProps<any>> = React.memo(({columns, sortValue, sortType, sortTable}) => {
   const {getIconClasses} = useTableHeader({columns, sortValue, sortType, sortTable})
   return (
     <thead>
@@ -12,11 +12,11 @@ const TableHeader:FC<TableHeaderProps<any>> = ({columns, sortValue, sortType, so
         {columns.map((item) => {
           if(item.colSpan === 0 || item.rowSpan === 0) return null
           return (
-            <th onClick={() => item.sorter && sortTable(item.dataIndex, sortType)} className={styles['table-head']} colSpan={item.colSpan} rowSpan={item.rowSpan} style={{width: item.width}} key={item.key}>
+            <th className={styles['table-head']} colSpan={item.colSpan} rowSpan={item.rowSpan} style={{width: item.width}} key={item.key}>
               <span className={styles['table-head-cell']}>
                 {item.title}
                 {
-                  item.sorter && <Icon className={getIconClasses(item.dataIndex)} name={'ri-arrow-down-s-fill'} size={18} type={'fill'} />
+                  item.sorter && <Icon onClick={() => item.sorter && sortTable(item.dataIndex, sortType)} className={getIconClasses(item.dataIndex)} name={'ri-arrow-down-s-fill'} size={18} type={'fill'} />
                 }
               </span>
             </th>
@@ -25,7 +25,7 @@ const TableHeader:FC<TableHeaderProps<any>> = ({columns, sortValue, sortType, so
       </tr>
     </thead>
   )
-}
+})
 
 export default TableHeader
 

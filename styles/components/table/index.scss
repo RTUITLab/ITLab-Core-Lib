@@ -27,9 +27,7 @@
   }
   & .table-head {
 
-    &:hover .table-head-cell .table-head-sort {
-      opacity: .7;
-    }
+
 
     & .table-head-cell {
       display: flex;
@@ -42,6 +40,9 @@
         color: dt.$general-90;
         opacity: .3;
         transition: all 0.2s ease;
+        &:hover {
+          opacity: .7;
+        }
       }
       & .table-head-sort-active {
         opacity: 1;

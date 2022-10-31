@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import styles from '../table.module.scss'
 import {ColumnsType} from '../TableProps'
 
-const TableBody:FC<MyProps<any>> = ({data, columns}) => {
+const TableBody:FC<MyProps<any>> = React.memo(({data, columns}) => {
   return (
     <tbody>
     {
@@ -12,12 +12,16 @@ const TableBody:FC<MyProps<any>> = ({data, columns}) => {
             {columns.map((column, tdIndex) => {
               let attributes
               if(column.onCell) {
-                attributes = column.onCell(item, index) // index - row number
+                attributes = column.onCell(item, index)
               }
               if((attributes?.colSpan === 0 || column.colSpan === 0) || (attributes?.rowSpan === 0 || column.rowSpan === 0)) return null
               return (
                 <td className={styles['table-cell']} colSpan={attributes?.colSpan || column.colSpan} rowSpan={attributes?.rowSpan || column.rowSpan} style={{width: column.width, ...attributes?.style}} key={tdIndex}>
-                  {item[column.dataIndex]}
+                  {
+                    column.render
+                    ? column.render(item[column.dataIndex], index) // index - row number
+                    : item[column.dataIndex]
+                  }
                 </td>
               )
             })}
@@ -27,7 +31,7 @@ const TableBody:FC<MyProps<any>> = ({data, columns}) => {
     }
     </tbody>
   )
-}
+})
 
 export default TableBody
 

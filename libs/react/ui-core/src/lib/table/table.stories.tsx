@@ -1,12 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Table } from './table';
-import {ColumnsType} from './TableProps'
 import React from 'react'
 import {Button} from '../button/button'
 import {Badge} from '../badge/badge'
-import Input from '../input/input'
-import {InputNumber} from '../input-number/input-number'
-import CurrencyInput from '../currency-input/currency-input'
 import {Checkbox} from '../checkbox/checkbox'
 
 export default {
@@ -32,6 +28,7 @@ Primary.args = {
       title: 'Name',
       dataIndex: 'name',
       key: 1,
+      render: (value, index) => <Button children={value} />
     },
     {
       title: 'Age',
@@ -339,17 +336,20 @@ CustomComponents.args = {
       dataIndex: 'name',
       sorter: true,
       key: 1,
+      render: (value, index) => <Badge children={value} />
     },
     {
       title: 'Age',
       dataIndex: 'age',
       key: 2,
       sorter: true,
+      render: (value, index) => <Button children={value} />
     },
     {
       title: 'Phone',
       dataIndex: 'phone',
       key: 3,
+      render: (value, index) => <Checkbox label={value} />
     },
     {
       title: 'Country',
@@ -366,16 +366,16 @@ CustomComponents.args = {
   data: [
     {
       key: 1,
-      name: <Badge style={{margin: 'auto'}} children={'Steven'} />,
-      phone: <Input defaultValue={'8-800-555-35-35'} readonly />,
+      name: 'Steven',
+      phone: '8-800-555-35-35',
       age:18,
       county: 'Russia',
-      city: <Checkbox label={'Чек'} />
+      city: 'Moscow'
     },
     {
       key: 2,
       name: 'Oleg',
-      phone: <Input defaultValue={'8-800-555-35-35'} readonly />,
+      phone: '8-800-555-35-35',
       age:10,
       county: 'Russia',
       city: 'Ekaterinburg'
@@ -383,23 +383,23 @@ CustomComponents.args = {
     {
       key: 3,
       name: 'Fedor',
-      phone: <Input defaultValue={'8-800-555-35-35'} />,
+      phone: '8-800-555-35-35',
       age:38,
-      county: <Button children={'Батон'} />,
+      county: 'Russia',
       city: 'Barnaul'
     },
     {
       key: 4,
       name: 'Petr',
-      phone: <Input defaultValue={'8-800-555-35-35'} readonly />,
+      phone: '8-800-555-35-35',
       age:45,
       county: 'Russia',
-      city: <InputNumber id={'number1'} />
+      city: 'Omsk'
     },
     {
       key: 5,
       name: 'Ivan',
-      phone: <Input defaultValue={'8-800-555-35-35'} readonly />,
+      phone: '8-800-555-35-35',
       age:22,
       county: 'Russia',
       city: 'Novgorod'
@@ -686,11 +686,8 @@ Rowspan.args = {
       dataIndex: 'age',
       key: 2,
       onCell: (value, index) => {
-        if(index === 1) {
-          return {rowSpan: 3}
-        }
-        else if(index === 2) {
-          return {rowSpan: 0}
+        if(index === 2) {
+          return {rowSpan: 2}
         }
         else if(index === 3) {
           return {rowSpan: 0}
@@ -702,15 +699,6 @@ Rowspan.args = {
       title: 'Phone',
       dataIndex: 'phone',
       key: 3,
-      onCell: (value, index) => {
-        if(index === 3) {
-          return {rowSpan: 2}
-        }
-        else if(index === 4) {
-          return {rowSpan: 0}
-        }
-        else return {}
-      }
     },
     {
       title: 'Country',
@@ -736,43 +724,43 @@ Rowspan.args = {
       age:18,
       county: 'Russia',
       city: 'Moscow',
-      salary: 1000,
+      salary: 10000
     },
     {
       key: 2,
-      name: 'Steven',
+      name: 'Oleg',
       phone: '8-800-555-35-35',
-      age:18,
+      age:10,
       county: 'Russia',
-      city: 'Moscow',
-      salary: 1000,
+      city: 'Ekaterinburg',
+      salary: 10000
     },
     {
       key: 3,
-      name: 'Steven',
+      name: 'Fedor',
       phone: '8-800-555-35-35',
-      age:18,
+      age:38,
       county: 'Russia',
-      city: 'Moscow',
-      salary: 1000,
+      city: 'Barnaul',
+      salary: 10000
     },
     {
       key: 4,
-      name: 'Steven',
+      name: 'Petr',
       phone: '8-800-555-35-35',
-      age:18,
+      age:45,
       county: 'Russia',
-      city: 'Moscow',
-      salary: 1000,
+      city: 'Omsk',
+      salary: 10000
     },
     {
       key: 5,
-      name: 'Steven',
+      name: 'Ivan',
       phone: '8-800-555-35-35',
-      age:18,
+      age:22,
       county: 'Russia',
-      city: 'Moscow',
-      salary: 1000,
+      city: 'Novgorod',
+      salary: 10000
     },
   ],
   footer: {
