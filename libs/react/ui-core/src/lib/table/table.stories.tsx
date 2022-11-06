@@ -8,6 +8,11 @@ import {Checkbox} from '../checkbox/checkbox'
 export default {
   component: Table,
   title: 'Table',
+  parameters: {
+    jsx: {
+      showFunctions: true,
+    }
+  },
   argTypes: {
     tableLayout: { defaultValue: 'auto' },
     className: {control: {type: 'text'}},
