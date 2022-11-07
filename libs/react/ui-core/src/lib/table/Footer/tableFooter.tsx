@@ -17,7 +17,7 @@ const TableFooter:FC<MyProps<any>> = React.memo(({footer, columns, dataLength}) 
                 if(column.onCell) {
                   attributes = column.onCell(footer, dataLength) // footer row number
                 }
-                console.log(attributes?.colSpan)
+
                 if((attributes?.colSpan === 0 || column.colSpan === 0) || (attributes?.rowSpan === 0 || column.rowSpan === 0)) return null
                 return (
                   <td className={styles['table-cell']} colSpan={attributes?.colSpan || column.colSpan} rowSpan={attributes?.rowSpan || column.rowSpan} style={{width: column.width, ...attributes?.style}} key={index}>
