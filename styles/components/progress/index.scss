@@ -21,11 +21,20 @@
     width: 100%;
 
     .figure {
+      position: relative;
       width: 100%;
     }
 
     .track {
-      fill: dt.$general-40;
+      background-color: dt.$general-40;
+      border-radius: 10px;
+    }
+
+    .indicator {
+      top: 0;
+      position: absolute;
+      background-color: dt.$general-100;
+      border-radius: 10px;
     }
 
     .track,
@@ -77,17 +86,17 @@
 
   &-linear.progress-success {
     .indicator {
-      fill: dt.$green-80;
+      background-color: dt.$green-80;
     }
   }
   &-linear.progress-error {
     .indicator {
-      fill: dt.$red-100;
+      background-color: dt.$red-100;
     }
   }
   &-linear.progress-regular {
     .indicator {
-      fill: dt.$primary-100;
+      background-color: dt.$primary-100;
     }
   }
 

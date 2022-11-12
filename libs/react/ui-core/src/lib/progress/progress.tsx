@@ -6,22 +6,10 @@ import Icon from '../icon/icon';
 
 const LinearBar = memo(({ fillPercentage }: { fillPercentage: string }) => {
   return (
-    <svg
-      className={styles['figure']}
-      viewBox="0 0 650 11"
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="none"
-    >
-      <rect className={styles['track']} y="0" width="650" height="11" rx="5" />
-      <rect
-        className={styles['indicator']}
-        style={{ width: fillPercentage }}
-        y="0"
-        width="650"
-        height="11"
-        rx="5"
-      />
-    </svg>
+    <div className={styles['figure']}>
+      <div className={styles['track']}></div>
+      <div className={styles['indicator']} style={{ width: fillPercentage }}></div>
+    </div>
   );
 });
 
