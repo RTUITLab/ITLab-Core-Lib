@@ -8,7 +8,10 @@ const LinearBar = memo(({ fillPercentage }: { fillPercentage: string }) => {
   return (
     <div className={styles['figure']}>
       <div className={styles['track']}></div>
-      <div className={styles['indicator']} style={{ width: fillPercentage }}></div>
+      <div
+        className={styles['indicator']}
+        style={{ width: fillPercentage }}
+      ></div>
     </div>
   );
 });
@@ -49,15 +52,24 @@ const Label = memo(
     labelText,
     state,
     type,
+    minWidth,
   }: {
     labelText?: string;
     state?: 'progress' | 'error' | 'success';
     type?: 'linear' | 'radial';
+    minWidth?: string;
   }) => {
     const content = useMemo(() => {
       switch (state) {
         case 'progress':
-          return <div className={styles['label']}>{labelText}</div>;
+          return (
+            <div
+              className={styles['label']}
+              {...(type === 'linear' && { style: { minWidth: minWidth } })}
+            >
+              {labelText}
+            </div>
+          );
           break;
         case 'error':
           return (
@@ -96,7 +108,12 @@ export const Progress = forwardRef((props: ProgressProps, ref: any) => {
       ) : (
         <RadialBar dashArray={dashArray} dashOffset={dashOffset} />
       )}
-      <Label labelText={labelText} state={props.state} type={props.type} />
+      <Label
+        labelText={labelText}
+        state={props.state}
+        type={props.type}
+        minWidth={props.minLabelWidth}
+      />
     </div>
   );
 });
@@ -105,5 +122,6 @@ Progress.defaultProps = {
   size: 'standart',
   type: 'linear',
   state: 'progress',
+  minLabelWidth: '40px',
   format: (currentStep: number, steps: number) => `${currentStep}/${steps}`,
 };

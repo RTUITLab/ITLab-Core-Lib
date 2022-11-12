@@ -11,6 +11,8 @@ export interface ProgressProps extends DefaultParams {
   size?: 'small' | 'standart';
   /** State of the process shown by progress */
   state?: 'progress' | 'error' | 'success';
+  /** Minimum width for label in linear progress */
+  minLabelWidth?: string;
   /** Formatter to show progress. By default x/y */
   format?: (currentStep: number, steps: number) => string;
 }
