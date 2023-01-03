@@ -1,4 +1,5 @@
 {
+  "name": "react-ui-core",
   "$schema": "..\\..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "sourceRoot": "libs/react/ui-core/src",
   "projectType": "library",
@@ -7,7 +8,7 @@
     "build": {
       "executor": "@nrwl/js:tsc",
       "inputs": ["prod", "^prod"],
-      "outputs": ["dist/libs/react/ui-core"],
+      "outputs": ["{workspaceRoot}/dist/libs/react/ui-core"],
       "dependsOn": ["^build"],
       "options": {
         "outputPath": "dist/libs/react/ui-core",
@@ -29,7 +30,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/react/ui-core"],
+      "outputs": ["{workspaceRoot}/coverage/libs/react/ui-core"],
       "options": {
         "jestConfig": "libs/react/ui-core/jest.config.ts",
         "passWithNoTests": true
