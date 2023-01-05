@@ -83,7 +83,7 @@
   }
 }
 
-.input-wrapper-valid {
+.ng-touched.ng-valid > .input-wrapper, .input-wrapper-valid {
   background-color: dt.$green-30;
   color: dt.$green-80;
   border-color: dt.$green-80;
@@ -103,7 +103,7 @@
   }
 }
 
-.input-wrapper-invalid {
+.ng-touched.ng-invalid > .input-wrapper,.input-wrapper-invalid {
   background-color: dt.$red-30;
   color: dt.$red-80;
   border-color: dt.$red-80;
@@ -123,7 +123,7 @@
   }
 }
 
-.input-text-error {
+.ng-touched.ng-invalid > .input-text-error, .input-text-error {
   margin-top: 5px;
   color: dt.$red-80;
 

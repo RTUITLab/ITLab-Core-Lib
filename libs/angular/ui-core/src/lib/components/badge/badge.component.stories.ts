@@ -1,21 +1,19 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { BadgeComponent } from './badge.component';
-import {CommonModule} from "@angular/common";
 
 export default {
   title: 'BadgeComponent',
   component: BadgeComponent,
   decorators: [
     moduleMetadata({
-      declarations: [BadgeComponent],
-      imports: [CommonModule]
+      imports: [BadgeComponent]
     })
   ],
   parameters: {
     layout: 'fullscreen',
   },
   argTypes: {
-    containerClass: { table: { disable: true } }
+    containerClass: {table: {disable: true}}
   }
 } as Meta<BadgeComponent>;
 
@@ -73,14 +71,14 @@ const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => 
         <div>
           <ng-container *ngIf="idx === 0">{{color}}</ng-container>
 
-          <ng-ui-core-badge
+          <nuc-badge
             [value]="value"
             [type]="type"
             [color]="color"
             [size]="size"
             [style]="style"
             [styleClass]="styleClass"
-          ></ng-ui-core-badge>
+          ></nuc-badge>
         </div>
       </ng-container>
       <ng-template #showEmpty><div></div></ng-template>
@@ -90,8 +88,8 @@ const AllStatesStoryTemplate: Story<BadgeComponent> = (args: BadgeComponent) => 
   `
 });
 AllStatesStoryTemplate.argTypes = {
-  color: { control: false },
-  type: { control: false }
+  color: {control: false},
+  type: {control: false}
 };
 
 export const LargeAllStatesStory = AllStatesStoryTemplate.bind({});

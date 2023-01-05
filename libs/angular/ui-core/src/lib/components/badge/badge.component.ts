@@ -1,34 +1,32 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ChangeDetectionStrategy, Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation, } from '@angular/core';
+import { NgClass, NgStyle } from "@angular/common";
 
 @Component({
-  selector: 'ng-ui-core-badge',
+  selector: 'nuc-badge',
   templateUrl: './badge.component.html',
   styleUrls: [
     './badge.component.scss'
   ],
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    NgStyle,
+    NgClass
+  ]
 })
 export class BadgeComponent {
-  private MAX_NUMBER_IN_BADGE = 99;
   /** Style class of the component */
   @Input() styleClass = '';
-
   /** Inline style of the component */
-  @Input() style: {[p: string]: any} | null = null;
-
+  @Input() style: { [p: string]: any } | null = null;
   /** Size of the badge */
   @Input() size: 'large' | 'medium' | 'small' = 'medium';
-
   /** Color of the badge */
   @Input() color: 'primary' | 'red' | 'green' = 'primary';
-
   /** Type of the badge */
   @Input() type: 'outline' | 'solid' | 'light' | 'transparent' = 'solid';
+  private MAX_NUMBER_IN_BADGE = 99;
 
   /** Value to display inside the badge */
   private _value = '';
@@ -40,9 +38,9 @@ export class BadgeComponent {
 
   /** Value to display inside the badge */
   @Input() set value(value: string) {
-    if (!Number.isNaN(value) && Number(value) > this.MAX_NUMBER_IN_BADGE){
+    if (!Number.isNaN(value) && Number(value) > this.MAX_NUMBER_IN_BADGE) {
       this._value = `${this.MAX_NUMBER_IN_BADGE}+`;
-    }else{
+    } else {
       this._value = value;
     }
   }

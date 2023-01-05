@@ -1,8 +1,7 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { ButtonComponent } from './button.component';
-import {CommonModule} from "@angular/common";
-import {BadgeComponent} from "../badge";
-import {InitialBadgeStory} from "../badge/badge.component.stories";
+import { BadgeComponent } from "../badge";
+import { InitialBadgeStory } from "../badge/badge.component.stories";
 
 export default {
   title: 'ButtonComponent',
@@ -10,15 +9,14 @@ export default {
   subcomponents: {BadgeComponent},
   decorators: [
     moduleMetadata({
-      imports: [CommonModule],
-      declarations: [ButtonComponent, BadgeComponent],
+      imports: [ButtonComponent, BadgeComponent],
     })
   ],
   argTypes: {
-    clickCb: { control: false },
-    focusCb: { control: false },
-    blurCb: { control: false },
-    containerClass: { table: { disable: true } },
+    clickCb: {control: false},
+    focusCb: {control: false},
+    blurCb: {control: false},
+    containerClass: {table: {disable: true}},
   }
 } as Meta<ButtonComponent>;
 
@@ -43,7 +41,7 @@ const ButtonWithBadgeTemplate: Story<ButtonComponent> = (args: ButtonComponent) 
     },
   },
   template: `
-  <ng-ui-core-button
+  <nuc-button
     [type]="type"
     [label]="label"
     [styleColor]="styleColor"
@@ -58,15 +56,15 @@ const ButtonWithBadgeTemplate: Story<ButtonComponent> = (args: ButtonComponent) 
     [styleClass]="styleClass"
     [ariaLabel]="ariaLabel"
   >
-    <ng-ui-core-badge
+    <nuc-badge
     [styleClass]="children.styleClass"
     [style]="children.style"
     [value]="children.value"
     [size]="children.size"
     [color]="children.color"
     [type]="children.type"
-    ></ng-ui-core-badge>
-  </ng-ui-core-button>
+    ></nuc-badge>
+  </nuc-button>
   `
 });
 export const ButtonWithBadgeStory = ButtonWithBadgeTemplate.bind({});
@@ -116,7 +114,7 @@ const AllStatesStoryTemplate: Story<ButtonComponent> = (args: ButtonComponent) =
         <div>
           <ng-container *ngIf="idx === 0">{{color}}</ng-container>
 
-          <ng-ui-core-button
+          <nuc-button
             [type]="type"
             [label]="label"
             [styleColor]="color"
@@ -130,7 +128,7 @@ const AllStatesStoryTemplate: Story<ButtonComponent> = (args: ButtonComponent) =
             [style]="style"
             [styleClass]="styleClass"
             [ariaLabel]="ariaLabel"
-          ></ng-ui-core-button>
+          ></nuc-button>
         </div>
       </ng-container>
       <ng-template #showEmpty><div></div></ng-template>
@@ -140,8 +138,8 @@ const AllStatesStoryTemplate: Story<ButtonComponent> = (args: ButtonComponent) =
   `
 });
 AllStatesStoryTemplate.argTypes = {
-  styleColor: { control: false },
-  styleType: { control: false }
+  styleColor: {control: false},
+  styleType: {control: false}
 };
 
 export const LargeAllStatesStory = AllStatesStoryTemplate.bind({});

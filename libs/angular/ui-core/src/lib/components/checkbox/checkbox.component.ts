@@ -15,9 +15,10 @@ import {
   FormControl,
   NG_VALUE_ACCESSOR
 } from "@angular/forms";
+import { NgClass, NgIf, NgStyle } from "@angular/common";
 
 @Component({
-  selector: 'ng-ui-core-checkbox',
+  selector: 'nuc-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: [
     './checkbox.component.scss'
@@ -29,7 +30,13 @@ import {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CheckboxComponent),
       multi: true,
-    }]
+    }],
+  imports: [
+    NgClass,
+    NgStyle,
+    NgIf
+  ],
+  standalone: true
 })
 export class CheckboxComponent implements ControlValueAccessor, OnChanges {
   /** Name of the checkbox group */

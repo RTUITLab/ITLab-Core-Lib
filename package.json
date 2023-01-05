@@ -22,11 +22,13 @@
     "serve-ng-ui-core-storybook": "yarn docs-ui-core:json && nx run angular-ui-core:storybook",
     "build-storybook": "yarn build-ng-ui-core-storybook && yarn build-react-ui-core-storybook",
     "build-ng-ui-core-storybook": "yarn docs-ui-core:json && nx run angular-ui-core:build-storybook:ci",
-    "build-react-ui-core-storybook": "yarn docs-ui-core:json && nx run react-ui-core:build-storybook:ci"
+    "build-react-ui-core-storybook": "yarn docs-ui-core:json && nx run react-ui-core:build-storybook:ci",
+    "serve-ng-ui-core-examples": "nx run angular-examples:serve"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "15.0.4",
+    "@angular/cdk": "^15.0.3",
     "@angular/common": "15.0.4",
     "@angular/compiler": "15.0.4",
     "@angular/core": "15.0.4",
