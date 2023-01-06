@@ -23,7 +23,8 @@
     "build-storybook": "yarn build-ng-ui-core-storybook && yarn build-react-ui-core-storybook",
     "build-ng-ui-core-storybook": "yarn docs-ui-core:json && nx run angular-ui-core:build-storybook:ci",
     "build-react-ui-core-storybook": "yarn docs-ui-core:json && nx run react-ui-core:build-storybook:ci",
-    "serve-ng-ui-core-examples": "nx run angular-examples:serve"
+    "serve-ng-ui-core-examples": "nx run angular-examples:serve",
+    "build-ng-ui-core-examples": "nx run angular-examples:build"
   },
   "private": true,
   "dependencies": {
