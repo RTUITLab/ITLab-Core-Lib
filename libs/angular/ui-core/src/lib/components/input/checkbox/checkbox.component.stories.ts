@@ -26,7 +26,7 @@ export default {
     onClick: {control: false},
     updateModel: {control: false},
     ngOnChanges: {control: false},
-    changeCb: {control: false},
+    inputEvent: {control: false},
     inputViewChild: {control: false}
   }
 } as Meta<CheckboxComponent>;

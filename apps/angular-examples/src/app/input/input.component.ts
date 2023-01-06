@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InputComponent as NucInputComponent } from '@rtuitlab/ng-ui-core';
+import { InputTextComponent } from '@rtuitlab/ng-ui-core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 
 @Component({
@@ -10,6 +10,58 @@ import { FormControl, FormsModule, ReactiveFormsModule, Validators } from "@angu
     <nuc-input
       [(ngModel)]="valueFromNgModel"
       name="model"
+      errorText="asd"
+      placeholder="sad"
+      required
+    ></nuc-input>
+
+    <nuc-input
+      [(ngModel)]="valueFromNgModel"
+      name="model"
+      type="search"
+      errorText="asd"
+      placeholder="sad"
+      required
+    ></nuc-input>
+
+    <nuc-input
+      [(ngModel)]="valueFromNgModel"
+      name="model"
+      type="icon"
+      iconClassName="ri-user-search-fill"
+      errorText="asd"
+      placeholder="sad"
+      required
+    ></nuc-input>
+
+    <nuc-input
+      [(ngModel)]="valueFromNgModel"
+      name="model"
+      type="icon"
+      size="large"
+      iconClassName="ri-user-search-fill"
+      errorText="asd"
+      placeholder="sad"
+      required
+    ></nuc-input>
+
+    <nuc-input
+      [(ngModel)]="valueFromNgModel"
+      name="model"
+      type="icon"
+      size="small"
+      iconClassName="ri-user-search-fill"
+      errorText="asd"
+      placeholder="sad"
+      required
+    ></nuc-input>
+
+    <nuc-input
+      [(ngModel)]="valueFromNgModel"
+      name="model"
+      type="icon"
+      iconClassName="ri-user-search-fill"
+      iconPosition="right"
       errorText="asd"
       placeholder="sad"
       required
@@ -26,7 +78,7 @@ import { FormControl, FormsModule, ReactiveFormsModule, Validators } from "@angu
 
     <p>Value from FormControl {{formControl.value}}</p>
   `,
-  imports: [NucInputComponent, FormsModule, ReactiveFormsModule],
+  imports: [InputTextComponent, FormsModule, ReactiveFormsModule],
 })
 export class InputComponent {
   formControl = new FormControl('', Validators.required)

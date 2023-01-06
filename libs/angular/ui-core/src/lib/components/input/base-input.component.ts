@@ -1,69 +1,41 @@
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   forwardRef,
+  ForwardRefFn,
   Input,
   OnChanges,
   Output,
   SimpleChanges,
-  ViewChild,
-  ViewEncapsulation
+  ViewChild
 } from '@angular/core';
-import { FormControl, NG_VALUE_ACCESSOR, Validators } from "@angular/forms";
-import { NgClass, NgIf, NgStyle } from "@angular/common";
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from "@angular/forms";
 import { BooleanInput, coerceBooleanProperty } from "@angular/cdk/coercion";
 
-@Component({
-  selector: 'nuc-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
-      multi: true,
-    }],
-  imports: [
-    NgStyle,
-    NgClass,
-    NgIf
-  ]
-})
-export class InputComponent implements OnChanges {
+export function inputNgValueAccessorProviderFactory(forwardRefFactory: ForwardRefFn) {
+  return {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(forwardRefFactory),
+    multi: true,
+  }
+}
+
+@Component({template: ''})
+export class BaseInputComponent implements OnChanges, ControlValueAccessor {
   /** Name of input */
   @Input() name: string | undefined;
 
   /** Value of input */
-  @Input() value = '';
+  @Input() value: any = '';
 
   /** Placeholder of the input */
   @Input() placeholder = '';
 
-  @Input() errorText = '';
-
   /** Establishes relationships between the component and label(s) where its value should be one or more element IDs */
   @Input() ariaLabelledBy = '';
 
-  /** Size of input */
-  @Input() size: 'large' | 'medium' | 'small' = 'medium'
-
-  /** When present, it specifies that the component should be disabled */
-  @Input()
-  get disabled(): boolean {
-    return this._disabled;
-  }
-  set disabled(value: BooleanInput) {
-    this._disabled = coerceBooleanProperty(value);
-  }
-  protected _disabled = false;
-
-  /** Used to define a string that labels the input element */
   @Input() ariaLabel = '';
 
   /** Index of the element in tabbing order */
@@ -84,33 +56,10 @@ export class InputComponent implements OnChanges {
   /** Value of the input */
   @Input() formControl: FormControl | undefined;
 
-  /** Icon class of the input icon */
-  @Input() inputIcon = 'ri-check-line';
-
-  /** When present, it specifies that the component cannot be edited */
-  @Input()
-  get readonly(): boolean {
-    return this._readonly;
-  }
-  set readonly(value: BooleanInput) {
-    this._readonly = coerceBooleanProperty(value);
-  }
-  private _readonly = false;
-
-  /** When present, it specifies that input must be checked before submitting the form */
-  @Input()
-  get required(): boolean {
-    return this._required ?? this.formControl?.hasValidator(Validators.required) ?? false;
-  }
-  set required(value: BooleanInput) {
-    this._required = coerceBooleanProperty(value);
-  }
-  protected _required: boolean | undefined;
-
   /** Ref to native el of input */
-  @ViewChild('inputElement', {static: true}) inputViewChild: ElementRef<HTMLInputElement> | undefined;
+  @ViewChild('inputElement', {static: true}) inputViewChild: ElementRef<any> | undefined;
 
-  /** Callback to invoke on input click */
+  /** Callback to invoke on input event */
   @Output() inputEvent: EventEmitter<any> = new EventEmitter();
 
   /** Model for NgModel*/
@@ -119,16 +68,49 @@ export class InputComponent implements OnChanges {
   /** Is field in focus */
   isFocused = false;
 
-  /** Is field was touched */
-  isWasTouched = false
+  constructor(protected cdr: ChangeDetectorRef) {
+  }
 
-  constructor(private cd: ChangeDetectorRef) {
+  protected _disabled = false;
+
+  /** When present, it specifies that the component should be disabled */
+  @Input()
+  get disabled(): boolean {
+    return this._disabled;
+  }
+
+  set disabled(value: BooleanInput) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+
+  private _readonly = false;
+
+  /** When present, it specifies that the component cannot be edited */
+  @Input()
+  get readonly(): boolean {
+    return this._readonly;
+  }
+
+  set readonly(value: BooleanInput) {
+    this._readonly = coerceBooleanProperty(value);
+  }
+
+  protected _required: boolean | undefined;
+
+  /** When present, it specifies that input must be checked before submitting the form */
+  @Input()
+  get required(): boolean {
+    return this._required ?? this.formControl?.hasValidator(Validators.required) ?? false;
+  }
+
+  set required(value: BooleanInput) {
+    this._required = coerceBooleanProperty(value);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['formControl'] && !changes['formControl'].isFirstChange()) {
       this.formControl = changes['formControl'].currentValue;
-      this.cd.markForCheck();
+      this.cdr.markForCheck();
     }
   }
 
@@ -156,7 +138,6 @@ export class InputComponent implements OnChanges {
 
   onBlur() {
     this.isFocused = false;
-    this.isWasTouched = true;
     this._onInputModelTouched();
   }
 
@@ -180,7 +161,7 @@ export class InputComponent implements OnChanges {
   /** Function for ControlValueAccessor */
   writeValue(model: any): void {
     this.model = model;
-    this.cd.markForCheck();
+    this.cdr.markForCheck();
   }
 
   /** Function for ControlValueAccessor */
@@ -196,31 +177,18 @@ export class InputComponent implements OnChanges {
   /** Function for ControlValueAccessor */
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
-    this.cd.markForCheck();
-  }
-
-  containerClass() {
-    return {
-      "input-wrapper": true,
-      "input-wrapper-large": this.size === 'large',
-      "input-wrapper-small": this.size === 'small',
-      "input-wrapper-medium": this.size === 'medium' || !this.size,
-      "input-wrapper-disabled": Boolean(this.disabled),
-      "input-wrapper-readonly": Boolean(this.readonly),
-    };
+    this.cdr.markForCheck();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private _onInputModelChange: (value: any) => void = () => {
+  protected _onInputModelChange: (value: any) => void = () => {
   };
-
-  ////
 
   /**
    * Called when the input is blurred. Needed to properly implement ControlValueAccessor.
    * @docs-private
    */
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private _onInputModelTouched: () => any = () => {
+  protected _onInputModelTouched: () => any = () => {
   };
 }

@@ -1,6 +1,6 @@
 <div
   [ngStyle]="style"
-  [ngClass]="containerClass()"
+  [ngClass]="containerClass"
   [class]="styleClass"
 >
   <label class="input-outer">
@@ -22,6 +22,11 @@
       [attr.aria-label]="ariaLabel"
       [attr.required]="required"
     >
+    <nuc-icon
+      *ngIf="isIconShouldBeShown(type)"
+      [icon]="iconClassName"
+      [ngClass]="iconClass"
+    ></nuc-icon>
   </label>
 </div>
 <div *ngIf="errorText" class="input-text-error">

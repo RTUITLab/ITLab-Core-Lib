@@ -1,23 +1,23 @@
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { InputComponent } from "./input.component";
+import { InputTextComponent } from "./input-text.component";
 
 export default {
   title: 'InputComponent',
-  component: InputComponent,
+  component: InputTextComponent,
   decorators: [
     moduleMetadata({
-      imports: [InputComponent, FormsModule, ReactiveFormsModule]
+      imports: [InputTextComponent, FormsModule, ReactiveFormsModule]
     })
   ],
   parameters: {
     layout: 'centered',
   },
   argTypes: {}
-} as Meta<InputComponent>;
+} as Meta<InputTextComponent>;
 
 
-const InitialTemplate: Story<InputComponent> = (args: InputComponent) => ({
+const InitialTemplate: Story<InputTextComponent> = (args: InputTextComponent) => ({
   props: args
 });
 
@@ -27,7 +27,7 @@ InitialStory.args = {
 };
 InitialStory.storyName = "Initial input";
 
-const NgModelTemplate: Story<InputComponent> = (args: InputComponent) => ({
+const NgModelTemplate: Story<InputTextComponent> = (args: InputTextComponent) => ({
   props: {
     ...args,
     valueFromNgModel: "asd",
@@ -36,6 +36,9 @@ const NgModelTemplate: Story<InputComponent> = (args: InputComponent) => ({
   <nuc-input
   [(ngModel)]="valueFromNgModel"
   [name]="name"
+  [type]="type"
+  [iconClassName]="iconClassName"
+  [iconPosition]="iconPosition"
   ></nuc-input>
 
   <p>Value from NgModel {{valueFromNgModel}}</p>
@@ -48,7 +51,25 @@ NgModelInputStory.args = {
 };
 NgModelInputStory.storyName = "NgModelInputStory ng-ui-core-input";
 
-const FormControlInputTemplate: Story<InputComponent> = (args: InputComponent) => ({
+export const NgModelInputSearchTypeStory = NgModelTemplate.bind({});
+NgModelInputSearchTypeStory.args = {
+  value: 'oiuygbn',
+  name: "nuc-input",
+  type: "search",
+};
+NgModelInputSearchTypeStory.storyName = "NgModelInputSearchTypeStory ng-ui-core-input";
+
+export const NgModelIconTypeStory = NgModelTemplate.bind({});
+NgModelIconTypeStory.args = {
+  value: 'oiuygbn',
+  name: "nuc-input",
+  type: 'icon',
+  iconPosition: 'right',
+  iconClassName: 'ri-user-search-fill'
+};
+NgModelIconTypeStory.storyName = "NgModelIconTypeStory ng-ui-core-input";
+
+const FormControlInputTemplate: Story<InputTextComponent> = (args: InputTextComponent) => ({
   props: {
     ...args,
     valueFromNgModel: false,

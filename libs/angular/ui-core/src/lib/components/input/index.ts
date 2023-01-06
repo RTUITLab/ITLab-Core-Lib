@@ -1,1 +1,3 @@
-export {InputComponent} from './input.component'
+export * from './input-text'
+export * from './checkbox'
+export { BaseInputComponent } from './base-input.component'
