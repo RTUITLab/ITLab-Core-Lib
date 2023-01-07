@@ -20,7 +20,7 @@ export type InputCustomTypes = 'text' | 'search' | 'icon'
     IconComponent
   ]
 })
-export class InputTextComponent extends BaseInputComponent {
+export class InputTextComponent extends BaseInputComponent<string> {
 
   /** If type='icon' presents, then shown Remixicon class name like 'ri-home-line' */
   @Input() iconClassName = '';

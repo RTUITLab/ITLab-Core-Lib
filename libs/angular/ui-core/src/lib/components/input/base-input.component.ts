@@ -1,5 +1,4 @@
 import {
-  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -11,8 +10,9 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from "@angular/forms";
+import { FormControl, NG_VALUE_ACCESSOR, Validators } from "@angular/forms";
 import { BooleanInput, coerceBooleanProperty } from "@angular/cdk/coercion";
+import { AbstractNgModelComponent } from "./abstract-ng-model.component";
 
 export function inputNgValueAccessorProviderFactory(forwardRefFactory: ForwardRefFn) {
   return {
@@ -22,13 +22,10 @@ export function inputNgValueAccessorProviderFactory(forwardRefFactory: ForwardRe
   }
 }
 
-@Component({template: ''})
-export class BaseInputComponent implements OnChanges, ControlValueAccessor {
+@Component({template: '', standalone: true})
+export class BaseInputComponent<T> extends AbstractNgModelComponent<T> implements OnChanges {
   /** Name of input */
   @Input() name: string | undefined;
-
-  /** Value of input */
-  @Input() value: any = '';
 
   /** Placeholder of the input */
   @Input() placeholder = '';
@@ -62,26 +59,8 @@ export class BaseInputComponent implements OnChanges, ControlValueAccessor {
   /** Callback to invoke on input event */
   @Output() inputEvent: EventEmitter<any> = new EventEmitter();
 
-  /** Model for NgModel*/
-  model: any;
-
   /** Is field in focus */
   isFocused = false;
-
-  constructor(protected cdr: ChangeDetectorRef) {
-  }
-
-  protected _disabled = false;
-
-  /** When present, it specifies that the component should be disabled */
-  @Input()
-  get disabled(): boolean {
-    return this._disabled;
-  }
-
-  set disabled(value: BooleanInput) {
-    this._disabled = coerceBooleanProperty(value);
-  }
 
   private _readonly = false;
 
@@ -122,7 +101,7 @@ export class BaseInputComponent implements OnChanges, ControlValueAccessor {
 
   updateModel(event?: Event) {
     const value = this.inputViewChild?.nativeElement.value || ''
-    this.model = value
+    this.value = value
     this._onInputModelChange(value);
 
     if (this.formControl) {
@@ -157,38 +136,4 @@ export class BaseInputComponent implements OnChanges, ControlValueAccessor {
     }
     this.inputViewChild.nativeElement.blur();
   }
-
-  /** Function for ControlValueAccessor */
-  writeValue(model: any): void {
-    this.model = model;
-    this.cdr.markForCheck();
-  }
-
-  /** Function for ControlValueAccessor */
-  registerOnChange(fn: (value: any) => void): void {
-    this._onInputModelChange = fn;
-  }
-
-  /** Function for ControlValueAccessor */
-  registerOnTouched(fn: any): void {
-    this._onInputModelTouched = fn;
-  }
-
-  /** Function for ControlValueAccessor */
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-    this.cdr.markForCheck();
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  protected _onInputModelChange: (value: any) => void = () => {
-  };
-
-  /**
-   * Called when the input is blurred. Needed to properly implement ControlValueAccessor.
-   * @docs-private
-   */
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-  protected _onInputModelTouched: () => any = () => {
-  };
 }

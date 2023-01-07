@@ -33,12 +33,9 @@ type CheckedEvent = { checked: boolean, originalEvent: Event | undefined }
   ],
   standalone: true
 })
-export class CheckboxComponent extends BaseInputComponent {
+export class CheckboxComponent extends BaseInputComponent<any> {
   /** Name of the checkbox group */
   @Input() override name = '';
-
-  /** [It doesn't change checked state of checkbox] Variable which stores value, which used in when checkbox is checked */
-  @Input() override value: any;
 
   /** Label of the checkbox */
   @Input() label = '';
@@ -62,7 +59,7 @@ export class CheckboxComponent extends BaseInputComponent {
     if (this.formControl) {
       return this.formControl.value === this.trueValue;
     }
-    return this.model === this.trueValue;
+    return this.value === this.trueValue;
   }
 
   onClick(event: Event, checkbox: HTMLInputElement, focus: boolean) {
@@ -81,7 +78,7 @@ export class CheckboxComponent extends BaseInputComponent {
 
   override updateModel(event?: Event) {
     const newModelValue = this.isChecked ? this.falseValue : this.trueValue;
-    this.model = newModelValue;
+    this.value = newModelValue;
     this._onInputModelChange(newModelValue);
 
     if (this.formControl) {
