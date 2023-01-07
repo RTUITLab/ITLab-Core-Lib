@@ -9,14 +9,7 @@
       "executor": "@nrwl/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/angular/ui-core"],
       "options": {
-        "project": "libs/angular/ui-core/ng-package.json",
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "styles/",
-            "output": "styles"
-          }
-        ]
+        "project": "libs/angular/ui-core/ng-package.json"
       },
       "configurations": {
         "production": {
