@@ -1,0 +1,50 @@
+<div
+  [ngStyle]="style"
+  [ngClass]="containerClass"
+  [class]="styleClass"
+>
+  <label
+    class='inputNumber-icon'
+    [for]="inputId"
+    *ngIf="showActionsButtons"
+    (click)="changeValueByStep(-step)"
+  >
+    <nuc-icon
+      icon="ri-subtract-fill"
+    ></nuc-icon>
+  </label>
+  <input
+    class="inputNumber"
+    #inputElement
+    type="number"
+    [min]="min"
+    [max]="max"
+    [step]="step"
+    [attr.id]="inputId"
+    [attr.name]="name"
+    [readonly]="readonly"
+    [value]="value"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    (input)="handleChange($event)"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [attr.tabindex]="tabindex"
+    [attr.aria-labelledby]="ariaLabelledBy"
+    [attr.aria-label]="ariaLabel"
+    [attr.required]="required"
+  >
+  <label
+    class='inputNumber-icon'
+    [for]="inputId"
+    *ngIf="showActionsButtons"
+    (click)="changeValueByStep(step)"
+  >
+    <nuc-icon
+      icon="ri-add-fill"
+    ></nuc-icon>
+  </label>
+</div>
+<div *ngIf="errorText" class="input-text-error">
+  {{ errorText }}
+</div>

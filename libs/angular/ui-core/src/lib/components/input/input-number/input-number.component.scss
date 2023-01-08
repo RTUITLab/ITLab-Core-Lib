@@ -1,0 +1,9 @@
+@use '../../../../../../../../styles/components/input-number' as *;
+
+.input-text-error{
+  display: none;
+}
+
+.ng-touched.ng-invalid > .input-text-error{
+  display: inherit;
+}
