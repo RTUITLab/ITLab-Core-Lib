@@ -10,15 +10,25 @@
   justify-content: center;
   font-size: 100%;
   color: white;
+  user-select: none;
 
   font-family: dt.$typo-font-p-medium-family;
   font-style: dt.$typo-font-p-medium-style;
   font-weight: dt.$typo-font-p-medium-weight;
 
   span {
+    text-transform: uppercase;
     display: flex;
     align-items: center;
     vertical-align: center;
+  }
+
+  & .avatar-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   i{

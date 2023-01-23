@@ -1,8 +1,18 @@
-import {useMemo} from "react";
+import {useCallback, useEffect, useMemo, useState} from 'react'
 import styles from "./avatar.module.scss";
 import {AvatarProps} from "./AvatarProps";
 
 export function useAvatar(props: AvatarProps) {
+  const [isSrcError, setIsSrcError] = useState(false)
+
+  const handleSrcError = useCallback(() => {
+    return setIsSrcError(true)
+  }, [])
+
+  useEffect(() => {
+    setIsSrcError(false)
+  }, [props.src])
+
   const classes = useMemo(() => {
     const classList = [styles['avatar']];
     classList.push(styles[`avatar-${props.size}`]);
@@ -10,9 +20,12 @@ export function useAvatar(props: AvatarProps) {
     return classList.join(" ");
   }, [props.size, props.color]);
 
+  const letter = useMemo(() => {
+    return props.name ? props.name[0] : null
+  }, [props.name])
+
   const fontSize = useMemo(() => {
     let size = 48;
-    const k = 2.2;
 
     switch (props.size) {
       case 120:
@@ -33,17 +46,11 @@ export function useAvatar(props: AvatarProps) {
       default:
         break;
     }
-    if (props.children) {
-      if (props.children.toString().length === 1) {
-        return size;
-      } else if (props.children.toString().length === 2) {
-        return size / 1.2;
-      } else {
-        return size / props.children.toString().length * k;
-      }
+    if (props.name) {
+      return size;
     } else {
       return 0;
     }
-  }, [props.children, props.size]);
-  return {classes, fontSize};
+  }, [props.name, props.size]);
+  return {classes, fontSize, letter, handleSrcError, isSrcError};
 }
