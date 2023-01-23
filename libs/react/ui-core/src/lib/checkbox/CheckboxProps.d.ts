@@ -45,4 +45,7 @@ export interface CheckboxProps extends DefaultParams {
 
   /** Style class of the label */
   labelStyleClass?: string | string[];
+
+  /** On change action */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

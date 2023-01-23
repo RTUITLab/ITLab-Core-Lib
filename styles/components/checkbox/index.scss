@@ -11,8 +11,17 @@
   cursor: pointer;
 
   height: 24px;
-
+  transition: all 0.2s ease;
   width: fit-content;
+
+  &:hover .checkbox-box:not(.checkbox-disabled):not(.checkbox-readonly):not(.checkbox-checked) {
+    background: dt.$general-30;
+    border: 1px solid dt.$primary-100;
+  }
+  &:hover .checkbox-checked:not(.checkbox-disabled):not(.checkbox-readonly) {
+    background: dt.$primary-80;
+    border: 1px solid dt.$primary-80;
+  }
 }
 
 .checkbox-hidden-input {
@@ -36,29 +45,15 @@
   align-items: center;
   cursor: pointer;
 
-  width: 20px;
-  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
 
   box-sizing: border-box;
   border: 1px solid dt.$general-50;
   border-radius: 4px;
-  transition: background .5ms ease-in,
-  border .5ms ease-in,
-  box-shadow .5ms ease-in;
-
-  &:not(.checkbox-disabled):not(.checkbox-readonly):hover {
-    background: dt.$general-30;
-    border: 1px solid dt.$primary-100;
-  }
-
-  &.checkbox-focus {
-    background: dt.$general-30;
-    border: 1px solid dt.$primary-100;
-
-    outline: 0 none;
-    outline-offset: 0;
-    box-shadow: 0 0 0 .1rem rgba(30, 94, 255, 0.7);
-  }
+  transition: background .2s ease,
+  border .2s ease,
+  box-shadow .2s ease;
 
   &.checkbox-checked {
     color: #FFFFFF;
@@ -86,11 +81,6 @@
     cursor: not-allowed;
     user-select: none;
     opacity: 0.5;
-
-    &.checkbox-checked {
-      background: dt.$primary-90;
-      border: 1px solid dt.$primary-90;
-    }
   }
   &.checkbox-disabled + .checkbox-label {
     opacity: 0.5;
@@ -100,7 +90,6 @@
     cursor: default;
   }
 }
-
 
 .checkbox-label {
   font-family: dt.$typo-font-p-regular-family;

@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Checkbox } from './checkbox';
 import Icon from '../icon/icon'
+import {useState} from 'react'
 
 export default {
   component: Checkbox,
@@ -17,13 +18,16 @@ export default {
   }
 } as ComponentMeta<typeof Checkbox>;
 
-const Template: ComponentStory<typeof Checkbox> = (args) => (
-  <Checkbox {...args} />
-);
+const Template: ComponentStory<typeof Checkbox> = (args) => {
+    return (
+      <Checkbox {...args} />
+    )
+}
 
 export const Primary = Template.bind({});
 Primary.args = {
   label: 'Нажми на меня',
+  inputId: 'check'
 };
 export const CustomIcon = Template.bind({});
 CustomIcon.args = {

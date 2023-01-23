@@ -9,12 +9,14 @@ import Icon from '../icon/icon'
  */
 
 export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
-  const {classes, containerClasses, checked, handleCheck, focused, handleFocus, handleKeyUp, labelStyleClass, isError} = useCheckbox(props);
+  const {classes, containerClasses, checked, handleCheck, handleKeyUp, labelStyleClass} = useCheckbox(props);
 
-  const icon = <>{props.checkboxIcon ? props.checkboxIcon : <Icon name={'ri-check-line'} type={'line'} size={16} />}</>
+  const CheckboxIcon = React.memo(() => (
+    <>{props.checkboxIcon ? props.checkboxIcon : <Icon name={'ri-check-line'} type={'line'} size={16} />}</>
+  ))
 
   return (
-    <div onClick={() => handleCheck(checked)} className={containerClasses} style={props.style}>
+    <label className={containerClasses} style={props.style} htmlFor={props.inputId}>
       <div className={styles['checkbox-hidden-input']}>
         <input ref={ref}
                type='checkbox'
@@ -28,21 +30,18 @@ export const Checkbox=forwardRef((props: CheckboxProps, ref: any) => {
                aria-labelledby={props.ariaLabelledBy}
                aria-label={props.ariaLabel}
                aria-checked={checked}
-               onFocus={() => handleFocus(true)}
-               onBlur={() => handleFocus(false)}
                disabled={(props.disabled !== undefined && props.disabled)}
-               onChange={(e) => handleCheck(e.target.checked)}
+               onChange={handleCheck}
                onKeyDown={(e) => handleKeyUp(e)}
         />
       </div>
-      <label className={classes}>
-        {checked && icon}
+      <label className={classes} htmlFor={props.inputId}>
+        {checked && <CheckboxIcon />}
       </label>
-      <label htmlFor={props.inputId}
-             className={labelStyleClass}>
+      <label htmlFor={props.inputId} className={labelStyleClass}>
         {props.label}
       </label>
-    </div>
+    </label>
   );
 });
 
