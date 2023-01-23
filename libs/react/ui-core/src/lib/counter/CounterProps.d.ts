@@ -5,7 +5,7 @@ import {ReactNode} from "react";
 export interface CounterProps extends DefaultParams, ClickableObjectMini {
 
   /** Number to show in badge */
-  children: ReactNode | number;
+  children: number;
 
   /** Background */
   type?: "solid" | "outline" | "light";
@@ -18,7 +18,4 @@ export interface CounterProps extends DefaultParams, ClickableObjectMini {
 
   /** Max count to show */
   overflowCount?: number;
-
-  /** Text to show when hovering over the counter */
-  text?: string;
 }
