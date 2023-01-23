@@ -17,10 +17,16 @@
   align-items: flex-start;
   border-radius: 8px;
   column-gap: 12px;
-  width: 287px;
+  width: 100%;
+
   box-sizing: border-box;
   transform-origin: left top;
-  overflow-y: hidden;
+  overflow: hidden;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &-info {
     @include color-items(
@@ -69,6 +75,7 @@
   font-weight: dt.$typo-font-p-medium-weight;
   font-size: 14px;
   line-height: 20px;
+  word-break: break-word;
 }
 
 .alert-close-icon-container {
@@ -77,8 +84,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  width: 24px;
-  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
 }
 
 .alert-close-icon {
