@@ -51,14 +51,11 @@ export interface CurrencyInputProps extends DefaultParams{
   /** If true, the input will be invalid */
   invalid?: boolean;
 
-  /** If true, the input will be success */
+  /** If true, the input will be success, else if false the input will be awaited */
   isSuccess?: boolean;
 
   /** Displayed currency */
   currency?: '₽' | '$' | '€' | '£' | '¥';
-
-  /** If true, the input will be awaited */
-  isAwaiting?: boolean;
 
   /** When present, it specifies that the component have information button */
   displayInformation?: boolean;
