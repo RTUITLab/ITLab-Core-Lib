@@ -3,10 +3,11 @@ import {FC, forwardRef} from 'react'
 import {CommentProps} from './CommentProps'
 import Avatar from '../avatar/avatar';
 import {FunctionalButton} from '../functional-button/functional-button'
-import {useComment, UseCommentProps} from './useComment'
+import {useComment} from './useComment'
 import Icon from '../icon/icon'
 import {TextArea} from '../text-area/text-area'
 import {Button} from '../button/button'
+import {UseCommentProps} from './UseCommentProps'
 
 export const Comment = forwardRef((props: CommentProps, ref: any) => {
 

@@ -3,7 +3,7 @@ import {DefaultParams} from "../../default-types/defaultParams";
 export interface CalendarProps extends DefaultParams{
 
   /** Select date event */
-  onSelectDate?: (date: string) => void;
+  onSelectDate?: (startDate: string, endDate?: string) => void;
 
   /** Size of the component */
   size?: 'default' | 'small'
@@ -16,4 +16,7 @@ export interface CalendarProps extends DefaultParams{
 
   /** Default end of range date */
   defaultEndDate?: Date | '',
+
+  /** If user already set first date of range */
+  isSetStartDate?: boolean
 }
