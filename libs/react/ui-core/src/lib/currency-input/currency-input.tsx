@@ -6,7 +6,7 @@ import {Tooltip} from '../tooltip/tooltip'
 import Icon from '../icon/icon'
 
 export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) => {
-  const {classes, width, handleChange, formattedValue, localRef, handleBlur} = useInputNumber(props)
+  const {classes, width, handleChange, value, localRef, handleBlur} = useInputNumber(props)
 
   return (
     <div className={classes}>
@@ -15,7 +15,7 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
              ref={ref}
              autoFocus={props.autoFocus}
              disabled={(props.disabled !== undefined && props.disabled)}
-             value={formattedValue}
+             value={value}
              name={props.name}
              placeholder={'0'}
              id={props.id}
@@ -35,7 +35,7 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
       <span className={styles['currencyInput-currency']}>{props.currency || '₽'}</span>
       <LocalIco {...props} />
       {/*Need to count input value width and autoscale input*/}
-      <span className={styles['currencyInput-hidden']} ref={localRef}>{formattedValue}</span>
+      <span className={styles['currencyInput-hidden']} ref={localRef}>{value}</span>
     </div>
   );
 })
