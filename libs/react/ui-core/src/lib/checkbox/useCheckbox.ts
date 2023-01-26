@@ -14,6 +14,12 @@ export function useCheckbox(props: CheckboxProps) {
     if(props.defaultChecked) setChecked(props.defaultChecked)
   }, [props.defaultChecked])
 
+  useEffect(() => {
+    if(props.error && !checked) {
+      setIsError(props.error)
+    }
+  }, [props.error])
+
   const handleCheck = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if(!props.readonly && !props.disabled) {
       setChecked(e.target.checked)
