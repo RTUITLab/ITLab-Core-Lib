@@ -43,7 +43,7 @@ export const CurrencyInput = forwardRef((props: CurrencyInputProps, ref: any) =>
 export default CurrencyInput;
 
 const LocalIco = React.memo((props: CurrencyInputProps) => {
-  if(props.displayInformation && (props.isSuccess)) {
+  if(props.displayInformation && (props.isSuccess === true || props.isSuccess === false)) {
     if(props.icon) {
       return (
         <Tooltip hidden={props.disabled} tooltipContent={<></>} type={'meta'}
