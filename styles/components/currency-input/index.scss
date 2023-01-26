@@ -12,13 +12,14 @@
   line-height: 16px;
   font-family: dt.$typo-font-p-medium-family;
   font-weight: dt.$typo-font-p-medium-weight;
-  transition: all 0.15s ease;
+  transition: color 0.15s ease;
 
   & .currencyInput-number {
-    transition: all 0.15s ease;
+    transition: border 0.15s ease,
+                color 0.15s ease,
+                width 0.02s linear;
 
     font-size: 14px;
-    line-height: 16px;
     font-family: dt.$typo-font-p-medium-family;
     font-weight: dt.$typo-font-p-medium-weight;
     outline: none;
