@@ -8,6 +8,7 @@ import {getClasses} from '../../utils/getClasses'
  */
 
 export function useInputNumber(props: CurrencyInputProps) {
+  //add spaces in value string
   const getSpacedValue = useCallback((number: string) => {
     return number.replace(/\B(?=(\d{3})+(?!\d))/g, " ")
   }, [])
@@ -45,7 +46,7 @@ export function useInputNumber(props: CurrencyInputProps) {
       setValue(getSpacedValue(limitedValue))
     }
     else setValue('')
-  }, [])
+  }, [props.defaultValue])
 
   useEffect(() => {
     const valueWidth = localRef.current.scrollWidth
@@ -53,14 +54,16 @@ export function useInputNumber(props: CurrencyInputProps) {
     else setWidth(valueWidth + 'px')
   }, [value])
 
+  //compare value with max and min
   const getLimitedValue = useCallback((number: string) => {
     if(number === '') return ''
     let result = getErasedNumber(number)
     if(props.min && (Number(result) <= props.min)) result = String(props.min)
     if(props.max && (Number(result) >= props.max)) result = String(props.max)
-    return Number(result)
-  }, [props])
+    return result
+  }, [props.min, props.max])
 
+  //remove spaces in value string
   const getErasedNumber = useCallback((number:string) => {
     if(number === '') return ''
     return number.split(' ').join('')
@@ -69,11 +72,11 @@ export function useInputNumber(props: CurrencyInputProps) {
   const classes = useMemo(() => {
     const conditions:{[index: string]:boolean} = {
       "currencyInput-wrapper": true,
-      "currencyInput-wrapper-default": !props.isSuccess && !props.isAwaiting,
+      "currencyInput-wrapper-default": props.isSuccess === undefined,
       "currencyInput-wrapper-disabled": props.disabled === true,
       "currencyInput-wrapper-readonly": props.readonly === true,
       "currencyInput-wrapper-success": props.isSuccess === true,
-      "currencyInput-wrapper-awaiting": props.isAwaiting === true,
+      "currencyInput-wrapper-awaiting": props.isSuccess === false,
       "currencyInput-wrapper-invalid": props.invalid === true,
     };
     return getClasses(conditions, styles, props.className)

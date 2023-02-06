@@ -17,7 +17,6 @@ export default {
     disabled: {table: {defaultValue: {summary: 'false'}},},
     invalid: {table: {defaultValue: {summary: 'false'}},},
     isSuccess: {table: {defaultValue: {summary: 'false'}},},
-    isAwaiting: {table: {defaultValue: {summary: 'false'}},},
     autoFocus: {table: {defaultValue: {summary: 'false'}},},
   }
 } as ComponentMeta<typeof CurrencyInput>;
