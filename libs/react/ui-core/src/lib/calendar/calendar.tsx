@@ -15,7 +15,7 @@ export const Calendar:FC<CalendarProps> = React.memo((props) => {
 
   const onDateClick = useCallback((day: Date| string) => {
     handleSelectDate(day)
-  }, [selectedDate, endDate]);
+  }, [handleSelectDate]);
 
   const nextMonth = useCallback(() => {
     setCurrentMonth(new Date((new Date(currentMonth)).setMonth(currentMonth.getMonth() + 1)))

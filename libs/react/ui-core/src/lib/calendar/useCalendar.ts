@@ -8,12 +8,18 @@ export function useCalendar(props: CalendarProps) {
   const [endDate, setEndDate] = useState<Date | ''>(props.defaultEndDate || '')
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date(selectedDate))
 
+  useEffect(() => {
+    if(props.defaultDate) {
+      setCurrentMonth(props.defaultDate)
+    }
+  }, [props.defaultDate])
+
   const handleSelectDate = useCallback ((date: Date | string) => {
     if(typeof date === 'string') {
       setSelectedDate(new Date())
       setCurrentMonth(new Date())
       setEndDate('')
-      if(props.onSelectDate) props.onSelectDate('')
+      if(props.onSelectDate) props.onSelectDate('', '')
     }
     else {
       if(props.type === 'date') {
@@ -21,35 +27,24 @@ export function useCalendar(props: CalendarProps) {
         setSelectedDate(date)
       }
       else {
-        //Если даты конца пока нет
-        if(endDate === '') {
-          //Ранее выбранная дата меньше, чем выбранная сейчас
-          if(CalendarFunctions.compareDates(selectedDate, date)) {
-            setSelectedDate(selectedDate)
-            setEndDate(date)
-            if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(selectedDate) + ' — ' + CalendarFunctions.getLocalStringDate(date))
-          }
-          else {
-            setSelectedDate(date)
-            setEndDate(selectedDate)
-            if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(date) + ' — ' + CalendarFunctions.getLocalStringDate(selectedDate))
-          }
+        if(props.isSetStartDate === false) {
+          setSelectedDate(date)
+          if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(date), '')
         }
         else {
-          //Если выбранная дата меньше, чем текущая начальная дата
-          if (CalendarFunctions.compareDates(date, selectedDate)){
+          if(CalendarFunctions.compareDates(date, selectedDate)) {
+            setEndDate(selectedDate)
             setSelectedDate(date)
-            if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(date) + ' — ' + CalendarFunctions.getLocalStringDate(selectedDate))
+            if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(date), CalendarFunctions.getLocalStringDate(selectedDate))
           }
-          //Если выбранная дата больше, чем текущая дата конца или находится между
           else {
             setEndDate(date)
-            if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(selectedDate) + ' — ' + CalendarFunctions.getLocalStringDate(date))
+            if(props.onSelectDate) props.onSelectDate(CalendarFunctions.getLocalStringDate(selectedDate), CalendarFunctions.getLocalStringDate(date))
           }
         }
       }
     }
-  },[endDate, selectedDate, props])
+  },[selectedDate, props])
 
   useEffect(() => {
     setSelectedDate(props.defaultDate || new Date())

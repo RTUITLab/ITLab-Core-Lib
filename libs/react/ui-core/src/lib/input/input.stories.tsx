@@ -69,7 +69,17 @@ export const RangePicker = Template.bind({});
 RangePicker.args = {
   size: 'medium',
   type: 'dateRange',
-  placeholder: 'Начало — Конец',
+  placeholder: '01.01.2023 — 28.01.2023',
   iconPosition: 'left',
   errorText: 'Ошибка!!!',
+};
+
+export const RangePickerDefaultValue = Template.bind({});
+RangePickerDefaultValue.args = {
+  size: 'medium',
+  type: 'dateRange',
+  placeholder: '01.01.2023 — 28.01.2023',
+  iconPosition: 'left',
+  errorText: 'Ошибка!!!',
+  defaultValue: '04.01.2023 — 28.01.2023',
 };

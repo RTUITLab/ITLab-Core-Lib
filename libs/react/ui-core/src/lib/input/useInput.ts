@@ -9,15 +9,28 @@ export function useInput(props: InputProps) {
   const [value, setValue] = useState<string>('')
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [endDate, setEndDate] = useState<Date | ''>('')
+  const [isSetStartDate, setIsSetStartDate] = useState(false)
+
   const calendar = createRef<HTMLDivElement>();
 
   useEffect(() => {
     if(props.type === 'date' || props.type === 'dateRange') {
-      if(props.defaultValue) setValue(CalendarFunctions.getStringDate(props.defaultValue as string|Date))
+      if(props.defaultValue) {
+        if(props.type === 'dateRange') {
+          setValue(CalendarFunctions.getStringDate(props.defaultValue as string))
+          const dateString = props.defaultValue.split('—')
+          setSelectedDate(new Date(CalendarFunctions.getStringDate(dateString[0])))
+          setEndDate(new Date(CalendarFunctions.getStringDate(dateString[1])))
+        }
+        else {
+          setValue(CalendarFunctions.getStringDate(props.defaultValue as string))
+          setSelectedDate(new Date(CalendarFunctions.getStringDate(props.defaultValue)))
+        }
+      }
       else setValue('')
     }
     else setValue(props.defaultValue || '')
-  }, [])
+  }, [props.defaultValue])
 
   const handleClick = useCallback((e: React.MouseEvent<HTMLInputElement>) => {
     if(props.onClick) props.onClick(e)
@@ -70,20 +83,42 @@ export function useInput(props: InputProps) {
       else setValue(e.target.value)
     }
     else setValue(e.target.value)
-  }, [])
+  }, [props.onChange])
 
-  const handleSelectDate = useCallback ((date: string) => {
-    setValue(CalendarFunctions.getStringDate(date))
-    if(props.type === 'date') {
-      setSelectedDate(new Date(CalendarFunctions.getStringDate(date)))
+  const handleSelectDate = useCallback ((startDate: string, endDate?: string) => {
+    if(startDate === '' && endDate === '') {
+      setValue('')
+      setSelectedDate(new Date())
+      setEndDate('')
+      setIsSetStartDate(false)
     }
     else {
-      const dateString = date.split('—')
-      setSelectedDate(new Date(CalendarFunctions.getStringDate(dateString[0])))
-      setEndDate(new Date(CalendarFunctions.getStringDate(dateString[1])))
+      if(props.type === 'date') {
+        if (props.onSelectDate) props.onSelectDate(startDate)
+        setValue(CalendarFunctions.getStringDate(startDate))
+        setSelectedDate(new Date(CalendarFunctions.getStringDate(startDate)))
+        setIsOpen(false)
+      }
+      else {
+        // const dateString = date.split('—')
+        if(endDate === '') {
+          setSelectedDate(new Date(CalendarFunctions.getStringDate(startDate)))
+          setValue(CalendarFunctions.getLocalStringDate(startDate))
+          setIsSetStartDate(true)
+          setEndDate('')
+        }
+        else if (endDate && endDate !== '') {
+          const finalDate = CalendarFunctions.getLocalStringDate(startDate) + ' — ' + CalendarFunctions.getLocalStringDate(endDate)
+          if (props.onSelectDate) props.onSelectDate(finalDate)
+          setSelectedDate(new Date(CalendarFunctions.getStringDate(startDate)))
+          setEndDate(new Date(CalendarFunctions.getStringDate(endDate)))
+          setValue(finalDate)
+          setIsSetStartDate(false)
+          setIsOpen(false)
+        }
+      }
     }
-    setIsOpen(false)
-  },[props.type])
+  },[props.type, props.onSelectDate])
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
@@ -97,7 +132,7 @@ export function useInput(props: InputProps) {
     if(isOpen && calendar.current && !calendar.current.contains(event.target)) {
       setIsOpen(false)
     }
-  }, [])
+  }, [calendar])
 
   const classes = useMemo(() => {
      const conditions:{[index: string]:boolean} = {
@@ -122,6 +157,6 @@ export function useInput(props: InputProps) {
     return getClasses(conditions, styles)
   }, [props]);
 
-  return {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, endDate}
+  return {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, endDate, isSetStartDate}
 }
 

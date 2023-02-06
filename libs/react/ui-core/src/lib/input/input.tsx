@@ -1,30 +1,42 @@
 import React, {forwardRef} from 'react'
-import styles from './input.module.scss';
+import styles from './input.module.scss'
 import {InputProps} from './InputProps'
 import {useInput} from './useInput'
 import {Calendar} from '../calendar/calendar'
 import Icon from '../icon/icon'
 
 export const Input = forwardRef((props: InputProps, ref: any) => {
-  const {classes, iconClasses, isOpen, handleClick, calendar, value, handleSelectDate, handleChange, selectedDate, endDate} = useInput(props)
+  const {
+    classes,
+    iconClasses,
+    isOpen,
+    handleClick,
+    calendar,
+    value,
+    handleSelectDate,
+    handleChange,
+    selectedDate,
+    endDate,
+    isSetStartDate,
+  } = useInput(props)
   const icons = {search: 'ri-search-line', date: 'ri-calendar-line', dateRange: 'ri-calendar-line'}
 
   const DefaultIco = React.memo(() => (
-      <>
-        {(props.type === 'date' || props.type === 'search'|| props.type === 'dateRange') &&
-          <span className={iconClasses}>
+    <>
+      {(props.type === 'date' || props.type === 'search' || props.type === 'dateRange') &&
+        <span className={iconClasses}>
             <Icon name={icons[props.type]} type={'line'} />
           </span>}
-      </>
-    ))
+    </>
+  ))
   const InputIcon = React.memo(() => (
     <>
       {props.icon ?
-      <span className={iconClasses}>
+        <span className={iconClasses}>
         {props.icon}
       </span> : <DefaultIco />}
     </>
-    ))
+  ))
   return (
     <>
       <div className={classes} ref={calendar} style={props.style}>
@@ -51,9 +63,11 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
           />
           <InputIcon />
         </label>
-        {(isOpen && ( props.type === 'date' || props.type === 'dateRange') ) &&
+        {(isOpen && (props.type === 'date' || props.type === 'dateRange')) &&
           <div className={styles['input-calendar']}>
-            <Calendar type={props.type} onSelectDate={handleSelectDate} size={props.calendarSize} defaultDate={selectedDate} defaultEndDate={endDate} />
+            <Calendar type={props.type} onSelectDate={handleSelectDate} size={props.calendarSize}
+                      defaultDate={selectedDate} defaultEndDate={endDate} isSetStartDate={isSetStartDate}
+            />
           </div>
         }
       </div>
@@ -63,7 +77,7 @@ export const Input = forwardRef((props: InputProps, ref: any) => {
         </div>
       }
     </>
-  );
-});
+  )
+})
 
-export default Input;
+export default Input
