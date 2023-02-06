@@ -17,16 +17,20 @@ export default {
   }
 } as ComponentMeta<typeof Checkbox>;
 
-const Template: ComponentStory<typeof Checkbox> = (args) => (
-  <Checkbox {...args} />
-);
+const Template: ComponentStory<typeof Checkbox> = (args) => {
+    return (
+      <Checkbox {...args} />
+    )
+}
 
 export const Primary = Template.bind({});
 Primary.args = {
   label: 'Нажми на меня',
+  inputId: 'check'
 };
 export const CustomIcon = Template.bind({});
 CustomIcon.args = {
   label: 'Нажми на меня',
+  inputId: 'check2',
   checkboxIcon: <Icon name={'ri-calendar-line'} type={'line'} size={16} />
 };

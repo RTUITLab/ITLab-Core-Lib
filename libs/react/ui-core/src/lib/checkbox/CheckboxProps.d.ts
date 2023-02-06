@@ -26,7 +26,7 @@ export interface CheckboxProps extends DefaultParams {
   error?: boolean;
 
   /** Identifier of the focus input to match a label defined for the component */
-  inputId?: string;
+  inputId: string;
 
   /** Icon object */
   checkboxIcon?: React.ReactNode<Icon>;
@@ -45,4 +45,7 @@ export interface CheckboxProps extends DefaultParams {
 
   /** Style class of the label */
   labelStyleClass?: string | string[];
+
+  /** On change action */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
