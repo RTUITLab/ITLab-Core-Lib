@@ -1,21 +1,20 @@
 @use '../../../styles/design-tokens' as dt;
-@use '../../../styles/icons' as *;
 @use '../../../styles/helpers/loading' as *;
 
 .button {
   box-sizing: border-box;
-
+  outline: none;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 10px 16px;
   gap: 10px;
-
+  transition: background-color 0.2s ease;
   height: 44px;
   width: fit-content;
 
-  border: none;
+  border: 1px solid transparent;
   border-radius: 6px;
 
   cursor: pointer;
