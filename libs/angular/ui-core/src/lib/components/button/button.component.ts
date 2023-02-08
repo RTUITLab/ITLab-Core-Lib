@@ -3,16 +3,23 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy, Input, Output, EventEmitter,
 } from '@angular/core';
+import { NgClass, NgIf, NgStyle } from "@angular/common";
 
 
 @Component({
-  selector: 'ng-ui-core-button',
+  selector: 'nuc-button',
   templateUrl: './button.component.html',
   styleUrls: [
     './button.component.scss'
   ],
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    NgStyle,
+    NgClass,
+    NgIf
+  ],
+  standalone: true
 })
 export class ButtonComponent{
 

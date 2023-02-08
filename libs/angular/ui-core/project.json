@@ -1,12 +1,13 @@
 {
+  "name": "angular-ui-core",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/angular/ui-core/src",
-  "prefix": "ng-ui-core",
+  "prefix": "nuc",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/angular/ui-core"],
+      "outputs": ["{workspaceRoot}/dist/libs/angular/ui-core"],
       "options": {
         "project": "libs/angular/ui-core/ng-package.json"
       },
@@ -22,7 +23,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/angular/ui-core"],
+      "outputs": ["{workspaceRoot}/coverage/libs/angular/ui-core"],
       "options": {
         "jestConfig": "libs/angular/ui-core/jest.config.ts",
         "passWithNoTests": true

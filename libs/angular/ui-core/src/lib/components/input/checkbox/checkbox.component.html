@@ -1,0 +1,51 @@
+<div
+  [ngStyle]="style"
+  [ngClass]="{
+     'checkbox': true
+     }"
+  [class]="styleClass"
+>
+  <div class="checkbox-hidden-input">
+    <input
+      #cb
+      type="checkbox"
+      [attr.id]="inputId"
+      [attr.name]="name"
+      [readonly]="readonly"
+      [value]="value"
+      [checked]="isChecked"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      (change)="handleChange($event)"
+      [disabled]="disabled"
+      [attr.tabindex]="tabindex"
+      [attr.aria-labelledby]="ariaLabelledBy"
+      [attr.aria-label]="ariaLabel"
+      [attr.aria-checked]="isChecked"
+      [attr.required]="required"
+    >
+  </div>
+  <div
+    class="checkbox-box"
+    (click)="onClick($event, cb,true)"
+    [ngClass]="{
+       'checkbox-checked': isChecked,
+       'checkbox-disabled': disabled,
+       'checkbox-focus': isFocused
+       }"
+  >
+    <nuc-icon
+      icon="checkbox-icon"
+      [ngClass]="isChecked ? checkboxIcon : ''"
+    ></nuc-icon>
+  </div>
+  <label
+    (click)="onClick($event, cb,true)"
+    [class]="labelStyleClass"
+    [ngClass]="{
+       'checkbox-label': true
+       }"
+    *ngIf="label"
+    [attr.for]="inputId"
+  >{{label}}</label>
+</div>

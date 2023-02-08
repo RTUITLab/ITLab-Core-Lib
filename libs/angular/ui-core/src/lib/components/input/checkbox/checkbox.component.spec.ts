@@ -1,16 +1,9 @@
-import {
-  ComponentFixture,
-  ComponentFixtureAutoDetect,
-  fakeAsync,
-  TestBed,
-  TestBedStatic,
-  tick
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import {CheckboxComponent} from './checkbox.component';
-import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {By} from "@angular/platform-browser";
-import {Component, SimpleChange} from "@angular/core";
+import { CheckboxComponent } from './checkbox.component';
+import { FormControl, FormsModule, NgModel, ReactiveFormsModule } from "@angular/forms";
+import { By } from "@angular/platform-browser";
+import { Component } from "@angular/core";
 
 describe('CheckboxComponent', () => {
   let checkboxEl: HTMLInputElement;
@@ -18,13 +11,6 @@ describe('CheckboxComponent', () => {
   describe('Checkbox with NgModel', () => {
     let testNgModelComponent: CheckboxWithNgModelComponent;
     let testNgModelFixture: ComponentFixture<CheckboxWithNgModelComponent>;
-
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        declarations: [CheckboxComponent, CheckboxWithNgModelComponent],
-        imports: [FormsModule]
-      }).compileComponents();
-    });
 
     beforeEach(() => {
       testNgModelFixture = TestBed.createComponent(CheckboxWithNgModelComponent);
@@ -94,13 +80,6 @@ describe('CheckboxComponent', () => {
     let testFormControlComponent: CheckboxWithFormControlComponent;
     let testFormControlFixture: ComponentFixture<CheckboxWithFormControlComponent>;
 
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        declarations: [CheckboxComponent, CheckboxWithFormControlComponent],
-        imports: [ReactiveFormsModule]
-      }).compileComponents();
-    });
-
     beforeEach(() => {
       testFormControlFixture = TestBed.createComponent(CheckboxWithFormControlComponent);
       testFormControlComponent = testFormControlFixture.componentInstance;
@@ -151,7 +130,12 @@ describe('CheckboxComponent', () => {
 
 /** Test component with ngModel */
 @Component({
-  template: '<ng-ui-core-checkbox name="checkbox" [(ngModel)]="value"></ng-ui-core-checkbox>'
+  template: '<nuc-checkbox name="checkbox" [(ngModel)]="value"></nuc-checkbox>',
+  imports: [
+    CheckboxComponent,
+    FormsModule
+  ],
+  standalone: true
 })
 class CheckboxWithNgModelComponent {
   value = false;
@@ -159,7 +143,13 @@ class CheckboxWithNgModelComponent {
 
 /** Test component with reactive forms */
 @Component({
-  template: `<ng-ui-core-checkbox [formControl]="formControl"></ng-ui-core-checkbox>`,
+  template: `
+    <nuc-checkbox [formControl]="formControl"></nuc-checkbox>`,
+  imports: [
+    CheckboxComponent,
+    ReactiveFormsModule
+  ],
+  standalone: true
 })
 class CheckboxWithFormControlComponent {
   formControl = new FormControl(false);

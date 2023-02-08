@@ -1,0 +1,34 @@
+<div
+  [ngStyle]="style"
+  [ngClass]="containerClass"
+  [class]="styleClass"
+>
+  <label class="input-outer">
+    <input
+      class="input"
+      #inputElement
+      type="text"
+      [attr.id]="inputId"
+      [attr.name]="name"
+      [readonly]="readonly"
+      [value]="value"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      (input)="handleChange($event)"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [attr.tabindex]="tabindex"
+      [attr.aria-labelledby]="ariaLabelledBy"
+      [attr.aria-label]="ariaLabel"
+      [attr.required]="required"
+    >
+    <nuc-icon
+      *ngIf="isIconShouldBeShown(type)"
+      [icon]="iconClassName"
+      [ngClass]="iconClass"
+    ></nuc-icon>
+  </label>
+</div>
+<div *ngIf="errorText" class="input-text-error">
+  {{ errorText }}
+</div>

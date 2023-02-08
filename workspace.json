@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "angular-examples": "apps/angular-examples",
+    "angular-examples-e2e": "apps/angular-examples-e2e",
     "angular-ui-core": "libs/angular/ui-core",
     "angular-ui-core-e2e": "apps/angular-ui-core-e2e",
     "react-ui-core": "libs/react/ui-core",
@@ -8,5 +10,6 @@
     "react-ui-core-app-e2e": "apps/react/ui-core-app-e2e",
     "react-ui-core-e2e": "apps/react-ui-core-e2e"
   },
-  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "defaultProject": "angular-ui-core"
 }

@@ -1,10 +1,11 @@
 {
+  "name": "react-ui-core-app",
   "$schema": "..\\..\\..\\node_modules\\nx\\schemas\\project-schema.json",
   "sourceRoot": "apps/react/ui-core-app/src",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/web:webpack",
+      "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
@@ -47,7 +48,7 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/web:dev-server",
+      "executor": "@nrwl/webpack:dev-server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "react-ui-core-app:build",
@@ -72,7 +73,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/react/ui-core-app"],
+      "outputs": ["{workspaceRoot}/coverage/apps/react/ui-core-app"],
       "options": {
         "jestConfig": "apps/react/ui-core-app/jest.config.ts",
         "passWithNoTests": true

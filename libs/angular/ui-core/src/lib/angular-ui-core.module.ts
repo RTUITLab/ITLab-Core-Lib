@@ -1,21 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
-  BadgeModule,
-  ButtonModule,
-  CheckboxModule
+  BadgeComponent,
+  ButtonComponent,
+  CheckboxComponent,
+  InputTextComponent
 } from "./components";
 
 @NgModule({
-  imports: [CommonModule,
-    ButtonModule,
-    BadgeModule,
-    CheckboxModule
-  ],
-  exports: [
-    ButtonModule,
-    BadgeModule,
-    CheckboxModule
-  ]
+  imports: [CheckboxComponent, BadgeComponent, InputTextComponent, ButtonComponent],
+  exports: [CheckboxComponent, BadgeComponent, InputTextComponent, ButtonComponent],
 })
-export class AngularUiCoreModule {}
+export class AngularUiCoreModule {
+}
