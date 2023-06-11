@@ -1,35 +1,38 @@
 
 
-# ItlabCoreLib
+# ITLabCoreLib
 
-This project was generated using [Nx](https://nx.dev).
+> Дизайн-система от команды RTUITLab
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## Структура
 
-🔎 **Smart, Fast and Extensible Build System**
+Репозиторий представляет собой монорепозиторий, в котором хранятся исходные коды всех библиотек, относящихся к дизайн-системе.
 
-## Adding capabilities to your workspace
+Для сборки проекта и управления им используется [Nx](https://nx.dev).
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+Для отображения компонентов при разработке используется [Storybook](https://storybook.js.org/).
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+## Разработка
 
-Below are our core plugins:
+1.  Установите зависимости
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+```
+    npm i
+```
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+2. Для запуска storybook необходимо выдолнить команду:
+
+*   React
+
+```
+    npm run storybook:react
+```
+
+*   Angular
+
+```
+    npm run storybook:angular
+```
 
 ## Generate an application
 

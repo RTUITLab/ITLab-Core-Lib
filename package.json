@@ -7,6 +7,7 @@
     "build": "nx build",
     "test": "nx test",
     "storybook:react": "nx storybook react-ui-core",
+    "storybook:angular": "nx storybook angular-ui-core",
     "app:react": "nx serve react-ui-core-app",
     "component:react": "npx nx g @nrwl/react:component --project=react-ui-core",
     "postinstall": "ngcc --properties es2020 browser module main",
