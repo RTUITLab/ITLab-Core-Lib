@@ -1,0 +1,60 @@
+@use '../../../styles/design-tokens' as dt;
+
+.table {
+  border-collapse: collapse;
+  table-layout: auto;
+  overflow: auto;
+  width: 100%;
+
+  &.table-fixed {
+    table-layout: fixed;
+  }
+
+  & .table-head, .table-cell {
+    box-sizing: border-box;
+    border: 1px solid dt.$general-50;
+    color: dt.$general-90;
+    padding: 16px 20px;
+    text-align: center;
+
+    font-size: dt.$typo-font-p-medium-size;
+    line-height: dt.$typo-font-p-medium-line-height;
+    font-weight: dt.$typo-font-p-medium-weight;
+    font-family: dt.$typo-font-p-regular-family;
+  }
+  & .table-head, .table-footer {
+    background-color: dt.$general-30;
+  }
+  & .table-head {
+
+
+
+    & .table-head-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+
+      & .table-head-sort {
+        cursor: pointer;
+        color: dt.$general-90;
+        opacity: .3;
+        transition: all 0.2s ease;
+        &:hover {
+          opacity: .7;
+        }
+      }
+      & .table-head-sort-active {
+        opacity: 1;
+      }
+      & .table-head-sort-ascending {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+  & .table-footer {
+    &-element {
+      text-align: left;
+    }
+  }
+}

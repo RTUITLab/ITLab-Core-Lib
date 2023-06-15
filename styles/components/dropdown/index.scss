@@ -22,6 +22,7 @@
 }
 
 .dropdown-value {
+  width: 100%;
   user-select: none;
   box-sizing: border-box;
   display: flex;
@@ -43,9 +44,8 @@
   color: dt.$general-60;
 }
 .dropdown-label {
-  width: fit-content;
+  width: 100%;
   min-width: 146px;
-  max-width: 250px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
