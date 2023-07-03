@@ -1,10 +1,12 @@
-import { Component, OnInit, NgModule, Input } from '@angular/core';
+import { Component, OnInit, NgModule, Input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IconComponentModule } from '../icon/icon.component';
 
 @Component({
   selector: 'ng-ui-core-alert',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class AlertComponent implements OnInit {
 
@@ -14,16 +16,14 @@ export class AlertComponent implements OnInit {
   iconName = 'information';
 
   constructor() {
-    
   }
 
   ngOnInit(): void {
-
   }
 }
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, IconComponentModule],
   declarations: [AlertComponent],
   exports: [AlertComponent],
 })

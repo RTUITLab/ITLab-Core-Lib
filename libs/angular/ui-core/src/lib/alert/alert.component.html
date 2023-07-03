@@ -1,10 +1,10 @@
 
-<div [class]="'alert alert-'+type" [style]="style">
+<div [ngClass]="'alert alert-'+type" [style]="style">
     <!-- <img [src]="iconName" alt=""> -->
-    <i class="ri-close-circle-fill"></i>
+    <ng-ui-core-icon name="information" [size]="20" [class]="'alert-icon'" type="fill"></ng-ui-core-icon>
     <div class="alert-content">
         <div class="alert-header">
             {{title}}
         </div>
     </div>
-</div>
+</div>  

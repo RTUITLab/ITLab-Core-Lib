@@ -1,5 +1,5 @@
 // import '../../../../../../styles/icons/fonts/remixicon.css';
-import { Component, OnInit, NgModule, Input } from '@angular/core';
+import { Component, OnInit, NgModule, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,10 +13,11 @@ export class IconComponent  implements OnInit{
   @Input() type?: 'fill' | 'line' | '' = 'fill';
   @Input() color?: "primary" | "general" | "green" | "red" | "yellow" | "orange" | "general-light" | "green-light" | "red-light" | "yellow-light" | "orange-light" | "general-dark" | "green-dark" | "red-dark" | "yellow-dark" | "orange-dark" = 'primary';
   @Input() size?: number = 24;
+  @Input() class?: string;
 
 
   getClass(){
-    return `${this.color ?? ""} ri-${this.name}${this.type ? `-${this.type}` : ''}`
+    return `${this.class ?? `${this.color ?? ""}`}  ri-${this.name}${this.type ? `-${this.type}` : ''} `
   }
   getStyle(){
     return {fontSize: `${this.size}px`, height: "fit-content", display: "inline-flex", justifyContent: "center"};
@@ -24,7 +25,9 @@ export class IconComponent  implements OnInit{
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.error(this.class)
+  }
 }
 
 @NgModule({

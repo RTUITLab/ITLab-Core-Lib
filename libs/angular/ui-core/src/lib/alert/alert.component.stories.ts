@@ -1,12 +1,13 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { AlertComponent } from './alert.component';
+import { IconComponentModule } from '../icon/icon.component';
 
 export default {
   title: 'AlertComponent',
   component: AlertComponent,
   decorators: [
     moduleMetadata({
-      imports: [],
+      imports: [IconComponentModule],
     })
   ],
 } as Meta<AlertComponent>;

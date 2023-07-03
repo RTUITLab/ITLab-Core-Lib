@@ -2,7 +2,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { IconComponent } from './icon.component';
 
 export default {
-  title: 'IconComponent',
+  title: 'Icon',
   component: IconComponent,
   decorators: [
     moduleMetadata({
@@ -25,10 +25,10 @@ const Template: Story<IconComponent> = (args: IconComponent) => ({
   props: args,
   template: `
   <ng-ui-core-icon
-  [name]="name"
-  [type]="type"
-  [color]="color"
-  [size]="size"
+    [name]="name"
+    [type]="type"
+    [color]="color"
+    [size]="size"
   >
   </ng-ui-core-icon>
   `
