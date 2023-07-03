@@ -1,0 +1,45 @@
+@use "../../../../../../styles/icons" as *;
+@use "../../../../../../styles/design-tokens/color" as *;
+
+.button-icon{
+  display: block;
+}
+
+.primary{
+  color: $primary-100;
+}
+.general{
+  color: $general-100;
+}
+.green{
+  color: $green-100;
+}
+.red{
+  color: $red-100;
+}
+.yellow{
+  color: $yellow-100;
+}
+.orange{
+  color: $orange-100;
+}
+
+
+.primary-light{
+  color: $primary-30;
+}
+.general-light{
+  color: $general-30;
+}
+.green-light{
+  color: $green-30;
+}
+.red-light{
+  color: $red-30;
+}
+.yellow-light{
+  color: $yellow-30;
+}
+.orange-light{
+  color: $orange-30;
+}
