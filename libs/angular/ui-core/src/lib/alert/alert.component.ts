@@ -1,28 +1,38 @@
 import { Component, OnInit, NgModule, Input, ViewEncapsulation, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconComponentModule } from '../icon/icon.component';
+import { transform } from '@babel/core';
 const closeBtn = require('../../../../../../assets/close.svg');
 
 
 @Component({
-  selector: 'ng-ui-core-alert',
+  selector: 'ng-ui-core-alert[title]',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class AlertComponent {
 
-  @Input() title = 'Заголовок';
-  @Input() subtitle = 'Подзаголовок';
+  @Input() title = '';
+  @Input() subtitle?: string;
   @Input() style? = {};
-  @Input() type: 'info' | 'success' | 'warning' | 'error' = 'info';
-  @Input() closable = true;
+  type: 'info' | 'success' | 'warning' | 'error' = 'info';
+  closable = true;
   @Input() onClose?: () => void;
   iconName = 'information';
   btnPath: any;
   visible = true;
   closing = '';
 
+  @Input() 
+  set Type(type: 'info' | 'success' | 'warning' | 'error') {
+    this.type = type || 'info';
+  }
+
+  @Input() 
+  set Closable(closable: boolean) {
+    this.closable = closable ?? true;
+  }
   constructor(private host: ElementRef<HTMLElement>) {
     this.btnPath = closeBtn;
   }

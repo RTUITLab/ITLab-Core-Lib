@@ -11,33 +11,59 @@ export default {
     })
   ],
   argTypes: {
+    title: {
+      control: { type: 'text'},
+      
+    },
+    subtitle: {
+      control: { type: 'text' }
+    },
+    style: {
+      control: { type: 'object' }
+    },
     type: {
       options: ['info', 'success', 'warning', 'error'],
-      control: { type: 'radio' },
-      children: {type: 'html'}
-    }
+      control: { type: 'radio' }
+    },
+    closable: {
+      control: { type: 'boolean' }
+    },
+    
   }
 } as Meta<AlertComponent>;
 
-const Template: Story<AlertComponent> = (args: AlertComponent) => ({
+const TemplatePrimary: Story<AlertComponent> = (args: AlertComponent) => ({
   props: args,
   template:`
     <ng-ui-core-alert [style]="style" [title]="title" [subtitle]="subtitle" [type]="type" [closable]="closable">
-      {{children}}
-    </ng-ui-core-alert>
-    <ng-ui-core-alert [style]="style" [title]="title" [subtitle]="subtitle" [type]="type" [closable]="closable">
-      {{children}}
     </ng-ui-core-alert>
   `
 });
 
 
-export const Primary = Template.bind({});
+export const Primary = TemplatePrimary.bind({});
 Primary.args = {
   title: 'Заголовок',
+  // subtitle: '',
+  // closable: true,
+  // type: 'info',
+  // style: {},
+}
+
+const TemplateContent: Story = (args) => ({
+  props: args,
+  template:`
+    <ng-ui-core-alert [style]="style" [title]="title" [subtitle]="subtitle" [type]="type" [closable]="closable">
+      <h1 class="alert-header">Любой внутренний контент, который <u>необходимо отобразить</u></h1>
+    </ng-ui-core-alert>
+  `
+});
+
+export const WithContent = TemplateContent.bind({});
+WithContent.args = {
+  title: 'Заголовок',
   subtitle: 'Подзаголовок',
-  children: `Внутренний контент (управляется пользователем)`,
-  closable: true,
-  type: 'info',
-  style: {},
+  // closable: true,
+  // type: 'info',
+  // style: {},
 }
