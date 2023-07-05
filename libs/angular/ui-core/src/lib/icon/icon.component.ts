@@ -14,7 +14,7 @@ export class IconComponent  implements OnInit{
   @Input() color?: "primary" | "general" | "green" | "red" | "yellow" | "orange" | "general-light" | "green-light" | "red-light" | "yellow-light" | "orange-light" | "general-dark" | "green-dark" | "red-dark" | "yellow-dark" | "orange-dark" = 'primary';
   @Input() size?: number = 24;
   @Input() class?: string;
-
+  
 
   getClass(){
     return `${this.class ?? `${this.color ?? ""}`}  ri-${this.name}${this.type ? `-${this.type}` : ''} `
@@ -26,7 +26,6 @@ export class IconComponent  implements OnInit{
   constructor() {}
 
   ngOnInit(): void {
-    console.error(this.class)
   }
 }
 

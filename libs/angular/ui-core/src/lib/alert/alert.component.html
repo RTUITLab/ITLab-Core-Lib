@@ -1,10 +1,14 @@
 
-<div [ngClass]="'alert alert-'+type" [style]="style">
-    <!-- <img [src]="iconName" alt=""> -->
-    <ng-ui-core-icon name="information" [size]="20" [class]="'alert-icon'" type="fill"></ng-ui-core-icon>
+<div [ngClass]="'alert alert-'+type+closing" [style]="style" *ngIf="visible">
+    <ng-ui-core-icon [name]="getIconName()" [size]="20" [class]="'alert-icon'" type="fill"></ng-ui-core-icon>
     <div class="alert-content">
         <div class="alert-header">
             {{title}}
         </div>
+        <div class="alert-subtitle" *ngIf="subtitle">{{subtitle}}</div>
+        <ng-content class="alert-children"></ng-content>
+    </div>
+    <div class="alert-close-icon-container" *ngIf="closable" (click)="closeAlert()">
+        <img [src]="btnPath" alt="close" class="alert-close-icon">
     </div>
 </div>  
