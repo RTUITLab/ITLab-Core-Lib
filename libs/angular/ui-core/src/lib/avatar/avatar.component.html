@@ -1,0 +1,6 @@
+<div [class]="getClass()">
+    <img (error)="handleSrcError()" class="avatar-image" [src]="src" alt="Avatar" *ngIf="src; else letter">
+</div>
+<ng-template #letter>
+    <span [style]="getStyle()">{{getLetter()}}</span>
+</ng-template>
