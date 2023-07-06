@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule, Input, HostListener, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, NgModule, Input, HostListener, ViewChild, ElementRef, ViewEncapsulation, HostBinding } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconComponentModule } from "../icon/icon.component";
 
@@ -11,6 +11,7 @@ import { IconComponentModule } from "../icon/icon.component";
 })
 export class CollapsePanelComponent implements OnInit{
   
+  @HostBinding('class') hostClass = 'collapse-item';
   
   @Input()
   header?: string = '';

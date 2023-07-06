@@ -3,13 +3,24 @@ import { CollapsePanelComponent } from './collapse-panel.component';
 import { IconComponentModule } from '../icon/icon.component';
 
 export default {
-  title: 'CollapsePanelComponent',
+  title: 'CollapsePanel',
   component: CollapsePanelComponent,
   decorators: [
     moduleMetadata({
       imports: [IconComponentModule],
     })
   ],
+  argTypes:{
+    header: {
+      control: 'text'
+    },
+    class: {
+      control: 'text'
+    },
+    style: {
+      control: 'object'
+    }
+  }
 } as Meta<CollapsePanelComponent>;
 
 const Template: Story<CollapsePanelComponent> = (args: CollapsePanelComponent) => ({
