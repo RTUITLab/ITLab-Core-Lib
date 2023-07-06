@@ -1,0 +1,14 @@
+<div [class]="getItemClasses()" [style]="style">
+    <div [class]="getHeaderClasses()" (click)="toggleExpanded()">
+        <div class="collapse-item-header">{{header}}</div>
+        <ng-ui-core-icon name="arrow-down-s" type="line" [size]="24" [class]="'collapse-arrow'"></ng-ui-core-icon>
+    </div>
+    <div class="collapse-item-content-wrapper"
+        [style]="{display: expanded, height: contentHeight.toString() + 'px'}">
+        <div class="collapse-item-content" #content>
+            <ng-content>
+            </ng-content>
+        </div>
+    </div>
+</div>
+
