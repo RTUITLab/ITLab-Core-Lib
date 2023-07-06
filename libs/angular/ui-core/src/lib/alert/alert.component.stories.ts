@@ -28,6 +28,9 @@ export default {
     closable: {
       control: { type: 'boolean' }
     },
+    onClose: {
+      control: { type: 'function' }
+    }
     
   }
 } as Meta<AlertComponent>;
