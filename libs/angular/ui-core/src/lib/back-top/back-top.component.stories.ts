@@ -3,7 +3,7 @@ import { BackTopComponent } from './back-top.component';
 import { IconComponentModule } from '../icon/icon.component';
 
 export default {
-  title: 'BackTopComponent',
+  title: 'BackTop',
   component: BackTopComponent,
   decorators: [
     moduleMetadata({
